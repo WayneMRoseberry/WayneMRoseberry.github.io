@@ -28,7 +28,7 @@ twitter_username: jekyllrb
 github_username:  waynemroseberry
 
 # Build settings
-theme: Time Machine
+theme: Cayman
 plugins:
   - jekyll-feed
 
