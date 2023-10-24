@@ -9,6 +9,6 @@ Site Links:
 -----------
 
 {% for link in site.data.links %}
-  <p>{{ link.desc } : <a href="{{ link.url }}">{{link.title}}</a></p>
+  <p>{{ link.desc }} : <a href="{{ link.url }}">{{link.title}}</a></p>
 {% endfor %}
 
