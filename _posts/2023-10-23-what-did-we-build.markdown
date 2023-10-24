@@ -5,7 +5,8 @@ date:   2023-10-23 17:00:00 -0700
 categories: jekyll update
 ---
 ![Three people looking at a machine](/assets/threepeopleandamachine.jpeg)
-What did we build? Thinking about if the product is right
+
+What did we build? Thinking about if the product is right.
 ====================
 I like to imagine three ways to think about how we evaluate a product.
 
