@@ -5,11 +5,4 @@
 layout: home
 ---
 
-<table>
-  <tr>
-{% for link in site.data.navigation %}
-  <td><a class="page-link" href="{{ link.url }}">{{ link.title }}</a></td>
-{% endfor %}    
-  </tr>
-</table>
 

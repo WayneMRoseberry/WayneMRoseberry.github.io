@@ -1,15 +1,8 @@
 ---
 layout: page
-title: "About me and what I do"
+title: "About Me"
 permalink: /about
 ---
-<table>
-  <tr>
-{% for link in site.data.navigation %}
-  <td><a class="page-link" href="{{ link.url }}">{{ link.title }}</a></td>
-{% endfor %}    
-  </tr>
-</table>
 
 Work Experience
 ==========
