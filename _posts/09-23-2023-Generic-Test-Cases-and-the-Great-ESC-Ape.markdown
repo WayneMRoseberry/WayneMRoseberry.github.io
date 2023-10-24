@@ -1,3 +1,5 @@
+![King Kong on a motorcyle jumping the border to Switzerland like Steve McQueen](/assets/greatescape.jpeg)
+
 When I imagine test cases, what I am primarily interested in is what happens in the case when a given condition occurs. It is a question, a pondering, a concern there may be something to learn in that particular case which presents risk to the product, system, business, or customer.
 I like to do as much up-front imagination and creation of possible cases as I spontaneously realize them as I test. There are several ways of doing that. The one I will talk about here I call the ESC method. For what it’s worth, the age of that label is less than an hour old, I just hadn’t been so pretentious as to put a label on it until just now. The label stands for:
 - **E**numeration
