@@ -16,6 +16,10 @@ point I moved to the Office Engineering team, which builds the tools, services, 
 In 2014 became a software engineer as part of Microsoft's overall movement to align development and testing into a
 single job role.
 
+Across my career I have worked on GUI applications, client-server software, enterprise servers, proprietary online services, and
+large-scale cloud hosted software. I have spent years working with, design, and utilizing automation systems. I enjoy
+pushing boundaries of innovation with software testing, and automation.
+
 Books
 ==========
 
