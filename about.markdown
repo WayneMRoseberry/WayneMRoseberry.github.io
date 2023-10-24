@@ -1,7 +1,7 @@
 ---
 layout: page
-title: "About"
-permalink: /About
+title: "PAGE-TITLE"
+permalink: /about
 ---
 
 Work Experience
