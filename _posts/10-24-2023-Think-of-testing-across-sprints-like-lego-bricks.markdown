@@ -5,6 +5,11 @@ date:   2023-10-24 6:00:00 -0700
 categories: jekyll update
 ---
 ![Building things with Legos](/assets/legobrickwall.jpeg)
+I like this picture I am using because it has so many classic Lego mistakes in it,
+which illustrates the point of the article. I especially love the free floating
+row of bricks in the air, nothing tying them together. It also has
+overlapping bricks, longer bricks connecting shorter bricks.  I used Bing Image Creator for the
+picture, and all the AI eccentricities help the story.
 
 Short bricks, long bricks, and overlapping bricks
 ============================
@@ -12,7 +17,7 @@ Short bricks, long bricks, and overlapping bricks
 Let's talk about Legos first
 ----------------------------
 
-If you have ever built a wall, or anything, out of Lego bricks, you know that you cannot build
+If you have ever built a wall, or anything out of Lego bricks, you know that you cannot build
 any stable structure if the bricks all line up perfectly on their edges. If bricks are
 perfectly lined up on their edges, the structure will collapse. A stable wall
 requires bricks that overlap.
