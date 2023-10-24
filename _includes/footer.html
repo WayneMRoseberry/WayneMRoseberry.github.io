@@ -4,7 +4,14 @@
   <div class="wrapper">
 
     <div class="footer-col-wrapper">
-      <div>Wayne is going crazy with this stuff.</div>
+      <div>    
+Site Links:
+-----------
+
+{% for link in site.data.links %}
+  <p>{{ link.desc }} : <a href="{{ link.url }}">{{link.title}}</a></p>
+{% endfor %}
+      </div>
       <div class="footer-col">
         <p class="feed-subscribe">
           <a href="{{ site.feed.path | default: 'feed.xml' | absolute_url }}">
