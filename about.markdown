@@ -1,7 +1,7 @@
 ------
 layout: page
-title: "PAGE-TITLE"
-permalink: /tabs/About
+title: "About"
+permalink: /About
 ------
 
 Books
