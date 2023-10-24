@@ -4,14 +4,15 @@ title:  "What did we build?"
 date:   2023-10-23 17:00:00 -0700
 categories: jekyll update
 ---
-Thinking about if the product is right
+![Three people looking at a machine](/assets/threepeopleandamachine.jpeg)
+What did we build? Thinking about if the product is right
 ====================
 I like to imagine three ways to think about how we evaluate a product.
 
 Did we build the right product?
 --------------------
 This is about whether or not we built something the customer, user, market, business wants 
-and needs. Will people use it happily, or will the disregard it? Will they come back to us for more business, or will they go somewhere else?
+and needs. Will people use it happily, or will they disregard it? Will they come back to us for more business, or will they go somewhere else?
 The only way to know for certain if you have built the right product is to get feedback from the people who need it
 and are going to use it. You can ask other people, and their feedback may be useful, but all they can provide is a guess.
 
@@ -34,4 +35,5 @@ these mistakes require skills that exceed those of the customer. The mistakes of
 do not want to find our mistakes for us. Our developers can find many of these mistakes,
 especially if they are good at testing techniques that go beyond checking off items on a requirement list. But finding these
 mistakes sometimes requires time and focus unavailable to a developer that is busy designing and building the next necessary
-change to the system. We find more of these mistakes when we can dedicate somebody's time and focus on doing so.
+change to the system. We find more of these mistakes when we can dedicate somebody's time and focus on doing so. This is usually the job of a tester.
+
