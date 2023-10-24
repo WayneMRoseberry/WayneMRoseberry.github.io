@@ -4,7 +4,7 @@ title:  "Think of testing across sprints"
 date:   2023-10-24 6:00:00 -0700
 categories: jekyll update
 ---
-![Building things with Legos](/assets/big_short_overlapping_Lego_Bricks.jpeg)
+![Building things with Legos](/assets/legobrickwall.jpeg)
 
 Short bricks, long bricks, and overlapping bricks
 ============================
