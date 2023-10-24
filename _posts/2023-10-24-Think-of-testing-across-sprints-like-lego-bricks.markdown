@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Think of testing across sprints"
+title:  "Think of testing across sprints like Lego bricks"
 date:   2023-10-24 6:00:00 -0700
 categories: jekyll update
 ---
