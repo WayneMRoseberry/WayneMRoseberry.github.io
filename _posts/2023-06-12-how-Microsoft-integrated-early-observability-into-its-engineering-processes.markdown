@@ -1,4 +1,4 @@
-![Chimpanzee contemplating a problem](/assets/chimpincontemplation.jpeg)
+![A radio tower representing the idea of something emitting a signal.](/assets/radiotower.png)
 
 Can we see problems before our users hit them?
 
