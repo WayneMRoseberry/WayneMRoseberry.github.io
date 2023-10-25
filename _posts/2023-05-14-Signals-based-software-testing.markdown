@@ -1,6 +1,6 @@
 ![In honor of smart monkey testing, an image of a monkey on a radio tower.](/assets/monkeyonradiotower.png)
 
-For the last several years, I have been working on a test approach that I call "signals based testing."
+For the last several years, I have been working on a test approach that I call "Signals Based Testing."
  
 _I define it as when we exploit engineering and operations data emitted by the product in order to find bugs by applying some workload against the product._
 
