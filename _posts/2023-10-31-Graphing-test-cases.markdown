@@ -137,6 +137,38 @@ Naming the test ideas and combining them allows a rapid construction of many new
 continues the pattern if describing how to make the combination, which combinations to eliminate, with a justification for
 why. The end result is a set of test cases that covers a lot of ground, but remains easy to imagine and review.
 
+Making the Graphs
+===================
+You can make the graphs using any means you want. Draw them on paper, or on a whiteboard. You could use
+Legos or wooden blocks. There are several tools for drawing graphs.
+
+One of my favorite tools is GraphViz. It creates graphs without you having to do any of the
+drawing yourself. You describe the nodes and edges in a language called DOT. The publish diagram I
+used in this article was created with the following DOT script:
+
+```
+digraph G {
+nofile->draft [label="save"]
+draft->draft [label="save"]
+draft->nofile [label="delete"]
+draft->checkedin [label="check in"]
+checkedin->draft [label="undo"]
+checkedin->nofile [label="delete"]
+checkedin->checkedout [label="checkout"]
+checkedout->checkedin [label="checkedin"]
+checkedout->checkedoutdraft [label="save"]
+checkedoutdraft->checkedin [label="check in"]
+checkedin->pendingpublish [label="publish"]
+pendingpublish->checkedin [label="rejected"]
+pendingpublish->checkedin [label="undo"]
+pendingpublish->published [label="approve"]
+published->checkedin [label="check out"]
+published->checkedin [label="revert"]
+}
+```
+You can download GraphViz from various places on the web, but I have found this <a href="https://dreampuf.github.io/GraphvizOnlin">online DOT compiler</a> particularly useful
+
+
 More Ideas for Easier Test Planning
 ===================
 I describe this idea, and more, in my book
