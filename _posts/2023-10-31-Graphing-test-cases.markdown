@@ -166,7 +166,7 @@ published->checkedin [label="check out"]
 published->checkedin [label="revert"]
 }
 ```
-You can download GraphViz from various places on the web, but I have found this <a href="https://dreampuf.github.io/GraphvizOnlin">online DOT compiler</a> particularly useful
+You can download GraphViz from various places on the web, but I have found this <a href="https://dreampuf.github.io/GraphvizOnline">online DOT compiler</a> particularly useful
 
 
 More Ideas for Easier Test Planning
