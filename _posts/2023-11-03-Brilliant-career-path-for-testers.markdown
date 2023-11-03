@@ -29,6 +29,7 @@ to understand it.
 The aligned career ladder
 ==========================
 The new career ladder imagined four main bands or stages in an engineer's career:
+
 ENG 1, ENG 2, Senior ENG, Principal ENG
 
 The ENG labels would change based on discipline, so SDET, SDE, etc.
