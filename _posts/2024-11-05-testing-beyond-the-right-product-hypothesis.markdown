@@ -34,3 +34,35 @@ might threaten that value, might keep us from meeting those goals.
 
 What Do We Test?
 =========================
+What to test is not as easy a problem as it might sound. Given the goals,
+we might be fine with a few quick checks from
+whomever is creating the banner before letting it go into production. Or
+we might need to take a deep look at the banner and its interaction
+with the rest of the site, customer environments, and usage patterns. How
+do we decide?
+
+It all depends.
+
+Consider the situation
+-------------------------
+Our example is vague, and there are a lot of conditions which
+would be more apparent were this a real project we were really
+working on. Consider:
+- Is this a static page or is the page content created by a more complex, dynamic process?
+- Is putting a banner on our pages a new thing, or is it something we don all the time with tools we already know and understand?
+- How complex is the site? Content only, or a richly functional page with lots of complex behavior?
+- What is at risk of something doesn't work? Is there money on the line, customer data, loss of time and effort for ourselves and the customer?
+- What is our configuration and environment distribution? Many platforms and browsers on many versions, or more singular and narrow?
+- What is the world-wide scope of the site, in how many countries and languages?
+- How much existing coverage do we have already to check changes for regression? What is our current rate of failure and in production defect, ability to respond?
+
+We can consider a lot of other questions, all of which will have a big
+impact on the relative risk of the change. Maybe adding this banner is
+a great big nothing burger, or maybe it means a lot of work building
+something new that is going to be difficult to integrate with the existing
+site. It is cliche to say "you have to ask," but in truth, if you
+work on the team you probably already know, or if you don't
+you should find out soon.
+
+Consider the potential risks
+-------------------------
