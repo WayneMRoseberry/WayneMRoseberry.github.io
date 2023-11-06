@@ -89,7 +89,7 @@ the engineer writing the code is checking the main functionality. It is decided 
 and concerns are best investigated low-level, probably covered in unit tests supplemented with some
 exploratory work pre-coding done by the same engineer on the data pipeline contract behaviors.
 
-What about fast feedback?
+What about fast feedback? Should we change something?
 ------------------------
 Indeed. Are we over-doing it? The plan above is presented to the whole team. It is explained that
 the pivots and metadata and filter needed for full banner impact on email sign-up (or anything else we may wish to promote
