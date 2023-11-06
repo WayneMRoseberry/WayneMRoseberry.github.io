@@ -66,3 +66,59 @@ you should find out soon.
 
 Consider the potential risks
 -------------------------
+Let's imagine the following things are true about the project we are working on (chosen
+for sake of illustration, as it wouldn't be a very interesting lesson if this
+was really simple):
+- the website has many interactive elements and controls on the page that are rendered dynamically
+- the banner needs to fit between existing content locations that source from different aspects of the system
+- the website is delivered worldwide across many languages
+- the customers view the site from desktop and mobile devices spanning PC, Droid, iOS platforms, and across several browsers with most traffic in N, N-1 versions
+- the banner is a new component to the site for which the developer needs to do some more complex work to get the data to allow for pivots and sorts across all the different configurations
+
+Given the above the team has identified the following concerns:
+- interruption of data flow pipelines to display in the banner itself, believed low risk concern of data flow to other parts on the pages
+- risk of disrupting visual display of other elements on the page, particularly with regard to cross-configuration display issues
+- possible non-obvious conditions which might make the banner not display, function, or present its information (new code to display banner)
+- possible conditions which might cause data from the experiment to be wrong or misrepresent (new integration of this part with existing data collection systems)
+
+You come up with a strategy to investigate each of those areas of concern. Part of it involves a suite
+to cover configurations to get a visual inspection of how the banner looks on different platforms. This is
+determined to be an expensive part of the testing, and might need somebody to prepare the test bed
+while another engineer write the banner code, that same engineer is selected to do the visual inspection while
+the engineer writing the code is checking the main functionality. It is decided that the pipeline issues
+and concerns are best investigated low-level, probably covered in unit tests supplemented with some
+exploratory work pre-coding done by the same engineer on the data pipeline contract behaviors.
+
+What about fast feedback?
+------------------------
+Indeed. Are we over-doing it? The plan above is presented to the whole team. It is explained that
+the pivots and metadata and filter needed for full banner impact on email sign-up (or anything else we may wish to promote
+with banners, or other new UI elements) needs ride on our existing system for doing that sort
+of thing, which means more than just a simple UI element. It is also explained that to make the
+banner work effectively cross-platform we need to write a whole new part class, and the parts of the site
+layout where the banner will go needs some change to accomodate adding a new part there. This drives
+the need for the volume of testing in the plan.
+
+The team decides that while all of that is true, there is a shorter-term goal of knowing whether or
+not the banner-on-the-page idea works at all for driving email sign-ups. While cross-platform support
+and all the various metadata pivots will be needed later should the banner mechanism pan out, they are not needed
+at this point. Further, it is asked if perhaps there is a way to get the part in the UI that is a short
+term hack which can be reverted quickly, and we can work on the full-fledged UI integration if the team knows that
+the idea works out.
+
+Everyone agrees. The initial work will take a lot of short cuts to get some quick data, and if the hypothesis
+is determined true (the banner does drive sign-ups), work will commence on a version of the banner code that
+scales across platforms, configurations, and is fully integrated into the data analysis infrastructure of the site.
+
+This decision allows a fast feedback release with some agreed upon concessions, while also laying the plan
+for the development and testing activity that will be needed should the larger work happen.
+
+Let's Get Back to Reality
+========================
+All of the above was fiction. A feasible fiction, I believe, but just as feasible the story could have been
+entirely different.
+
+The point of the fiction was to provide an example of how asking "Is this the right product?" may need to be supported
+with other work that looks for anything which threatens asking that question. In a hypothesis driven mode, the ability
+to ask that question is part of the product value and one of the things we may be testing for is anything which
+might get in the way of doing that.
