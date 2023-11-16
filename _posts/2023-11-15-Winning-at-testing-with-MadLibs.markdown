@@ -6,7 +6,7 @@ I have a testing technique that reminds me of form letters, like those mass
 mailings for sweepstakes promotions or credit card sales. Even more, it reminds
 me of MadLibs, where you fill in words for placeholders.
 
-I stumbled across this technique a day or so ago  in a LinkedIn post when summarizingsome test preparation.
+I stumbled across this technique a day or so ago  in a LinkedIn post when summarizing some test preparation.
 The actual preparation was a page or two of tables that I combined together to come up with test
 cases for a new feature I was preparing to add. LinkedIn posts don't allow pages of
 material, and I didn't have the time to write a longer article, so I was forced into coming up with
@@ -55,7 +55,7 @@ A testing example
 =====================================
 My example phrase is from a real testing problem I was working on. Let's look at it again:
 
-_"try __< action >__ as __< role >__ when __< authorized | unauthorized >__"_
+_"try __< action >__ as __< role >__ when __< authorized \| unauthorized >__"_
 
 The problem I was working on was a REST API that allows reporting of problem reports
 (test failures, bugs, etc.) and will automatically determine if the issue is new or
@@ -93,7 +93,7 @@ actions for different types of users.
 
 It was after making these combinations that I realized they were all of the form:
 
-_"try < action > as < role > when < authorized | unauthorized >"_
+_"try __< action >__ as __< role >__ when __< authorized \| unauthorized >__"_
 
 It was mostly a list of simple test ideas, although it got complex when considering combinations 
 like _"Attempt __(action)__ a write operation in Tenant1-Project2 as a user who __(role)__ is a writer and __(authorized|unauthorized)__ allowed to write in Tenant1-Project1, but only read in Teant1-Project2"_. 
