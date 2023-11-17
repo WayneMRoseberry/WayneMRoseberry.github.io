@@ -63,7 +63,7 @@ on the service disabled the matching logic entirely.
 
 Why did this work well?
 1. The definition of correct output was imprecise and loose
-2. The taks was not going to be broken by failure to meet an exacting demand
+2. The task was not going to be broken by failure to meet an exacting demand
 3. ChatGpt produced the content I wanted much faster than I would have produced it myself
 4. The cost of checking the data for correctness was low and easy to do
 5. The prompt I gave ChatGpt did not ask it to perform any logic or mathematics or conform to tight requirements
