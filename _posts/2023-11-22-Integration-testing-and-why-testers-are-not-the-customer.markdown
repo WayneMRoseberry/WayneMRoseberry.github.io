@@ -64,3 +64,85 @@ all the possible combinations and permutations. Customers just have a problem
 to solve, and they set about solving it.
 
 We already had a word for this. Scenario testing.
+
+The "There is nothing new under the sun" scenario
+=================================================
+The concept of scenario testing was fresh in my mind because user stories
+and personas and scenarios had made the rounds of design at Microsoft several
+years prior. I think it was Julie Larson Green that made the big push,
+and this notion that we should design our products around a set of problems
+customers wanted to solve, and little stories about how they solved it, were
+all over the design documents and specifications. Our testing approach was
+similarly affected.
+
+It seemed obvious and natural to me that one answer (there never a singular "The Answer"
+to any problem of this scope) to the integration testing problem was to apply user scenario
+testing. Rather than worry about the massive world of all possible combinations,
+use hand picked user scenarios to focus attention and time. Sure, we would could
+not cover everything, and we would leave a lot uncovered, but we would also
+very likely cover a lot.
+
+I made my pitch, and I was given a small virtual team of engineers.
+
+Scenario testing and product integration
+------------------------------------------------
+We wanted the testing to lean heavily on integration. We also wanted to and accelerate discovery rate, so we set some parameters:
+1. Pick a persona (e.g. secretary, data analyst, etc.) who has some problem to solve (e.g. manage a list of clients, check expenses for the team, etc.) which is not solved by the product out of the box
+2. Choose a solution that requires combining at least two, preferrably three of the applications together to solve it
+3. When you come to some point that has a problem, report that problem as the bug - if you are blocked, you are blocked, so move on to a new scenario
+
+The customer really needs to solve this problem, but you don't
+------------------------------------------------
+The beginning of our effort was quite productive as we did some initial product integration
+exploration to demonstrate proof of concept, and to convince testing leadership
+the effort was worthwhile. We found bugs very quickly before we began the scenario testing.
+
+When the scenario testing actually started, I found a problem come up I did not expect.
+
+The team of testers I was working with had a difficult time getting their head out of the problem space of
+the customer. Two of them were working together on a data tracking and reporting problem for an imagined
+secretary who was starting with data in Excel that was going to eventually be pulled into Word
+for reporting. While working up alternative means of getting the data back and forth smoothly, they
+found that the initial means they planned was not going to work. It was blocked by
+something that somehow lost data or didn't allow everything to come over easily and conveniently.
+
+They described this problem to me, and said "So we decided that the best way to get the data over
+was rather than use the product features directly, we would build a separate app and use the
+product APIs to..."
+
+I stopped them at this point. They had blown right past the whole point of the exercise. They had
+deemed the customer blocked without going into full on developer mode. That was the bug. They should
+have stopped, described the block, and moved on to something else. Instead, they were spending more time
+imagining how to work around the block than they were looking for more problems.
+
+They were thinking like a customer, and that was a problem. They needed enough customer thinking to
+imagine the problem, to think of how a customer might try to solve it, to recognize when the bug
+came up, but that is where it ends. Because their real job is to describe risk to the product. The
+customer doesn't care or want to be involved in telling the product team about bugs. The customer
+wants to get their problem solved, will go hunting for ways to solve it, and when they do
+will probably never tell the product team about the gyrations they had to go through to
+get around it.
+
+Continuining on like the customer would is very alluring. It feeds our problem solving
+mentality. It is creative. But in this case, it was the opposite of what we should have been
+doing.
+
+The rest of the story
+=================================================
+The integration effort did catch attention of test leadership, but so did the rest
+of the ship schedule. Eventually each of the testers loaned to me were taken back
+to focus on other problems within their team.
+
+The scenario testing focus caught the attention and the imagination of the rest of
+the Office team. From the point of my integration testing project and forward, different
+Office product teams used scenario testing - user problem based modes of focusing
+test attention - as a key coverage and discussion point across the team. Even though
+my project shut down over competing initiatives, the approach we used was popular.
+
+More testing ideas for you and your team
+=================================================
+I cover other testing ideas in my book (linked below) where I focus on how to quickly put
+together a test plan that help you think of product test coverage, share and critique
+it with others.
+
+<a href="https://www.amazon.com/Writing-Test-Plans-Made-Easy/dp/1478333693">![Writing Test Plans Made Easy](/assets/writingtestplanscover.jpg)</a> 
