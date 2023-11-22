@@ -1,5 +1,7 @@
 If you are the customer you aren't really testing
 =================================================
+![An image of a donkey painting zebra stripes on other donkeys](/assets/donkey_zebra_strips.jpg)
+
 A lot of testers like to say they represent the customer, or
 that they are the voice of the customer, or that they are
 acting like the customer. Their intention is good,
@@ -13,7 +15,7 @@ And then we aren't testers anymore.
 I am going to explain with a story about integration
 testing.
 
-Integration testing Microsoft Office
+Integration testing and Microsoft Office
 =================================================
 Sometime in the early 2000s, when I was a test lead in
 the SharePoint team, I heard buzz of a concern over
@@ -54,10 +56,10 @@ a problem?
 How to cover such a problem, indeed!
 ------------------------------------------------
 I have this thing where I hear someone state a seemingly impossible
-undertaking, and I have to figure out to actually do it. I look for
+undertaking, and I have to figure out how to actually do it. I look for
 shortcuts, less ambitious solutions that get at the heart of the problem,
 but try to avoid boiling the ocean. And for this problem in particular,
-I realized we already had a solution. I knew we already had a solution,
+I realized we already had a solution
 because our customers were doing it all the time. Customers use
 the Office suite in an integrated fashion without being paralyzed by
 all the possible combinations and permutations. Customers just have a problem
@@ -72,21 +74,20 @@ and personas and scenarios had made the rounds of design at Microsoft several
 years prior. I think it was Julie Larson Green that made the big push,
 and this notion that we should design our products around a set of problems
 customers wanted to solve, and little stories about how they solved it, were
-all over the design documents and specifications. Our testing approach was
-similarly affected.
+all over the design documents and specifications.
 
 It seemed obvious and natural to me that one answer (there never a singular "The Answer"
 to any problem of this scope) to the integration testing problem was to apply user scenario
 testing. Rather than worry about the massive world of all possible combinations,
-use hand picked user scenarios to focus attention and time. Sure, we would could
-not cover everything, and we would leave a lot uncovered, but we would also
-very likely cover a lot.
+use hand picked user scenarios to focus attention and time. Sure, we would
+not cover everything, and we would leave a lot uncovered, but we could also
+cover a lot.
 
 I made my pitch, and I was given a small virtual team of engineers.
 
 Scenario testing and product integration
 ------------------------------------------------
-We wanted the testing to lean heavily on integration. We also wanted to and accelerate discovery rate, so we set some parameters:
+We wanted the testing to lean heavily on integration. We also wanted to accelerate discovery rate, so we set some parameters:
 1. Pick a persona (e.g. secretary, data analyst, etc.) who has some problem to solve (e.g. manage a list of clients, check expenses for the team, etc.) which is not solved by the product out of the box
 2. Choose a solution that requires combining at least two, preferrably three of the applications together to solve it
 3. When you come to some point that has a problem, report that problem as the bug - if you are blocked, you are blocked, so move on to a new scenario
@@ -97,9 +98,9 @@ The beginning of our effort was quite productive as we did some initial product 
 exploration to demonstrate proof of concept, and to convince testing leadership
 the effort was worthwhile. We found bugs very quickly before we began the scenario testing.
 
-When the scenario testing actually started, I found a problem come up I did not expect.
+When the scenario testing actually started, a problem come up I did not expect.
 
-The team of testers I was working with had a difficult time getting their head out of the problem space of
+The testers I was working with had a difficult time getting their head out of the problem space of
 the customer. Two of them were working together on a data tracking and reporting problem for an imagined
 secretary who was starting with data in Excel that was going to eventually be pulled into Word
 for reporting. While working up alternative means of getting the data back and forth smoothly, they
@@ -133,11 +134,10 @@ The integration effort did catch attention of test leadership, but so did the re
 of the ship schedule. Eventually each of the testers loaned to me were taken back
 to focus on other problems within their team.
 
-The scenario testing focus caught the attention and the imagination of the rest of
-the Office team. From the point of my integration testing project and forward, different
+The scenario testing approach lived on regardless. From the point of my integration testing project and forward, different
 Office product teams used scenario testing - user problem based modes of focusing
-test attention - as a key coverage and discussion point across the team. Even though
-my project shut down over competing initiatives, the approach we used was popular.
+test attention - as a key coverage and discussion point across the team. I enjoyed
+watching the Office team adopt this approach as the years rolled on.
 
 More testing ideas for you and your team
 =================================================
