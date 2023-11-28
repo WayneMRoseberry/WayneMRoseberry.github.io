@@ -94,14 +94,49 @@ of these things slipped past the lower level tests, some because it slipped
 my mind at the time when writing the check, and some because the problem
 does not exist until all the components come together.
 
+End to End Testing Interactively
+=======================
+If I can, I don't start my end-to-end tests with automated scripts. I like to
+interact more directly. When I write code, I commit decisions into the script,
+and sometimes I want to change my mind more quickly than that.
+
+One way I like to do that is with a command line programming language like
+PowerShell or Python. I prefer PowerShell, but Python is pretty spectacular.
+I do not really like either for production code, but for on the fly, ad hoc
+testing of things like product APIs, both are fantastic.
+
+In this particular example, I tested using Swagger, which allows ASP.NET
+REST API services to express their API as web-based user interface. Here is an example
+of the Swagger interface for ReportIssue:
+![screenshot of the Swagger page scrolled to the ReportIssue secrtion of the test app](/assets/SwaggerReportIssue.jpg)
+
+The backend behavior is the same for interacting with Swagger as it is for
+my test script. The difference is a lot more clicking, and I might deviate
+my behavior to investigate something. I typically have Swagger up on one screen
+and SQL Server Management Studio up on their other. Lots of copy and
+paste of data back and forth, as many of the item ids are GUIDs generated on the
+fly by the service. But I also use SQL queries to clean up data left behind.
+
+I do a lot of the same when debugging with the scripts. Sometimes the script
+hits a failure in product or in itself, and I use the database to check
+backend state. Even with automation support, a lot of the time I am testing interactively.
+
 Unit Tests for ReportIssue
 ======================
 Every single rectangle under "Backend Service" in the diagram above has a corresponding
-test or set of tests targeting it. 
+test or set of tests targeting it. The unit tests helped me track when something
+fundamental in the code breaks something fundamental enforced in some other
+test. Schema changes, meanings of different flags break a lot here. I also found
+that when I wanted to plum some piece of data through a stack of layers (e.g. I
+did not always track the "ProjectId" or "TenantId" for data isolation) that much
+of the tests would fail making those changes. Sometimes the test was the problem - but
+it was often enough in the product code that updating the tests was worth the cost.
 
 IssueRepository - top level object
 ----------------------
 The following test method exercises the ReportIssue method in the IssueRepository class.
+![A zoom on the earlier diagram up to the ReportIssue method in the IssueRepository class](/assets/zoomreportissue.jpg)
+
 This class is a higher level class that utilizes together two interfaces, an IIssueDbProvider for
 storing issues and reports, and an IIssueIdentityProvider for determining whether an
 issue is new or previously reported. A mock is provided for both interfaces, with
@@ -147,12 +182,21 @@ or service platform. Implementations of IIssueIdentityProvider and IIssueDbProvi
 might enable execution SQL, MySql, PineCone, Word2Vec, various Azure storage solutions,
 AWS services, or a variety of other technology.
 
-IIssueDbProvider - AddIssueProfile
+I had this same unit test for quite a long time. At one point I stood the
+service up on Azure. The entire IssueRepository testing code stayed the
+same when I shifted first from Sql to Azure, and then back to Sql. Likewise for
+all the other unit tests that were higher than the technology specific
+providers. I knew that even as I changed or shifted supporting platforms
+I could still check my business logic.
+
+IIssueDbProvider - GetIssueProfile()
 ----------------------------
 I am going to skip the IssueIdentity layer between IssueRepository and IIsueDbProvider
 because I used the same testing ideas there as in IssueRepository. A more
 interesting thing happes at IIssueDbProvider where the product code gets closer to the database
-layer.
+layer. I am also going to shift to GetIssueProfile() because
+as a read operation it has to return data which the write operations
+(like AddIssueProfile) do not. That is interesting to look at.
 
 It is almost impossible to separate all business logic from data
 storage, and it is difficult to test data tier business logic in unit
@@ -206,7 +250,22 @@ way to avoid this, which I have not implemented here, is to create
 a method on the product which creates a datatable in the expected
 schema format.
 
-SqlDbIOHelper - GetIssueProfile
+No longer doing Unit Tests
+============================
+I prefer maintaining a strict definition for unit tests. Avoid as much
+as possible cross component integration. Test as little as possible in
+each check. Do not test anything which cannot run in memory exclusively
+during something like a build process - in other words, no IO to file
+systems, the network, a database, or any external process.
+
+This means I need some non-unit tests. The first example are those
+which test the IO interaction. I try to reduce the logic to as little as
+possible, only enough to send or receive IO from some source. Beyond that, I write
+smaller integration tests that tie multiple units or components together,
+but far short of a complete end to end system. I skipped the latter class of
+those for this project, so I finishing off my examples with an IO provider.
+
+SqlDbIOHelper - GetIssueProfile as in IO provider test
 ----------------------------
 Testing SqlDbIOHelper is something that can no longer fit within
 the strict constraints of a unit test. We are testing SQL queries,
