@@ -153,6 +153,11 @@ attributes and behaviors in the product which threaten value, and
 that what we want to do is discover them. Testing problems focus on,
 frequently start with, an underlying assumption of risk.
 
+One of the subsets of test focus on risk are shared with other
+problem spaces in software development. Risk focus in testing intersects 
+with some of the "is this the right product?" business problem, and "did we build the product
+right?" development problem, but it takes a slightly different angle.
+
 Risk to product value flips two other problem statements categories "Does the product meet requirements?"
 and "Is this the right product?" around. The inverse of both questions become
 a kind of threat to product value. We ask "In what ways does the product fail to meet requirements?" and
@@ -163,6 +168,12 @@ Confirmatory tests which check if a given condition is true (e.g. "After changin
 the file type on the image, is the saved file structure and extension
 consistent with the selected format?") are really intended to notify us when
 the condition is false - when risk to product value has been identified.
+
+It is worth noting that this subsuming of other risk based questions
+remains a test problem, but implementation might change. Our examples of
+"build product right" and "build right product" problems are matched with
+common methods, where other problems might demand a different approach
+entirely.
 
 Knowledge and the gap in knowledge
 ----------------------------------
@@ -185,18 +196,20 @@ and developers and other creators have to move forward on belief. That
 faith may be informed by other things they know, but remains only
 faith so long as we are still making the product.
 
-Testing is not complete until we know something. We know that a given
+Testing is about us knowing something. We know that a given
 threat to value exists. We know that five hundred repetitions of the
 test procedure yielded an aborting memory leak 2% of the time. We know
 that the web page renders differently on Firefox than on Chrome.
 
 Testing infinitely contemplates what we do not know yet. We do not
-know yet at workload throughput level will operations begin to fail in
+know yet at what workload throughput level will operations begin to fail in
 some manner. We do not know yet whether some of the product features
 are unavailable to accessibility tools. We do not know what percentage
 of users successfully follow the guided instructions in the help wizard
 for the new formatting features. We don't know what risks worry us
 about the newly acquired project code because we haven't done a survey of it.
+
+The heart of the testing problem statement is the knowledge gap around risk.
 
 Implicitly about observation
 ----------------------------------
@@ -218,6 +231,107 @@ some degree of precision, accuracy, and understanding. Observation
 unavoidably intersects with perception and our own need for
 sense making. When we test, we are adopting methods and practices and
 techniques to manage these affects of observation in our favor.
+
+The entire (false) shift-left/shift-right dichotomy is an attempt to
+express observational opportunity relative to time in the development cycle.
+Applying a sometimes true, but more often than one might suspect false, principle
+that testing and bug discovery is always cheaper if done earlier, the shift-left
+guideline is to move all directed testing as close to the developer as possible.
+Almost as a shrug to "some stuff is too hard to find that early", the other
+side of the dichotomy is offered as a "test in production" solution.
+
+This ignores an important truth about observation. The bugs we can observe
+change across time. Some bugs are apparent in specification alone - we
+can walk through the logic of the intended behavior and describe self-contradictory
+state and requirements on paper alone. Some bugs do not appear until the code
+exists, but are easily found by checks against articulated requirements.
+Some bugs do not manifest until we hook components together where
+behaviors not understood in system interaction play out in real time. Some
+bugs are only apparent under the subjective experience of real users. Each one of these
+categories are only possible to observe at or after the point in time where
+the bug manifests.
+
+Another important point about observation is our approach changes what
+we can observe. When a developer writes a unit test, they
+know exactly what problem they are looking for. I offer one of mine as an example.
+
+The behavior I want is that the GetIssueReport method returns a specific, custom
+exception when the item it is looking for does not exist. I do not want
+some other exception from lower layers to bubble up. I do not want
+a null object. I want it to be an error condition that the caller
+of this method explicitly deals with (instead of, for
+example, accidentally trying to use that null object later).
+
+The following test method checks for exactly that requirement. It overrides
+dependencies with mocks so that underlying behavior is guaranteed
+to align with the test condition. It removes as much as it can
+any possible interfering state. It might catch other problems, but
+it is very low probability it will. If I did not anticipate something
+with this test method, it isn't going to get caught. This works very
+well for requirements we know ahead of time, communicates contractual
+expectations and supports a lot of development needs. The test serves
+its purpose because the purpose needs a very precise and exact
+means of observation for something known ahead of time:
+```
+[TestMethod]
+public void GetIssueReport_nomatchingissue_throws()
+{
+  MockIssueDbProvider dbProvider = new MockIssueDbProvider();
+  dbProvider.overrideConfigure = (s) => { };
+  dbProvider.overrideGetIssueReportTenantConfigProjId = (instanceId, TenantConfiguration, projectId) => { throw new IssueDoesNotExistException("testinstanceid"); };
+  MockTaggedIssueIdProvider taggedIssueIdProvider = new MockTaggedIssueIdProvider();
+  taggedIssueIdProvider.overrideConfigure = (s) => { };
+  MockIssueIdProvider issueIdentityProvider = new MockIssueIdProvider();
+  issueIdentityProvider.overrideConfigure = (s) => { };
+
+  IssueRepository issueRepository = new IssueRepository(dbProvider, new IssueIdentityManager(new IIssueIdentityProvider[] { issueIdentityProvider }, null));
+  try
+  {
+    IssueReport issueReport = issueRepository.IssueReport("testinstanceid", "testtenant", string.Empty);
+    Assert.Fail("should not get here because it should throw.");
+  }
+  catch (IssueReportDoesNotExistException e)
+  {
+    Assert.AreEqual("testinstanceid", e.InstanceId, "Fail if does not match issue report instance.");
+  }
+}
+```
+
+But what about problems we do not anticipate? We need observational approaches
+which work even if we don't know what might go wrong. For that, I offer
+the following deceptively simple test method:
+
+```
+[TestMethod]
+public void GET_ReportIssue_allwritecapableroles()
+{
+  Console.WriteLine("Check with tenant admin token.");
+  GetReportIssueForUserToken(_tenantAdminToken);
+  Console.WriteLine("Check with tenant writer token.");
+  GetReportIssueForUserToken(_tenantWriterToken);
+}
+```
+The method looks small, and even its helper function, GetReportIssueForUserToken,
+is not very large. But it is far from a unit test. The above method tests
+against the product REST API, which loads an entire service into a
+web instance with multiple tiers, an SQL server, a trained ML embedding
+model and a call to an 3rd party cloud provider. Further, the test
+is cover two different user roles that were prepared before hand by
+test setup code. While the prior unit test targets precisely, and
+very well, whether or not one specific method handles an error case
+in a very specific way, the method here catches any number of failures.
+The check behind that helper method does little more than affirm the
+final call happens and the return value looked right, but in this case
+the journey was more important than the destination. The observational method
+utilized here is about increasing the probability of catching something
+we did not notice.
+
+The unit test is a horrible way to find new bugs, but a splendid way
+to check conformance to requirements. The REST API test is a dreadful
+way to quickly check if a change broke something (preparing the test
+fixture cleanly and repeatedly is prohibitive to do in a dev loop)
+but an excellent way to look for new bugs once you have time to look.
+We need to change our observational method to match the problem statement.
 
 Targeted to a set of behaviors and conditions
 ----------------------------------
@@ -246,7 +360,7 @@ when some high priority guideline conflicts with a suggested solution.
 
 Asking for a solution, demands action
 ----------------------------------
-The crux of our whole endeavor is to act on decisions. A problem does
+The point of our whole endeavor is to act on decisions. A problem does
 not start with a solution (_"We are writing an automated test suite that runs
 in the cloud on virtual machines that emulate gaming devices. What problem
 do we need to solve?"_ as backward as that sounds, it is oddly familiar to
@@ -254,7 +368,7 @@ how people discuss testing). We understand the problem first and
 craft the solution to address it.
 
 Guidelines are similar to solutions. They shape our decisions, but are
-not first principles. Our first principles are the problems we are
+not our primary objectives. Our primary objectives are the problems we are
 trying to solve, and the guidelines help us set constraints on our solution.
 They help us make decisions. They introduce concerns we must weigh against
 problem priorities and solutions we describe.
@@ -272,7 +386,7 @@ The example is vacuously and obviously bad, ignoring all the ways that a system
 which hits every single one of the user story points might have mistakes
 in implementation that leave wind open holes in data security. It is exaggerated
 for sake of illustration, although sometimes I feel what people offer and
-propose as test solutions in general are not that far off. Usually what they
+propose as test solutions in general are not far from the example. Sometimes what they
 lack is articulation of any test problem at all, leaving us empty
 and malnourished from lack of proper solutions.
 
@@ -290,19 +404,19 @@ when needed, and then put away when a better tool suits our needs.
 
 Some of us treat ideologies as singular fixed statements about truth and
 good and bad that are always right and never to be violated. I reject that
-approach to ideologies, but I leave my argument for a different venue. What
+approach to ideologies, but I leave my arguments for a different venue. What
 I will say is I believe when we put the ideology first and foremost we
-sometimes wind up making bad decisions, even when the ideology is otherwise pretty sound.
+sometimes wind up making bad decisions, even when the ideology is otherwise sound.
 
 _Some ideologies seem to have no redeeming value at all. I don't want my
-tool metaphor to confuse anybody I consider ideologies on equal footing
+tool metaphor to confuse anybody into believing I consider all ideologies on equal footing
 when it comes to effectiveness and moral ground._
 
 I am not going to enumerate any competing ideologies here any more
-than examples of guidelines I stated already. What I really wanted to
+than examples of guidelines I stated already. What I hope to
 do with this article is describe an approach to solving problems and
 making decisions that puts ideologies in a more proper place. Use them as tools
-which helps us make decisions and not overpowering rules that define
+which helps us make decisions and not as overpowering rules that define
 the parameters and constraints for all behavior. I believe one way
 of doing better at that is to put the problem first, assess the problem,
 consider solutions, and then apply our guidelines.
