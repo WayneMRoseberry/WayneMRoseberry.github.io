@@ -92,8 +92,98 @@ that might affect expectations and outcome, new test ideas.
 
 Fights back against something I tell them
 -----------------------------------------
+One of the reasons I role play this interview is to give the
+candidate a chance to apply skepticism to things other people
+tell them.
 
+Pretend the candidate suggested the test "+1 + 3" because
+they want to know if the calculator handles leading operators.
 
-Use what they know already
+I interject.
+
+ > _stopping candidate_
+>
+> Me: "Let's say after you do that, the application emits a blank line.
+> What do you do"
+>
+> Candidate: "I try it again."
+>
+> Me: "Let's say it emits another blank line."
+>
+> Candidate: "I try another calculation. Maybe '1 + 2', something that I know works."
+>
+> Me: "Let's say it emits another blank line.
+> Let's say it from this point forward emits a
+> blank line for everything you enter. What do you do?"
+>
+> Candidate: "I show the problem to the developer."
+>
+> Me: "The developer says that leading operators are invalid
+> input because all the basic calculation operators have to
+> take two inputs. The developer says nobody that knows
+> basic math would enter such a formula and expect it to work."
+
+A good testing candidate would treat that response with
+skepticism. Maybe the developer is correct in so far as what
+is important for the application, maybe we do not care. But
+do we know that for sure?
+
+A good testing candidate will start to craft a strategy for
+how to respond to the developer answer. Maybe there are others
+who understand the customer better. Maybe you have prior
+customer usage information to present as evidence. Maybe
+the failure mode is more extreme than described. Maybe the
+tester should try more tests, or research, or investigate.
+
+Whatever they do, they treat what I say with skepticism.
+
+Uses what they know already
 -----------------------------------------
-Built into the design of the
+The calculator is stripped to simplicity by design. It allows
+the candidate to focus on math that they would have known
+very well even as a child. I don't want to worry about whether
+or not the candidate knows multiple ways to calculate
+Nth roots. I want to know how the candidate uses existing knowledge
+of math to check calculations.
+
+For example, the commutative law for addition and multiplication states
+thats that order of operations is irrelevant. So long as we
+are just doing that one operation, we can have any number of values
+in whatever order, and they will also calculate to the same value.
+
+This law can serve as a simple oracle that helps us
+cover a great degree of complexity. All of the following calculations
+can be checked for consistency via this rule:
+
+```
+11 + 15 + 72 + 183 + 9 + 0.43 + 65
+15 + 11 + 72 + 183 + 9 + 0.43 + 65
+65 + 0.43 + 9 + 183 + 72 + 11 + 15
+...
+```
+We can build any set of numbers size N, re-arrange the order
+of the numbers, and perform the same operation across them and
+every re-arrangement ought to apply  the same final answer as all
+others in the list.
+
+We could use that same oracle to check parsing affect on calculation.
+Consider the following from the same
+data set, which ought to return the same
+results as every other row in the prior
+set:
+
+``
+11+15+72+183+9+0.43+65
+11+ 15+ 72+ 183+ 9+ 0.43+ 65
+11 +15 +72 +183 +9 +0.43 +65
+11 + 15 + 72 + 183 + 9 + 0.43 + 65
+11  +  15  +  72  +  183  +  9  +  0.43  +  65
+``
+
+Anybody scoffing the likelihood such a set of test data might expose
+a bug in the calculator has never tested (or perhaps written)
+a parser before.
+
+The above is just an example, and the important part to focus
+on is a good tester will bring things they already know and
+search for ways to use them to build good test ideas.
