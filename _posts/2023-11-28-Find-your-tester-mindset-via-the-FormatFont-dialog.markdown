@@ -1,5 +1,7 @@
 The tester mindset and the FormatFont dialog
 ===========================
+
+![A women contemplating the Format Font dialog on her computer screen while a giant brain hovers overhead](/assets/formatfonttesterbrain.jpg)
 This article is part of a series where I explore the tester mindset
 via interview questions I found effective for
 finding people who demonstrated application of
@@ -319,4 +321,19 @@ as "What do you think of that behavior? It sounds as if you expected something
 different?" to see if maybe they really are thinking of something. This might be
 a green flag that is suppressed, and checking on this might trigger the
 candidate to "wake up" and turn the interview around.
+
+Developing your tester brain
+============================
+The recommendation I would offer anyone that wants to, or maybe
+needs to, grow some tester mindset muscle would be to consider
+some of the green flag behaviors and exercise them on an existing
+application UI. Start looking for ways to groups features. Look for
+differences in classes of things that might make for interesting changes
+in behavior. Try mixing and matching. Absolutely and for certain
+use the application. Type, click, user a voice navigator - take notes
+on feature behavior, challenge your observations. Ask yourself questions
+like "How would I know for sure what the right thing ought to be here?"
+
+There are a number of lessons to learn from the green flags in
+a testing interview. Try them out yourself and see how it goes.
 
