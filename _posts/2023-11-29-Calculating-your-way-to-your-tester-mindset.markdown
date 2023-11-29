@@ -172,13 +172,13 @@ data set, which ought to return the same
 results as every other row in the prior
 set:
 
-``
+```
 11+15+72+183+9+0.43+65
 11+ 15+ 72+ 183+ 9+ 0.43+ 65
 11 +15 +72 +183 +9 +0.43 +65
 11 + 15 + 72 + 183 + 9 + 0.43 + 65
 11  +  15  +  72  +  183  +  9  +  0.43  +  65
-``
+```
 
 Anybody scoffing the likelihood such a set of test data might expose
 a bug in the calculator has never tested (or perhaps written)
@@ -187,3 +187,103 @@ a parser before.
 The above is just an example, and the important part to focus
 on is a good tester will bring things they already know and
 search for ways to use them to build good test ideas.
+
+They know where the hard parts and error cases are
+-------------------------------
+Simple arithmetic, let's talk about a simple error case.
+
+Divide zero.
+
+There are any number of other tricky math problems. Order of
+operations is fun. If we allow parentheses, parentheses depth
+and application of the distributive property get
+interesting. Decimal number precision is cool. So are irrational
+numbers. If we wanted to, we could spend hours (didn't mathematcians
+used to spend years calculating decimal tables for common
+problems?) coming up with good tests for any of those.
+
+But let's look just a little bit at divide by zero. Simplest case:
+
+> "How about if we try '1/0', what does it do?"
+
+I like to defer reward for the simple cases. I might say something
+like "It displays a message that says 'Divide zero error'."
+
+A good candidate is rarely satisfied. Maybe divide by zero
+on such a short calculation was too simple. They offer a few more
+designed to make it more difficult for the calculator
+to detect when the divide by zero is happening:
+
+```
+1/(1-1)
+2/(1-1)
+0/(1-1)
+0(1/(0))
+1/((5/3) * -1(6 - 12/6))
+... etc.
+```
+
+A good tester knows how to make a problem a little bit harder,
+or how to explore a black box to see if it behaves differently
+based on different conditions that ought to yield similar results.
+
+They smell trouble and intuit inner limitations
+-------------------------------
+This next example is so predictable, and aligns so well with good
+test candidates that it came up almost every time, and doing
+well with this problem predicted doing well with the rest.
+
+In almost every interview, the candidate would ask about
+size limits. If they didn't at all they would tend to perform
+poorly overall, but I would still prompt them if not. Unprompted,
+it tended to go like this:
+
+> Candidate: "What is the largest number allowed?"
+>
+> Me: "The developer tells you there is no limit. You can perform calculations on any number of any size."
+
+Good candidates know this answer cannot be true. I have found
+that even when a candidate has no programming experience, knows
+nothing at all about how numerical data is represented and stored
+inside the computer, some of them will still immediately reject this claim.
+They know everything has limits, and those limits have implications.
+
+A good candidate will start exploring. They try to get information
+out of me, like what the maximum ought to be. I always reflect
+back to them with "What do you do to figure that out?"
+
+What they do then is start enumerating cases with ever larger and larger
+numbers. They offer me some seemingly huge example, and I respond with
+
+> "You try that, and it gives you the mathematically correct result."
+
+A really good candidate, even if the have no computer programming
+background, knows something very different is happening, even if they
+do not know what. Someone with programming experience ought to
+realize what is up right away, and I actually hold that experience
+against them if they do not catch on.
+
+The technical issue is that if the calculator processes or returns
+numbers that exceed the maximum word size of the chipset/platform, then
+the calculator application cannot be using the math operations built
+into the chip. It is no longer getting its math for free. It had
+to do the math on its own. The implications of a math library intended
+to do calculations on number of unlimited size, while necessarily capped by
+the size of the hardware (memory, storage, what have you) also has to
+handle all sorts of problems with memory allocation and de-allocation
+associated with values that shrink and grow as the calculation dictates.
+
+As surprising as it may seem, I have had liberal arts majors without
+even two seconds of computer programming experience describe that problem
+to me. They tell me they are worried about things like storage and changing
+data needs as you numbers increase from values like 9999999999...etc....99999999 to the
+next digit up simply by adding one to them, or back down as one takes 1000000000..etc...00000
+and subtracts one.
+
+It isn't that the test candidate has to design the data structures and
+algorithms for an unbounded calculator. It is that they have to intuit
+when something is very different from normal and start to piece together when
+that is a problem. From there, they start to build a strategy for problems
+that might have never existed otherwise. One might have never worried (much) about
+memory leaks or garbage collection optimization on a simple calculator app
+until contemplating the implications of unlimited numbers.
