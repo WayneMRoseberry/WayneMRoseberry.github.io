@@ -17,6 +17,8 @@ All that from FormatFont? Yup.
 
 Bring up the app, give them the chair, and ask the question
 ===========================
+![A screenshot of the Format Font dialog from Microsoft Word, Windows version.](/assets/formatfontdialog.jpg)
+
 If I can, I really want to see the tester working directly
 with the product during this question. I want to watch
 how they interact, explore, what steps they take to discover
@@ -49,6 +51,60 @@ always throw it back at them with something like, "That is what I am asking you.
 
 Green Flags
 ===========================
+The good news is the green flags are really green. Just one or two are a strong
+hint that a candidate has potential to be a good tester. They usually
+respond well to formal test training after hire. The bad news is that
+some people never demonstrate any of these green flags (or others not
+listed here), even when they demonstrate other strong technical skills, like
+coding.
+
+Summary and synthesis
+---------------------------
+This is not a direct testing skill, but it is a habit a lot of strong
+testers deploy very well. Not all good testers synthesize well, so absence
+of this flag is only a problem if the negatives are pulling strongly
+on the candidate.
+
+Candidates good at summary and synthesis tend to group and categories
+product behaviors, risks, testing problems. They may or may not know
+the categories, and if not they tend to intuit them. They then attach
+meaning and strategy and approach to that synthesis. This allows faster
+analysis, easier description of problems, and easier creation of
+models of how the system works.
+
+An example of the behavior might look like this:
+
+> "Well, we have each of the file attributes to consider, so font name, style
+> size and such. That keeps on going with everything you see here."
+>
+> _contemplates the list_
+>
+> "We probably want to get each of these settings, but I am starting to wonder
+> how they work in combination with each other. Some of these features might
+> have problems if used together..."
+
+An aptitude for cluster and grouping ideas tends to build ideas on top of each
+other. In the example above, we get a rapid acknowledgement that the strategy
+will focus on each of the controls and the values in them - we don't need
+to hear the full list to understand that much. The the candidate starts using
+those groups to consider other problems - such as mixing features together
+in combination. That basic idea, mix the clusters, is a form of idea creation
+that promotes exploration of further test thought.
+
+Interacts with the product
+---------------------------
+Strong candidates will always touch or use the product controls. Assuming
+they can (physical abilities vary) they go hands on mouse, fingers on keys.
+They may interact with other controls such as voice, braille controls, special
+controls. It doesn't matter, the point is a strong testing candidate will get
+into the product so long as it is there for them to do so.
+
+Strong candidates like to check their assumptions by interacting with
+the product. Does it do what they thought it would? A lot of candidates are
+surprised by product behavior, and for strong candidates that surprise does
+not throw them, but instead excites them. It suggests there is far more to
+explore than they thought. When the app does something other than they assumed it
+was, they want to know, was that a bug?
 
 Red Flags
 ===========================
@@ -121,4 +177,20 @@ it, think about it, and describe it. Your ideas and hypotheses are going to
 constantly fall apart and you need to adapt. If a person, when presented with an
 application to test, never once even interacts with it, that is a major red flag
 to me.
+
+Blindly accepts surprising product behavior
+---------------------------
+The opposite of some of the green flags above, some candidates will respond to
+surprising or unexpected behavior with a simple "Oh," and never dig any further.
+They just accept what they observed, do not question whether it is good or bad.
+The don't even question if there mistake in what they believe they saw.
+
+I don't want to lean on this red flag too heavily. Not everything is going to
+stand out to all of us. It is also very behavioral, and it is easy to mistake
+a low-energy response for lack of curiosity. There may be a lot going on in the
+person's mind. Or they might be tired. It is worth probing this with a question, such
+as "What do you think of that behavior? It sounds as if you expected something
+different?" to see if maybe they really are thinking of something. This might be
+a green flag that is suppressed, and checking on this might trigger the
+candidate to "wake up" and turn the interview around.
 
