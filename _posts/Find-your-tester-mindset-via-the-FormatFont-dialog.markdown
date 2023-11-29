@@ -106,6 +106,132 @@ not throw them, but instead excites them. It suggests there is far more to
 explore than they thought. When the app does something other than they assumed it
 was, they want to know, was that a bug?
 
+Recognizes differences
+---------------------------
+Strong testing candidates tend to notice differences that other candidates
+gloss over. For example, the font typefaces listed in the "Font" control.
+Are they all the same, or are there important differences?
+
+Strong candidates demonstrate this behavior even when they know nothing
+about a given technology. They seem to generally realize that lists of
+things often have difference within the list that behave differently. Just
+bringing up this idea as sideways mention, maybe phrased like the following
+or similar is a promising sign:
+
+> "I am not so sure how all of this works, but I am wondering if some
+> of these different fonts might work differently then others. Like, what
+> happens if I pick and choose some of them, are the other controls affected?"
+
+There are in fact numerous differences in fonts, a non-exhaustive list
+would include:
+- some are built into the printer with no on computer equivalent
+- some fonts are limited in terms of font style capabilites, so selecting them might change whether or not "italic" or "bold" or other features are available
+- some fonts come in preset size ranges, which will affect the size box
+- some fonts support certain effects that others do not
+- some fonts are capable of advanced features such as ligatures
+
+Mixing and matching
+---------------------------
+Testers tend to mix and match features together. Some of them are good
+at ferreting out combinations that might not work out so well together.
+
+The Format Font dialog box has a good set of combinations in its "Effects"
+group. The UI presents them as a series of checkboxes which seem to
+work together indiscriminately. A closer inspection suggests otherwise. What
+does it mean to turn on both "Strikethrough" and "Double strikethrough"? How
+about both "Superscript" and "Subscript." Those seem mutually exclusive. It
+seems interesting to explore product behavior trying to set them both on at the same time.
+
+How about other mixes and matches? Consider the "Underline Style" box.
+
+![A zoom up on the Underline Style drop down menu.](/assets/formatfontunderlinestyle.jpg)
+
+So many types of underlines to choose from, which opens another interesting
+question (How does the app make so many? Are those built in to the font technology,
+or does the app draw them... how to find out?), but consider how they might combine
+with some of the other font features. How well do the underlines align when mixing
+font size on a line? Typeface? What about superscript and subscript? What if you turn
+on any of those underlines AND strike through or double strike through? A strong tester
+will be curious.
+
+And it turns out that curiosity might pay off. The real answer (back in pre-2000 when I
+had to deal with this a lot, so there might be new features which change some of this)
+is that some of the capabilities are built into the printer, some into the font technology, and
+some the application has to do entirely on its own. "App does it on its own" tends to be
+the most fragile, especially when dealing with integration and combinations, but
+you can also run into problems with external technology takes over and the app tries
+to mix that with behavior it implements on its own.
+
+The trick here is not to check if the candidate knows this information. What you
+want to see is them asking the types of questions and engaging in the type
+of exploration which leads toward these kinds of discoveries. Mixing and matching
+is one of those behaviors.
+
+Smelling "tricky stuff"
+--------------------------
+There used to be a set of special effects features in the Format Font
+dialog that seem to have gone away (perhaps they are in there somehow and
+my current settings suppress them?). They included things like blinking,
+marquees around the letters, and other animations. None of this came from
+the OS, none of this was built into any of the font technology. Word used to
+do them all by itself.
+
+Stuff done by the app on its own with system level resources tends to be buggier
+than stuff the system does for the app.
+
+Testers seem to have a gut instinct for things that seem hard or tricky.
+They have a sense of something that is different than usual behavior. They
+wonder "How did they do that?" If I had a tester that navigated onto the Advanced
+tab and had a visceral reaction to the special effects, I add a few points
+in the "hire" direction.
+
+Searching for oracles
+--------------------------
+One of the key problems in testing is knowing what one ought to
+expect. If you type something in a box, and the screen flashes red
+while the computer emits a loud "beep!", was that what it was supposed
+to do?
+
+During this session, the tester is neither presented with a specification
+or a design document. I will answer some questions, but I prefer to
+let them try to figure out the answer. In particular, I want to know
+what they will do to figure out what they ought to expect. Some examples:
+- use various logical means of excluding possiblities
+- check behavior around different ranges
+- look at similar apps (WordPad is right there...) with similar features
+- start thinking about and describing things from a user's perspective, e.g. "let's say I wanted to enter the font name, but I got the name wrong... then what? Should it do this in that case, or would it be easier if...?"
+- dare I say look online... there is a world of information out there, and it is probably what they would really do on the job anyway
+
+Exploiting clever ideas for shortcuts or complexity
+--------------------------
+This is a behavior a lot of interviewers try to force by asking a generic
+testing question that works really well in this example.
+
+> "Let's pretend you are allowed to execute only one test for this feature.
+> It is still critical to cover as much as you can and get the highest
+> priority bugs fixed. What would that test be?"
+
+This is a highly contrived, and rather stupid constraint. But it forces
+the candidate to consider optimizations and priority and risk and strategy
+all in one go. There is no right answer. Priorities are not always the
+same, and some testing problems create exclusive conditions - e.g. invalid
+data entry that the app ought to abort or return an error for frequently
+cannot happen at the same time as covering complex, but valid data. This
+question forces the candidate to consider these possibilities.
+
+A strong candidate tends to embrace such a question aggressively. They look
+for combined coverage. They look for certain kinds of tests which, as the
+layers of fixing the bugs are addressed tend to peel back the onion of getting
+at more and more problems. They talk openly about the dilemma of covering
+high priority use cases (which might already be addressed elsewhere) versus
+covering lower priority but much more likely to break conditions and whether
+covering the latter demonstrates lower risk on the former or not. They will
+openly weigh, and maybe even agonize over, decisions about priority. They
+will wallow in the ambiguity rather than shy away from it.
+
+This just one class of clever ideas, and is an interviewer technique
+to force some to the surface.
+
 Red Flags
 ===========================
 There are some red flags that worry me the candidate may not be
