@@ -88,8 +88,9 @@ I do a lot of testing when I code, but it is also always
 in short bursts. Sometimes as short as a few seconds, usually
 a few minutes. I test to learn something, write or change some code
 to address what I learned, test more to learn something else.
-I use a test first, code after TDD style approach to my coding
-(although not to larger designs).
+I use a test first, coding after TDD style approach to my coding
+(although not for larger designs where I work out my ideas
+up front).
 
 I actually catch myself with an internal dialog telling
 me NOT to try certain tests or areas of investigation. Going
