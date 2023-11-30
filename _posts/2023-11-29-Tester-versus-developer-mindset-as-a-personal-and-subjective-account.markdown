@@ -18,12 +18,9 @@ will be a subjective account.
 I do not know if others will consider a subjective
 account about feelings meaningful or relevant.
 What I hope to do is get down to
-irrevocable facts. These are my memories of my
-feelings which if you accept as an honest
-account become irrefutable.
-Sometimes what we need are irrevocable facts
-to move forward, because once we share the same
-facts we can ask questions of relevance, salience,
+irrefutable facts. The facts are that these are my memories of my
+feelings. Sometimes what we need are irrefutable facts
+to move forward so we can ask questions of relevance, salience,
 meaning, implications, ponder counter facts or
 conditions. The discussion is far more interesting
 when we move beyond fighting over the facts.
@@ -59,7 +56,7 @@ is my own code versus someone else'.
 What do I feel in each mindset?
 ==================================
 Some of these feelings are blunt and raw, and may seem
-impolite. I am trying to be honest about feelings, and I know
+like bragging. I am trying to be honest about feelings, and I know
 that in many cases the feelings I have may not reflect something
 really happening outside of me, but the way I am writing this
 I am obligated to present an honest account.
