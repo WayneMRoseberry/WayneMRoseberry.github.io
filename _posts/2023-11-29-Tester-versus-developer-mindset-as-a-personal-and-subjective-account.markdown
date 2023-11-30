@@ -1,6 +1,6 @@
 If I describe it as a feeling then, yes, the tester and developer mindset difference exists
 ==================================
-People like to talk about tester mindset versus the
+People talk about tester mindset versus the
 developer mindset. There are varying notions of
 what those different mindsets might entail. There
 are competing opinions about whether or not either
@@ -12,20 +12,21 @@ entirely from my own personal experience. I
 am going to describe my feelings as I work
 on different testing and development problems,
 and how those feelings seem to me to affect
-my work and performance. The entire article
+my work and performance. This article
 will be a subjective account.
 
 I do not know if others will consider a subjective
 account about feelings meaningful or relevant.
 What I hope to do is get down to
 irrevocable facts. These are my memories of my
-feelings. The only counter available is to say I
-am lying about what I remember, what I felt.
+feelings which if you accept as an honest
+account become irrefutable.
 Sometimes what we need are irrevocable facts
 to move forward, because once we share the same
 facts we can ask questions of relevance, salience,
 meaning, implications, ponder counter facts or
-conditions. The discussion gets far more interesting.
+conditions. The discussion is far more interesting
+when we move beyond fighting over the facts.
 
 Background to my experiences
 ==================================
