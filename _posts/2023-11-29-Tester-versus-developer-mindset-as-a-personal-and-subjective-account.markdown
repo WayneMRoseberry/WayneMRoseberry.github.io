@@ -93,6 +93,12 @@ to address what I learned, test more to learn something else.
 I use a test first, code after TDD style approach to my coding
 (although not to larger designs).
 
+I actually catch myself with an internal dialog telling
+me NOT to try certain tests or areas of investigation. Going
+far beyond a dulled sense of capability, I feel almost a dread
+for doing more or going deeper. I feel a dread for switching
+away from changing the code.
+
 I feel mentally hobbled and crippled when I do this kind
 of testing. All I can imagine is the next functional behavior
 I want to change or create in the code. It is mentally
@@ -115,7 +121,7 @@ high performance testing state of mind.
 
 My mindset when I am testing code I wrote
 ----------------------------------
-I describe here the act of primarily shifting to testing for
+I describe here the act of primarily shifting to testing my own code for
 a significant period of time. Maybe a day, maybe an hour, but
 time that is dedicated to testing and not writing code.
 
@@ -134,7 +140,12 @@ I would say that after maybe an hour or so I can get myself
 feeling like I am around 50% of what I would normally be in
 my default testing state. As the time committment grows longer - a day
 or two - or the exercises get more and more distant from writing
-the code - the feeling creeps above 50% and higher.
+the code - the feeling creeps higher than 50%.
+
+During this time, sometimes I feel urges to get back to changing the product
+code. Sometimes I see a bug and want to fix it immediately instead
+of execute more tests. Sometimes I start to get bored of the testing,
+and adding the next feature on the list is more attractive.
 
 Projecting my feelings outward and onto others
 =================================
