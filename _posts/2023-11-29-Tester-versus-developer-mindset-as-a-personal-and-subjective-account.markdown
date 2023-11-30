@@ -81,7 +81,7 @@ My mindset when I am writing code and trying to test
 I am describing a mindset when I am dominantly writing code.
 This means that for some time period such as a day
 the main thing I am doing is creating or changing product
-code. I am focused on creation or creation of something
+code. I am focused on creation or alteration of something
 that solves a problem of some kind.
 
 I do a lot of testing when I code, but it is also always
