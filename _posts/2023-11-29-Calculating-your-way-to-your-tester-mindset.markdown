@@ -2,8 +2,8 @@ Getting all mathy to think like a tester
 ========================================
 
 ![Image depicting a software testing looking at a computer screen full of math formulas](/assets/testerandmathformulas.jpg)
-This is article is part of a series where I describe
-about interview questions I used to use to
+This article is part of a series where I describe
+interview questions I used to use to
 check a testing candidate for strong testing
 behaviors.
 
