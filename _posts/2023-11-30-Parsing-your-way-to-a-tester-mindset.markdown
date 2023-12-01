@@ -206,7 +206,7 @@ and identify the important problem implied by it.
 
 This is not a one-off example of an oddball problem. Data formats
 and schemes and logical constructs and relationships between
-features in application shave these sorts of relationships all
+features in applications have these sorts of relationships all
 the time which imply critical meaning for constructing
 test conditions that will target high probability bugs.
 
@@ -235,7 +235,7 @@ list of cases and assumptions - and then the good ones will
 express some degree of concern, or distrust of what they just did.
 They satisfy this concern by tossing a more sporadic mix. Consider this example:
 
->      0 English
+> ```     0 English
 >     10 Japanese
 >     11 Japanese
 > 000000 English
@@ -244,10 +244,11 @@ They satisfy this concern by tossing a more sporadic mix. Consider this example:
 > 011111 -- ?? Invalid?
 > 011110 Japanese
 > 010110 English
+> ```
 
 The distrust and skepticism, the concern they are not doing enough
 is a green flag for test candidates. My randomness example above
-is a contrived to paint a picture of a candidate who picks spurious
+is contrived to paint a picture of a candidate who picks spurious
 values to shake their head out of what they are locked into. They
 are "tossing things at the wall" to see if any of their prior
 assumptions are violated or if they see new patterns. In the fifth
@@ -261,8 +262,8 @@ The candidate is on to something, but hasn't solved the algorithm
 yet. That is not so much of a concern, because the important
 piece of information from testing mindset angle is that they are
 still searching. Settling for the test cases they have written
-already is not good enough. There is no reliable method, yet
-to predict the correct response, and that is bothering the tester.
+already is not good enough. They have no reliable method yet
+to predict the correct response and that is bothering the tester.
 This demonstration of an inclination to keep looking, as well
 as having ways to shift their perceptions away from
 locked assumptions is a predictor of a good tester.
@@ -320,13 +321,13 @@ me green flags, and a candidate who continues with more red flags.
 "Yup, that works"
 ------------------------------
 This red flag waves strong. I nudge and hint and try to give themselves
-a chance to resuce themselves, but I rarely see them take the bait.
+a chance to rescue themselves, but I rarely see them take the bait.
 Rather than walk through their code, rather than try some
 test cases, the candidate stares at the code and declares it good.
 
 Most of the time, after strong hinting and nudging, the
 interview turns into a learning opportunity, where I demonstrate
-the kind of test analysis I am looking for and it demonstrates the bugs
+the kind of test analysis I am looking for and how it demonstrates the bugs
 in the code.
 
 Writing the same tests they wrote the code to handle
@@ -386,9 +387,12 @@ traps. Let's use the green flags to consider the techniques that well in the int
 - amend the cases with ideas outside your methodical analysis
 
 Let's think of the red flags:
-- distrust your inclination to say "yup it works" and force yourself to try some test cases
-- distrust your inclination to believe you thought of everything in the code
-- force some order on your test case design if it is visually hard to read or understand
+- distrust your inclination to say "yup it works", address by forcing yourself to test the code
+- distrust your inclination to believe you thought of everything in the code,
+  invest some time thinking of cases other than what the code explicitly looks for
+  even if they feel redundant or already handled
+- address hard to read or understand test case design by forcing some order on your test
+  case design by forcing some order and structure to its layout
 
 The red flags are a suggestion, a hint, that there is a bug in your code.
 Telling yourself "that works" without having watched it work suggests a
@@ -398,7 +402,11 @@ assumptions the code does not address. Disorder in the test case design suggests
 some level of confusion when thinking about the what the code needs to do. Pay
 attention to the red flags.
 
-The real solution - spoiler alert, in case  you like solving problems yourself
+The above paragraph describes a mindset that something must be wrong, there
+must be a mistake somewhere. This is part of the tester mindset. You want to
+get into the practice of adopting that way of looking at things.
+
+The solution - spoiler alert, in case  you like solving problems yourself
 =============================
 I am going to describe the algorithm in pseudo code rather than write it out
 in a specific language. 
@@ -414,7 +422,9 @@ of buffer or a low bit (0) does not matter. This means the algorithm is as follo
 
 ```
  if found error conditions like bad buffer pointers, crossed buffer pointers return 0
+
  scan next to last byte back to either a 0 in hi bit or beginning of buffer, counting bytes
+
  if number of bytes is odd - return 2 // paired with last byte
  if number of bytes is even  // last byte stands alone
     if last byte hi bit is 0 return 1
@@ -426,8 +436,8 @@ A good test suite that will break almost every bad implementation is a strong
 indicator of a good hire.
 
 The weakness of this particular interview question is in how targeted and precise it
-is. I know one very specific thing about how well the candidate works with detailed
-and analytical problems. I know nothing about how they do with open ended test problems,
+is. It reveals one very specific thing about how well the candidate works with detailed
+and analytical problems. It demonstrates nothing about how they do with open ended test problems,
 challenging assumptions from others, thinking about heavily user oriented problems. I always
 carefully picked this problem only if I knew what the other candidates in the interview
 panel were going to ask.
