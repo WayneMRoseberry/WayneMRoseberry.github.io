@@ -1,5 +1,6 @@
 Sometimes testing is about methodical analysis
 ==================================
+![Image depicting a tester writing test ideas on a whiteboard](/assets/testerwhiteboardtestcases.jpg)
 This is an article in a series where I describe
 interview questions I used to use to screen
 testing candidates. My intent is to demonstrate
