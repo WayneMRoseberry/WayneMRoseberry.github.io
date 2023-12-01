@@ -36,14 +36,14 @@ I am going to use a simple definition that conflates test mission and test chart
 I don't believe the difference matters for this discussion, as I believe
 the development of both helps in the mindset shift.
 A test charter is what you intend to test.
-I prefer a somewhat open-ended, broad charter rather that detailed
-specifics. Larger test problems, feature areas that might cover dozens of test ideas,
+I prefer a somewhat open-ended, broad charter rather than detailed
+specifics. I prefer larger test problems, feature areas that might cover dozens of test ideas,
 test cases, questions, notions, investigations.
 
 The key point is that the test charter takes you away from the
 "how do I make the code do what we need it to?" and toward
 "what do we need to learn about the code behavior?" It is a step away from
-implementation and a step closer toward things that might challenge product
+implementation and a step closer toward things that might expose product
 risk.
 
 Some charter examples
@@ -54,15 +54,16 @@ Consider the following charters:
 - Perform penetration testing on the new product APIs
 - Construct new data sets to test the import and migration features
 
-Notice how the scope of the charters are bit open-ended. They imply
+Notice how the scope of the charters are a little bit open-ended. They imply
 planning and analysis that precedes the activity. The suggest what might
 possibly be multiple sessions of work and testing, which might 
-lead to some charter splitting.
+lead to some charter splitting. It is common you realize
+a single charter is better covered with three or four.
 
 My test charters
 --------------------------
 I have an open source project called <a href="https://github.com/WayneMRoseberry/DupIQ">DupIQ</a>.
-This prior week, I implemented authentication and authorization on the project, along
+This prior week, I implemented authentication and authorization in the web layer, along
 with varying levels of role enforcement. For this, I created a couple of
 test charters:
 - Update automation suite to check basic authorization claims token requirement against existing functionality
@@ -72,16 +73,18 @@ I spent probably four days covering each charter. I found myself
 splitting the charters across sub features of the app. Specifically, I was taking
 different controllers in the REST API tier one at a time and adding the
 authorization support for each one. There are four controllers, so all told
-I wound up with eight testing charters that straddled eight coding sessions.
+I wound up with eight testing charters that followed eight coding sessions, one
+after the other.
 
-I also found that while I committed to completing the work as described, I was
+I found that while I committed to completing the work as described, I was
 unable to cleanly separate my testing and bug fixing. I hit too many blocking
 bugs mid-session that rendered continued testing useless.
 
 My example described, let's talk about how the mental switch played out.
 Everything I describe below is subjective. I talk about it as if I am
 referring to the human mind in general, but it is probably better to
-acknowledge that all of this is how it felt to my mind.
+acknowledge that all of this is how it felt to my mind specifically, so your
+mileage may vary.
 
 What does the charter do to your brain?
 ===========================
@@ -253,7 +256,7 @@ considerations:
 - is the developer time better used for what is described in the testing charter,
 or for fixing whatever is discovered from acting on the testing charter?
 - is the developer the best talent to apply toward the given test charter, or
-would someone else with a different set of skills, resources, or perspectives the better person?
+would someone else with a different set of skills, resources, or perspectives be the better person?
 
 Rather than answer this question for all problems and all situations, let
 the charter guide the answer. Many testing charters put the developer
