@@ -18,12 +18,9 @@ will be a subjective account.
 I do not know if others will consider a subjective
 account about feelings meaningful or relevant.
 What I hope to do is get down to
-irrevocable facts. These are my memories of my
-feelings which if you accept as an honest
-account become irrefutable.
-Sometimes what we need are irrevocable facts
-to move forward, because once we share the same
-facts we can ask questions of relevance, salience,
+irrefutable facts. The facts are that these are my memories of my
+feelings. Sometimes what we need are irrefutable facts
+to move forward so we can ask questions of relevance, salience,
 meaning, implications, ponder counter facts or
 conditions. The discussion is far more interesting
 when we move beyond fighting over the facts.
@@ -59,7 +56,7 @@ is my own code versus someone else'.
 What do I feel in each mindset?
 ==================================
 Some of these feelings are blunt and raw, and may seem
-impolite. I am trying to be honest about feelings, and I know
+like bragging. I am trying to be honest about feelings, and I know
 that in many cases the feelings I have may not reflect something
 really happening outside of me, but the way I am writing this
 I am obligated to present an honest account.
@@ -84,15 +81,16 @@ My mindset when I am writing code and trying to test
 I am describing a mindset when I am dominantly writing code.
 This means that for some time period such as a day
 the main thing I am doing is creating or changing product
-code. I am focused on creation or creation of something
+code. I am focused on creation or alteration of something
 that solves a problem of some kind.
 
 I do a lot of testing when I code, but it is also always
 in short bursts. Sometimes as short as a few seconds, usually
 a few minutes. I test to learn something, write or change some code
 to address what I learned, test more to learn something else.
-I use a test first, code after TDD style approach to my coding
-(although not to larger designs).
+I use a test first, coding after TDD style approach to my coding
+(although not for larger designs where I work out my ideas
+up front).
 
 I actually catch myself with an internal dialog telling
 me NOT to try certain tests or areas of investigation. Going
