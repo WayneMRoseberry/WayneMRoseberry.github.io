@@ -62,6 +62,12 @@ I would introduce the problem as follows:
 > int NumBytes(byte * pbBeg, byte * pbEnd)
 > ```
 
+Spoiler alert: if you like to solve problems on your own, then the section 
+titled "The test cases get to the heart of the problem" might ruin
+it for you. It doesn't show the code (I save that for the end of the
+article), but the test cases in that section make the answer almost
+obvious, and that's no fun for the puzzle solving inclined.
+
 Green Flags
 ===================================
 The green flags in this question are very targeted, very specific
@@ -357,3 +363,78 @@ ERASE THE TEST CASE!!! THEY ERASED IT!!! WHAT THE HECK?
 
 I have never seen disorderly test analysis lead to
 a successful solution to this particular problem.
+
+Getting into the tester mindset for analytical problems
+=============================
+Not all testing problems are about methodical, detailed and intricate analysis, but many are.
+I find when testers avoid this kind of problem they leave the feature they are testing open to
+a set of bugs that haunt the product for a long time.
+
+This is also the kind of testing problem developers CAN be very good at. But I have
+found from many years of asking developers this question that a
+developer who wrote the code first can very easily get the test cases too
+short and miss a large set of defects in their core algorithm. But
+this kind of problem is SO closely tied to the core algorithms and application
+logic that I believe it is an important muscle for developers to build. I believe
+this is the kind they can, and should, excel at if they can just avoid a few
+traps. Let's use the green flags to consider the techniques that well in the interview:
+
+- write the cases first, or try to imagine the test problem as if you don't know the code
+- methodically analyze the test problem
+- search for a "heart of the problem" and design cases to exericse it
+- amend the cases with ideas outside your methodical analysis
+
+Let's think of the red flags:
+- distrust your inclination to say "yup it works" and force yourself to try some test cases
+- distrust your inclination to believe you thought of everything in the code
+- force some order on your test case design if it is visually hard to read or understand
+
+The red flags are a suggestion, a hint, that there is a bug in your code.
+Telling yourself "that works" without having watched it work suggests a
+superficial analysis that probably was in force when you were writing the code.
+Believing you thought of everything when you wrote the code suggests incomplete
+assumptions the code does not address. Disorder in the test case design suggests
+some level of confusion when thinking about the what the code needs to do. Pay
+attention to the red flags.
+
+The real solution - spoiler alert, in case  you like solving problems yourself
+=============================
+I am going to describe the algorithm in pseudo code rather than write it out
+in a specific language. 
+
+In the green flags test cases above, there was a pattern apparent in the test suite.
+The expected values were flipping back and forth between either Japanese and (English|Invalid)
+based on the number of consecutive hi bits set preceding the last byte in the buffer.
+An even block of consecutive hit bits set to 1 would all be Japanese bytes paired up, meaning the
+byte was alone and either English (0) or Invalid(1). An odd block of consecutive high bits
+mean that the last byte in the buffer is paired with the preceding byte and thus
+it has to be Japanese. Whether the position to the left of the consecutive hi bits is beginning
+of buffer or a low bit (0) does not matter. This means the algorithm is as follows:
+
+```
+ if found error conditions like bad buffer pointers, crossed buffer pointers return 0
+ scan next to last byte back to either a 0 in hi bit or beginning of buffer, counting bytes
+ if number of bytes is odd - return 2 // paired with last byte
+ if number of bytes is even  // last byte stands alone
+    if last byte hi bit is 0 return 1
+    else return 0
+```
+
+I almost do not care if the candidate gets the above algorithm exactly correct.
+A good test suite that will break almost every bad implementation is a strong
+indicator of a good hire.
+
+The weakness of this particular interview question is in how targeted and precise it
+is. I know one very specific thing about how well the candidate works with detailed
+and analytical problems. I know nothing about how they do with open ended test problems,
+challenging assumptions from others, thinking about heavily user oriented problems. I always
+carefully picked this problem only if I knew what the other candidates in the interview
+panel were going to ask.
+
+This problem is also very puzzle problem in nature. I have some reservations on questions
+that really heavily on intuition and moments of brilliance. The whole leetcode arsenal of
+questions feels the same way to me. The methodical analysis part
+of the solution redeems it somewhat, but there are times I feel as if we are
+punishing candidates for maybe not having enough coffee that morning rather than
+assessing their readiness for a job. I share it here only because I do believe the test
+case portion of the interview describes tester mindset very well.
