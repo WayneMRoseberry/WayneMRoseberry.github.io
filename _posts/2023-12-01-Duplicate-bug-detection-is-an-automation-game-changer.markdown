@@ -1,5 +1,12 @@
 Microsoft solved this problem in Office over a decade ago, and so can you
 =================================
+![Image of me presenting a talk at PNSQC where I describe analysis we were able to do with duplicate failure detectin](/assets/pnsqc_flakytests_newbugfalloffslope.jpg)
+The above picture is a Non-AI image. That is me, talking at
+the Pacific Northwest Software Quality Conference about how we 
+could measure the rate of new bug appearance of repeated execution
+of the same suite, and how from that we could calculate the total
+number of new flaky bugs left to find in the suite.
+
 Office has duplicate failure detection in their automation
 runs solved. Not 100% - the problem is a fuzzy one - but
 solved to a degree that made working with the automation
@@ -13,23 +20,24 @@ people can, with some work, do the same thing.
 Duplicate bugs impede going big with automation
 =================================
 Imagine the following situation. It may seem like a fantasy, but I worked
-for over a decade in most of this state, and within the last two three
+for over a decade in most of this state, and within the last five or six years
 this state fully realized:
 - automation results are sent immediately and automatically to the proper failure owner
 - anybody can easily run the automation suite at any time as many times as they want
 - the system automatically knows if a given failure has been seen before, from which tests, under what conditions, and which build
 - the system has an automatic ability to inform the engineer if their code change is high probability the reason the failure happened
 - the system has a running profile of the failure rate of every distinct failure in the system
-- suites are run many times a day against the main build, against individual and team branches, for many purposes and many reasons
+- suites are run hudreds of times a day against the main build, against individual and team branches, for many purposes and many reasons
 - the above is executed across the full range of tests from unit, component, integrated system and end to end tests that span clients and services
 
-When I first joined the Office team, they were able to do
+When I first joined the Office team, they were able to 
 handle none of the above at scale. Some of the features to allow
 some of it were in place, but a single question impeded the
 ability to go big.
 
 _Is this a new failure?_
 ----------------------------
+![A diagram of a suite of automated tests whose results are curated by a tester before assigning to developers](/assets/curatedfailures.jpg)
 
 Not knowing if a failure was new kept test automation
 hobbled. Every run had to be vetted and checked and cleared
@@ -41,12 +49,13 @@ quick check of impact after a set of changes, or looking
 at failures that followed an update of the OS or compiler, because
 every time we did that the failure investigation had to
 pass through a small number of people that decided whether
-or not the bugs merited investigation.
+or not the bugs merited a developer spending time on it.
 
 At this core of this investigation is establishing if a
 failure is new or not.
 
 A new failure strongly suggests "_Whatever you changed just now caused this failure._"
+
 A new failure that does not repeat on re-execution suggests (flake) "_This failure has been here for a while, probably before whatever you just changed._"
 
 We want developer time spent either changing product, or fixing
