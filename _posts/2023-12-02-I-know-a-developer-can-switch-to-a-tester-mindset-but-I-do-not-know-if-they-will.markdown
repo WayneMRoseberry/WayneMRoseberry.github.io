@@ -215,7 +215,7 @@ the ISTQB syllabus, all of those sources frame testing the way I describe it
 here. Testers who use "_will_" and "_does_" language presents a puzzle.
 
 A bit about automated tests  and "_can_" language
- ---------------------------------------
+---------------------------------------
 There is a distinction I like to make with automated tests, checks, assertions - call them
 what you will. People who talk about those checks from a non-testing
 viewpoint, from a developer or business driver viewpoint, will often describe them as
