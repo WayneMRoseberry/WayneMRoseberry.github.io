@@ -1,3 +1,20 @@
+Testing an AI that is testing an app
+==========================
+AI testing bots have bugs and you need to test them. That
+sounds daunting and strange and "who tests the tests that
+tests the tests etc." and turtles all the way down, but
+it isn't really as strange as all that. The AI is only
+part of a larger system, and the problems are what you
+would expect of almost any system with as many pieces
+to it.
+
+Some bugs and investigations that came up
+==========================
+
+
+
+Raw Notes to Remove later
+==========================
 This is from my Simulated Self-Host testing. I am capturing ideas below that I can write up a better article from later.
 
 Examples include:
