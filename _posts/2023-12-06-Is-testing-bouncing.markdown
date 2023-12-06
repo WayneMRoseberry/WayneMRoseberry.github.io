@@ -6,8 +6,8 @@ Get rid of testers, then start hiring testers
 =============================================
 ![A ping pong ball bouncing off a wall toward the viewer with the words "no testers" printed on it](/assets/notestersbounce.jpg)
 
-I have been interviewing for work since  March of 
-2023. I was surprised to see evidence of a
+I have been interviewing for work since March 2023.
+I was surprised to see evidence of a
 testing bounce, a return to open testing jobs from
 workplaces that had previously decided they didn't
 need testers. It is not a loud, large signal, but it
@@ -21,14 +21,14 @@ thoughts I have about what this might mean.
 Example interviews I had with employers this year
 =============================================
 These are all real interviews I had with employers this
-year. I have obscured details about company names,
+year. I have obscured details about company names
 and product specifics. Three of these are companies
-with worldwide, every day brand recognition. Three of
-them did not have an open head approved, but were exploring
+with worldwide, everyday brand recognition. Three of
+them did not have an open head approved but were exploring
 the idea because of problems that came up. Four of the
 five companies do not have testers.
 
-- I interviewed with a director of engineering at a very well known
+- I interviewed with a director of engineering at a well known
 company (almost everybody uses their product at
 least once in their lives) who was looking to fill two
 positions. This company had gone all in on removing
@@ -65,8 +65,8 @@ got rid of all the testers several years ago? I think that was
 a mistake," and has since been building a team of engineers whose
 primary goal is to build and enable testing capabilities that
 cut across the scenarios where the individual development teams
-miss problems. One of the examples he described was a really awesome
-skunkworks mechanisms that measures online streamed gameplay latencies
+miss problems. One of the examples he described was a fun
+skunkworks mechanism that measures online streamed gameplay latencies
 end to end, catching bugs in performance that at every single
 individual end point was measured as within tolerances but
 when covered end to end was clearly causing customer problems.
@@ -121,11 +121,11 @@ all of them definitely wanted to bring in people with prior testing
 knowledge and skills to help support and build the development
 team capabilties to do better at their own testing.
 
-What does this all mean? Is testing coming back?
+What does this all mean? Is testing by testers coming back?
 =========================================
 Way to put up a strawman, Wayne!
 
-There is still a large market for testing, mostly satisfied
+There is still a large market for softare testers, mostly satisfied
 by the majority of software development shops that have not adopted
 continuous integration and continuous and delivery and have not
 yet adopted the "no testers neeed" viewpoint. It is the front
@@ -145,7 +145,7 @@ difficult to see past all of that improvement to recognize other problems
 that may be accumulating.
 
 I was seeing some of these sorts of accumulations at Microsoft. Problems
-would get all the way to market, expensive problems that could not
+would get all the way to market. Expensive problems that could not
 be repaired with a simple roll back and "I am sorry." Most of them
 got through because there was not the type of scrutiny we used to employ
 when there were people whose specialty was looking for product risk. I believe the
@@ -168,6 +168,6 @@ Bouncing to the end...
 Bottom line, I am seeing a bounce, and it seems to be happening for
 a reason. For all the positives of the current faster iteration
 practices, the zealous adoption of "fast first" dogma is leaving gaps. 
-Problems are leaking throug,h creating wet spots on a floor that is weakening.
+Problems are leaking through, creating wet spots on a floor that is weakening.
 As some businesses are noticing, it is only a matter of time before something
 falls through that floor.
