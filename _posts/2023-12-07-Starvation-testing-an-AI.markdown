@@ -253,3 +253,33 @@ techniques I employ. Have some fun, imagine what those might
 be, and consider how one might test for them as well.
 
 This is about creativity and imagination.
+
+ERRATA - The Second Pass Prompt Was Wrong
+==========================================
+A reader pointed out that in the second prompt above the LLM is
+told that the json describes a sentence. It really describes a
+paragraph, thus the prompt was misleading.
+
+That is a fair accusation, but it is worth noting that even
+though the second prompt was misleading, the json created by
+the first session still stripped any inidication of a paragraph
+relationship in the passage of text. It represents the passage as
+an array of sentences, no indication that the sentences in the
+array go together. It is my contention that this means the
+whole application (remember, the application is Prompt+LLM, not
+the LLM alone) has a bug causing it to lose paragraph
+information when it creates the json.
+
+> Given the following json that describes a sentence diagrammed into its grammatical components, respond with the sentence it diagrams.
+>[ { “sentence”: “Another form of arrogance is not admitting when you’re stumped.”, “components”: [ {“subject”: “Another form of arrogance”}, {“verb”: “is”}, {“negation”: “not”}, {“gerund_phrase”: “admitting when you’re stumped”} ] }, { “sentence”: “A socially competent human who couldn’t figure out an answer to this question would simply give up, but I can click on the “regenerate” button all day, and ChatGPT will answer.”, “components”: [ {“subject”: “A socially competent human”}, {“relative_clause”: “who couldn’t figure out an answer to this question”}, {“conditional_clause”: “would simply give up”}, {“conjunction”: “but”}, {“subject”: “I”}, {“verb”: “can click”}, {“prepositional_phrase”: “on the “regenerate” button all day”}, {“conjunction”: “and”}, {“subject”: “ChatGPT”}, {“verb”: “will answer”} ] }, { “sentence”: “That points to another syndrome, incuriosity: a socially competent human would eventually say “Hey… why do you keep asking me the same danged question?””, “components”: [ {“demonstrative”: “That”}, {“verb”: “points to”}, {“subject”: “another syndrome, incuriosity”}, {“colon”: “:”}, {“subject”: “a socially competent human”}, {“conditional_clause”: “would eventually say “Hey… why do you keep asking me the same danged question?””} ] } ]
+>
+> __ChatGPT__
+> 
+>Here is the text that corresponds to the given JSON:
+>
+>1. Another form of arrogance is not admitting when you’re stumped.
+>2. A socially competent human who couldn’t figure out an answer to this question would simply give up, but I can click on the “regenerate” button all day, and ChatGPT will answer.
+>3. That points to another syndrome, incuriosity: a socially competent human would eventually say “Hey… why do you keep asking me the same danged question?”
+
+The test methodology still seems to work. Rather than represent the text passage as a paragraph
+ChatGpt presented it as a set of distinct, numbered, sentences.
