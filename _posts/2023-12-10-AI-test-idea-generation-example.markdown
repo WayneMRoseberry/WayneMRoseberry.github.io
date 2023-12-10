@@ -1,3 +1,7 @@
+Fuzzy ideas for fuzzy problems
+===========================================
+![A cartoon of a bunch of fuzzy monsters surrounding a scientist at a whiteboard](/assets/fuzzyideas.jpg)
+
 Asking the LLM for test ideas by narrowing its focus
 ===========================================
 One way to use an LLM to generate test ideas is to
