@@ -217,6 +217,14 @@ I believe an individual writing that list would probably
 spend an hour or so coming up with it. Maybe faster. ChatGpt saved
 some typing time.
 
+I tried the same against claim #2, which was for the visual refresh on the toolbar.
+The test ideas that ChatGpt generated for this were not
+as interesting to me, but that is a subjective evalutation. I
+am not a tester on the feature, so maybe my
+perspective would change. But the main point, the cost
+to get this list of ideas was under a minute of my
+time, and less to reject it if I do not like it.
+
 >__User__
 >
 >Come up with 10 ideas to check claim #2
@@ -245,11 +253,35 @@ some typing time.
 >
 >User Training and Adoption: Assess the ease with which users adapt to the visual refresh by monitoring user training needs and conducting surveys to measure user satisfaction with the new visual design.
 >
->User
+
+I decided to ask more details on one of the co-authoring test ideas.
+We are three levels deep. Initial feature list, detail on
+a specific feature, and detail on a specific test idea within
+that feature.
+
+At this point, the cost of iterating is still low, but it
+is increasing. I am also making this decision selectively. While
+the prompt template I am using is generic, and could be
+programmatically applied as an expansion of every test idea,
+I am not doing that.
+
+This is an important aspect of interacting with AI that
+Michael Bolton mentions a lot. Much of the "smarts" of generative
+AI comes from something humans interpret when they read the
+output. When I select something and ask for more detail, I am
+filling in the gaps for an AI that isn't really exercising
+intelligence or insights. It is, instead, creating
+text from a series of complex dice rolls that cause me to think
+of something or make a decision.
+
+>__User__
+>
 >Elaborate on the following idea, relative to co-authoring, by coming up with 10 more test ideas based on it (no steps needed, just the idea).
 >
 >User Permissions: Validate that user permissions are accurately enforced, ensuring that only authorized users can make edits, and unauthorized changes are prevented.
->ChatGPT
+>
+>__ChatGPT__
+>
 >Role-Based Access Control (RBAC) Verification: Test the system's adherence to role-based access controls by assigning different permission levels (e.g., read-only, editing, admin) to users and confirming that each user can perform only the actions allowed by their assigned role.
 >
 >Dynamic Permission Changes: Verify the system's ability to dynamically update user permissions in real-time and assess whether changes to user roles are immediately reflected in their editing capabilities.
@@ -294,13 +326,17 @@ some typing time.
 >Permission Recovery After System Outage: Simulate a system outage and verify that, after recovery, user permissions are restored to their correct state without any lingering effects or unintended changes.
 >
 >Cross-Application Permission Consistency: If co-authoring involves multiple applications (e.g., Word, Excel, PowerPoint), check for consistency in user permissions across these applications to ensure a seamless and uniform collaborative experience.
+
+I asked ChatGpt to go into one further level of detail.
+
+>__User__
 >
->User
 >Come up with 10 different test ideas (just the ideas, no steps) relative to co-authoring that are permutations of the following idea:
 >
 >Concurrency with Mixed Permissions: Simulate a scenario where users with different permission levels (read-only, editing, admin) are co-authoring the same document simultaneously to confirm that the system appropriately handles mixed permissions during concurrent edits.
 >
->ChatGPT
+>__ChatGPT__
+>
 >Limited Editing with Mixed Permissions: Simulate a scenario where users with mixed permissions collaborate on a document, specifically testing how well the system handles concurrent edits when some users have limited editing rights.
 >
 >Admin User Overwrite Test: Evaluate the system's response when an admin-level user attempts to overwrite or disregard changes made by users with lower permission levels during co-authoring.
@@ -321,3 +357,59 @@ some typing time.
 >
 >User Permission Delegation: Simulate a scenario where users can delegate editing permissions to others during co-authoring, ensuring that the system correctly manages delegated access and enforces permissions accordingly.
 
+There is a mix of new, good ideas in this set, combined with some "circle
+the drain" ideas that feel like repeat of prior. I take that
+as a sign that the technique is probably going to be ineffective
+with further iteration.
+
+My assessment of the above exercise is that with just a few minutes
+of interaction with ChatGpt I got a lot of test ideas which
+would have probably taken me multiple hours to write down on my own.
+I am not in the "better than most testers" camp on this one. I have
+seen too many good testers to be so cynical. But I don't know any
+testers who would record ideas of this caliber this quickly.
+
+It doesn't always work...
+===================================
+This article is long enough, but I tried the same exercise using the
+readme.md output for a <a href="https://github.com/WayneMRoseberry/DupIQ">REST API</a> that I wrote. I combined a description of
+"Flow Testing" against the readme content using the same approach
+as above.
+
+The output from ChatGpt was uninteresting and shallow. I selected Flow Testing
+because the methods in the REST API are meant to combine with each other.
+Instead, ChatGpt treated them as atomic operations with atomic problems, not
+trying interesting combinations as the definition for Flow Testing suggests. See
+my starting prompt:
+
+>User
+>
+>I am going to provide a description of a test analysis technique. Acknowledge receipt of the technique by providing a one sentence summary of it.
+>
+>Flow Testing
+>
+>Do one thing after another 
+>1. Perform multiple activities connected end-to-end; for 
+>instance, conduct tours through a state model.
+>2. Don’t reset the system between actions.
+>3. Vary timing and sequencing, and try parallel threads
+
+This kind of thing is frequently a "write a better prompt" problem, and
+that may be fair. Consider this an evaluation of my method, the prompts I
+used, and how well it worked for this particular feature set.
+
+But then again, finding out it wasn't useful for me was fast and cheap.
+
+Bottom Line: Playing to useful fuzziness as a generative AI strength
+===================================
+I said recently to someone that I am sometimes surprised how
+broad our toolkit is when we test. We use all sorts of tools and
+methods and techniques to find issues. Some of those methods
+demand exact, precise information that serve as a basis for
+comparisons and inputs and oracles for checking behavior.
+Some of those methods are about something less concrete, such
+as coming up with or recording ideas for things to try.
+
+When we assess something like generative AI, or any technology,
+for use in testing, we should always keep in mind what we need, and
+how that technology does or does not fill those needs.
