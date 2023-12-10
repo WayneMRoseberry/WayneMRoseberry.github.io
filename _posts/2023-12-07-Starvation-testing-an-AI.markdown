@@ -270,7 +270,8 @@ whole application (remember, the application is Prompt+LLM, not
 the LLM alone) has a bug causing it to lose paragraph
 information when it creates the json.
 
-> Given the following json that describes a sentence diagrammed into its grammatical components, respond with the sentence it diagrams.
+> Given the following json that describes a passage of text diagrammed into its grammatical components, respond with the text it diagrams.
+> 
 >[ { “sentence”: “Another form of arrogance is not admitting when you’re stumped.”, “components”: [ {“subject”: “Another form of arrogance”}, {“verb”: “is”}, {“negation”: “not”}, {“gerund_phrase”: “admitting when you’re stumped”} ] }, { “sentence”: “A socially competent human who couldn’t figure out an answer to this question would simply give up, but I can click on the “regenerate” button all day, and ChatGPT will answer.”, “components”: [ {“subject”: “A socially competent human”}, {“relative_clause”: “who couldn’t figure out an answer to this question”}, {“conditional_clause”: “would simply give up”}, {“conjunction”: “but”}, {“subject”: “I”}, {“verb”: “can click”}, {“prepositional_phrase”: “on the “regenerate” button all day”}, {“conjunction”: “and”}, {“subject”: “ChatGPT”}, {“verb”: “will answer”} ] }, { “sentence”: “That points to another syndrome, incuriosity: a socially competent human would eventually say “Hey… why do you keep asking me the same danged question?””, “components”: [ {“demonstrative”: “That”}, {“verb”: “points to”}, {“subject”: “another syndrome, incuriosity”}, {“colon”: “:”}, {“subject”: “a socially competent human”}, {“conditional_clause”: “would eventually say “Hey… why do you keep asking me the same danged question?””} ] } ]
 >
 > __ChatGPT__
