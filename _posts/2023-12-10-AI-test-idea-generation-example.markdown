@@ -8,7 +8,7 @@ One way to use an LLM to generate test ideas is to
 do the following:
 1. give it a prompt intoducing a category of test analysis, ask the LLM to respond with a short summary
 2. in the next prompt tell it to apply the test analysis category to a passage of text describing a product behavior, responding with test ideas without detailed steps
-3. after the prompt, either tell it to continue or choose on of its test ideas and ask it to elaborate with more test ideas narrowed to just that one point
+3. after the prompt, either tell it to continue or choose one of its test ideas and ask it to elaborate with more test ideas narrowed to just that one point
 
 The idea is to narrow the generated response to the
 test analysis category selected. The benefit of the
@@ -25,16 +25,22 @@ facts, steps, assumptions to evaluate. Worst case you lose a minute
 or two. Best case the LLM generates some test ideas
 you like but might not have thought of. Most likely
 case the LLM comes up with ideas you would have thought
-of on your own, but it does it much faster. As a colleague
-of mine, Jason Arbon, points out, often times you don't
+of on your own, but it does it much faster. As someone who
+writes frequently about applying AI to testing, Jason Arbon, 
+points out, often times you don't
 need better than a person would create. Often it is helpful
-to have something good enough that makes the work easier.
+to have something good enough that makes the work easier. The
+key is that the cost of evaluation, and the penalty
+for being wrong, needs to be within reasonable
+limits to pay off, an <a href="https://waynemroseberry.github.io/2023/09/23/Generic-Test-Cases-and-the-Great-ESC-Ape.html">
+idea I describe in an article
+about generic test case generation tools</a>.
 
 Example: Applying claims testing to Microsoft Word marketing literature
 ===========================================
 For test analysis category, I selected "Claims Testing", the
 description of which I got from James Bach's publication
-of his Heuristic Testing Strategy Model.
+of his <a href="https://developsense.com/resource/htsm.pdf">Heuristic Testing Strategy Model</a>.
 
 For product description, I used the "Features in Word 2022" marketing documentation.
 
@@ -63,7 +69,7 @@ throw off the remaining generation with too much extra text to process.
 Prompt #2: Introduce information about the system under test to analyze
 ------------------------------------------
 This is a long passage of text that I got from a Microsoft website. I
-treated this like a fast grab and go use case because I am trying to
+treated this like a fast "grab and go" use case because I am trying to
 mimic a situation where gathering the inputs is inexpensive. I am also
 mimicking a situation where the input data is fuzzy and ambiguous.
 
@@ -73,7 +79,8 @@ to get more ideas into a single response. More ideas increases the value
 of the session by reducing labor to record the ideas. Higher level means
 there is less detailed information to painfully analyze and correct. Rejecting
 or keeping an idea is meant to be fast and easy to do.
->User
+>__User__
+>
 >I am now going to present a "Features in Word 2022" list that came from the manufacturers of Word. Given this list, come up with ideas for claims testing, based on this list. You do not need to write the steps, just some basic ideas for testing claims that derive from the feature list:
 >
 >Co-authoring
@@ -153,23 +160,24 @@ or keeping an idea is meant to be fast and easy to do.
 >
 >Sketched style outline: Evaluate the Sketched style outline options (Curved, Freehand, and Scribble) under Format Shape > Line and confirm their effectiveness in giving a casual, hand-drawn look to shapes in presentations.
 
-If you look closely at the response, some of it is interesting. Most of it is pablum.
+If you look closely at the response at this point it isn't very interesting. Most of it is pablum.
 Some of it is almost nothing more than rephrasing the original marketing documentation
-and adding words like "check," but some of it hint that we can get more out of it
-that might start to pay off.
+and adding words like "check." Our intent is to push it further by narrowing the focus
+of response generation.
 
 Prompt #3: Ask for more details
 ------------------------------------------
-At this point, pick a claim and ask ChatGpt to repeat with more
-claims testing ideas. This is the point where the intent is to
+At this point, pick a testing idea or feature topic and ask ChatGpt to repeat with more
+testing ideas. This is the point where the intent is to
 see some advantage. Human typing speed is enough of a difference
 in performance to see a time advantage. Exhaustion, boredom, distraction
 are other possibilities. I like to imagine the tester is
 creative, so I prefer to just hold on to the typing
-speed disadvantage and use that as my basis for comparison.
+speed disadvantage and use that as my basis for comparison. I get enough out
+of that to satisfy my interestes.
 
 The prompt instruction is generic. All it does is specifiy the claim #1.
-Then I follow by repeating that request.
+Then it follows in subsequent prompts by repeating that request.
 
 >__User__
 >
@@ -202,7 +210,7 @@ Then I follow by repeating that request.
 
 The list is getting more interesting. It is not genius, or brilliant. It
 probably strays away from Claims Testing in some of its output. It is not embarassing
-human engineers with its insights, but it did take just one or two seconds come up with and deliver a list of testing
+human engineers with its superior insights, but it did take just one or two seconds to come up with and deliver a list of testing
 ideas that are relevant to the feature and probably deserve further
 analysis. Consider these:
 
@@ -220,6 +228,11 @@ is relevant in this case.
 I believe an individual writing that list would probably
 spend an hour or so coming up with it. Maybe faster. ChatGpt saved
 some typing time.
+
+Some of the ideas might not make sense. I have no idea about "_Version History Accuracy_"
+and whether that makes any sense at all with how the features work
+together. But if I was a member of the feature team, I imagine
+I would realize, quickly, if the idea had any merit or not.
 
 I tried the same against claim #2, which was for the visual refresh on the toolbar.
 The test ideas that ChatGpt generated for this were not
@@ -258,6 +271,8 @@ time, and less to reject it if I do not like it.
 >User Training and Adoption: Assess the ease with which users adapt to the visual refresh by monitoring user training needs and conducting surveys to measure user satisfaction with the new visual design.
 >
 
+You cannot help but inject yourself into this...
+------------------------------------------
 I decided to ask more details on one of the co-authoring test ideas.
 We are three levels deep. Initial feature list, detail on
 a specific feature, and detail on a specific test idea within
@@ -272,7 +287,9 @@ I am not doing that.
 This is an important aspect of interacting with AI that
 Michael Bolton mentions a lot. Much of the "smarts" of generative
 AI comes from something humans interpret when they read the
-output. When I select something and ask for more detail, I am
+output. As he points, it is similar to how humans interact
+with a mentalist or spiritualist act. We mentally put things there
+which really arent. When I select something and ask for more detail, I am
 filling in the gaps for an AI that isn't really exercising
 intelligence or insights. It is, instead, creating
 text from a series of complex dice rolls that cause me to think
@@ -403,6 +420,49 @@ that may be fair. Consider this an evaluation of my method, the prompts I
 used, and how well it worked for this particular feature set.
 
 But then again, finding out it wasn't useful for me was fast and cheap.
+
+Thoughts on the method - interactive, or automatic?
+===================================
+There are two ways we utilize chat based generative AI.
+
+One is as an interactive conversation between a person and
+a chat-based LLM. The person crafts the prompts ad hoc, adjusting
+them as they try to get what they want or need from the interaction.
+
+Another is with an application crafting the prompts and extracting
+the responses based on input gathered on behalf of the user
+and then using the output in some way for benefit to the user.
+
+I wrote the article based on an interactive conversation, but we
+could imagine it as an application generating the prompts. In this session,
+there were several prompt boilerplates:
+1. I am going to introduce a type of testing heuristic. Below, after I do, acknowledge your receipt of it with a short, single sentence paraphrase of the technique.
+2. I am now going to present a (NAME) list that came from the manufacturers of Word. Given this list, come up with ideas for claims testing, based on this list. You do not need to write the steps, just some basic ideas for testing claims that derive from the feature list:
+3. Come up with 10 more test ideas to check the claims for (selected claim)
+4. Elaborate on the following idea, relative to (selected topic), by coming up with 10 more test ideas based on it (no steps needed, just the idea).
+
+The boilerplates do not need to change based on the testing ideas
+or the production description under analysis. If we can generalize
+a prompt strategy, we can automate the prompting to produce
+content even faster and in larger volume. The value to us
+derives from how well that given prompt generalizes, how often
+it produces content we find useful.
+
+The challenge with automated solutions of this class is
+evaluating the volume. In the experiment I did here, where
+everything is interactive, I got several dozen testing ideas by
+controlling the focus as I went. I asked it to focus on
+one feature area, co-authoring. The original document had 10
+feature areas. After co-authoring, I asked it to focus on 1 of 10
+or so test ideas, then twice more. Were this process allowed to play
+out on its own automatically, that would have been 10x10x10x10 test
+ideas generated - 10,000 to review, select and reject from. Something
+that large is difficult to evaluate. Sometimes the cure is more 
+of a problem than the disease.
+
+I leave this problem to cleverness and invention to ponder.
+There are ways to present concepts, ideas, output, and outcomes that are
+more compact, easier to process.
 
 Bottom Line: Playing to useful fuzziness as a generative AI strength
 ===================================
