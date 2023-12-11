@@ -327,13 +327,72 @@ Developing your tester brain
 The recommendation I would offer anyone that wants to, or maybe
 needs to, grow some tester mindset muscle would be to consider
 some of the green flag behaviors and exercise them on an existing
-application UI. Start looking for ways to groups features. Look for
-differences in classes of things that might make for interesting changes
-in behavior. Try mixing and matching. Absolutely and for certain
-use the application. Type, click, user a voice navigator - take notes
-on feature behavior, challenge your observations. Ask yourself questions
-like "How would I know for sure what the right thing ought to be here?"
+application UI. 
 
-There are a number of lessons to learn from the green flags in
-a testing interview. Try them out yourself and see how it goes.
+1. __Summarize and Synthesize__: this shortens the number of items you
+have to think about and focuses on shared attributes that usually
+have shared test implications.
+2. __Interact with the product__: few things trigger the testing imagination
+as well as using the product to do something. Get in and use it, and as
+you do make notes (physical or mental) of other things you want to
+do. Treat this time as if you don't have something else to get back
+to, this is what you are doing.
+3. __Look for differences__: are all the times in a set of choices, or
+in a list box, or using controls that look the same really
+the same? Are the inputs or states different in important ways? As
+a developer you probably have better insights about that than
+anybody else. Exploit them, because the bugs live there.
+4. __Mix and match__: A lot of testing is about combinations of
+state and input and behavior. Start with synthesis to make large
+groups easier to talk about as clusters, and then start
+combining the groups. So will make no sense, others will be
+very interesting.
+5. __Smelling tricky stuff__: This may be something that you as
+the developer know better than others. If you spent more time
+making something work than everything else inside a given
+UI, that is probably something worth testing. If everything else
+came "for free" from the operating system or some set of libraries,
+but for this one thing you had to write the behavior yourself,
+focus there.
+6. __Search for oracles__: Look for ways to help you know if
+behavior is right or wrong. Whatever guide you used as
+a developer will help a lot, but sometimes we can find oracles
+that work splendidly in a testing context that you may not have
+considered while writing the code.
+7. __Look for shortcuts and complexity__: This is about making your
+work easier, put more impact and effectiveness into less effort. Can
+you do the same thing as a lot of tests with fewer? Can you drive
+up complex behavior with simple changes to the test approach?
+
+Also consider the red flags, and how you can use an inclination
+toward them as a sign to take an alternate approach.
+
+1. __Do not accept 'That is all'__: Saying 'that is all' for test ideas to
+oneself is kind of like saying 'Yup, the Earth is flat.' If you
+drew that conclusion you should immediately know something is
+wrong in your reasoning. It may also be an indication similar
+oversimplification was in effect during design.
+Try toward ideas that produce expansion
+such as combinations, looking for differences in the set, fast
+ways to create complexity.
+2. __Switch away from rote enumeration__: When your thinking is
+taken over by listing everything you see in front of you that
+is a sign you are not engaging the testing aspect of the problem, the
+part that looks for problems. It also might be a sign that the
+feature set is long, and tedious, and might some issues overlooked
+in design and development. Step back and switch to synthesis.
+3. __Force yourself to use the product__: Not using the product
+while thinking of test ideas is a demonstration of a block in
+your mind preventing you from engaging the test problem. Treat
+that as a warning sign that you are not digging deeper. The best
+way to get over this is to dedicate time to nothing else but
+using the product and taking notes.
+4. __Stop yourself after a surprise__: More so for a developer,
+if the product ever does something that surprises you, catch yourself
+before just passing by. Take notes of the behavior, write down
+or at least remember that it surprised you and compare it to what
+you did expect. Build specific testing and exploration around that
+surprise. It may not be a bug, but it for sure was an indication of
+a distance between your mental model and how the product really behaves.
+Closing that distance - that is real testing.
 
