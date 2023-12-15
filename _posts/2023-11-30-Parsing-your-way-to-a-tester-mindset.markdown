@@ -235,14 +235,23 @@ list of cases and assumptions - and then the good ones will
 express some degree of concern, or distrust of what they just did.
 They satisfy this concern by tossing a more sporadic mix. Consider this example:
 
-> ```     0 English
->     10 Japanese
->     11 Japanese
+> ```
+> 0 English
+> 
+> 10 Japanese
+> 
+> 11 Japanese
+> 
 > 000000 English
+> 
 > 010101 -- what? Invalid?
+> 
 > 010100 English
+> 
 > 011111 -- ?? Invalid?
-> 011110 Japanese
+> 
+> 0111110 Japanese
+> 
 > 010110 English
 > ```
 
