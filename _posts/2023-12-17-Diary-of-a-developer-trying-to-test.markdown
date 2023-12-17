@@ -42,6 +42,41 @@ caching items for re-use, using a distributed cache for scalable
 performance, etc.), but instead describes an activity, a test
 with a good probability of surfacing even unanticipated problems.
 
+The feature - a test data generator
+=============================================
+The feature under test returns random values for test
+data described by a schema. The method takes a DataSchema
+object, which contains a list of SchemaElement objects.
+
+```
+public static string GetRandomExample(DataSchema schema)
+```
+
+More specifically, the test ideas focus on the case
+where an element in the schema is of type Choice, which
+means the data generator is offered a set of possible
+values to return.
+
+```
+public class SchemaElement
+{
+	public string Name { get; set; }
+	public object Value { get; set; }
+	public object MinValue { get; set; }
+	public object MaxValue { get; set; }
+	public ElementType Type { get; set; }
+}
+
+public enum ElementType
+{
+	StaticValue,
+	Choice,
+	Optional,
+	ElementList,
+	RangeNumeric
+}
+```
+
 The list(s)
 =============================================
 As I stated, I already had a list from the unit tests I wrote
