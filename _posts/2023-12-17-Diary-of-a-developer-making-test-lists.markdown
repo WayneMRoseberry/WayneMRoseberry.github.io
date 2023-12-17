@@ -1,19 +1,27 @@
+Sometimes all you need is a list
+===========================================
+![AI generated photo depiction of a person holding a list of testing ideas](/assets/testingideaslist.jpg)
+_The AI generated image above seems to be directed at an audience
+who speaks some obscure northern European language. I have no idea
+what the words on that test idea list are supposed to be. Although the
+last idea, 'Test' is amusingly obvious._
+
 I gave it some time
 ===========================================
-I started a coding project yesterday. I cam back to it this
-morning and decided to come up with some test ideas. I captured
+I started a coding project yesterday. I came back to it this
+morning and decided to write up with some test ideas. I captured
 my state of mind as I did so. I will describe the project and the
 feature I wish to test along with what I thought as I came
 up with the tests.
 
-I made a list, but let's talk about the feature so it makes sense.
+I made a list, but let's talk about the feature so the test list makes sense.
 
 The feature - a test data generator
 =============================================
 This is one my pet projects I return to every couple of
 years when I want to try doing something new with it. Sometimes
 I use it to learn a new language, sometimes a new coding
-paradigm. This time it was for materials to write testing
+paradigm. This time it was for material to write testing
 articles.
 
 The feature under test returns random values for test
@@ -57,11 +65,11 @@ public class SchemaElement
 
 public enum ElementType
 {
-	StaticValue,
-	Choice,
-	Optional,
-	ElementList,
-	RangeNumeric
+	StaticValue, // the string value of the Value element is returned
+	Choice, // the return value is randomly selected from an array of choices in the Value element
+	Optional, // randomly return either an evaluation of Value or string.Empty
+	ElementList, // the Value element represents a list of SchemaElement objections
+	RangeNumeric // randomly return a numeric value between MinValue and MaxValue, inclusive
 }
 ```
 
@@ -108,9 +116,9 @@ the list instead of the tool.
 > - is every choice eventually picked -> is random range truly respected
 > - how "random" is the distribution?
 >
->  - perfectly distributed? <seems wrong>
->  - ordered? <seems wrong>
-> - predictable <seems wrong>
+>   - perfectly distributed? (seems should not be)
+>   - ordered? (seems should not be)
+>   - predictable? (seems should not be)
 > - load -> can we generate over and over without failure
 
 I put about 5-10 minutes into the above. Probably less.
@@ -128,12 +136,22 @@ at the time I made the list.
 > GetRandomExample, Choice type
 
 _I don't really need to label this list, as it is just for me,
-but I chose to as a way of organizing my thoughts._
+but I chose to as a way of organizing my thoughts. I am also
+trying to break my code familiarity with a touch of formality to add
+a little bit of psychological distance from
+what I know about the code. I don't know if that works..._
 > - single choice
 
 _The first deviation away from the unit tests, a single item
 in a choice. When I wrote the code, my mind was conflating one
-and two items as being the same problem, hence just a check for two._
+and two items as being the same problem, hence just a check for two.
+I came up with this case as a product of years of tester methodology.
+Whenever we are talking about quantities of things, there is nothing,
+one thing, two things, and then at least more than two. Oh, that reminds me,
+when I came up with the list for this article, I forgot to include "empty
+choice list." Rather than fix the list, I am going to keep that omission
+here in the article as a demonstration on how time and reflection are
+sometimes needed to correct our mistaken assumptions._
 > - double choice
 > - n choices
 
@@ -144,13 +162,19 @@ code, the inclination to heed 'don't bother..' is powerful. As a practice
 I write all ideas that come to mind._
 > - choice of different element types -> each of one
 
-_When I wrote the unit tests, ElementType.Choice was the only other
-element type other than ElementType.StaticValue. I didn't write a unit
-test for this idea because the concept did not exist yet._
+_When I wrote the unit tests, __ElementType.Choice__ was the only other
+element type other than __ElementType.StaticValue__. I didn't write a unit
+test for this idea because the concept did not exist yet. It is very easy when
+crafting unit tests to forget to consider how a new behavior affects
+prior behaviors. Intrinsic to this problem is that __ShemaElement__ objects can
+contain elements of different type than their own. This suggests that for every new
+element type added there might be an affect on generation of other types which
+contain that new type in their __Value__ property. This particular test idea is
+one that stays open for more possibilities for every new element type added at least._
 > - choice of recursive item
 > - choice of resursion with non-terminating loop
 
-_At this point in the code, "recursive item" isn't possible. Every item
+_At this point in the feature development, "recursive item" isn't possible. Every item
 in the schema is described in place. A new feature has to exist to
 introduce this concept. Non-terminating loop came as an extension of
 thinking about recursion. As a test problem, this is something I
@@ -167,8 +191,11 @@ I decided to add a test where the choice is one of the invalid items. I
 had a little bit of a 'don't bother' nag in my head because I know how
 the code checks for invalid values and I believe the behavior is
 already covered. When I think 'don't bother', I use that as a reason
-to be SURE to bother. It is very easy to believed generalized solutions cover
-all cases only to discover they do not._
+to be SURE to bother. It is very easy to believe generalized solutions cover
+all cases only to discover they do not. Careful observers will realize that
+"invalid item" is similar to "element type" in the way it ripples in
+combination with generating other elements that may be the
+parent of the invalid element._
 
 _Another important point is that "invalid item" is not defined in my list. I am
 leaving this point open for more examination. So far there is only one
@@ -185,18 +212,23 @@ I kept it here to consider other possibilities. It also inspired the follow
 questions._
 > - how "random" is the distribution?
 > 
->   - perfectly distributed? <seems wrong>
->   - ordered? <seems wrong>
->   - predictable <seems wrong>
+>   - perfectly distributed? (seems should not be)
+>   - ordered? (seems should not be)
+>   - predictable (seems should not be)
 
 _While we could imagine some kind of unit test to explore the
-above questions, the various ways of effectively start to
+above questions, the various ways of effectively testing start to
 create a problem for unit test constraints. Notions of proper
 random distribution are hard to succinctly identify. Is a given
 set of values sufficiently random, or is there some pattern that
 is too predictable? That is the sort of result that requires time
 and tradeoffs and analysis, and unit tests are meant for
-definitive PASS or FAIL assessments._
+definitive PASS or FAIL assessments. This type of problem lends
+itself really well to exploratory testing. Wow, exploratory
+testing of a product API! If one pays much attention to articles
+and posts online about API testing, one would think that exploratory
+testing is impossible via automated scripts, and yet here we are, looking
+at an API with exactly that kind of problem._
 > - load -> can we generate over and over without failure
 
 _I almost didn't write this one down, the 'don't bother' reflex
@@ -241,3 +273,30 @@ you what the change to the code might be (properly freeing some resource in an e
 caching items for re-use, using a distributed cache for scalable
 performance, etc.), but instead describes an activity, a test
 with a good probability of surfacing even unanticipated problems.
+
+The implications of the list - lead with the test problem
+===========================================
+In another article, I describe how I prefer to deal with
+testing logistics and strategy questions by 
+<a href="https://waynemroseberry.github.io/2023/11/29/Leading-with-the-test-problem.html">
+leading with the test problem</a>. Rather than asking
+"how much automation do we need?" or "should developers do the
+testing, or should someone else?", I prefer to let the testing
+problems we are thinking about naturally guide the answers.
+
+From even this short, 10 minute list, I see a variety
+of things to think about regarding method and strategy:
+- some of these easily describe requirements and would be easy unit tests
+- some of these suggest at least a few hours of uninterrupted exploration,
+testing, and analysis of the results
+- some of these (load tests) suggest investment in framework, data set
+creation, and specialized testing scripts or tools
+
+Not all of that fits nicely in a "test it as you write it" or in a
+"run it during the CI/CD suite" strategy. Some of it means time
+separate from writing code, taking more time than might
+fit in a fast "check everything in by end of day" cycle.
+
+That is okay. Our job is to figure out how to do a job
+well, not how to fit into dogmatic notions of how to
+divide up work.
