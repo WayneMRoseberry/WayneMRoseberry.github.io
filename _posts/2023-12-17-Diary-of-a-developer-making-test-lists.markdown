@@ -6,49 +6,29 @@ my state of mind as I did so. I will describe the project and the
 feature I wish to test along with what I thought as I came
 up with the tests.
 
-I made a list.
-
-What is in a list?
-===========================================
-A list is a simple, but powerful tool. So simple we sometimes
-may not think of it as a tool. In this case, I used the list
-to help me think of more ideas.
-
-I already had a list I built as I wrote the code. I used TDD, writing
-tests first, one at a time, then writing the code, seeing it fail
-and then changing the code until the test passed. I added each test
-as I added new behavior to the code, only writing the test I needed to
-check that one change. When I was done, I had a list. A list of
-testing ideas implemented as scripted checks.
-
-My formal title for the list would be "unit tests for <feature name>," or
-maybe informally "checking that I made the changes I wanted to make." That
-is a useful list, but this morning I wanted a different type of list.
-I want one I would call "Did I make a mistake?"
-
-Are the two lists different? Yes. The first list assumes a set of
-known changes anticipated ahead of time, and you are describing a
-set of checks which will fail if you did not implement the change
-in the way you expected. The second list assumes there may be
-problems in the set of changes, and you are coming up with a 
-list of ways to find those problems.
-
-Why isn't that list of ways to find problems the same as a list
-of anticipated changes? Isn't "we find nothing bad doing <this>"
-just an other requirement? It is, but it may not describe a change.
-For example, "can run 100,000 times in same session without failure" does not tell
-you what the change to the code might be (properly freeing some resource in an edge case,
-caching items for re-use, using a distributed cache for scalable
-performance, etc.), but instead describes an activity, a test
-with a good probability of surfacing even unanticipated problems.
+I made a list, but let's talk about the feature so it makes sense.
 
 The feature - a test data generator
 =============================================
+This is one my pet projects I return to every couple of
+years when I want to try doing something new with it. Sometimes
+I use it to learn a new language, sometimes a new coding
+paradigm. This time it was for materials to write testing
+articles.
+
 The feature under test returns random values for test
 data described by a schema. The method takes a DataSchema
 object, which contains a list of SchemaElement objects.
 
 ```
+/// <summary>
+/// Produces a valid random string where the requirements
+/// for the data string are described in the DataSchema object
+/// passed to the method.
+/// </summary>
+/// <param name="schema">Describes the requirements for a valid data object.</param>
+/// <returns>A random string that is valid according to the schema.</returns>
+/// <exception cref="ArgumentException">In the case where any element in schema is invalid.</exception>
 public static string GetRandomExample(DataSchema schema)
 ```
 
@@ -57,7 +37,15 @@ where an element in the schema is of type Choice, which
 means the data generator is offered a set of possible
 values to return.
 
+Data types definitions are offered below.
 ```
+public class DataSchema
+{
+	public string Name;
+	internal IList<SchemaElement> Elements;
+	public void AddElement(SchemaElement element)
+}
+
 public class SchemaElement
 {
 	public string Name { get; set; }
@@ -79,8 +67,14 @@ public enum ElementType
 
 The list(s)
 =============================================
-As I stated, I already had a list from the unit tests I wrote
-yesterday.
+I have two lists. One I made while coding, and
+another I made while thinking of the tests. Let's
+compare those lists.
+
+The unit test... short list
+---------------------------------------------
+I use TDD when I am coding, so I was making a list of
+unit tests as part of writing the code. It is short.
 -  __GetRandomExample_choicetwovalues__: first check I implemented, creates
 a data schema with a choice element that has two static values. The
 assertion fails if the return value is anything other than the two
@@ -94,11 +88,42 @@ That is where I stopped. The code met the requirements as I
 imagined them at that point for GetRandomExample processing an 
 ElementType.Choice SchemaElement type.
 
+Rise and shine, and make a list
+---------------------------------------------
 Today, I decided to dedicate some time to just test work. I prefer
 to start by coming up with test ideas. I used Notepad to make the
 list. Sometimes I like simple text editors, pads of paper or other
 tools that are lightweight and allow me to put all my thought into
 the list instead of the tool.
+
+> GetRandomExample: Choice type
+> - single choice
+> - double choice
+> - n choices
+> - choice of different element types -> each of one
+> - choice of recursive item
+> - choice of resursion with non-terminating loop
+> - choice of invalid item (e.g. ranges with crossed min/max values)
+> - choice of non-existent reference
+> - is every choice eventually picked -> is random range truly respected
+> - how "random" is the distribution?
+>
+>  - perfectly distributed? <seems wrong>
+>  - ordered? <seems wrong>
+> - predictable <seems wrong>
+> - load -> can we generate over and over without failure
+
+I put about 5-10 minutes into the above. Probably less.
+I wanted to see if I would come up with anything beyond the unit
+tests I created yesterday, but I also wanted to keep
+the time thinking up ideas short. I knew I wanted to
+use the exercise for this article, and all I needed
+were a few differences to make a comparison.
+
+Let's look more closely at that list
+---------------------------------------------
+Let's talk about each of these options and what I was thinking
+at the time I made the list.
 
 > GetRandomExample, Choice type
 
@@ -183,3 +208,36 @@ such a belief without at least examining the problem. Mistaken assumptions
 are the heart of all problems, but especially those pertaining to
 the product under load._
 
+What is in a list?
+===========================================
+A list is a simple, but powerful tool. So simple we sometimes
+may not think of it as a tool. In this case, I used the list
+to help me think of more ideas.
+
+I already had a list I built as I wrote the code. I used TDD, writing
+tests first, one at a time, then writing the code, seeing it fail
+and then changing the code until the test passed. I added each test
+as I added new behavior to the code, only writing the test I needed to
+check that one change. When I was done, I had a list. A list of
+testing ideas implemented as scripted checks.
+
+My formal title for the list would be "unit tests for <feature name>," or
+maybe informally "checking that I made the changes I wanted to make." That
+is a useful list, but this morning I wanted a different type of list.
+I want one I would call "Did I make a mistake?"
+
+Are the two lists different? Yes. The first list assumes a set of
+known changes anticipated ahead of time, and you are describing a
+set of checks which will fail if you did not implement the change
+in the way you expected. The second list assumes there may be
+problems in the set of changes, and you are coming up with a 
+list of ways to find those problems.
+
+Why isn't that list of ways to find problems the same as a list
+of anticipated changes? Isn't "we find nothing bad doing <this>"
+just an other requirement? It is, but it may not describe a change.
+For example, "can run 100,000 times in same session without failure" does not tell
+you what the change to the code might be (properly freeing some resource in an edge case,
+caching items for re-use, using a distributed cache for scalable
+performance, etc.), but instead describes an activity, a test
+with a good probability of surfacing even unanticipated problems.
