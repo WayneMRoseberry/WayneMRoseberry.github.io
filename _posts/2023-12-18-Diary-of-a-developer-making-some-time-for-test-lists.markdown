@@ -6,12 +6,28 @@ who speaks some obscure northern European language. I have no idea
 what the words on that test idea list are supposed to be. Although the
 last idea, 'Test' is amusingly obvious._
 
+Short version, if you want to make better test lists, increase
+the following:
+- Time: for dedicated to test ideas, time between creating and the thinking
+- Distance: in time and conceptually from the product code
+- Questions: ask more, even if you think you know the answers
+- Barrier dropping: if you think "don't bother" on a test idea, write it down anyway
+
+The tests we come up with when we are in the middle
+of creating something and what we come up with later,
+after we have some time to think about it, can vary
+quite a lot. Time creates distance, but so does
+ignoring inclinations to discount ideas, consideration
+of generic ideas you might consider irrelevant, as well
+as asking questions that you think you know the answer
+to. That distance helps with the testing.
+
 I gave it some time
 ===========================================
 I started a coding project yesterday. I came back to it this
-morning and decided to write up with some test ideas. I am very
+morning and decided to write up some test ideas. I am very
 much a believer that a key barrier to getting test ideas
-is dedicated. I find I need to feel as if there is nothing
+is lack of dedicated time. I find I need to feel as if there is nothing
 else I am going to spend my time on than the testing. If I
 am doing anything else, if I feel that I need to get
 back to some other task, at all, if I am trying to split my
@@ -175,7 +191,7 @@ _When I wrote the unit tests, __ElementType.Choice__ was the only other
 element type other than __ElementType.StaticValue__. I didn't write a unit
 test for this idea because the concept did not exist yet. It is very easy when
 crafting unit tests to forget to consider how a new behavior affects
-prior behaviors. Intrinsic to this problem is that __ShemaElement__ objects can
+prior behaviors. Intrinsic to this problem is that __SchemaElement__ objects can
 contain elements of different type than their own. This suggests that for every new
 element type added there might be an affect on generation of other types which
 contain that new type in their __Value__ property. This particular test idea is
@@ -217,7 +233,7 @@ point it is only a guess that such a problem even exists._
 > - is every choice eventually picked -> is random range truly respected
 
 _This one is a repeat of the method  __GetRandomExample_choicefourvalues__, but
-I kept it here to consider other possibilities. It also inspired the follow
+I kept it here to consider other possibilities. It also inspired the following
 questions._
 > - how "random" is the distribution?
 > 
@@ -242,12 +258,24 @@ at an API with exactly that kind of problem._
 
 _I almost didn't write this one down, the 'don't bother' reflex
 was so strong. I wrote the code, and do not believe, at this point,
-that there is any issue where a load test is going to discovery
+that there is any issue where a load test is going to discover
 problems that one at a time targeted testing will not. From a history
 of coding and testing viewpoint it is reckless to blindly heed
 such a belief without at least examining the problem. Mistaken assumptions
 are the heart of all problems, but especially those pertaining to
 the product under load._
+
+_I wrote the above paragraph several hours ago, and coming back to it
+I realize two errors in my 'don't bother' reasoning. The first
+error is that since the feature is all about building a response,
+there are going to be lost of string building actions responding
+to a request, and depending on the system those kinds of actions
+can create a highly fragmented memory space - especially if running
+on a server that keeps everything long term in the same process. The
+second point is that future versions of this API may work with IO to fetch
+and store schema from storage, which would likely be impacted by
+load. Not that I started with "wrote the above... several hours ago" and
+how that demonstrates the impact of time on test thinking._
 
 What is in a list?
 ===========================================
@@ -255,6 +283,8 @@ A list is a simple, but powerful tool. So simple we sometimes
 may not think of it as a tool. In this case, I used the list
 to help me think of more ideas.
 
+Different lists for different uses
+-------------------------------------------
 I already had a list I built as I wrote the code. I used TDD, writing
 tests first, one at a time, then writing the code, seeing it fail
 and then changing the code until the test passed. I added each test
@@ -281,10 +311,13 @@ For example, "can run 100,000 times in same session without failure" does not te
 you what the change to the code might be (properly freeing some resource in an edge case,
 caching items for re-use, using a distributed cache for scalable
 performance, etc.), but instead describes an activity, a test
-with a good probability of surfacing even unanticipated problems.
+with a good probability of surfacing even unanticipated problems. The problems
+you find doing that test tend to indicate the specific requirements
+you might not have realized existed, and certainly did not know
+were not being met.
 
 The implications of the list - lead with the test problem
-===========================================
+-------------------------------------------
 In another article, I describe how I prefer to deal with
 testing logistics and strategy questions by 
 <a href="https://waynemroseberry.github.io/2023/11/29/Leading-with-the-test-problem.html">
@@ -314,13 +347,16 @@ divide up work.
 
 A list from someone else
 ===========================================
-I presented the same problem to another tester. I asked them
-to limit themselves to ten minutes producing test ideas.
+I presented the same problem to another tester. I wanted to see
+if I got ideas I had not thought of on my own and if that
+would lead to more ways to think of a list of test ideas.
+
+I asked them to limit themselves to ten minutes producing test ideas.
 
 Here is what they produced.
 
 This one is from Nicholas.
-
+--------------------------------------------
 Before Nicholas started coming up with test ideas, he had some reactions
 to the problem itself. He captured those thoughts, and I include
 them here because it helps us see his state of mind before coming
@@ -378,4 +414,13 @@ even consider security in my tests, maybe from not putting time into it, or mayb
 because I was subconsciously filtering it out knowing the current implementation is stateless.
 - He covers different data types (formats) on the Value attributes, recognizing possibility of problems representing them as string. This is an interesting point, because without intentionally writing tests to find this, I did have bugs in my code related to the way the ToString() function behaves when a data type does not have an explicit behavior for ToString().
 
+Time, Distance, Questions, Drop the Barriers
+====================================================
+My observation is that as I went from writing the code myself,
+to thinking about the tests a day later, to asking someone else
+to think of tests, the number of new test ideas grew.
 
+In sync with that progression, the variables of Time, Distance,
+Question asking, and Dropping Barriers (to ideas) increased as
+well. I feel this is the takeaway from the exercise. If you want
+to increase test ideas, work on increasing these variables.
