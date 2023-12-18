@@ -1,4 +1,4 @@
-Sometimes all you need is a list
+Sometimes all you need is some time and a list
 ===========================================
 ![AI generated photo depiction of a person holding a list of testing ideas](/assets/testingideaslist.jpg)
 _The AI generated image above seems to be directed at an audience
@@ -9,7 +9,16 @@ last idea, 'Test' is amusingly obvious._
 I gave it some time
 ===========================================
 I started a coding project yesterday. I came back to it this
-morning and decided to write up with some test ideas. I captured
+morning and decided to write up with some test ideas. I am very
+much a believer that a key barrier to getting test ideas
+is dedicated. I find I need to feel as if there is nothing
+else I am going to spend my time on than the testing. If I
+am doing anything else, if I feel that I need to get
+back to some other task, at all, if I am trying to split my
+time, my ideas are impeded. 
+
+I dedicated a small bit of time this morning to just coming 
+up with a list and nothing more. I captured
 my state of mind as I did so. I will describe the project and the
 feature I wish to test along with what I thought as I came
 up with the tests.
@@ -253,7 +262,7 @@ as I added new behavior to the code, only writing the test I needed to
 check that one change. When I was done, I had a list. A list of
 testing ideas implemented as scripted checks.
 
-My formal title for the list would be "unit tests for <feature name>," or
+My formal title for the list would be "unit tests for (_feature name_)," or
 maybe informally "checking that I made the changes I wanted to make." That
 is a useful list, but this morning I wanted a different type of list.
 I want one I would call "Did I make a mistake?"
@@ -266,7 +275,7 @@ problems in the set of changes, and you are coming up with a
 list of ways to find those problems.
 
 Why isn't that list of ways to find problems the same as a list
-of anticipated changes? Isn't "we find nothing bad doing <this>"
+of anticipated changes? Isn't "we find nothing bad doing (_this_)"
 just an other requirement? It is, but it may not describe a change.
 For example, "can run 100,000 times in same session without failure" does not tell
 you what the change to the code might be (properly freeing some resource in an edge case,
@@ -295,8 +304,78 @@ creation, and specialized testing scripts or tools
 Not all of that fits nicely in a "test it as you write it" or in a
 "run it during the CI/CD suite" strategy. Some of it means time
 separate from writing code, taking more time than might
-fit in a fast "check everything in by end of day" cycle.
+fit in a fast "check everything in by end of day" cycle. Some
+of it is better to wait until more features are completed so
+their interactions can be tested together.
 
 That is okay. Our job is to figure out how to do a job
 well, not how to fit into dogmatic notions of how to
 divide up work.
+
+A list from someone else
+===========================================
+I presented the same problem to another tester. I asked them
+to limit themselves to ten minutes producing test ideas.
+
+Here is what they produced.
+
+This one is from Nicholas.
+
+Before Nicholas started coming up with test ideas, he had some reactions
+to the problem itself. He captured those thoughts, and I include
+them here because it helps us see his state of mind before coming
+up with test ideas.
+
+>So it looks like the logic here is really defined in the comments on the ElementTypes...
+>and GetRandomExample is what implements that logic.
+>
+>I'm curious why min and max values aren't defined as int or float or
+>similar since the only ElementType that references them treats them as numeric boundaries
+>
+>And in designing these checks massively depends on what
+>"value" can represent, since it's defined as "object" it could literally be anything
+>
+>And whatever implementation is used to satisfy "Choice"
+>will depend on the different objects that the value can be
+>
+>well nevermind you did say Array...
+>
+>So that limits it somewhat
+>
+>OK I think I'm ready I'll start the timer
+
+I am glad he captured this, because his questions and thoughts are
+interesting to observe. When I made my list, I didn't have many
+questions to ask myself because I started assuming I knew everything
+(although I found a few where I was not sure what I wanted).
+
+Questions tend to be the starting point of creative possibilities. Answers
+sometimes open more possibilities, and they sometimes remove them.
+If we start thinking of our tests with answers assumed, sometimes we
+miss something interesting to test. Above, Nicholas intuits the
+possible issues which might arise with Value, MinValue and MaxValue being
+of type "Object", especially in combination with settings like "NumericRange".
+
+The list then follows
+
+> 1. Array lengths - shortest, very long, empty
+> 2. Other properties in schema being short/long/empty/null should not affect it (or should?)
+> 3. Security requirements (not a security expert) - does it protect against injection
+> 4. Checking the implementation of "random" by running it repeatedly and making sure it returns different results
+> 5. Checking that the randomness will not consistently skip certain locations within the array
+> 6. Checking different formats of elements in the array, they could be strings, arrays, lists, ints, custom objects
+> 7. How do you convert from the objects in the array to string format - tests around those
+> 8. The arrays are in a list - use different list lengths, 0, 1, many
+> 9. Arrays of different object types within the same list
+> 10. How does it combine the end value when there are multiple elements in the list
+> 11. Is the randomness consistent across multiple elements in the list
+
+There is overlap with my list, but also some new ideas:
+- Nicholas hits some cases on array values and lengths I did not cover.
+- He raises a question about security which, right now is irrelevant, but if future
+implementations ever use a database (I have a feature in mind which requires storage) it becomes relevant. I didn't
+even consider security in my tests, maybe from not putting time into it, or maybe
+because I was subconsciously filtering it out knowing the current implementation is stateless.
+- He covers different data types (formats) on the Value attributes, recognizing possibility of problems representing them as string. This is an interesting point, because without intentionally writing tests to find this, I did have bugs in my code related to the way the ToString() function behaves when a data type does not have an explicit behavior for ToString().
+
+
