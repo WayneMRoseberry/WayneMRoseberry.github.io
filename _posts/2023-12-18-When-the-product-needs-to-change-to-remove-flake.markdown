@@ -1,5 +1,6 @@
 The test needs control
 ===================================
+![A cartoonish looking image of a person using a stylus to change code on a computer screen](/assets/changeproductcodetofixflakytest.jpg)
 I have an example of a flaky test which I wrote just
 yesterday. I have seen it demonstrate flaky behavior, and
 I addressed it not by removing the flaky behavior, but by
