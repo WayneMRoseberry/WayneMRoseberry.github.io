@@ -165,3 +165,109 @@ I want to use simpler means, such as passing a delegate to the method
 instead. It will depend on how much utility I believe I will eventually
 load into that interface later.
 
+Make an interface
+-----------------------------------
+The prior code used a static object of type Random...
+
+```
+static Random rand = new Random();
+```
+
+And then would use it later like so:
+
+```
+if (element.Type.Equals(ElementType.Choice))
+{
+  SchemaElement[] elements = (SchemaElement[])element.Value;
+  int chosen = __rand.Next(elements.Length)__;
+  result = EvaluateElement(result, elements[chosen]);
+}
+```
+
+I extracted the calls to rand.Next into a new method and replaced all calls to __rand.Next__
+with this new method.
+
+```
+public int ChooseNumber(int length)
+{
+  return rand.Next(length);
+}
+```
+
+I then pulled this method and the object __rand__ into a new class.
+This got a little bit messy (not shown here) because the original
+methods were all static, and you cannot define an interface
+around static methods. I made the new class (__RandomChooser__)
+non-static and ChooseNumber as a member of that instance. 
+
+```
+public class RandomChooser : IChooser
+{
+   static Random rand = new Random();
+
+  public int ChooseNumber(int length)
+  {
+    return rand.Next(length);
+  }
+}
+```
+
+I then extracted an interface from the RandomChooser class.
+
+```
+public interface IChooser
+{
+  int ChooseNumber(int length);
+}
+```
+
+Change everything in product to use the new interface
+----------------------------------
+I want to keep the original methods static, and I haven't built
+much code around the methods, so I a bunch of stuff to break
+as I made modifications. Normally I keep everything working
+by building overloads of a method so I can pass the new
+interface and objects into a new version of the method, and
+create an instance of it in the original method. This
+allows me to use the automatic refactoring tools in Visual
+Studio very nicely. But it got very messy based on the
+way I was ordering my changes.
+
+I added IChooser as a parameter to __GetExample()__ (_previously
+GetRandomExample_).
+
+```
+public static string GetExample(DataSchema schema, IChooser chooser)
+```
+There are several private methods which were now also calling
+__ChooseNumber__, so I had to add IChooser to their calling
+signatures as well.
+
+Changing the tests
+----------------------------------
+I was going to go immediately to mocking an IChooser interface,
+but the pattern I always use is to throw a _NotImplementedException__
+inside the mock until the test method overrides behavior. This meant
+I would have to update every single test with an appropriate mock override.
+
+I opted for a temporary cheat instead. Instead of using the mock, I
+passed in a RandomChooser object, preserving the original behavior pre-test.
+The following test method is an example of the new behavior on the call
+to GetExample.
+
+```
+[TestMethod]
+public void GetRandomExample_singlestaticvalue()
+{
+  DataSchema schema = new DataSchema();
+  schema.AddElement(new SchemaElement() 
+  {
+    Name = "element1",
+    Value = "val1",
+    Type = ElementType.StaticValue
+  }
+  );
+  string result = DataMaker.GetExample( schema, new RandomChooser());
+  Assert.AreEqual("val1", result);
+}
+```
