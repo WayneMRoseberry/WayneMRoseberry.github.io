@@ -133,7 +133,7 @@ cannot afford false positives or false negatives.
 Bad code smells and tight coupling
 ----------------------------------
 Beyond testing, a test condition you cannot control is usually a sign
-of poorly written code. It is bad enough there is behavior in the code
+of poorly written product code. It is bad enough there is behavior in the code
 that cannot be deterministically checked. That also means there is
 behavior in a single method relying on something it cannot control
 either. This suggests an internal tight coupling of two different purposes
@@ -147,6 +147,8 @@ The problem is that producing random values from the __DataSchema__ object
 is hard-coded into the method. There is no way to externally override
 the random behavior and control it. There is also no way to change
 the method so it does something other than produce a random value. Maybe
+we want the randomness to have different distribution properties. Maybe
+we want the choice to be based on something entirely different. Maybe
 what we want is the ability to enumerate over all possible values for
 __DataSchema__ and each call to the method would get the next. We need a
 way to control that behavior.
@@ -179,7 +181,7 @@ And then would use it later like so:
 if (element.Type.Equals(ElementType.Choice))
 {
   SchemaElement[] elements = (SchemaElement[])element.Value;
-  int chosen = __rand.Next(elements.Length)__;
+  int chosen = rand.Next(elements.Length);
   result = EvaluateElement(result, elements[chosen]);
 }
 ```
@@ -224,7 +226,7 @@ public interface IChooser
 Change everything in product to use the new interface
 ----------------------------------
 I want to keep the original methods static, and I haven't built
-much code around the methods, so I a bunch of stuff to break
+much code around the methods, so I allowed a bunch of stuff to break
 as I made modifications. Normally I keep everything working
 by building overloads of a method so I can pass the new
 interface and objects into a new version of the method, and
@@ -246,10 +248,12 @@ signatures as well.
 Changing the tests
 ----------------------------------
 I was going to go immediately to mocking an IChooser interface,
-but the pattern I always use is to throw a _NotImplementedException__
+but the pattern I always use is to throw a __NotImplementedException__
 inside the mock until the test method overrides behavior. This meant
 I would have to update every single test with an appropriate mock override.
 
+Keeping the existing behavior
+----------------------------------
 I opted for a temporary cheat instead. Instead of using the mock, I
 passed in a RandomChooser object, preserving the original behavior pre-test.
 The following test method is an example of the new behavior on the call
@@ -271,3 +275,131 @@ public void GetRandomExample_singlestaticvalue()
   Assert.AreEqual("val1", result);
 }
 ```
+
+Using the new mock to make the test more precise
+----------------------------------
+The original tests which were affected most by the random
+behavior were those involving option, choice and range
+schema elements. All of these have multiple possible valid
+values that __IChooser__ has to pick via the __ChooseNumber()__ method.
+
+One such method dealt with the random behavior by Assert
+that either of the options under the choice was returned.
+This is a very unsatisfactory check. Does the call to __GetExample__
+respect values returned by __ChooseNumber()__ correctly?
+
+```
+[TestMethod]
+public void GetRandomExample_choicetwovalues()
+{
+  DataSchema schema = new DataSchema();
+
+  SchemaElement[] elemArray = new SchemaElement[]
+  {
+    new SchemaElement () { Name="choice1", Value="ch1", Type=ElementType.StaticValue },
+    new SchemaElement () { Name="choice2", Value="ch2", Type=ElementType.StaticValue}
+  };
+
+  SchemaElement element = new SchemaElement()
+  {
+    Name = "element1",
+    Value = elemArray,
+    Type = ElementType.Choice
+  };
+  schema.AddElement(element);
+
+  string result = DataMaker.GetExample(schema, new RandomChooser());
+
+  Assert.IsTrue(result.Equals("ch1") || result.Equals("ch2"), $"Fail if result <> 'ch1' or 'ch2', result={result}");
+}
+```
+
+The following change to the test method makes the check precise. Rather than
+allow a range of possible options, it expects exactly the right option
+based on what __ChooseNumber()__ returns. This is much improved over the
+statistical checking model, which loses a lot of information about
+what was actually returned and why.
+
+This test approach also checks whether __GetExample()__ 
+passes the proper expected length of range to __ChooseNumber()__, further
+checking possible errors in the __GetExample()__ business logic.
+
+_I make all my mocks myself, and sometimes that reads verbose and
+inelegant. Most articles on this topic utilize one of the popular
+mocking frameworks, and they usually more convenient. The principles
+are the same._
+```
+[TestMethod]
+public void GetExample_choicetwovalues_mockchooser()
+{
+
+   int passedInLength = -1;
+   MockChooser mockChooser = new MockChooser();
+   mockChooser.overrideChooseNumber = (i) => { passedInLength = i; return 0; };
+
+   DataSchema schema = new DataSchema();
+
+   SchemaElement[] elemArray = new SchemaElement[]
+   {
+      new SchemaElement () { Name="choice1", Value="ch1", Type=ElementType.StaticValue },
+      new SchemaElement () { Name="choice2", Value="ch2", Type=ElementType.StaticValue}
+   };
+
+   SchemaElement element = new SchemaElement()
+   {
+      Name = "element1",
+      Value = elemArray,
+      Type = ElementType.Choice
+   };
+   schema.AddElement(element);
+
+   Assert.AreEqual("ch1", DataMaker.GetExample(schema, mockChooser), "Fail if returned string is not expected choice.");
+   Assert.AreEqual(2, passedInLength, "Fail if wrong length passed in to ChooseNumber.");
+   mockChooser.overrideChooseNumber = (i) => { passedInLength = i; return 1; };
+   Assert.AreEqual("ch2", DataMaker.GetExample(schema, mockChooser), "Fail if returned string is not expected choice.");
+   Assert.AreEqual(2, passedInLength, "Fail if wrong length passed in to ChooseNumber.");
+}
+```
+
+There is another interesting affect from making this change.
+
+In one of my other articles, <a href="https://waynemroseberry.github.io/2023/12/18/Diary-of-a-developer-making-some-time-for-test-lists.html">
+I describe the testing ideas I came for the then named __GetRandomExample()__ </a>
+method. One of those was testing the randomness, distribution, predictability of the method. The
+statistical distribution of the results is conflated with the behavior of the method
+because it was hard-coded in the model. This refactoring changes that. The statistical distribution of results
+is now the responsibility of the __RandomChooser__ class. We can test that independently. It also
+means we might want different versions of the __IChooser__ interface in case we decide we
+want different randomness characteristics.
+
+This separation of purpose has several effects on the entire problem. It simplifies our
+testing, because we can check behavior at a lower level where we have more control and tests
+run faster. It isolates responsibility, allowing us to stabilize one piece of behavior at a
+time, which has a greater stabilizing effect when the whole system comes together. It doesn't
+remove all bugs and instability, but it tends to make system and end to end testing easier
+when we have this kind of isolation tested at a lower level. It also offers us flexibility
+in design so we can accomodate changing product needs.
+
+So, a flaky test isn't really a flaky test?
+===========================================
+Not this time it wasn't. When we are testing at low levels of abstraction, it is
+almost always the case that flaky results come from bad code design. Especially with
+unit tests, a rule thumb ought to be that flaky tests mean the product code needs to change.
+There are very few exceptions to this rule of thumb, where most of them really indicate that
+you aren't really writing a unit test - you are crossing too many boundaries.
+
+Let's extrapolate this idea up to more complex tests. As we move up,
+we sometimes necessarily lose control as we integrate components together
+to make a whole system.  Loss of control is what drives most inconsistency
+in results. A non-trivial part of this loss of control comes from the system itself. Much like
+the random number generator inside the example in this article, so to do any number
+of objects regarding randomness, IO, time, timing, concurrency of events
+and a variety of other behaviors which might cause errors in product behavior pop
+up intermittently, non-deterministically (from standpoint of what the test procedure
+can control) while we test.
+
+I hope this example from my own personal coding projects and how I
+work back and forth between the testing and the coding was useful. Whether
+you write your own code and have to test it, or test code someone else wrote,
+I believe it is critical to understand the relationship between test result
+inconsistency, "flake", and product design.
