@@ -15,8 +15,8 @@ What I found:
 - I came up with 9 ideas the other tester did not come up with
 - The other tester came up with 8 ideas I did not come up with
 - ChatGpt came up with 16 ideas neither of us came up with
-- ChatGpt repeated most everything we said
-- After two iterations of re-prompting, ChatGpt started repeating most of its prior ideas
+- ChatGpt repeated most everything we said, several times
+- After two iterations of re-prompting, ChatGpt started repeating most of its prior ideas, several times
 
 The test problem is a simple API testing problem. The ideas
 from ChatGpt were relevant and useful. Given more time and a
@@ -24,8 +24,23 @@ chance for back and forth questioning, I am fairly confident
 that all parties in the experiment would have come to the same
 set of test ideas.
 
+The idea contribution from AI was not bad. Not brilliant, but not
+bad. The exercise so short (10 minutes) that the time saved by
+ChatGpt (9 minutes) is small compared to the follow up time it would
+take to remove duplicates, find the unique contributions. But even with
+that, the exercise give some support to the notion of LLMs as tools
+for accelerating up idea generation.
+
 The contrived and artificial conditions of the experiment
 ================================================================
+This kind of "race the AI" test is not a realistic comparison because
+the people are not working under realistic conditions. Their real skills
+are hobbled and crippled by the context. Likewise, the
+prompting method I used is not indicative of an approach that underwent
+tuning and optimization. As many people are hopefully learning, prompt writing is
+not like talking to a human being. It is a form of programming with
+its own subtleties necessary to get a desired result.
+
 I limited myself and the other tester to 10 minutes to come up with
 test ideas for a method I had created.
 
@@ -123,6 +138,7 @@ A list I got from a tester friend of mine
 > 11. Is the randomness consistent across multiple elements in the list
 
 When you compare my ideas with those from the second tester,
+(using my own intuitive biased way of counting what are and are not similar)
 we shared 5 ideas between us, 9 only from me, 8 only from the other tester.
 
 AI gets its turn
@@ -481,3 +497,17 @@ It finishes with a special category of special characters not previously mention
 >These additional test scenarios continue to explore various aspects of the Choice type, considering different data types, encodings, and scenarios that may affect the behavior of the GetRandomExample method.
 
 Total ChatGpt only test ideas: 16
+
+Nobody's job is being replaced, but they might save some time typing
+========================================
+I see some value in this exercise, but nothing I would call a game changer.
+
+Mostly helpful idea generation, prompts for thinking, and maybe some
+time saved typing.
+
+I do see the possibility that other people, putting more time
+into tools that aide in the LLM prompting and input collection
+might make something even more useful of it.
+
+But in all those cases, what I really see is people in
+charge of the process, using the tools to help.
