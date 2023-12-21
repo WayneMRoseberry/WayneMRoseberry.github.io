@@ -1,3 +1,7 @@
+Testing very early versions of an AI bot
+=============================================
+![A cartoon depicting a person and an AI robot sitting at a desk staring at a computer](/assets/testeraibotatdesk.jpg)
+
 I joined the Checkie.ai beta. Checkie.ai is a tool meant to
 come up with ideas for testing web pages.
 It is a Chrome extension you can invoke on a given
