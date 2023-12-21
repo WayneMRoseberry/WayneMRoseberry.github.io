@@ -1,5 +1,5 @@
 I joined the Checkie.ai beta. Checkie.ai is a tool meant to
-assist testers coming up with ideas for testing web pages.
+come up with ideas for testing web pages.
 It is a Chrome extension you can invoke on a given
 page that will target different bots at the page and
 product testing ideas, some suggestions for things
@@ -177,6 +177,20 @@ abandon a use case. The truth is frequently more complicated than
 that, and very often the use case, or at least the undesirable behavior,
 can be addressed if by looking at technology alternatives.
 
+About input data
+--------------------------------------------
+The key input data for Checkie is a web page.
+
+On a lot of the example material I have seen around Checkie,
+much mention is made of things like the Google home page
+or various other already existing websites.
+
+One of my principles in testing is when the development
+or marketing team uses a specific piece of data as the
+demo example, test with something ELSE. All their assumptions
+about what is safe and good and easy to do are encapsulated
+in that demo data.
+
 Did we even talk about how well the main functionality works?
 =============================================
 I did not cover the behavior of the main bots much. I focused a lot
@@ -203,23 +217,148 @@ other features. So time well spent... but also good to
 watch your testing investments carefully. I have spent
 more time writing this article than I spent testing Checkie.
 
-I am going to shift focus to the main bots... I think
+Point the bots at a real application, a Slack channel
 ---------------------------------------------
-I was having some trouble wrapping my head around the
-built in bots.
-(TODO: revisit the out of box bots on different pages and
-collect some of the weirdness - but only enough to make
-a point about deferring testing until later... but also a
-point about trying to decide what is relevant to test when,
-how it is inspiring me to look for different test data to
-use the tool against, how it makes me consider the use
-cases differently, etc.
+The built in bots are the real value proposition of
+Checkie. Prompt engineering is challenging, and the
+built in bots introduced canned prompt templates
+that offer useful testing ideas for the page you are looking
+at. Different bots have different prompts, "personalities"
+that offer different suggestions.
 
-Also this inner debate I have over whether things like
-"The Google Home Page" are good examples to hit against. To me
-that feels too clean and not what a person actually
-working to test would be looking at)
+Here is the output of one of the bots against a testing
+community Slack channel I participate in:
 
-OTHER THINGS
-- get that goofy screen output bug in here
-- 
+>```Boundary Value Analysis (BVA)
+>Testing the boundaries of input values
+>[How To Test] Test with empty search input, long search input, special characters, etc.
+>[Relevant Text] Search Testing Slack Channel
+>[Why Important] Important to understand how the search functionality handles different input values```
+
+The control in question, testing inputs makes sense.
+The suggestions don't fit the definition of Boundary Value Analysis
+well, which doesn't necessarily affect the usefulness of
+the suggestions - they stand on their own - but the it
+does erode the credibility of the bot enough to
+question whether offering this category at all is worth it.
+
+The actual suggestions, short, not detailed, not impressive.
+
+>```Equivalence Partitioning
+>Grouping input values into partitions for testing
+>[How To Test] Test with different threads, drafts, and sent messages
+>[Relevant Text] Threads Drafts & sent
+>[Why Important] Can help identify common issues by testing representative values from each partition```
+
+The "How to Test" feels entirely unrelated to the "Equivalence Testing"
+topic, almost as if words were extracted from the page at random
+and popped into a template.
+
+>```Error Guessing
+>Guessing potential errors or issues in the software
+>[How To Test] Guess and test for errors when adding channels or sending direct messages
+>[Relevant Text] Add channels Direct messages
+>[Why Important] Allows for uncovering potential issues that may not be evident through other techniques```
+
+More word salad mixing, and "Error Guessing" is such
+a rich topic it deserves more detail to really help. I also cannot figure
+out why error guessing is pointed out on "Add channels Direct messages" and not
+other page functionality. The search box? Add coworkers? Reply to message?
+
+Funny side effect... my objection to the suggestion is making me
+think of tests because I am complaining about things the bot
+didn't find. Maybe that is the how this helps?
+
+>```Negative Testing
+>Testing with invalid or unexpected inputs
+>[How To Test] Test with invalid or unexpected coworkers, apps, or slackbot commands
+>[Relevant Text] Add coworkers Apps Slackbot
+>[Why Important] Helps uncover vulnerabilities or unexpected behaviors```
+
+This one, while low on details, is a little better. The topic "invalid or unexpected inputs"
+tends toward precise and detail - which controls, which values - and sometimes
+all you need to do is suggest to someone to try this and they make
+a decent go of it. I feel like the nudge on this one is more interesting.
+
+Similar question as "Error Guessing" regarding "why only this control?"
+There are others where invalid and unexpected inputs seem just
+as much an question.
+
+>```Exploratory Testing
+>Ad-hoc testing exploring various aspects of the software
+>[How To Test] Explore different aspects of the software, especially the conversation between Neo and The Oracle
+>[Relevant Text] Neo in the kitchen talking to The Oracle
+>[Why Important] Allows for uncovering issues or behaviors that may not be covered by scripted tests```
+
+This one feels like a throwaway to me. Kind of like asking a bot
+"give me testing ideas for this page" and the bot responds "test
+the page." My wife hates it when I do things like that, so I have to
+assume most testers would dislike it as well.
+
+The "Relevant Text" part is strange. In the forum, I had made
+a response earlier today to another person with the text "Neo in the kitchen
+talking to the Oracle." We were talking about free-will
+and determinism, and that scene from The Matrix came to mind.
+Anyway, the bot seems to have decided that our convesation
+about Neo and The Oracle is a feature of the product and needs to
+be explored.
+
+Is that helpful? Would that tickle someone's imagine to find an
+interesting behavior in the Slack application? I cannot decide if
+the value lies there, or if it is just weird meaningless mismatches.
+
+>```Security Testing
+>Testing for security vulnerabilities
+>[How To Test] Test for SQL injections, XSS attacks, and other common security vulnerabilities
+>[Relevant Text] John Smith
+>[Why Important] Google may have security vulnerabilities that need to be identified and fixed```
+
+This one as well is odd. The "Relevant Text" refers to the personal
+channel section of the Slack navigation well, where you can
+select a person and send a DM. A tester needs a LOT more guidance
+to understand how to approach security attacks on that
+feature, because there is no UI level data input. It gives
+all appearance of nothing to attack, when the REAL way
+someone would investigate that would be below the UI, at
+the POST request.
+
+Also, why that name? There are plenty of other places in this
+page where data is going back and forth between the web client
+and the server. Why this one? That "why just this one?" theme
+comes up a lot.
+
+And, even better... "Google may have security vulnerabilities that need to be identified and fixed"
+This isn't Google. Why did the bot mention Google?
+
+My thoughts on the bot suggestions
+-----------------------------------------------------
+I believe there is a valid idea in what Checkie is
+trying to do. I believe it is still experimental.
+
+I wasn't getting much value from the bot output. Most of it
+was too simple and superficial. Some of it was weird. Some
+of it was wrong.
+
+In this article I don't show what happened when I used
+Checkie against content oriented sites (as opposed to
+an interactive application). That got very strange when
+bots designed to offer suggests for application behavior
+started treating the text on the page as if it represented
+entities that would respond to clicks, inputs, user
+gestures.
+
+I am wondering if the bots are overwhelmed by page complexity.
+I am wondering if the way the extension presents its behaviors
+and responses to the end user is confusing and guides them
+toward inputs that are not helpful. I am wondering if the entire
+model of user interaction is causing problems that drive the
+bots to create confusing and odd output.
+
+I am repeating an idea I mentioned earlier. Sometimes when
+testing, everything seems so wrong that it almost feels best
+to wrap up your findings in as convenient a way you can
+and give them to the development team. It is up to the developer to
+decide what to do, but I have a feeling there may be dramatic
+changes coming that would render any testing I would do now
+pointless.
+
