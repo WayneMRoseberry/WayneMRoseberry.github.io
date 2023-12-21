@@ -12,7 +12,7 @@ keep my testing muscle in shape, and I really wanted
 some of that muscle exercised testing something
 built around AI.
 
-Promt-based applications
+Prompt-based applications
 ===========================================
 One of the ways to use generative AI is as follows
 - some tool accepts input on the user's behalf
