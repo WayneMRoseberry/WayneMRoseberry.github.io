@@ -108,7 +108,9 @@ I tried " It reported only the web page title, none of the links inside the page
 changing the prompt to "Report all phrases on the page that capitalize every word in the phrase."
 Still nothing.
 
-I mentioned this to Jason. He response (Jason told me to
+You're holding it wrong...
+---------------------------------------------
+I mentioned this to Jason. His response (Jason told me to
 be open about this stuff) was 
 >Yeah, I think that’s a weird thing to ask ;)...
 >I would expect normal usage to be more like “ are all of the links on this page capitalized”. Or something like that.
@@ -124,3 +126,100 @@ My tester persistence paid off. It may still be true that the type of
 prompt I was writing is not really the kind that ought to work well, but there
 was still a real bug having nothing to do with the prompt causing the
 problem.
+
+Straddling AI and non-AI
+---------------------------------------------
+When we test an application that uses AI we should remember than
+an end-to-end test is going to encompass both the AI component
+and the code using the AI component. That is what is happening here.
+
+The expectation I had, right or wrong was that a prompt asking
+Checkie to tell me if any of the links on the page were capitalizing
+all words in the links would at least say "Yes" if at least
+one link was doing so.
+
+That it was not could have been a bug in many different parts of the
+functionality:
+- the custom bot instructions might have been ignored
+- the page DOM might have been processed incorrectly
+- the insertion of the portion of the DOM into the prompt might have gone wrong
+- the prompt itself might have been poorly crafted (user error - depending on your opinion)
+- the LLM might have had a problem on its side - service outage, dropped data, etc.
+- the processing of the LLM response output might have gone wrong
+- the UI presentation might have been in error
+
+Even in my naive understanding of how Checkie works, that is seven
+different ways the same symptom could have presented. It is only in
+two of those ways that AI is even involved.
+
+How a black box system makes expectations fluid
+----------------------------------------------
+There are also behaviors that are hard to determine where they would live.
+Straddling an AI is an example of a black box relationship to
+ambiguous use case priorities.
+
+If the expectation is that some prompt will do something like find paragraphs
+using bad grammar, is the per paragraph checking part of the LLM, or is
+it part of the input processing that breaks up chunks to send to the LLM? If
+the LLM, then LLM limitations will determine limits on that success. If the
+input-processing, then we might be able to make up for that limitation by
+breaking the inputs in a way that affords that kind of per-paragraph
+enumeration.
+
+That difference means that if things like "check for something at per
+paragraph granularity" is an important use case, maybe the development
+team can affect it via input processing. If it is not, then the bug
+is left unfixed, and it is treated as a limitation of the LLM problem.
+
+The reason I raise this point is that "that is just the way the
+technology works" is used as a reason and often leads a tester to
+abandon a use case. The truth is frequently more complicated than
+that, and very often the use case, or at least the undesirable behavior,
+can be addressed if by looking at technology alternatives.
+
+Did we even talk about how well the main functionality works?
+=============================================
+I did not cover the behavior of the main bots much. I focused a lot
+of my time on the custom bot because I could control it, but
+also because it immediately seemed to behave wrong, and I wanted
+to study it more. As I pointed out above, that investigation
+was useful to the the development team (of one...)
+
+Remember what we said about your bug making them change their minds?
+---------------------------------------------
+The custom bot is almost a test hook, left there to allow
+prompt experiments during development. But it was also left
+there to see if it was interesting to end users.
+
+The "You're holding it wrong" back and forth between me
+and Jason has him pondering the future of the custom bot
+feature. Whether or not it lives a long and happy
+custom bot life remains to be seen. It opens up a lot of
+potential for user confusion, expectations that might
+be unrealistic.
+
+But meanwhile, I sent some good bugs that would affect
+other features. So time well spent... but also good to
+watch your testing investments carefully. I have spent
+more time writing this article than I spent testing Checkie.
+
+I am going to shift focus to the main bots... I think
+---------------------------------------------
+I was having some trouble wrapping my head around the
+built in bots.
+(TODO: revisit the out of box bots on different pages and
+collect some of the weirdness - but only enough to make
+a point about deferring testing until later... but also a
+point about trying to decide what is relevant to test when,
+how it is inspiring me to look for different test data to
+use the tool against, how it makes me consider the use
+cases differently, etc.
+
+Also this inner debate I have over whether things like
+"The Google Home Page" are good examples to hit against. To me
+that feels too clean and not what a person actually
+working to test would be looking at)
+
+OTHER THINGS
+- get that goofy screen output bug in here
+- 
