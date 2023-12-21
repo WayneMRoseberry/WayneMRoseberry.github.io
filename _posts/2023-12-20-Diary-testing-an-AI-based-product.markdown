@@ -22,7 +22,7 @@ this article. He has seen my feedback for most of what
 I describe here, and more. He told me to feel free to be
 blunt and harsh. His only ask was I mention the above, and
 that I publish during daylight hours (Pacific time) so he doesn't have
-to wake up to a bunch of people posting him asking
+to wake up to a bunch of people poking him asking
 if he knows about it.
 
 This article is more like a diary. In some places
@@ -100,7 +100,7 @@ how good the testing feedback was from them. I was hitting public
 pages (Wikipedia, MSN, Facebook, LinkedIn) and all of those are really
 busy with a lot going on. Further, all are shipped, in production
 systems, and if Checkie is supposed to help a tester I would think one
-would want to do that in a page still in production. This is what
+would want to do that in a page still in development. This is what
 led me to my local page, as well as the sample testing page - but both
 of those caused Checkie to give me nothing. I figured a deeper
 exploration should wait until I got a new build.
@@ -130,7 +130,7 @@ I then gave it a web page with the word "cheese" in it, and it said "No cheese h
 
 I experimented with different instructions. The home page to
 the website for my blog has all the article titles with all words
-capitalized. I opened that page, and changed the custom bot to prompt to
+capitalized. I opened that page, and changed the custom bot prompt to
 "_If there are any phrases on the page that do not use an initial capital followed by lower case, report them._"
 It reported only the web page title, none of the links inside the page. I tried
 changing the prompt to "_Report all phrases on the page that capitalize every word in the phrase._"
@@ -203,8 +203,8 @@ The reason I raise this point is that "_that is just the way the
 technology works_" is used as a reason and often leads a tester to
 abandon a use case. The truth is frequently more complicated than
 that, and very often the use case, or at least the undesirable behavior,
-can be addressed by looking at technology alternatives. Sometimes
-as a tester we should persist our investigation to help
+can be addressed by looking at technology alternatives. 
+As a tester, we should persist our investigation to help
 the team understand what is really happening.
 
 About input data
@@ -249,13 +249,7 @@ I find something interesting that the development team cared
 about? My bias is to stay out on the edge and learn as much as I can,
 stopping only when it is understood.
 
-Did we even talk about how well the main functionality works?
-=============================================
-I did not cover the behavior of the main bots much. I focused a lot
-of my time on the custom bot because I could control it, but
-also because it immediately seemed to behave wrong, and I wanted
-to study it more. As I pointed out above, that investigation
-was useful to the the development team (of one...)
+
 
 Remember what we said about your bug making them change their minds?
 ---------------------------------------------
@@ -275,136 +269,21 @@ other features. So time well spent... but also good to
 watch your testing investments carefully. I have spent
 more time writing this article than I spent testing Checkie.
 
-Point the bots at a real application
----------------------------------------------
-The built in bots are the real value proposition of
-Checkie. Prompt engineering is challenging, and the
-built in bots introduced canned prompt templates
-that offer useful testing ideas for the page you are looking
-at. Different bots have different prompts, "personalities"
-that offer different suggestions.
+Did we even talk about how well the main functionality works?
+=============================================
+In this article, I did not cover the behavior of the main bots much. I focused a lot
+of my time on the custom bot because I could control it, but
+also because it immediately seemed to behave wrong, and I wanted
+to study it more. As I pointed out above, that investigation
+was useful to the development team (of one...)
 
-Here is the output of one of the bots (named "Breaking") against
-a web application I use:
-
->```Boundary Value Analysis (BVA)
->Testing the boundaries of input values
->[How To Test] Test with empty search input, long search input, special characters, etc.
->[Relevant Text] Search
->[Why Important] Important to understand how the search functionality handles different input values
-
-The control in question, testing inputs makes sense.
-The suggestions don't fit the definition of Boundary Value Analysis
-well, which doesn't necessarily affect the usefulness of
-the suggestions - they stand on their own - but the it
-does erode the credibility of the bot enough to
-question whether offering this category at all is worth it.
-
-The actual suggestions, short, not detailed, not impressive.
-
->```Equivalence Partitioning
->Grouping input values into partitions for testing
->[How To Test] Test with different threads, drafts, and sent messages
->[Relevant Text] Threads Drafts & sent
->[Why Important] Can help identify common issues by testing representative values from each partition
-
-The "How to Test" feels entirely unrelated to the "Equivalence Testing"
-topic, almost as if words were extracted from the page at random
-and popped into a template.
-
->```Error Guessing
->Guessing potential errors or issues in the software
->[How To Test] Guess and test for errors when adding channels or sending direct messages
->[Relevant Text] Add channels Direct messages
->[Why Important] Allows for uncovering potential issues that may not be evident through other techniques
-
-More word salad mixing, and "Error Guessing" is such
-a rich topic it deserves more detail to really help. I also cannot figure
-out why error guessing is pointed out on "Add channels Direct messages" and not
-other page functionality.
-
-Funny side effect, my objection to the suggestion is making me
-think of tests because I am complaining about things the bot
-didn't find. Maybe that is the how this helps?
-
->```Negative Testing
->Testing with invalid or unexpected inputs
->[How To Test] Test with invalid or unexpected coworkers, apps, or commands
->[Relevant Text] Add coworkers 
->[Why Important] Helps uncover vulnerabilities or unexpected behaviors
-
-This one, while low on details, is a little better. The topic "invalid or unexpected inputs"
-tends toward precise and detail - which controls, which values - and sometimes
-all you need to do is suggest to someone to try this and they make
-a decent go of it. I feel like the nudge on this one is more interesting. I am
-still left wanting more.
-
-Similar question as "Error Guessing" regarding "why only this control?"
-There are others where invalid and unexpected inputs seem just
-as relevant.
-
->```Security Testing
->Testing for security vulnerabilities
->[How To Test] Test for SQL injections, XSS attacks, and other common security vulnerabilities
->[Relevant Text] John Smith
->[Why Important] Google may have security vulnerabilities that need to be identified and fixed
-
-
-This one as well is odd. The "Relevant Text" refers to the personal
-channel section of the app navigation well, where you can
-select a person. Someone needs a LOT more guidance
-to understand how to approach security attacks on that
-feature, because there is no UI level data input. It gives
-all appearance of nothing to attack, when the REAL way
-someone would investigate that would be below the UI, at
-the POST request.
-
-Also, why that name? There are plenty of other places in this
-page where data is going back and forth between the web client
-and the server. Why this one? That "why just this one?" theme
-comes up a lot.
-
-And, even better... "Google may have security vulnerabilities that need to be identified and fixed"
-This isn't Google. Why did the bot mention Google?
-
-My thoughts on the bot suggestions
------------------------------------------------------
-I believe there is a valid idea in what Checkie is
-trying to do. I see it as still experimental.
-
-I wasn't getting much value from the bot output. Most of it
-was too simple and superficial. Some of it was weird. Some
-of it was wrong.
-
-In this article I don't show what happened when I used
-Checkie against content oriented sites (as opposed to
-an interactive application). That got very strange when
-bots designed to offer suggests for application behavior
-started treating the text on the page as if it represented
-entities that would respond to clicks, inputs, user
-gestures.
-
-The bot I checked ("Breaking") did produce results
-more bizarre than some of the others. The "Exploratory" bot
-was less odd. I didn't do a full evaluation of the
-different bots. If I was on this full time, and I suspect
-we would be making decisions about which bots would
-get more priority.
-
-I am wondering if the bots are overwhelmed by page complexity.
-I am wondering if the way the extension presents its behaviors
-and responses to the end user is confusing and guides them
-toward inputs that are not helpful. I am wondering if the entire
-model of user interaction is causing problems that drive the
-bots to create confusing and odd output.
-
-I am repeating an idea I mentioned earlier. Sometimes when
-testing, everything seems so wrong that it almost feels best
-to wrap up your findings in as convenient a way you can
-and give them to the development team. It is up to the developer to
-decide what to do, but I have a feeling there may be dramatic
-changes coming that would render any testing I would do now
-pointless.
+I did do some testing of the canned bots against some
+working web apps, but I am leaving that out of this
+article. I might cover it in a later article with
+some updates to the bot prompting behavior. I also
+want to build up a test app with smaller
+scoped behaviors to test against where I think the
+bot responses might be more meaningful.
 
 Diary, end of page
 ===============================================
@@ -413,5 +292,4 @@ My closing thoughts:
 - the AI is just a part of the application and we have to think about the whole system when we test an AI-based app
 - whether something is a bug or not, is important or not, changes in a lot of ways. Our job as tester is to provide the information to understand those changes
 - testing a new application which is going to change a lot means being ready to go fast, invest in details carefully, and welcome having all your work thrown away when the product direction changes
-- 
 
