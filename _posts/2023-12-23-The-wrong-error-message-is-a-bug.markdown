@@ -2,6 +2,12 @@ The error messages matter
 ===========================================================
 ![Image of an angry man at a computer with an error message on the screen, and for some reason a hamburger and french fries at the desk](/assets/wrongerrormessage.jpg)
 
+_I wrote this article as I was writing tests and fixing
+my code. The thoughts and observations are live accounts. 
+This means you get to observe all the suspense and drama
+and excitement of watching me change my mind, make mistakes,
+and learn something new as I go._
+
 I wrote a unit test yesterday to cover the case where a data
 structure has an infinite loop. I don't want the code to
 hang, overflow the stack, or use up a lot of resources
