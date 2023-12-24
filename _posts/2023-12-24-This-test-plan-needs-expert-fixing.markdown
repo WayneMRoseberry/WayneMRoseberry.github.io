@@ -81,9 +81,10 @@ people doing the tests, the product owner, the stakeholders, the end users,
 someone else? Who is executing the acceptance tests and on what cadence/time
 in the schedule?
 
-_>Review Principle: Look for statements that suggest something must happen but do
+>_Review Principle: Look for statements that suggest something must happen but do
 not offer details. Present examples of details you want to see and why._
-_>Review Principle: Look for requirements that might require spending money, allocating
+>
+>_Review Principle: Look for requirements that might require spending money, allocating
 time and resources, scheduling time, or other logistics concerns, and clarify the
 need for more information._
 
@@ -113,7 +114,7 @@ and other settings change?
 
 Usability testing seems strange to me for this plan. My knowledge of usability
 testing is a scientific measurement of the ability of an end user to complete
-a task with the producct. Do you mean something else? Perhaps following use
+a task with the product. Do you mean something else? Perhaps following use
 cases, user stories, and user scenarios to see if you find bugs while
 following them? Whatever the case, if you truly meant Usability Testing in
 the formal definition of the word, this plan does not support it, as that
@@ -134,9 +135,10 @@ of is what this label implies. Does the team need to make some special investmen
 Does it suggest something that his to go on the schedule? How large is the regression
 risk with this feature, and what does that suggest for ongoing team costs/investments?
 
-_>Review Principle: Look for statements that suggest something must happen but do
+>_Review Principle: Look for statements that suggest something must happen but do
 not offer details. Present examples of details you want to see and why._
-_>Review Principle: Look for requirements that might require spending money, allocating
+>
+>_Review Principle: Look for requirements that might require spending money, allocating
 time and resources, scheduling time, or other logistics concerns, and clarify the
 need for more information._
 
@@ -151,7 +153,7 @@ seems important to clarify. For testing, the statement is a tautology and not wo
 For build acceptance and stop ship, it seems redundant with what someone would put
 on an exit criteria. Likewise "All remaining test cases are blocked by an open bug."
 
-This whole criteria section feels either self-contradictory in some parts and
+This whole criteria section feelsself-contradictory in some parts and
 redundant with common sense in other parts. It is difficult to believe the criteria
 as stated is what the team will actually do. Something more specific to this feature, and
 more realistic to the decision the team is committed to make is what needs to be here. Either that,
@@ -198,7 +200,11 @@ that schedule estimate here? If this is the one time we use it,
 seems ridiculous.
 
 There are 2 testers assigned to interactive testing, and 3 SDETs assigned to the automation.
-Five testers are assigned to 8 hours of testing. That makes no sense at all,
+Five testers are assigned to 8 hours of testing. Nowhere in the plan
+are the automation and tooling needs described. What are the SDETs working on?
+Is it just some suite of checks, do you need tools for analyzing user account state,
+do you need data creation tools?  For any of these, the 8 short hours
+in overall estimate seem far too small. These numbers make no sense at all,
 and it leads me to believe the estimate is very wrong.
 
 This section needs to be re-written after prior feedback
@@ -261,6 +267,21 @@ references like directories, repository locations, document library addresses,
 query filters. The test plan is a map for people to understand the testing.
 
 >_Review Principle: Treat the test plan like a map for those who need to learn more._
+
+Plan Format and Content Overall
+------------------------------------------------------
+The is short in places where it needs more detail, and says things in places
+where it would have been better to say nothing at all.
+
+It feels like a dogmatic attempt to follow two guides:
+- Fill in everything a template asks for, whether or not it makes sense
+- Adhere to "short and simple" instead of letting the needs of the plan guide the content
+
+Some overall ways it is lacking:
+- Coverage seems under analyzed
+- Implications of some parts of plan are not described in terms of their affect on coordination, timing, logistics, costs, scheduling
+- Estimates seem highly unrealistic
+- The plan provides no connection or links to support material where the reader can find more details
 
 Thinking about the review principles
 ======================================================
