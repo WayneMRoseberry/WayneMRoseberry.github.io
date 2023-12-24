@@ -1,4 +1,4 @@
-If you find this test plan acceptable, you need expert help,
+If you find this test plan acceptable, you need expert help.
 ===========================================================
 ![An image of a test plan commonly posted as an example on LinkedIn - a link to pdf will follow later](/assets/dreadfultestplan.jpg)
 
