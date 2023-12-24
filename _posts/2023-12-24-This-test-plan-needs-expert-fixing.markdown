@@ -202,3 +202,9 @@ decisions that are in flux, tiers of priority which the teams use as
 ways of managing risk - and sometimes testing is the mechanism used to
 answer those big risk questions and drive large fork in the road decisions.
 
+Test References
+------------------------------------------------------
+Like the test deliverables, include instructions to find the specific
+references like directories, repository locations, document library addresses,
+query filters. The test plan is a map for people to understand the testing.
+
