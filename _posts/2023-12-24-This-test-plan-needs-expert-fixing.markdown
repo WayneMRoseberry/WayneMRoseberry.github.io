@@ -162,3 +162,43 @@ is addressed and a more complete understanding of intended activity
 is described in the document. The estimates in this section need to
 be self-consistent.
 
+Assumptions
+------------------------------------------------------
+The statement about assuming the developers will deliver the code related to the
+features is not useful. That assumption is a given in every development
+project, and there are no distinguishing decisions or changes in plan
+we would make that we need to describe here. I advise removing it.
+
+"License for TestZephyr" seems odd to make as an assumption. Why
+don't we have the license? Why are we stating we use
+TestZephyr if the license is possibly in question? The reason
+for TestZephyr is seeming very suspicious now. No reason has been
+put forward why we need it, what it gives us. It seems a strange
+ask for a feature specific test plan.
+
+Neither of these assumptions seem worth mentioning. If there are
+no feature specific assumptions, no plan specific assumptions, then
+leave this section out.
+
+Risks
+------------------------------------------------------
+Slipped feature delivery, vacations, bugs affecting time
+frame are generic risks that are not interesting to mention
+in a specific feature plan. The "Risk Mitigations" in this
+section are likewise not useful in consideration of this plan.
+
+"QA Environment Is Down" seems more interesting, and seems to deserve more
+than saying "Risk Transfer." Does the team have a contingency plan
+for QA environment down? Is there an alternate mode to test, and what
+risk comes with shifting to that mode (slower? cannot hit certain
+coverage? more expensive?)? It is really interesting to say something like
+"_If the QA environment is down, we do have local installs as fallback, it just
+means that testing XYZ has to wait until the environment is up again,_" or even
+to say "_If the QA environment is down, we have no fallback because <reason>._"
+
+Sometimes a feature really has no specific risks of its own, but often
+there is something that really is distinct about that feature. Specific dependencies,
+decisions that are in flux, tiers of priority which the teams use as
+ways of managing risk - and sometimes testing is the mechanism used to
+answer those big risk questions and drive large fork in the road decisions.
+
