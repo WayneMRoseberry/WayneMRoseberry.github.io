@@ -233,3 +233,99 @@ control, without it being a test condition, the problem is
 impractical to test. Once under test control the number of potential
 test cases expands enormously. Coverage grows.
 
+So gaining control is a plus. A win. We want more control.
+But we cannot rely on our control, because testing is very
+much about learning something we did not expect, anticipate or
+know. We have to couple strategies which help us look for things
+we know about (control) with strategies that broaden our ability
+to catch what we do not know about (surrender).
+
+Surrendering control for the win
+===================================================
+Let's go back to that earlier example of the timer
+job intersecting with creating objects.
+
+Let's pretend the code for each does the following:
+
+```
+CREATE ITEM
+1. write item default row to store
+2. check item policy service for metadata
+3. write item metadata to row
+
+PURGEITEM TIMER JOB
+1. query for all items in system
+2. for each item, if createdate < expiry, purge
+```
+
+Let's pretend that when "write item to default row" happens, the item is
+initialized with MIN_DATE, whatever that value is in the data store.
+Le's pretend that neither of these behaviors are atomic or transacted
+(hey, this is a bug... people make mistakes... or maybe there is a design
+reason why it cannot be atomic...). The two processes are independent,
+so if the timer job executes between steps 1 and 3 of CREATE ITEMS, the
+item will be purged, even though it was newly created.
+
+How do we test for that? We have the following options:
+1. in some low level test (technically not a unit test because we are engaging IO), use Humble Object design pattern to allow control sequencing of the steps to see what happens when they mix
+2. in some test system, __increase the frequency of the timer__ and __put object CRUD under workload__ to increase the probability of _this kind of thing_ happening
+3. in an end to end system, __put object CRUD under workload__ to incrase probability of _this kind of thing_ happening
+4. as part of functional checks, use object CRUD for each object and check store if it is there
+
+The method which would reproduce the failure consistently, without
+flake, is #1. The reason is because the Humble Object design pattern is one which
+allows tests to get control of race conditions (I am not going to describe
+it here, it is complex and has tradeoffs).
+
+The dilemma, though, is we have to anticipate exactly this problem
+to create the test in the first place. We have to worry that
+the CREATE ITEM functionality and PURGEITEM functionality will
+interleave their code to create race conditions that change
+based on subtle, small differences in timing. At the low level, the
+Humble Object design pattern involves creating the race conditions
+exactly. If we think of this, well done.
+
+But we tend not to. That is why we have bugs, because the thinking of
+the problem in the first place often enough keeps us from introducing
+the bug in the first place.
+
+We move on to the types of tests which catch things that we do not expect.
+Alternatives #2 and #3 above have a good chance of catching the bug,
+but are not guaranteed. The difference between #1 and #2-3 is that the
+latter methods surrender control. And the reason they do that is because
+they are not anticipating this specific bug. What they are looking for is
+written in the description, "_this kind of thing_." We don't know
+what bug is there, nor exactly which code paths have which bugs, but
+we do believe that doing certain things are more likely to fail.
+
+We are increasing probability of finding something unknown, unexpected,
+and undesired. And we are leaning into that by surrendering control.
+When we have control, we direct the test conditions toward our intentions.
+If we manipulate the system to find something we anticipate, we missing
+anything not directly under that focus. To find everything with control
+we have to point at each and every thing exactly.
+
+When we surrender control, the range and scope of our focus increases. The
+app does more things. More conditions change. More importantly, conditions
+we do not control start changing, even when we do not know they exist.
+
+Consider the end to end test for our CRUD API, and the following
+result:
+
+> Executed ADD_EVENTBOOKING at BookingsGalore.com endpoint, at rate of 100 RPS for 32 hours, and
+> had a 1% rate of bookings not showing up in storage when checked.
+> Examination of logs show those same bookings purged by timer jobs.
+
+The sustained workload test tells us about product flakiness, and
+in a non-flaky way. But a 32 workload test is not going to be at
+all acceptable on something like a build validation or deployment pipeline.
+The run time is too long, the results - being a percentage threshold,
+require analysis to decide what to make of it.
+
+Consider now test #4, a single call check of basic functionality. Fast.
+Simple. Atomic. And in this case, if our workload tests tell us
+anything predictable, is going to fail 1/100 times.
+
+So here is the call - do you skip that test? Do you decide never to do an
+end-to-end test of a basic CRUD operation because sometimes there
+might be a bug that does not reproduce every time?
