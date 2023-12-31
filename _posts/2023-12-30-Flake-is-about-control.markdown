@@ -417,6 +417,22 @@ by surrendering control.
 
 Embracing the unknown problem
 ---------------------------------------------------
+It is common, generally the norm, that there are conditions
+in a system which we do not know about or understand. Sometimes
+the condition is completely unknown, we  have no idea
+it existed. Sometimes it is known, but we do not understand
+the affect is has on system state. Sometimes a set of conditions
+are known, but interact in a way we do not anticipate.
+
+![A diagram of known versus unknown conditions affecting a system in different ways](/assets/knownunknownconditions.png)
+
+One of the key challenges, and goals of testing is to surface
+problems that arise from unknown and misunderstood conditions. We
+do that through various approaches that increase the odds of
+conditions changing.
+
+Unknown Problem Example
+-------------------------------------------------- 
 Let's go back to that earlier example of the timer
 job intersecting with creating objects.
 
