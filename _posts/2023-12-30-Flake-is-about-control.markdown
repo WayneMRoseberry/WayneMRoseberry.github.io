@@ -67,12 +67,12 @@ __Test Conditions__ _variables that a test procedure will either observe or cont
 
 This separation between all conditions that affect the system state
 and test conditions is critical to understanding why we observe flake.
-When all conditions are under control from of the test procedure,
+When all conditions are under control of the test procedure,
 then everything that affects the system state is a test condition. When
 everything that affects the system state is a test condition then we
 can eliminate flake because the test procedure is able to establish
 a deterministic relationship between changes it makes to test conditions
-and system behavior.
+and system state or behavior.
 
 It is when there are conditions that change which are not part of the
 test conditions, not something the test procedure controls, that
@@ -89,7 +89,7 @@ The automated checks do not have access to the server, its settings,
 or its diagnostic output. All the checks are able to do is execute
 against the REST API.
 
-The state of the timer job, idle, executing, and down what action
+The state of the timer job (idle, executing, down, and what action it is executing)
 is unavailable to the automatced checks. This set of states are conditions
 of the system under test, but not test conditions.
 
@@ -179,7 +179,7 @@ Let's make this real... what about the end user?
 A clever reflection on this notion of conditions we can control, cannot
 control, or lose control of will remind us of how end users
 experience the same relationship to the product as we see
-during a test procedure. The User Interface offers defines which
+during a test procedure. The User Interface defines which
 conditions end users may affect, and everything else is outside
 their control.
 
@@ -220,7 +220,10 @@ SUT artifacts, they are addressing lost control of test conditions.
  __Gain Control by Moving Conditions from Unavailable to Available__: 
  This means either changing the system itself so that conditions can be controlled and/or
  observed by the test procedure, or alter the test procedure so that
- it is executed at a point where those conditions are available.
+ it is executed at a point where those conditions are available. This includes
+ providing control points and test hooks for end to end testing, but
+ probably the most powerful and effective way of creating test control
+ is done via refactoring during unit testing.
  
  __Surrender Control by Compensation for Unavailable Conditions__: Sometimes we attempt to
  compensate for loss of control by using probability to increase the
@@ -230,14 +233,19 @@ SUT artifacts, they are addressing lost control of test conditions.
  thus system state. If hunting a particular failure, or looking for unexpected
  failures, run the same procedure many times, rolling the dice in favor
  of the right condition eventually changing to produce the target
- system state.
+ system state. Sometimes, we don't even need repetition. Running the system
+ end to end, with all system variables interacting, especially utilizing complex operations and user scenarios
+ tends to affect conditions inside the system in a ways that our more directed,
+ controlling testing does not anticipate. This is the key reason why
+ end to end system testing finds bugs that unit testing does not.
 
 
 Gaining Control
 ====================================
-We gain control by making conditions that affect the system
+We gain control by making conditions which affect the system
 either controllable or observable by the test. We make 
 test conditions of them.
+![A cartoon of a two monsters at a test condition moving up ceremony, one of the monsters putting a badge on the other's chest.](/assets/makeatestcondition.jpg)
 
 Sometimes the conditions are already available and the test
 framework hasn't taken advantage. In those cases it is a matter
@@ -275,8 +283,8 @@ public void PurgeItems(ItemSet items)
 }
 ```
 
-The conditions that affect the input oject, items,
-and the current system date, as well as a set of
+The conditions that affect the input object, items,
+are the current system date, as well as a set of
 hidden conditions behind whatever happens in 
 Purge(). The test conditions are
 just the contents of the obect items. Any test
@@ -414,6 +422,10 @@ affect the outcome of the check. This end to end check,
 while attempting to check just one thing, is giving
 us coverage of thousands of code paths. It does that
 by surrendering control.
+
+If Excel has any flaky behavior of its own, it isn't going
+to demonstrate that in our unit test. It is far more like
+to go flaky in the end to end test.
 
 Embracing the unknown problem
 ---------------------------------------------------
