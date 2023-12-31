@@ -98,6 +98,60 @@ precise target of bugs we expect to find, and we
 need to continue to surrender control to discover
 the bugs we did not expect.
 
+Conditions and Control
+====================================
+![A diagram of a test procedure relative to conditions it does and does not control](/assets/testconditions.png)
+A test procedure is related to conditions of the following classes
+1. Conditions it controls
+2. Conditions it tries to, but loses control over
+3. Conditions available to control that it does not control
+4. Conditions unavailable for control
+
+1 and 2 from the list above are test conditions because the test procedure
+attempts to observe or control them.
+Conditions in 3 are not test conditions because even though those condtions
+are available to control the test procedure does not control them.
+Conditions in 4 generally reside inside the black box of the system under test
+and are not test condtions because the the procedure is
+unable to control them.
+
+The system produces flake when one of the conditions not under the test procedure
+control (classes 2-4 above) changes and produces a different result
+in the system, even though one of the condtions under test procedure
+control has not changed.
+
+Different ways of establishing and managing control
+------------------------------------
+__Correcting Lost Control__: This is almost always about bugs or bad design
+choice in the testing code or testing framework. When people offer advice
+about better coding patterns, better ways to use testing libraries and
+SUT artifacts, they are addressing lost control of test conditions.
+ Vendors target lost control by offering tools and solutions which promise
+ to either give the script more control, or to mitigate some of the
+ lost control behaviors with programmatic accomodations via "self-healing."
+
+ __Gain Control of Available Conditions__: This is usually about testing
+ code or framework not taking advantage of control points available to
+ them. Vendors also target this class of control by offering solutions and
+ tools which make certain kinds of conditions easier to roll into a test
+ script or framework.
+
+ __Gain Control by Moving Conditions from Unavailable to Available__: 
+ This means either changing the system itself so that conditions can be controlled and/or
+ observed by the test procedure, or alter the test procedure so that
+ it is executed at a point where those conditions are available.
+ 
+ __Surrender Control by Compensation for Unavailable Conditions__: Sometimes we attempt to
+ compensate for loss of control by using probability to increase the
+ probability of behavior change in the conditions unavailable to the
+ test procedure. The most common technique is simple repetition. If a failure
+ happens once, run the test again to try for a change in conditions and
+ thus system state. If hunting a particular failure, or looking for unexpected
+ failures, run the same procedure many times, rolling the dice in favor
+ of the right condition eventually changing to produce the target
+ system state.
+
+
 Gaining Control
 ====================================
 We gain control by making conditions that affect the system
@@ -117,7 +171,7 @@ conditions to test conditions is to change the product code.
 The product must be designed to offer control. The product
 must be built to be testable.
 
-Control Example
+Control Example: Making Unavailable Conditions Available
 ------------------------------------
 I am going to shift all the way to the unit test level
 because it really does start there.
@@ -242,6 +296,46 @@ to catch what we do not know about (surrender).
 
 Surrendering control for the win
 ===================================================
+When we model testing from this idea of there being
+conditions the test can control and observe versus not, we
+can start to recognize why we want to test in different ways.
+
+Consider the following example - testing a formula
+which does addition in Microsoft Excel.
+
+Condition scope at different levels of control
+---------------------------------------------------
+Let's imagine a unit test in Excel while checks if 
+1+1==2. A trivial test. If we diagram the conditions under
+control of the test procedure in a unit test, it would
+look like this:
+
+![A diagram of test conditions involved in a unit test, with really only the inputs and outputs shown as areas of concern](/assets/unittestconditions.png)
+Every condition we can imagine that ought to affect the
+behavior of the system is under direct control of the
+test procedure. By isolating the test to the unit level,
+we have removed all other conditions that might
+affect system behavior. The test procedure is checking just one
+thing, which is how the system state changes as the
+test condition is changed. 
+
+![A diagram of conditions involved in an end to end test, demonstrating that there are thousands of code paths in the set of unavailable conditions](/assets/e2etestconditions.png)
+If we do the same test at the UI level, by placing the
+formula "=1+1" in a cell and then checking that cell to
+see if it contains the value "2" for a result, the map
+of conditions changes dramatically. Ignoring lost control
+and available but not utilized, the biggest change happens
+in the unavailable conditions. When we check the same
+use case via the UI, Excel will execute thousands of code
+paths on the way to delivering those results. Each of
+those code paths introduces multiple conditions that can
+affect the outcome of the check. This end to end check,
+while attempting to check just one thing, is giving
+us coverage of thousands of code paths. It does that
+by surrendering control.
+
+Embracing the unknown problem
+---------------------------------------------------
 Let's go back to that earlier example of the timer
 job intersecting with creating objects.
 
