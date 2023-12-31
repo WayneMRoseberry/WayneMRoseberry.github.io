@@ -1,3 +1,12 @@
+Flaky behavior is about control
+===================================
+![A line art depiction of an invention that allows back seat passengers to control a car with a gloved hand on a pole.](/assets/backseatcontrol.jpg)
+Sometimes trying to control a system while testing it
+feels like trying to drive a car from the back seat.
+
+So, flake is what, exactly?
+===================================
+
 My definition of flaky results is as follows:
 __Flake__ _when you get different results from executing a test multiple times without changing the test conditions_.
 
