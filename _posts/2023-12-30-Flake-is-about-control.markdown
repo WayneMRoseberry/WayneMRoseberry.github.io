@@ -2,15 +2,46 @@ Flaky behavior is about control
 ===================================
 ![A line art depiction of an invention that allows back seat passengers to control a car with a gloved hand on a pole.](/assets/backseatcontrol.jpg)
 Sometimes trying to control a system while testing it
-feels like trying to drive a car from the back seat.
+feels like trying to drive a car from the back seat. That
+long distance, awkward loss of control is why we see
+flake when we test a product.
 
 So, flake is what, exactly?
 ===================================
 
 My definition of flaky results is as follows:
-__Flake__ _when you get different results from executing a test multiple times without changing the test conditions_.
+
+__Flake__ _when you get different results from executing a test procedure multiple times without changing the test conditions_.
 
 That sounds simple, but there is a lot of complexity wrapped up in that statement.
+
+Throughout this document I use the term "test procedure" to
+refer to any set of steps or actions taken during the execution
+of a test, including establishing preconditions, manipulating
+test conditions, manipulating the system, or observing
+the system. I use this term because it is important we remember
+that "flake" happens for any kind of testing. There is too
+much attention to whether we are using automated scripts,
+or certain tools, or if a person is doing the test
+themselves interactively with the product. None of these
+matter, because the same definition applies, the same
+principles of control apply.
+
+I also avoid as much as I can the phrase "flaky tests." I slip
+here and there because sometimes attention is directed at the output
+of a specific piece of testing collateral, especially an automated
+check, that may producing inconsistent results, so people say
+"flaky test." My problem with that label is it suggests a foregone
+conclusion that something is wrong with the test procedure, and
+that the result, just for being different on multiple
+executions, is a false positive, that it does not suggest
+any real bug in the product and only in the test procedure
+itself. The truth is that a great deal of "flake" comes
+from the product itself. All you need to do is spend some
+time reviewing customer bug reports, answer support calls, or
+perhaps use the product yourself to recognize how often
+we experience problems that come and go, seemingly
+intermittently with no perceivable reason.
 
 Without Changing the Test Conditions
 ====================================
@@ -20,20 +51,32 @@ the universe (at the macro level, this is not quantum physics), then under
 the same conditions we must get the same outcomes every time.
 
 It is not that the conditions are unchanged. What happened is something changed
-which we do not understand or control.
+which we do not understand or control. But it is important that we understand
+the difference between conditions in general and test conditions. Flake is
+defined relative to test conditions.
 
 Conditions versus Test Condtions
 ====================================
 Let's define two terms:
 
-__Conditions__ _aspects of a system state that have an impact on the outcome
-of changes to the system._
+__Conditions__ _variables that when changed also change the state of a system._
 
-__Test Conditions__ _aspects of a system state that a test procedure is able
-to either measure or control._
+__Test Conditions__ _variables that a test procedure will either observe or control._
 
-The difference in these two terms describes a boundary around any system. We
-commonly call that boundary a Black Box.
+![A diagram showing how conditions change state of a system and test conditions are those utilized by a test procedure.](/assets/conditionsdefined.png)
+
+This separation between all conditions that affect the system state
+and test conditions is critical to understanding why we observe flake.
+When all conditions are under control from of the test procedure,
+then everything that affects the system state is a test condition. When
+everything that affects the system state is a test condition then we
+can eliminate flake because the test procedure is able to establish
+a deterministic relationship between changes it makes to test conditions
+and system behavior.
+
+It is when there are conditions that change which are not part of the
+test conditions, not something the test procedure controls, that
+we experience flake.
 
 An example
 ====================================
@@ -128,6 +171,35 @@ The system produces flake when one of the conditions not under the test procedur
 control (classes 2-4 above) changes and produces a different result
 in the system, even though one of the condtions under test procedure
 control has not changed.
+
+Let's make this real... what about the end user?
+------------------------------------
+![A diagram of the same prior illustration, but crossing out Test Procedure and Test Conditions and replacing them with End User and UI](/assets/enduserconditions.png)
+
+A clever reflection on this notion of conditions we can control, cannot
+control, or lose control of will remind us of how end users
+experience the same relationship to the product as we see
+during a test procedure. The User Interface offers defines which
+conditions end users may affect, and everything else is outside
+their control.
+
+Just like our test procedure, the end user will encounter flake
+when changes they made to conditions they control produce different
+results from the application as conditions they do not control
+change.
+
+We ship flake all the time. Our end users live with it on a daily basis.
+Very often that flake results in something which upsets, sometimes
+harms the end user. Our desire ought to be to prevent the end user
+from experiencing flake that upsets them or causes them harm.
+
+The same happens to the owners and operators of the business. When
+conditions in a data center or behind some application cause a system
+state change that is bad - maybe an outage, maybe exposing private
+data to a malicious third party, maybe running up service costs - the
+owners and operators of the system become the end user. We live with
+flake that threatens the business all the time in our live systems. Our
+desire ought to be to prevent such flake from deploying to production.
 
 Different ways of establishing and managing control
 ------------------------------------
