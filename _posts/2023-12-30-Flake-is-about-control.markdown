@@ -442,11 +442,63 @@ know. We have to couple strategies which help us look for things
 we know about (control) with strategies that broaden our ability
 to catch what we do not know about (surrender).
 
+Run it Again
+===================================================
+The most common solution people use to deal with flaky
+test results is to run the test again. Repeat the test
+procedure, and see if the results happen a second time.
+
+Many people declare victory, flake tackled and defeated
+if a second execution yields results that match expectations.
+
+Are they right?
+
+It depends if they are a developer checking if their
+newest changes broke the code or not.
+----------------------------------------------------
+
+If they are, then what they are doing is managing the conditions the test procedure does
+not control by checking probability. If the result was
+caused by a recent change, one the developer might have
+just introduced to the code, then there is a very low
+probability that it would hit the first execution of
+a check against the code and NOT hit the second excution.
+Even if it were a flaky behavior, there is a low probability
+that the first execution of the check would hit it at all.
+
+This means that any kind of flaky behavior observed during
+execution of a check is a higher probability indicator of
+a problem that was in the code long prior to the change
+the developer just made. I describe the 
+<a href="https://waynemroseberry.github.io/2023/08/10/why_is-rerun-a-valid-test-strategy-for-cicd.html">
+math supporting this idea in a different article</a>.
+
+Re-run is a valid strategy if you are a developer asking
+the question "Did I just break something?"
+
+This is very different than learning about product behavior.
+----------------------------------------------------
+
+If someone is trying to learn about product behavior,
+then a flaky signal is a very important piece of information.
+The flaky signal is an indication that some condition not
+under test procedure control is changing in a way that
+produces expected results.
+
+Something is not right. Either there is a problem in
+the test procedure, or there is a problem in the product.
+Either way, the information means we have something to
+investigate, and something we should probably change.
+
 Surrendering control for the win
 ===================================================
 When we model testing from this idea of there being
 conditions the test can control and observe versus not, we
 can start to recognize why we want to test in different ways.
+Sometimes we are intentionally looking for flaky
+behavior in the product. One way to do that is to
+increase the amount of conditions outside of
+test procedure control.
 
 Consider the following example - testing a formula
 which does addition in Microsoft Excel.
@@ -532,12 +584,13 @@ How do we test for that? We have the following options:
 1. in some low level test (technically not a unit test because we are engaging IO), use Humble Object design pattern to allow control sequencing of the steps to see what happens when they mix
 2. in some test system, __increase the frequency of the timer__ and __put object CRUD under workload__ to increase the probability of _this kind of thing_ happening
 3. in an end to end system, __put object CRUD under workload__ to incrase probability of _this kind of thing_ happening
-4. as part of functional checks, use object CRUD for each object and check store if it is there
+4. as part of functional checks, use object CRUD for each type of object and check store if it is there
 
+<h3>Low level unit test</h3>
 The method which would reproduce the failure consistently, without
-flake, is #1. The reason is because the Humble Object design pattern is one which
-allows tests to get control of race conditions (I am not going to describe
-it here, it is complex and has tradeoffs).
+flake, is #1. The reason is because utilizing the Humble Object design pattern 
+allows the test procedure to control race conditions by interleaving
+individual actions in whatever order the test procedure desires.
 
 The dilemma, though, is we have to anticipate exactly this problem
 to create the test in the first place. We have to worry that
@@ -551,6 +604,7 @@ But we tend not to. That is why we have bugs, because the thinking of
 the problem in the first place often enough keeps us from introducing
 the bug in the first place.
 
+<h3>End to end tests with multiple executions - i.e. stress and load</h3>
 We move on to the types of tests which catch things that we do not expect.
 Alternatives #2 and #3 above have a good chance of catching the bug,
 but are not guaranteed. The difference between #1 and #2-3 is that the
@@ -579,15 +633,42 @@ result:
 > Examination of logs show those same bookings purged by timer jobs.
 
 The sustained workload test tells us about product flakiness, and
-in a non-flaky way. But a 32 workload test is not going to be at
+in a non-flaky way. But it does not eliminate flake. It is more like
+it embraces flake. It seeks to describe the nature of the flake, a measurement
+of the conditions the test does not control by telling us how
+often those conditions create the unexpected result. The test procedure has
+not gained any control over the test condition, has not observed it, does
+not have any access to what the condition is. All it has is a measurement that
+the test procedure is able to provide with some range of reliability. 
+
+One of our typical project constraints is that a 32 hour workload test is not going to be at
 all acceptable on something like a build validation or deployment pipeline.
 The run time is too long, the results - being a percentage threshold,
 require analysis to decide what to make of it.
 
+<h3>End to end functional check</h3>
 Consider now test #4, a single call check of basic functionality. Fast.
 Simple. Atomic. And in this case, if our workload tests tell us
 anything predictable, is going to fail 1/100 times.
 
-So here is the call - do you skip that test? Do you decide never to do an
-end-to-end test of a basic CRUD operation because sometimes there
-might be a bug that does not reproduce every time?
+The problem is, we don't know that when we craft the test. We won't see
+know there is any flake at all until the first time the check hits it,
+and then it won't hit it again until many executions later.
+
+We cannot really know what we are looking at until either waiting, or
+changing our functional test into a load test. But that is for solving a different problem.
+
+Getting Control Over this Article
+==============================================
+Understanding, dealing with, and even exploiting flaky results during
+testing is far easier when we see it as a matter of controlling
+conditions. Ultimately what we want to do is find and remove
+product flake so that we and our customers do not have to deal with
+it when we use our products and services.
+
+When we recognize flake as a result conditions the test procedure
+does and does not control, we can use that to find the
+product flake more effectively, manage flake that prevents us
+from getting a reliable product signal, and maximize our strategies
+to shine a lot on product flakiness that put the business and
+customer interests at risk.
