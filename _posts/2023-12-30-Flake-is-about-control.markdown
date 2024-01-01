@@ -6,23 +6,14 @@ feels like trying to drive a car from the back seat. That
 long distance, awkward loss of control is why we see
 flake when we test a product.
 
-So, flake is what, exactly?
-===================================
-
-My definition of flaky results is as follows:
-
-__Flake__ _when you get different results from executing a test procedure multiple times without changing the test conditions_.
-
-That sounds simple, but there is a lot of complexity wrapped up in that statement.
-
 Throughout this document I use the term "test procedure" to
 refer to any set of steps or actions taken during the execution
 of a test, including establishing preconditions, manipulating
 test conditions, manipulating the system, or observing
 the system. I use this term because it is important we remember
 that "flake" happens for any kind of testing. There is too
-much attention to whether we are using automated scripts,
-or certain tools, or if a person is doing the test
+much attention paid to whether we are using automated scripts, 
+certain tools, or if a person is executing the test
 themselves interactively with the product. None of these
 matter, because the same definition applies, the same
 principles of control apply.
@@ -30,7 +21,7 @@ principles of control apply.
 I also avoid as much as I can the phrase "flaky tests." I slip
 here and there because sometimes attention is directed at the output
 of a specific piece of testing collateral, especially an automated
-check, that may producing inconsistent results, so people say
+check, that may produce inconsistent results at whic point people say
 "flaky test." My problem with that label is it suggests a foregone
 conclusion that something is wrong with the test procedure, and
 that the result, just for being different on multiple
@@ -42,6 +33,15 @@ time reviewing customer bug reports, answer support calls, or
 perhaps use the product yourself to recognize how often
 we experience problems that come and go, seemingly
 intermittently with no perceivable reason.
+
+So, flake is what, exactly?
+===================================
+
+My definition of flaky results is as follows:
+
+__Flake:__ _when you get different results from executing a test procedure multiple times without changing the test conditions_.
+
+That sounds simple, but there is a lot of complexity wrapped up in that statement.
 
 Without Changing the Test Conditions
 ====================================
@@ -59,9 +59,9 @@ Conditions versus Test Condtions
 ====================================
 Let's define two terms:
 
-__Conditions__ _variables that when changed also change the state of a system._
+__Conditions:__ _variables that when changed also change the state of a system._
 
-__Test Conditions__ _variables that a test procedure will either observe or control._
+__Test Conditions:__ _variables that a test procedure will either observe or control._
 
 ![A diagram showing how conditions change state of a system and test conditions are those utilized by a test procedure.](/assets/conditionsdefined.png)
 
@@ -122,6 +122,8 @@ not a __test condition__ because the test is not able to
 either observe nor control that condition. This manifests
 as a flaky result.
 
+We will get back to this example later.
+
 The inherent flake of this system test
 ------------------------------------
 The flaky problem we hit arises as a side effect of the
@@ -133,7 +135,7 @@ is affected by conditions we do not anticipate.
 
 The flake can be frustrating. But we also need to learn
 how to make it happen. The system is a black box to
-everyone, not just tests, which means that the same
+everyone, not just test procedures, which means that the same
 conditions the tests cannot control will almost always
 be the same for customers and end users. Usually more
 restricting. Whether or not a certain bug always occurs
@@ -143,7 +145,7 @@ they are unable to control or observe the condition. For all
 practical purposes, from the sake of experience with
 the black box, the bug is flake.
 
-From testing perspective, we need to fronts of
+From testing perspective, we need two fronts of
 attack on this problem. We need to gain control
 of more test conditions on the one hand to get
 precise target of bugs we expect to find, and we
@@ -169,8 +171,8 @@ unable to control them.
 
 The system produces flake when one of the conditions not under the test procedure
 control (classes 2-4 above) changes and produces a different result
-in the system, even though one of the condtions under test procedure
-control has not changed.
+in the system, even though none of the condtions under test procedure
+control have changed.
 
 Let's make this real... what about the end user?
 ------------------------------------
@@ -342,7 +344,7 @@ But what if there are other code paths that need to check
 if an item has expired? The same matrix of CreateDate and
 date values have to be checked on those code paths as well.
 
-However, if the code is changed as followed so that the logic
+However, if the code is changed as follows so that the logic
 for checking if an item is expired lies within a method inside
 IPolicyCheck, we have a huge impact on the test risk:
 ```
@@ -442,7 +444,7 @@ know. We have to couple strategies which help us look for things
 we know about (control) with strategies that broaden our ability
 to catch what we do not know about (surrender).
 
-Run it Again
+Let's Take a Moment to Talk About Run it Again
 ===================================================
 The most common solution people use to deal with flaky
 test results is to run the test again. Repeat the test
@@ -483,7 +485,7 @@ If someone is trying to learn about product behavior,
 then a flaky signal is a very important piece of information.
 The flaky signal is an indication that some condition not
 under test procedure control is changing in a way that
-produces expected results.
+produces unexpected or surprising results.
 
 Something is not right. Either there is a problem in
 the test procedure, or there is a problem in the product.
@@ -495,7 +497,8 @@ Surrendering control for the win
 When we model testing from this idea of there being
 conditions the test can control and observe versus not, we
 can start to recognize why we want to test in different ways.
-Sometimes we are intentionally looking for flaky
+While a good deal of the time we are checking for
+specific, anticipated problems, sometimes we are intentionally looking for flaky
 behavior in the product. One way to do that is to
 increase the amount of conditions outside of
 test procedure control.
@@ -581,7 +584,7 @@ so if the timer job executes between steps 1 and 3 of CREATE ITEMS, the
 item will be purged, even though it was newly created.
 
 How do we test for that? We have the following options:
-1. in some low level test (technically not a unit test because we are engaging IO), use Humble Object design pattern to allow control sequencing of the steps to see what happens when they mix
+1. in some low level test (technically not a unit test because we are engaging IO), use a <a href="https://martinfowler.com/bliki/HumbleObject.html">Humble Object design pattern</a> to allow control sequencing of the steps to see what happens when they mix
 2. in some test system, __increase the frequency of the timer__ and __put object CRUD under workload__ to increase the probability of _this kind of thing_ happening
 3. in an end to end system, __put object CRUD under workload__ to incrase probability of _this kind of thing_ happening
 4. as part of functional checks, use object CRUD for each type of object and check store if it is there
@@ -601,23 +604,24 @@ Humble Object design pattern involves creating the race conditions
 exactly. If we think of this, well done.
 
 But we tend not to. That is why we have bugs, because the thinking of
-the problem in the first place often enough keeps us from introducing
+the problem in time to imagine the test procedure often enough keeps us from introducing
 the bug in the first place.
 
 <h3>End to end tests with multiple executions - i.e. stress and load</h3>
+
 We move on to the types of tests which catch things that we do not expect.
 Alternatives #2 and #3 above have a good chance of catching the bug,
 but are not guaranteed. The difference between #1 and #2-3 is that the
 latter methods surrender control. And the reason they do that is because
 they are not anticipating this specific bug. What they are looking for is
-written in the description, "_this kind of thing_." We don't know
+written in the description, _this kind of thing._ We don't know
 what bug is there, nor exactly which code paths have which bugs, but
 we do believe that doing certain things are more likely to fail.
 
 We are increasing probability of finding something unknown, unexpected,
 and undesired. And we are leaning into that by surrendering control.
 When we have control, we direct the test conditions toward our intentions.
-If we manipulate the system to find something we anticipate, we missing
+If we manipulate the system to find something we anticipate, we tend to miss
 anything not directly under that focus. To find everything with control
 we have to point at each and every thing exactly.
 
@@ -651,12 +655,41 @@ Consider now test #4, a single call check of basic functionality. Fast.
 Simple. Atomic. And in this case, if our workload tests tell us
 anything predictable, is going to fail 1/100 times.
 
-The problem is, we don't know that when we craft the test. We won't see
+The problem is, we don't know that when we craft the test. We won't see the failure to 
 know there is any flake at all until the first time the check hits it,
 and then it won't hit it again until many executions later.
 
 We cannot really know what we are looking at until either waiting, or
 changing our functional test into a load test. But that is for solving a different problem.
+
+<h3>Eliminating the flake from the end to end system</h3>
+Let's stick with our timer job/CRUD operation problem. Let's imagine
+we anticipate the possibility that background processes of any sort
+might interfere with various checks. We don't necessarily KNOW the bug
+we are talking about exists, we just want checks we can rely on.
+
+We address this problem by turning off all background processes. The
+timer jobs are disabled, purging expired items being one of those 
+disabled operations.
+
+I did not make this up. When I worked on SharePoint, one of the common
+configuration steps on all of the automated suites was to disable
+all timer jobs. We had configurations where we would turn the timer
+jobs on if we wanted, but for most tests, in order to keep the
+results more consistent and less confusing, any background process
+was turned off.
+
+We were gaining control of a condition
+by eliminating it. It worked. Our test results stabilized.
+
+The other effect of doing this is it means we were not testing for
+the case where timer jobs interfered with other system functions.
+We were losing test coverage in the name of gaining control.
+
+We made up for it by having other testing where everything in the
+system was running. We did this because we knew that when we were looking
+for precise controlled test results with a reliable, consistent signal
+we were missing important bugs in the system.
 
 Getting Control Over this Article
 ==============================================
