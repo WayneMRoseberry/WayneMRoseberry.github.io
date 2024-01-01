@@ -331,6 +331,65 @@ write a unit test that checks for sub-hour precision, or
 cause Purge to throw various exceptions the bugs above would
 be exposed.
 
+While we are at it, let's break the problem apart even more
+---------------------------------------------
+Notice how the coverage for PurgeItems() includes checking
+the item CreateDate relative to different values for current
+time. With the above refactor, that coverage is possible
+in unit tests rather than moving to end-to-end tests.
+
+But what if there are other code paths that need to check
+if an item has expired? The same matrix of CreateDate and
+date values have to be checked on those code paths as well.
+
+However, if the code is changed as followed so that the logic
+for checking if an item is expired lies within a method inside
+IPolicyCheck, we have a huge impact on the test risk:
+```
+public void PurgeItems(ItemSet items, IPolicyCheck policy, IItemManager itemManager)
+{
+  foreach(Item i in items)
+  {
+    if(policy.ItemExpired(i))
+    {
+      if(!itemManager.Purge(i))
+      {
+          throw new ItemNotPurgedException(i);
+      }
+    }
+  }
+}
+```
+This simplifies the behavior of PurgeItems() enormously. It
+doesn't have to implement expiration policy at all. It only
+has three conditions of concern for ItemExpired, whether it returns TRUE, FALSE
+or throws an exception.
+
+The testing for expiration behavior around settings on an item
+and date time can be isolated to the implementation of ItemExpired().
+It also allows us to extend or change ItemExpired behavior if we
+need to, and we only touch one piece of code to do it.
+
+This final refactor substantially changes the testing risk
+around everything that must deal with item expiration to make
+a decision. In the original version of the code, current time
+was a condition that could not be controlled. The behavior of
+PurgeItems() would be flaky under test, but so would all functions that
+needed to make a decision based on item expiration. By introducing
+an interface that moves the expiration check under test control,
+we have the chance to test with flaky behavior removed. By moving
+the actual policy check to that interface, we have the ability to remove
+flake across a larger surface area.
+
+This means that even though to an end-to-end test its relationship
+to the product code remains the same, time of day is still a condition
+the test procedure will not be able to control, bad behavior around that
+condition is easier to check at the lower level. The likelihood of
+a flaky bug is reduced. If such a bug did slip by the lower level checks
+it would still manifest as flake to the end-to-end test, but it is less
+likely to get that far unnoticed with the lower level checks able to
+control that condition.
+
 Unit Level Design Changes Accrue and Ripple Up
 ==============================================
 I started the discussion of gaining control via design change
