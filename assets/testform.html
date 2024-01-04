@@ -1,17 +1,33 @@
-<html>
-  <body>
+<html><head></head><body>
+
+<script>
+function changePickupText(e){
+  document.getElementById("pickupname").innerText = e.target.value;
+}
+function changeStartText(e){
+  document.getElementById("pickupbldg").innerText = e.target.value;
+}
+</script>
+
+
     <h1>Building shuttle service.</h1>
     Choose your start and destinations below to see a list of available shuttle times.<br>
 <form>
-  <label for="cars">Start location:</label>
 
-<select name="start" id="start">
+<table>
+<tr>
+<td>
+  <label for="cars">Start location: </label>
+
+<select name="start" id="start" onChange="changeStartText(event)">
   <option value="bldg1">Building 1</option>
   <option value="bldg2">Building 2</option>
   <option value="bldg3">Building 3</option>
   <option value="bldg4">Building 4</option>
 </select>
-<label for="colors">Destination:</label>
+</td>
+<td>
+<label for="colors">Destination: </label>
 
 <select name="colors" id="colors">
   <option value="bldg1">Building 1</option>
@@ -19,7 +35,34 @@
   <option value="bldg3">Building 3</option>
   <option value="bldg4">Building 4</option>
 </select>
-  
+</td>
+</tr>
+</table>
 </form>
-  </body>
-</html>
+<form>
+<table>
+<tr>
+<td>
+
+  <label for="Times">Pick a time: </label>
+<select name="pickuptime">
+  <option value="eight">8:00</option>
+  <option value="nine">9:00</option>
+  <option value="ten">10:00</option>
+  <option value="eleven">11:00</option>
+</select>
+  
+
+</td>
+<td>
+<label for="ridername">Rider Name: </label>
+<input name="ridername" onChange="changePickupText(event)"></input>
+</td>
+</tr>
+</table>
+ </form>  
+<br><br>
+Pickup for: <span id="pickupname"></span> at building <span id="pickupbldg"></span>
+
+
+</body></html>
