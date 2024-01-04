@@ -56,13 +56,17 @@ function changeStartText(e){
 </td>
 <td>
 <label for="ridername">Rider Name: </label>
-<input name="ridername" onChange="changePickupText(event)"></input>
+<input name="ridername" onChange="changePickupText(event)" value="enter rider name">selected rider</input>
 </td>
 </tr>
 </table>
  </form>  
 <br><br>
-Pickup for: <span id="pickupname"></span> at building <span id="pickupbldg"></span>
+Pickup for: <span id="pickupname" name="pickuplabel"></span> at building <span id="pickupbldg" name="pickuplabel">selected bldg</span> at time <span name="pickuplabel">selected time</span>.
 
+<br>
+<span id="goodbye">Have a pleasant day.</span>
+<br>
+<span id="goodbye">Goodbye!</span>
 
 </body></html>
