@@ -108,3 +108,77 @@ not be related.
 When we examine the results, we find query performance gets worse on the
 database at 3 WFE, with an increase in the number of table locks. Bug discovered,
 we move toward a mitigation.
+
+Testing to reproduce a bug
+===================================================
+Sometimes we create a hypothesis to track down the source a problem someone
+has reported. The approach is similar to testing against product requirements,
+except in this case we know an outcome we are trying to replicate, and our
+hypothesis is trying to explain it.
+
+Example Bug: User renames are breaking user data on the site
+------------------------------------------------------------
+Customers on your website allow users to post information to lists. When they
+do, their name is included along with that information. Ordinarily, if someone's
+name is changed on the system directory, their name is also changed everywhere they
+have added an entry on a list. Some of your customers
+have said that when their user's names and login name change (e.g. someone's
+last name changes and their login name is changed to match) that their
+names are not changin for entries they have made on lists on the site. You
+have been assigned to investigate.
+
+Our hypothesis: Will login name change break user property updates?
+-------------------------------------------------------------
+You create a hypothesis:
+> _Changing a user's login identity will cause changes to their last name properties to stop updating to list entries._
+
+The relevant information from this hypothesis:
+- __Changing a user's login__: This is the experimental variable. The behavior will be controlled against user's whose login are and are not changed.
+- __Changes to their last name__: This will happen for both the control group (no login change) and the experiment group (login change).
+- __Stop updating to list entries__: This indicates there must have been a list entry for both users prior to the login name change.
+
+Write a test procedure for checking login change hypothesis.
+-------------------------------------------------------------
+The procedure will go as follows:
+1. Two user accounts, User1@test.site, last name=One, User2@test.site, lastname=Two
+2. On list "Test list" create one entry for each user, title="<username> entry", confirm user last name for each is "One" and "Two", respectively
+3. Via system directory, change the login id for User2@test.site to User2.Changed@test.site
+4. Via system directory, change the last name for User1@test.site to "OneChanged" and User2@test.site to "TwoChanged"
+5. Wait out time period for account changes to propagate
+6. Check "Test list" for the user last names for "<username> entry"s
+7. Expected, "User1 entry" last name="OneChanged", "User2 entry" last name="Two"
+
+Note that the expectation is a repro of the bug. The hypothesis states that a simple
+rename of the userlogin will be sufficient to reproduce the error reported.
+
+Test the hypothesis - a renaming we will go...
+-------------------------------------------------------------
+You try the procedure as written. You find at the end that "User1 entry" last name=="OneChanged", as expected,
+but also that "User2 entry" last name=="TwoChanged", not expected. You were unable to reproduce the
+bug using the test procedure. The hypothesis is false.
+
+What does that mean? Does that mean the bug does not exist?
+
+No. We are still getting the customer reports, and we can check their
+systems to see that user last names are out of sync with their
+lists. The bug exists. The problem is in the hypothesis. It
+is insufficient to explain the bug. We do not understand the cause
+yet. Our experiment has demonstrated there is something different, or
+something more, than just renaming the user login name to reproduce the
+bug. It is as if we have a new hypothesis:
+
+> _Changing a user's login identity, __plus some other thing we don't know yet__, will cause changes to their last name properties to stop updating to list entries. __Maybe__._
+
+Exlporing around the hypothesis
+-------------------------------------------------------------
+At this point we consider other possibilities which might insert where (__plus some other thing we don't know yet__) exists in the hypothesis. :
+
+- Maybe there is a timing issue
+- Maybe there are other events related to the user account synchronization that affect behavior
+- Maybe there is something random and we just need to try more
+
+For each of these ideas we would change the test procedure somehow. We could also
+explore the synchronization code, the list editing code, the user account setting
+code and see if there are other behaviors which might affect ability to synchronize
+the user property synchronization.
+
