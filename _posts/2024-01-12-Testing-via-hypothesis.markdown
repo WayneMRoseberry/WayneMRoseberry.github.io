@@ -114,7 +114,11 @@ Testing to reproduce a bug
 Sometimes we create a hypothesis to track down the source a problem someone
 has reported. The approach is similar to testing against product requirements,
 except in this case we know an outcome we are trying to replicate, and our
-hypothesis is trying to explain it.
+hypothesis is trying to explain it. 
+
+_The example story on this one is a short version of a very long, complex, and
+expensive bug that I encountered when working on the User Profile Service in
+SharePoint Online._
 
 Example Bug: User renames are breaking user data on the site
 ------------------------------------------------------------
