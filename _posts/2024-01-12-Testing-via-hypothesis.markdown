@@ -48,6 +48,10 @@ end application tier which makes requests directly to the SQL
 server. Multiple web-front servers may access the same SQL
 database.
 
+_This example echoes my years of performance and reliability testing
+in Microsoft SharePoint. While not an exact account, it is very similar
+to the kinds of things we would do._
+
 Scalability hypothesis: Does the product capacity scale with more machines?
 --------------------------------------------------
 Customers will want to be able to grow their system to meet end
@@ -80,7 +84,7 @@ Procedure per server web-front end configuration:
 3. For hypothesis to be true, the measured maximum RPS values will have to match within 5% the target maximum RPS levels for the configuration
 NOTE: latency greater than 300 milliseconds for GET operations on library URI will abort the procedure regardless workload
 
-Tables and graphs seem to go really well with hypothesis testing. We lay out the changing variables (Web-front end, column 1) and the measurements (baseline latency and maximum RPS, columns 2 and 3) and the expectations (Target RPS, column 4).
+Tables and graphs go well with hypothesis testing. We lay out the changing variables (Web-front end, column 1) and the measurements (baseline latency and maximum RPS, columns 2 and 3) and the expectations (Target RPS, column 4).
 Web-front end count | Baseline latency at 1 RPS | Maximum RPS | Target RPS
 -|-|-|-
 1| tbd | tbd | tbd
@@ -98,8 +102,8 @@ Web-front end count | Baseline latency at 1 RPS | Maximum RPS | Target RPS
 3| 100 ms | 200 | 3x 1 Max. RPS
 4| 200 ms | 195 | 4x 1 Max. RPS
 
-Indeed, we did not meet the targets. Maximum RPS falls outside the 5% t
-arget starting at 3 WFE, and starts to get worse at 4 WFE. We also notice
+Indeed, we did not meet the targets. Maximum RPS falls outside the 5% 
+target starting at 3 WFE, and starts to get worse at 4 WFE. We also notice
 that baseline latency grows as we add WFEs to the system, which may or may
 not be related.
 
@@ -108,6 +112,21 @@ not be related.
 When we examine the results, we find query performance gets worse on the
 database at 3 WFE, with an increase in the number of table locks. Bug discovered,
 we move toward a mitigation.
+
+Further testing by creating new hypotheses
+---------------------------------------------------
+Using the approach here, we can continue our testing and exploration by crafting
+new hypotheses that answer new questions. Consider the following examples all exploring
+different aspects of scalability on the same product:
+
+> "Throughput capacity of a document library workload against the system will decrease as perentage of write operations are increased relative to read operations."
+> 
+> "Throughput capacity of a document library workload against the system will increase as SQL server memory is increased."
+> 
+> "Throughput capacity of a document library workload against the system will increase as SQL server number of processor cores are increased."
+> 
+> "Throughput capacity of a document library workload against the system will scale linearly with number of web-front ends on a single virtual host."
+
 
 Testing to reproduce a bug
 ===================================================
@@ -128,7 +147,7 @@ name is changed on the system directory, their name is also changed everywhere t
 have added an entry on a list. Some of your customers
 have said that when their user's names and login name change (e.g. someone's
 last name changes and their login name is changed to match) that their
-names are not changin for entries they have made on lists on the site. You
+names are not changing for entries they have made on lists on the site. You
 have been assigned to investigate.
 
 Our hypothesis: Will login name change break user property updates?
@@ -191,7 +210,7 @@ you also see that user visits to the site affect account synchronization as well
 visits the site, their login identity is written to a list of users on the site. Realizing this, you change the
 hypothesis and procedure:
 
-> _Changing a user's login identity, __followed by a site visit from that user before scheduled account sync__, will cause changes to their last name properties to stop updating to list entries. __Maybe__._
+> _Changing a user's login identity, __followed by a site visit from that user before scheduled account sync__, will cause changes to their last name properties to stop updating to list entries._
 
 1. Two user accounts, User1@test.site, last name=One, User2@test.site, lastname=Two
 2. On list "Test list" create one entry for each user, title="<username> entry", confirm user last name for each is "One" and "Two", respectively
@@ -204,3 +223,17 @@ hypothesis and procedure:
 
 With the new step 5 inserted, you reproduce the bug. The hypothesis has been demonstrated true in
 at least one case. You now are much closer to understanding the bug fix.
+
+It's not always a science experiment, but sometimes it is
+===========================================================
+We don't always have a hypothesis in mind, a measurement to make, a procedure to
+follow. But a lot of the time a hypothesis and procedure to check if you
+can falsify the hypothesis are a useful way to gather information and build insights.
+
+I describe using hypothesis-based testing in my book <a href="https://www.amazon.com/Writing-Test-Plans-Made-Easy/dp/1478333693">
+Writing Test Plans Made Easy</a>, available on Amazon. The book is mostly about using
+outlines as a fast way to structure a test plan. Hypothesis based testing
+is one of the techniques I describe for fleshing out the details.
+
+<a href="https://www.amazon.com/Writing-Test-Plans-Made-Easy/dp/1478333693">![image](https://github.com/WayneMRoseberry/WayneMRoseberry.github.io/assets/10563852/c2bd1e4e-5bc5-4f5c-acf8-a13c9cf7c292)</a>
+
