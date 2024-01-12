@@ -80,9 +80,31 @@ Procedure per server web-front end configuration:
 3. For hypothesis to be true, the measured maximum RPS values will have to match within 5% the target maximum RPS levels for the configuration
 NOTE: latency greater than 300 milliseconds for GET operations on library URI will abort the procedure regardless workload
 
+Tables and graphs seem to go really well with hypothesis testing. We lay out the changing variables (Web-front end, column 1) and the measurements (baseline latency and maximum RPS, columns 2 and 3) and the expectations (Target RPS, column 4).
 Web-front end count | Baseline latency at 1 RPS | Maximum RPS | Target RPS
 -|-|-|-
 1| tbd | tbd | tbd
 2| tbd | tbd | 2x 1 Max. RPS
 3| tbd | tbd | 3x 1 Max. RPS
 4| tbd | tbd | 4x 1 Max. RPS
+
+We perform the test, and we have results...
+--------------------------------------------------
+We run the tests, take our measurements and fill in the table.
+Web-front end count | Baseline latency at 1 RPS | Maximum RPS | Target RPS
+-|-|-|-
+1| 50 ms | 65 | 65
+2| 75 ms | 125 | 2x 1 Max. RPS
+3| 100 ms | 200 | 3x 1 Max. RPS
+4| 200 ms | 195 | 4x 1 Max. RPS
+
+Indeed, we did not meet the targets. Maximum RPS falls outside the 5% t
+arget starting at 3 WFE, and starts to get worse at 4 WFE. We also notice
+that baseline latency grows as we add WFEs to the system, which may or may
+not be related.
+
+![two graphs depicting the RPS and latency changes depicted on the table above, with a large inflection point at 3 WFE for decreased RPS](/assets/hypothesistesting_scalingwfe.png)
+
+When we examine the results, we find query performance gets worse on the
+database at 3 WFE, with an increase in the number of table locks. Bug discovered,
+we move toward a mitigation.
