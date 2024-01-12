@@ -182,3 +182,21 @@ explore the synchronization code, the list editing code, the user account settin
 code and see if there are other behaviors which might affect ability to synchronize
 the user property synchronization.
 
+After some time exploring, you see that in addition to automatically scheduled account data synchronization,
+you also see that user visits to the site affect account synchronization as well. When the user
+visits the site, their login identity is written to a list of users on the site. Realizing this, you change the
+hypothesis and procedure:
+
+> _Changing a user's login identity, __followed by a site visit from that user before scheduled account sync__, will cause changes to their last name properties to stop updating to list entries. __Maybe__._
+
+1. Two user accounts, User1@test.site, last name=One, User2@test.site, lastname=Two
+2. On list "Test list" create one entry for each user, title="<username> entry", confirm user last name for each is "One" and "Two", respectively
+3. Via system directory, change the login id for User2@test.site to User2.Changed@test.site
+4. Via system directory, change the last name for User1@test.site to "OneChanged" and User2.Changed@test.site to "TwoChanged"
+5. (new step)__Visit the site page as both User1@test.site and User2.Changed@test.site__
+6. Wait out time period for account changes to propagate
+7. Check "Test list" for the user last names for "<username> entry"s
+8. Expected, "User1 entry" last name="OneChanged", "User2 entry" last name="Two"
+
+With the new step 5 inserted, you reproduce the bug. The hypothesis has been demonstrated true in
+at least one case. You now are much closer to understanding the bug fix.
