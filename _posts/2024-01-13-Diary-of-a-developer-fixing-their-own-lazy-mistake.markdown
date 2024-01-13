@@ -206,19 +206,28 @@ much of a problem is the code is still just mine, not in use by anyone else.
 The changes I intend to make and the path I intend to take
 ===========================================
 The following is a tenative plan. Some of this is going to require some exploration,
-some of which I am going to do via unit testing. 
+some of which I am going to do via unit testing.
+
+1. Create a separate interface for loading and saving Json streams to file
+2. Move Json serialization and deserialization into the `datatools.datamaker` namespace (as opposed to the `datatools.datamaker.dataprovider`) namespace, making persistence format a core feature of the schema objects
+3. Change the `Dictionary<string,Dictionary<string, DataSchema>>` object to a class of its own, which might not be necessary, but it gives me more control over class behavior
+4. Get separate true unit tests for Json serialization and deserialization of all the relevant objects, separate from persisting the serialized format to file
+5. Explore if changes to the `SchemaElement` properties are needed to handle different datatypes serializing into them or not 
 
 Exploring with unit tests, you say? I thought that wasn't possible.
 -------------------------------------------
 There is a popular notion out there
 that one does not do exploration via unit tests, but I have found that sometimes I can
 use unit test authoring as a way of exploring my options for implementation. On this
-problem, I am especially curious about how to approach the Value property on the
-SchemaElement class, whether I can leave it polymorphic (type==Object), or if I should
+problem, I am especially curious about how to approach the `Value` property on the
+`SchemaElement` class, whether I can leave it polymorphic (`type==Object`), or if I should
 create different properties for the different value types.
 
-1. Create a separate interface for loading and saving Json streams to file
-2. Move Json serialization and deserialization into the `datatools.datamaker` namespace (as opposed to the `datatools.datamaker.dataprovider`) namespace, making persistence format a core feature of the schema objects
-3. Change the `Dictionary<string,Dictionary<string, DataSchema>>` object to a class of its own, which might not be necessary, but it gives me more control over class behavior
-4. Get separate true unit tests for Json serialization and deserialization of all the relevant objects, separate from persisting the serialized format to file
-5. Explore if changes to the `SchemaElement` properties are needed to handle different datatypes serializing into them or not
+Curious about the project?
+============================================
+The project I describe in this article is located <a href="https://github.com/WayneMRoseberry/datatools">
+on my github site located here</a>. As of now I don't have any published
+binaries, and the main executable project doesn't build
+anything useful yet. That might change over time. This
+project is more something for me to experiment and maybe
+generate article ideas than it is a serious endeavor.
