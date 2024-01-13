@@ -18,6 +18,10 @@ and bake that into the assumptions you make as you go through
 the TDD process.
 
 And of course, it was end-to-end testing that exposed my mistake.
+I found a problem in my code that I didn't notice because I skipped
+my unit testing, but by skipping the unit testing I jumped right
+to a different, bigger, earlier problem that wasn't apparent to me when I was doing
+everything via unit testing.
 Chew on that little paradox for a bit...
 
 Some sloppy testing alerted me to a problem
