@@ -150,10 +150,10 @@ to the property:
 	}
 ```
 
-The problem with this is when System.Text.Json.JsonSerializer.Deserialize tries to
-assign the propery type to the Value property. The case I hit was when Type==ElementType.Reference,
-for which the type of object for the Value property is supposed to be a custom class
-of my own, DataSchemaReference. It looks like this:
+The problem with this is when `System.Text.Json.JsonSerializer.Deserialize()` tries to
+assign the propery type to the Value property. The case I hit was when `Type==ElementType.Reference`,
+for which the type of object for the `Value` property is supposed to be a custom class
+of my own, `DataSchemaReference`. It looks like this:
 
 ```
 	public class DataSchemaReference
@@ -196,9 +196,29 @@ System.IO.File.WriteAllText(_schemaFilePath, schemaText);
 There are a few problems here.
 
 1. Saving to file and loading from file are linked with json serialization and deserialization and cannot be tested separately
-2. Serializing to and from the schema dictionary, which is a two-layered dictionary of dictionaries of DataSchema objects, cannot be tested separately from serializing DataSchema objects
+2. Serializing to and from the schema dictionary, which is a two-layered dictionary of dictionaries of `DataSchema` objects, cannot be tested separately from serializing `DataSchema` objects
 3. Json serialization is tied to the FileBasedSchemaProvider, which means the format for loading and persisting schema is tied to only that provider and cannot be used by other providers, such as a database or cloud-based storage
 4. Existing tests already treat use polymorphism for the Value property, which means a real change is value is going to have to require changing the tests. This is not really a problem, but had this been released code, then the change in behavior would break existing use of the API.
    
 My code has made a mess of things, and the biggest reason this is not
 much of a problem is the code is still just mine, not in use by anyone else.
+
+The changes I intend to make and the path I intend to take
+===========================================
+The following is a tenative plan. Some of this is going to require some exploration,
+some of which I am going to do via unit testing. 
+
+Exploring with unit tests, you say? I thought that wasn't possible.
+-------------------------------------------
+There is a popular notion out there
+that one does not do exploration via unit tests, but I have found that sometimes I can
+use unit test authoring as a way of exploring my options for implementation. On this
+problem, I am especially curious about how to approach the Value property on the
+SchemaElement class, whether I can leave it polymorphic (type==Object), or if I should
+create different properties for the different value types.
+
+1. Create a separate interface for loading and saving Json streams to file
+2. Move Json serialization and deserialization into the `datatools.datamaker` namespace (as opposed to the `datatools.datamaker.dataprovider`) namespace, making persistence format a core feature of the schema objects
+3. Change the `Dictionary<string,Dictionary<string, DataSchema>>` object to a class of its own, which might not be necessary, but it gives me more control over class behavior
+4. Get separate true unit tests for Json serialization and deserialization of all the relevant objects, separate from persisting the serialized format to file
+5. Explore if changes to the `SchemaElement` properties are needed to handle different datatypes serializing into them or not
