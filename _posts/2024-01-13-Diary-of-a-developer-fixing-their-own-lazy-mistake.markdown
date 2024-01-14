@@ -227,6 +227,21 @@ problem, I am especially curious about how to approach the `Value` property on t
 `SchemaElement` class, whether I can leave it polymorphic (`type==Object`), or if I should
 create different properties for the different value types.
 
+Ending thoughts, for now?
+============================================
+I am not sure how long I am going to take on the code changes
+above. I have been through some of this problem before with Json
+serialization, and there are different ways to handle it. I am going
+to publish the article at this point and maybe talk about the changes
+later - or not. Depends on if any interesting discussion points come of
+it.
+
+Meanwhile, my takeaways from this experience:
+1. I almost always regret skipping my unit tests.
+2. I almost always regret not putting interfaces around IO and other unit behaviors that tightly couple code dependencies. Wait, drop the "Almost" and change this one and #1 to "I always regret..."
+3. TDD is meant to be practiced in a context where you anticipate the larger structure and one at a time step your design in that direction. If anticipating the larger structure fights with your TDD practices, or vice versa, you are doing both wrong.
+4. End to end testing does a really good job exposing mistakes - and sometimes those mistakes are about the first three points I just made
+
 Curious about the project?
 ============================================
 The project I describe in this article is located <a href="https://github.com/WayneMRoseberry/datatools">
