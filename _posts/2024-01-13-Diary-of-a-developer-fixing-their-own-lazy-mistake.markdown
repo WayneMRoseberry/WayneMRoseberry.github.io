@@ -9,15 +9,15 @@ Sometimes I get impatient and skip to end-to-end testing,
 usually when I am working with adding IO capabilities to
 my code, and almost always get into trouble when doing that.
 That happened this time, but I also found a problem in my
-API and data structure designs which creeped in mostly
-due to not really thinking about the end-to-end use case very well.
+API and data structure designs which creeped in due to 
+me not thinking about the end-to-end use case.
 This is a reminder that while TDD leads to better code design,
 that is not an excuse to defer big picture design to one-step-at-a-time
-discovery. You need to anticipate eventual usage ahead of time
+discovery. You need to anticipate usage ahead of time
 and bake that into the assumptions you make as you go through
 the TDD process.
 
-And of course, it was end-to-end testing that exposed my mistake.
+Ironically (or not?), it was end-to-end testing that exposed my mistake.
 I found a problem in my code that I didn't notice because I skipped
 my unit testing, but by skipping the unit testing I jumped right
 to a different, bigger, earlier problem that wasn't apparent to me when I was doing
@@ -35,10 +35,10 @@ that schema for sake of testing. I rewrite this tool every
 couple years to learn new technology or programming techniques.
 
 This morning I added the ability to save the schema to a file.
-I jumped immediately to end to end testing.
+I jumped immediately to end-to-end testing.
 I thought I had it working, and was building out a tool to
-allow command line generation of data schemas save in
-the saved schema files when I found a problem. Suddenly the
+allow command line generation of data schemas saved in
+the persisted schema file when I found a problem. Suddenly the
 tool stopped generating random examples. It was creating blank
 strings.
 
@@ -74,7 +74,7 @@ I looked at the saved schema files. They were complete.
         }
       ]
     },
-(this kept going from here... a whole bunch of json...)
+(this kept going from here... a whole bunch of json goop...)
 ```
 
 I traced the code on launch and saw that when it was enumerating the elements
@@ -100,7 +100,7 @@ for a given type was empty (see the in code comment):
 ```
 Something was going wrong loading the saved schema data.
 
-Looking closer at the problem
+Examining schema load and save code path
 =========================================
 This piece of code started the problem:
 
@@ -157,7 +157,7 @@ to the property:
 The problem with this is when `System.Text.Json.JsonSerializer.Deserialize()` tries to
 assign the propery type to the Value property. The case I hit was when `Type==ElementType.Reference`,
 for which the type of object for the `Value` property is supposed to be a custom class
-of my own, `DataSchemaReference`. It looks like this:
+of my own, `DataSchemaReference`. That class looks like this:
 
 ```
 	public class DataSchemaReference
@@ -166,6 +166,13 @@ of my own, `DataSchemaReference`. It looks like this:
 		public string Name { get; set; }
 	}
 ```
+Instead of serializing to the `Value` property as a `DataSchemaReference`
+object, it was seriailizing as a `JsonProperty` object (I might have the name
+of that incorrect. I don't have it in the debugger right now...). There are
+not enough clues in the way the `DataSchema.Value` property is defined for
+the `System.Text.Json.JsonSerializer.Deserialize()` method to know how
+to cast the Json text.
+
 Everything was working fine prior to loading the schema dictionary from a
 Json file. This is because all the schema creation was done explicitly in
 code, most of that unit tests. The data type was under control, and easy to
@@ -201,8 +208,8 @@ There are a few problems here.
 
 1. Saving to file and loading from file are linked with json serialization and deserialization and cannot be tested separately
 2. Serializing to and from the schema dictionary, which is a two-layered dictionary of dictionaries of `DataSchema` objects, cannot be tested separately from serializing `DataSchema` objects
-3. Json serialization is tied to the FileBasedSchemaProvider, which means the format for loading and persisting schema is tied to only that provider and cannot be used by other providers, such as a database or cloud-based storage
-4. Existing tests already treat use polymorphism for the Value property, which means a real change is value is going to have to require changing the tests. This is not really a problem, but had this been released code, then the change in behavior would break existing use of the API.
+3. Json serialization is tied to the `FileBasedSchemaProvider`, which means the format for loading and persisting schema is tied to only that provider and cannot be used by other providers, such as a database or cloud-based storage
+4. Existing tests already use polymorphism for the `Value` property, which means a real change is value is going to have to require changing the tests. This is not really a problem, but had this been released code, then the change in behavior would break existing use of the API.
    
 My code has made a mess of things, and the biggest reason this is not
 much of a problem is the code is still just mine, not in use by anyone else.
