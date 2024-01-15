@@ -1,6 +1,11 @@
 I had more fun testing this horseracing problem than solving it
 ===============================================================
 ![A drawing depicting a bunch of horses in standing in front of a whiteboard with code on it](/assets/horseswhiteboard.jpg)
+_The prompt for this image was "image of 25 horses working on a coding problem on a whiteboard."
+The fact that there are only 22 horses in the picture is in no way sufficient to ruin the
+fact that the horse in front is standing on a ladder to access the whiteboard. I will take
+innacurate any day if it comes with that kind of hilarious. Even funnier, all the computers in the
+room are displaying the blue screen of death._ 
 
 I don't mind a coding challenge, but sometimes I take longer than
 I would like to solve a problem. I do like testing the
