@@ -68,6 +68,34 @@ they were given to the method.
 
 Testing the implementation
 -----------------------------------
+The interface
+```
+	public interface IHorseRacing
+	{
+		int TopThreeHorses(int[] horses, int horsesPerRace, out List<int> finishers);
+	}
+```
+The test method
+```
+		[TestMethod]
+		public void TopThreeHorses_ascendingorder()
+		{
+			BardAlgorithm bard = new BardAlgorithm();
+			int[] horseTimes = new int[] 
+			{ 
+				1,2,3,4,5,
+				6,7,8,9,10,
+				11,12,13,14,15,
+				16,17,18,19,20,
+				21,22,23,24,25 
+			};
+			int fastest = bard.TopThreeHorses(horseTimes, 5, out List<int> outs);
+			Assert.AreEqual(3, outs.Count, "There better be three horses in there");
+			Assert.AreEqual(0, outs[0]);
+			Assert.AreEqual(1, outs[1]);
+			Assert.AreEqual(2, outs[2]);
+		}
+```
 
 Back to the conversation
 ===================================
