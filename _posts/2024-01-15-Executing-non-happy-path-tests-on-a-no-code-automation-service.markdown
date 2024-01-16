@@ -5,7 +5,7 @@ _The prompt to Bing Image Creator was "A tester exploring a non-happy path test 
 
 I recently wrote an article about creating a 
 <a href="https://waynemroseberry.github.io/assets/DoesQA_selectorcomparison_elementaction_testspec.pdf">testing specification</a>
-for covering some not-happy path cases for <a href="https://doesqa.qa">DoesQA</a>, a no-code
+for covering some not-happy path cases for <a href="https://app.does.qa/r/?source=wayne&campaign=organic&url=https://does.qa/try">DoesQA</a>, a no-code
 test automation service.
 
 Today I executed the testing described in that specification. I sent
