@@ -1,5 +1,10 @@
+Exploring the non-happy path on a no code automation tool
+====================================
+![Image of a tester in front of their computer screen with the words Non AHPPY PATH displayed on it. Also a very cluttered work environment](/assets/testerexploringnonhappypath.jpg)
+_The prompt to Bing Image Creator was "A tester exploring a non-happy path test strategy on a no code automation tool". The tester seems to be wearing what looks like a laurel wreath made out of beer can tabs on his head. And then all those gadgets, devices, and accessories all over the desk and floor makes me worry he is selling burner phones as a side hustle. I do enjoy that Happy is spelled wrong._
+
 I recently wrote an article about creating a 
-<a href="https://waynemroseberry.github.io/assets/DoesQA_selectorcomparison_elementaction_testspec.pdf">testing specification</a?
+<a href="https://waynemroseberry.github.io/assets/DoesQA_selectorcomparison_elementaction_testspec.pdf">testing specification</a>
 for covering some not-happy path cases for <a href="https://doesqa.qa">DoesQA</a>, a no-code
 test automation service.
 
@@ -24,6 +29,9 @@ a more broad range set of use cases that would consider an engineer or team
 looking at larger scale processes and problems. My subjective experience
 is just a note of my feelings about the product.
 
+I am reflecting on positive response here, as the rest of this article
+gets into testing, and the issues are addressed more there.
+
 Things I like about DoesQA
 --------------------------------------
 I enjoyed using DoesQA. I had fun creating workflows and suites.
@@ -34,13 +42,6 @@ I enjoyed using DoesQA. I had fun creating workflows and suites.
 - The designer allows branching of workflows, which run as parallel jobs, and allows for fast creation of testing permutations
 - The designer allows defining a collection of actions as a group that may be re-used like canned procedures
 - Having a batch of machines in the cloud that just do whatever you want is a really great feature - common in this kind of tool, but very useful
-
-Reservations about DoesQA
---------------------------------------
-These are a few points where I have some concerns about how it would work longer scale, or concerns that came up from the testing.
-- At least one bug reported was a data-loss bug, and there were a few places where as a user I had to re-do something because of behaviors in the app. For someone building automated suites, this kind of thing is extremely frustrating and represents lost time and productivity.
-- The visual language of DoesQA is limited to linear (albeit branched) non-conditional flow without any kind of looped branching support. This accomodates simple checking, but falls apart very quickly for more advanced testing problems.
-- There are a whole host of issues that come of not having a text-based, searchable set of code that is compatible with your existing repository tools. Everything about DoesQA lives in the service and the DoesQA application space, walled off from everything else in your project. It may offer some advantages that make that difference not as much of a problem, but a lot of teams like to keep all their testing code together in the same place so all engineers can look at it alongside the product code.
 
 My approach
 ====================================
@@ -57,7 +58,7 @@ that direction.
 
 I also wanted to leave room for exploration, so I went for a loosely
 structured approach. On the one hand I had a combination of variables
-I wanted to cover, but on the other I hand I wanted to catch and
+I wanted to cover, but on the other I wanted to catch and
 investigate other problems that came up as I went.
 
 I used only Word for my reporting and collection tools. I do
@@ -68,7 +69,7 @@ I find them, but in this case I deviated and rolled up all results
 at the end. My bug reporting style is normally very "1-2-3... expected... actual",
 but this time I found myself writing more of a story. That might
 be the effect of having to remember the problem an hour or two
-after the fact, maybe it was the loose, story-ish format that Word
+after the fact, maybe it was the loose, story-ish mood that Word
 put me in.
 
 Testing Coverage and Method
@@ -113,7 +114,7 @@ job. An example result for the above workflow is shown below:
 Errors are displayed in the results for the run, with information provided on each step.
 These errors were informative as I was testing, because I was very much interested in
 what the error experience was like. If the end user strayed from the happy path, how
-bad could things get? Are they any guides to get them back to the happy path.
+bad could things get? Are there any guides to get them back to the happy path?
 
 The result below demonstrates such an examination. I was using the "Visible Text" selector
 to locate an INPUT element in a page. The error returned "still not clickable after 120000ms"
@@ -154,7 +155,7 @@ Summary of Issues
 ===================================
 I reported 14 different issues during testing. The issues are detailed in the test report document. A summarized list of them
 follows:
-- __Data Loss On Looping Workflow__: If a workflow has a looping sequence, the designer goes into a "Saving..." state it never comes out of, and any subsequent edits to the workflow will be lost, with no warning or prompt, when the user switches away from the screen.
+- __Data Loss On Looping Workflow__: If a workflow has a looping sequence, the designer goes into a "Saving..." state it never comes out of, and any subsequent edits to the workflow will be lost, with no warning or prompt, when the user switches away from the screen. I found this by accident. I did not intentionally loop the workflow, instead I inadvertently connected an action to a prior action on its chain while trying to tie two action sequences together as a branch to one of the longer scenarios.
 - __Lost Nodes During Edit__: I had some nodes in the designer disappear while editing, but I never got a repro. I suspect it might have been the same problem as the looping workflow described above.
 - __Various Node Editing UI Clumsiness__: There are some difficulties around control occlusion, connection editing, connection selection, node selection that are not extreme, but didn't feel smooth either.
 - __Confusing errors and incompatibilities between actions and HTML element types__: When the user specifies an action, or a selection type, that does not match the element they are trying to use, or the element state, the resulting error conditions are at least confusing and hard for the user to understand.
@@ -186,7 +187,21 @@ This was a fun testing session. It was more like scenario testing, more like
 trying to imitate a user doing something, but it was guided by a set
 of combinations derived analytically. It created an interesting mix.
 
-It was only second experience using a no-code test autoamtion tool in
+It was interesting reflecting on the test coverage and time spent
+in this session. My original specification had a couple of dozen
+combinations. I stopped at 14, with a few side trips for other
+investigations along the way. That much testing required 2.5 hours, and
+I was very disciplined about keeping my attention on just testing
+related activity. Writing the report also took 2.5 hours. Tracking
+exactly how much testing one does in a span of time, and how much supporting
+activity one has to do is very illuminating.
+
+But I also feel very good about the issue discovery rate. I reported almost
+as many issues as the number of combinations I tried, with a couple of feature suggestions
+for a bonus. Only 13 combinations might seem small given the much larger possible
+number I could cover, but the defect density discovery rate paid off.
+
+This was only my second experience using a no-code test autoamtion tool in
 the last decade or so, and I had been wanting to get a chance to look. I
 am glad I did.
 
