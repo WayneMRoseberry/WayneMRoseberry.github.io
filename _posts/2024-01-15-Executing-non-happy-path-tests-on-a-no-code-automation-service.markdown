@@ -35,3 +35,26 @@ A few comments on things I like about DoesQA
 - Per steps screen captures and video are useful
 - The designer allows branching of workflows, which run as parallel jobs, and allows for fast creation of testing permutations
 - The designer allows defining a collection of actions as a group that may be re-used like canned procedures
+
+Testing Coverage and Method
+===================================
+I covered approximately 13 combinations, give or take. They all are mostly represented in
+a single workflow, enabled by braches in the flow for each combination covered. You can see
+that in the image below.
+
+<img src="/assets/doesqa_combinations.png" width="800px"/>
+
+I spent 2.5 hours testing, 2.5 hours preparing the written report.
+
+Summary of Issues
+===================================
+I reported 14 different issues during testing. The issues are detailed in the test report document. A summarized list of them
+follows:
+- __Data Loss On Looping Workflow__: If a workflow has a looping sequence, the designer goes into a "Saving..." state it never comes out of, and any subsequent edits to the workflow will be lost, with no warning or prompt, when the user switches away from the screen.
+- __Lost Nodes During Edit__: I had some nodes in the designer disappear while editing, but I never got a repro. I suspect it might have been the same problem as the looping workflow described above.
+- __Various Node Editing UI Clumsiness__: There are some difficulties around control occlusion, connection editing, connection selection, node selection that are not extreme, but didn't feel smooth either.
+- __Confusing errors and incompatibilities between actions and HTML element types__: When the user specifies an action, or a selection type, that does not match the element they are trying to use, or the element state, the resulting error conditions are at least confusing and hard for the user to understand.
+- __Various UI issues and problems__: Tab order oddness, ability to give things the same name without UI ability to distinguish, judgement call on the randomly chosen name scheme for runs, and other small problems.
+
+In addition to the issue above, I offered a few feature suggestions. My favorite involves
+giving more power to the branching features to allow more re-use of actions across different elements.
