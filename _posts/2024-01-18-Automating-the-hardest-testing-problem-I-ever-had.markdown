@@ -18,6 +18,8 @@ Sometimes that <a href="https://waynemroseberry.github.io/2023/12/30/Flake-is-ab
 
 I have a story about it being very bad.
 
+Testing SharePoint Online
+===============================================================
 I was working on the User Profile Service in Microsoft SharePoint Online.
 The service was less than a year old, and we were getting reports of data
 sync and data loss bugs. Some of the problems:
@@ -48,8 +50,9 @@ and investigate and fix, because it involved the interaction of multiple systems
 - List and user data storage in SharePoint Sites
 - User personal sites in SharePoint, where the URI is based on the User ID
 - The UI of SharePoint, which initiated its own local sync behavior when a user visited a site
+- A synchronizatio process between the User Profile Service and the SharePoint site
 
-The first three systems I could not affect or control. There was no programmatic
+The first two systems I could not affect or control. There was no programmatic
 access to any of them. Microsoft Live offered only UI interfaces for changing
 user IDs. Active Directory account propagation from changes in accounts happened
 on a schedule I could not control. Syncing of data from the AD to the User Profile
@@ -71,7 +74,7 @@ things:
 1. add them to a list of users for the site if they are new
 2. if they visit the personal site create one under the user ID if it is not created yet, otherwise direct to existing one
 
-This logic is in the UI layer. SharePoint Online was (is?) written using Microsoft ASP,
+This logic is in the UI layer. SharePoint Online was written using Microsoft ASP,
 and behind the HTML is an executable binary referred to as "ASP Code-behind." This executable
 creates the HTML and responds to front-end requests to either take some action on the service
 or to provide information the page can use to update its state.
@@ -84,7 +87,7 @@ if a user was new and needed to be added to the list of users on the site was in
 behind. The ASP page called SharePoint APIs to act on all those decisions, but the decision
 itself was in UI code.
 
-A good deal of the logic resided in calls to the HTTPContext object, something that is only
+A good deal of the logic relied on calls to the HTTPContext object, something that is only
 available when the web-server is running and a visit to the page is invoked. This information
 was coupled with information retrieved from the user identity, the set of claims about the
 user. In particular, some of the code paths causing the bug would only happen if a user
@@ -109,7 +112,7 @@ thing didn't start happening until after 2014 when all the testers and developer
 were turned into Software Engineers and everybody had to do their own testing.
 
 But that is another story. The main point, I was stuck having to write the automation to
-this problem with a full stack.
+this problem with a full stack that I was not allowed to change.
 
 Automation, you say? Why not just...?
 ==================================================
@@ -122,7 +125,7 @@ There were multiple events I had to synchronize in strict ordered control:
 - An end user visiting the SharePoint personal site
 
 Those operations, in different order and sequences, multiple times each, defined the
-test problem domain. The state matrix was massive. I had determined a set of 7 different
+test problem domain. The state machine was massive. I had determined a set of 7 different
 failure modes that reduced the matrix, but there was still other non-broken traversals of the
 state that needed to happen. That timing and volume was only feasible if I automated
 the behaviors. "Manual testing" was a no-starter.
@@ -132,6 +135,11 @@ What I did
 1. Backward engineered the Microsoft Live claims provider and wrote my own. This took two weeks of reading the SharePoint code to determine what it believed a Microsoft Live claims provider looked like, because there was no documentation.
 2. Create an in-memory user identity service that the claims provider would use to get accounts from and which I could forcibly sync to the User Profile Service on-demand. I added an API to this service that allowed me to change the User Principal Name of a user at will
 3. Created test library tasks to invoke User Profile to SharePoint sync, and to have the user visit each of the relevant SharePoint UI locations to cover the tests
+
+This done, I was able to run the entire scenario on a single box,
+Microsoft Live and Active Directory completely removed from
+the environment. I still had to have the SharePoint site
+up and running inside IIS and come in through the UI.
 
 This was a tremendous amount of work, but we were losing a lot of money from
 angry customers online dropping subscriptions. We needed something to cover changes
@@ -145,4 +153,12 @@ The lesson learned
 ==================================================
 My takeaway is that I personally felt the pain over the span of a couple of months that came
 from tightly coupled UI, business logic, and dependencies which cost the company a lot of
-money and made a problem far more difficult to test than it should have been.
+money and made a problem far more difficult to test than it should have been. The post
+from Bryan Finster mentioned at the top of the article brought back these memories.
+
+An important part of good testing is setting up the tester to succeed. The more
+you couple code together, the harder the problem the tester is going to have. It doesn't
+matter who your tester is - a dedicated testing professional, the developer on the code,
+a member of the product management team, anybody else from the team - they life will
+be so much easier, and your product so much better, if you choose designs that
+are easier to test.
