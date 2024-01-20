@@ -51,7 +51,64 @@ press was not getting captured.
 Maybe I'm just doing it wrong...
 --------------------------------------------
 Perhaps all savvy users of ContextQA are just going to have to learn
-not to TAB between controls when they record themselves?
+not to TAB between controls when they record themselves? I consider
+that a problem, but I also wanted to get through a complete and
+working version of my scenario.
+
+In the previous run I had changed the fields in this order
+1. building for start
+2. building for destination
+3. pickup time
+4. rider name
+5. TAB
+
+That TAB was in there to get the change to the rider name
+to trigger the onChange() event. I changed the order to something
+like this:
+
+1. building for start
+2. building for destination
+3. rider name
+4. pickup time
+
+Changing focus inside a web page is all that is normally required
+to trigger the onChange() event for a control. By choosing
+pickup time from its Select element, I figured that would separate
+if the issue is just with capturing TAB keypress, or if it was
+something else.
+
+On playback, I saw the problem reproduced. The rider name was
+not changing on the summary of pickup text below on the page, even
+though it was updated when I recorded the session. Rather than this
+being about not capturing TAB, I now had a new hypothesis:
+> _Changes to the text property of Input elements in a form recorded by
+> ContextQA Chrome Extension test case recorder will not trigger
+> the onChange() event during playback._
+
+I sought to test this hypothesis.
+
+Seeking the repro
+==================================================
+I put the investigation to the side for a bit, but made note of the bug.
+This Input field issue came up while I was considering a different investigation,
+which was seeing how well the recorder worked with different kind of markup
+on HTML elements. I was still trying to understand how it decided what
+kind of selector to assign during record, and how it used those selectors
+during playback.
+
+I created a test web page that had most of the different kind of HTML elements, each
+with an id field on them. My assumption was that the recorder ought to prefer
+the id field. While testing this, I found the truth was far more sophisticated, and
+ContextQA's behavior far more resilient because of it.
+
+During that testing, I re-visited the Input field onChange() behavior, partly
+to investigate some of the other behavior I was trying to understand regarding
+selectors on the page. I had an Input element's onChange() event set to update
+another element's innerHTML property. To my surprise, during playback, the target
+element innerHTML did update as it should have.
+
+What happened to my bug?
+
 
 The final repro moments
 =============================================
