@@ -17,11 +17,15 @@
 
         function myFunction2() {
             let y1 = "no";
-            y1 = prompt('type yes to change span3');
+            y1 = prompt('type yes to change selection list');
             if (y1 == "yes") {
-                document.getElementById("span3").innerHTML =
-                    "outer span left <span id='span4'>I have just changed span3 to something else.</span> outer span right";
-            }
+              let sel = document.getElementById("selectid1");
+              let opt = document.createElement('option');
+              opt.value = "newoption";
+              opt.innerHTML = "A new option";
+              opt.id = "newoptionid1";
+              sel.appendChild(opt);
+           }
         }
     </script>
 
