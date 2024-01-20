@@ -27,25 +27,31 @@
             orderSpan.innerHTML = orderSpan.innerHTML + "," + itemName;
 
         }
+
+        function addOperation(operation)
+        {
+            document.getElementById("operationorder").innerHTML = document.getElementById("operationorder").innerHTML + "," + operation
+        }
     </script>
 
-    <button id="addguava" onclick="processAdd('guava')">add guava</button> 
-        &nbsp;<button id="addapple" onclick="processAdd('apple')">add apple</button>
-        &nbsp;Enter custom item here:<input id="customitem" onchange="processAdd(document.getElementById('customitem').value)" /><br />
+    <button id="addguava" onclick="processAdd('guava');addOperation('addguava')">add guava</button> 
+        &nbsp;<button id="addapple" onclick="processAdd('apple');addOperation('addapple')">add apple</button>
+        &nbsp;Enter custom item here:<input id="customitem" onchange="processAdd(document.getElementById('customitem').value);addOperation('addcustom')" /><br />
     <span id="orderlist"></span><br />
-    <select id="deliveryoptions">
-        <option id="onehourship" value="onehour">One Hour</option>
-        <option id="overnightship" value="overnight">Overnight</option>
+    operation order:<span id="operationorder"></span><br />
+    <select id="deliveryoptions" onchange="addOperation('deliveryoption')">
+        <option id="onehourship" value="onehour" onclick="addOperation('onehour')">One Hour</option>
+        <option id="overnightship" value="overnight" onclick="addOperation('overnight')">Overnight</option>
     </select><br />
-    <select id="insuranceoptions">
-        <option id="uninsured" value="uninsured">uninsured</option>
-        <option id="insured" value="insured">insured</option>
+    <select id="insuranceoptions" onchange="addOperation('insuranceoption')">
+        <option id="uninsured" value="uninsured" onclick="addOperation('uninsured')">uninsured</option>
+        <option id="insured" value="insured" onclick="addOperation('insured')">insured</option>
     </select><br />
 
-    <button id="submitorder" onclick="processSubmit()">submit order</button><br />
+    <button id="submitorder" onclick="processSubmit();addOperation('submit')">submit order</button><br />
     <span id="confirmationspan" style='display:none'>
         <span id="ordersummary"></span><br /><br />
-        <button id="confirmorder" onclick="processConfirm()">confirm order</button>
+        <button id="confirmorder" onclick="processConfirm();addOperation('confirm')">confirm order</button>
     </span>
 
 </body>
