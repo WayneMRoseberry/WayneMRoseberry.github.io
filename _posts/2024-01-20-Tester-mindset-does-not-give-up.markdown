@@ -18,6 +18,9 @@ possibility of mistake.
 
 Testing testing tools...
 ==========================================
+![the ContextQA logo](/assets/contextqalogo.png)
+
+
 I recently tried testing <a href="https://contextqa.com/">ContextQA</a>, a no-code automation
 solution. One of the features they offer is a Chrome Extension that allows a user to
 record actions on a web page and capture those as steps in a test case for playback
@@ -47,6 +50,15 @@ This article is not a review or critique of ContextQA. This
 article is about testing, and in particular investigating a bug
 that turns out to be harder to repro than one initially believes.
 
+Things I like about ContextQA
+----------------------------------------------
+<h3>Things I like, that it brings to the table</h3>
+
+- __Your machines await__: a lot of no code solutions are meant to run your tests in a data center they provide, using resources on demand. While common for the category, this is also no small value. I see this as one of the reasons why somebody would invest in a tool like ContextQA. It takes a whole pile of lab costs off your hands.
+- __Record is a useful feature__: the "no code" space is a bit of a misnomer, as crafting custom steps and cases requires being comfortable with developer level information about web pages. The ContextQA Chrome Extension is a helpful aid getting a user to working case steps without having to do all the authoring and selector grabbing themselves. The recorded steps also grab multiple selectors at once, and employ them in a self-healing strategy at run time. I found during some of my testing attempts to make cases that would fail because of control ambiguity were thwarted by this strategy.
+- __Canned coding patterns__" this, in my opinion, is what the no code solutions really bring to the table. They are widget style encapsulations of UI automation design patterns which tend to be more resilient to web UI behaviors that destabilizing a lot of hand-coded script.
+- __The Playwright actions are available for viewing__: Once I found this on results, I was using it a lot to understand why certain things happened during the test case runs. The team needs to lean heavier on these kinds of diagnostic, transparency options.
+- __Video playback__: I used this feature the most for the test investigation that follows. It is very helpful to have a video that shows what the test was doing, what the page looks like at the time of test.
 
 Digging, digging, digging...
 =============================================
