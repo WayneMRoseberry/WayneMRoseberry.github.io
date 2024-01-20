@@ -12,6 +12,22 @@ bug I saw during my user scenario test, but they did not.
 
 I hate it when that happens.
 
+Before we get started
+=============================================
+I am not an employee of ContextQA. I was not asked or paid
+by them to do this testing. I performed the testing to learn
+more about the application, and as material for this article.
+Deep Barot, the CEO of ContextQA has been coorperative and
+helpful every time I ask him questions. I have shown him the
+issue that is the target of my investigation and writing
+below. I used a free trial account for this testing, and every time
+I hit a limit I contacted Deep and he extended it.
+
+This article is not a review or critique of ContextQA. This
+article is about testing, and in particular investigating a bug
+that turns out to be harder to repro than one initially believes.
+
+
 Digging, digging, digging...
 =============================================
 I had the following scenario in mind:
