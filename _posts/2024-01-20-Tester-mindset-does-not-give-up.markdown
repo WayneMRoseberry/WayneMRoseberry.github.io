@@ -1,3 +1,26 @@
+The tester keeps looking for the bugs
+===========================================
+![Image a hand with a pen pointing at a corkboard of beetles, one of which is a bigfoot/beetle hybrid.](/assets/bigfootbug.jpg)
+_The prompt for this Bing Image Creator generated image is "tester pointing to a conspiracy style corkboard with picture of giant bugs on it, some of which are very similar to classic pictures of bigfoot"._
+
+It is common that we see things during testing we do not understand
+at first. We form hypotheses about what is happening, and then
+later learn they were wrong. The most disappointing case is when
+nobody can reproduce what we saw before. Or we may see something,
+try again and it goes away, and we doubt ourselves. Maybe we
+were mistaken and did not see what we thought we did. Maybe we are
+just "doing it wrong."
+
+When that happens, the tester tends to dig in and look more closely.
+Try again. Change things up. It helps if the tester has some record
+of what they were doing to help them remember, check against the
+possibility of mistake.
+
+Testing testing tools...
+==========================================
+![the ContextQA logo](/assets/contextqalogo.png)
+
+
 I recently tried testing <a href="https://contextqa.com/">ContextQA</a>, a no-code automation
 solution. One of the features they offer is a Chrome Extension that allows a user to
 record actions on a web page and capture those as steps in a test case for playback
@@ -27,6 +50,15 @@ This article is not a review or critique of ContextQA. This
 article is about testing, and in particular investigating a bug
 that turns out to be harder to repro than one initially believes.
 
+Things I like about ContextQA
+----------------------------------------------
+<h3>Things I like, that it brings to the table</h3>
+
+- __Your machines await__: a lot of no code solutions are meant to run your tests in a data center they provide, using resources on demand. While common for the category, this is also no small value. I see this as one of the reasons why somebody would invest in a tool like ContextQA. It takes a whole pile of lab costs off your hands.
+- __Record is a useful feature__: the "no code" space is a bit of a misnomer, as crafting custom steps and cases requires being comfortable with developer level information about web pages. The ContextQA Chrome Extension is a helpful aid getting a user to working case steps without having to do all the authoring and selector grabbing themselves. The recorded steps also grab multiple selectors at once, and employ them in a self-healing strategy at run time. I found during some of my testing attempts to make cases that would fail because of control ambiguity were thwarted by this strategy.
+- __Canned coding patterns__" this, in my opinion, is what the no code solutions really bring to the table. They are widget style encapsulations of UI automation design patterns which tend to be more resilient to web UI behaviors that destabilizing a lot of hand-coded script.
+- __The Playwright actions are available for viewing__: Once I found this on results, I was using it a lot to understand why certain things happened during the test case runs. The team needs to lean heavier on these kinds of diagnostic, transparency options.
+- __Video playback__: I used this feature the most for the test investigation that follows. It is very helpful to have a video that shows what the test was doing, what the page looks like at the time of test.
 
 Digging, digging, digging...
 =============================================
@@ -63,6 +95,15 @@ fire.
 During playback of the test case, I confirmed my suspicions. In the video
 of the sequence, the page was not updated as I expected. The TAB key
 press was not getting captured.
+
+> __This is quite alarming.__
+> Not capturing the same sequences of steps that a user executed
+> means that when run again, the test case is going to do something
+> different. This is even more concerning if the test case does not
+> fail, because unless the behavior of the run is inspected closely
+> people may be led to believe a scenario is executing and passing
+> that has not been run at all. It leads to false negatives, something
+> most people consider the most alarming of test automation problems.
 
 Maybe I'm just doing it wrong...
 --------------------------------------------
@@ -161,7 +202,7 @@ it triggered the onChange() event for the Input element. The only difference
 I could see was that my bus route web page had Select elements and
 I had recorded myself choosing an option from the list.
 
-I added Selection elemtns to my web page for choosing delivery method (onehour, overnight)
+I added Selection elements to my web page for choosing delivery method (onehour, overnight)
 and insurance options (uninsured, insured). I recorded the following
 steps:
 1. enter "banana" in the custom field
@@ -174,7 +215,7 @@ This was different from the recorded session, when "order list" changed immediat
 after selecting "overnight." There was a difference in application behavior,
 but the final end state was correct. This difference should be
 enough to demonstrate a problem, but I wanted the evidence stronger, so
-I crated a sequences that would produce a different end state.
+I crafted a sequences that would produce a different end state.
 
 First, I added a span of text that tracks the commands in order and changed
 every element on the page to call that command with a string identifying them.
@@ -201,3 +242,28 @@ This is ContextQA's video of the run of that same test case:
 <video width="500" controls>
   <source src="https://waynemroseberry.github.io/assets/contextqa_playback_fruitorder.webm">
 </video>
+
+I now have a repeatably confirmed hypothesis:
+> _Changes to the text property of Input elements in a form followed by
+> selecting options from a Select element recorded by
+> ContextQA Chrome Extension test case recorder will not trigger
+> the onChange() event until interacting with a non-Input or
+> non-Select element during playback, leading to potential
+> omission of operations, altered order of operations, and
+> changes in application state._
+
+Not the same bug we were hunting, but a successful morning out regardless
+================================================
+There are many impulses that causes us not to go looking for odd
+behavior we noticed. We might be busy doing other things, we might
+doubt ourselves, we might feel compelled to assign the behavior
+to the "don't do that bucket." In this particular case, I avoided
+all of that by doing the following:
+
+1. Keep note of what I found and put it on a "do next" list if I am busy with something else
+2. Keep good notes of what I observed, often records of page content, logs, screenshots - and in this case, video
+3. Commit to the certainty that you saw something, and what you are trying to do now is understand what it was
+4. Form a hypothesis and see if you can either refute or confirm it with evidence
+5. Use the refuted hypothesis as the basis to form new hypotheses and modify your test as appropriate
+
+This is how we find the tricky problems. The monsters await.
