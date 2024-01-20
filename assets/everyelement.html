@@ -16,10 +16,13 @@
         }
 
         function myFunction2() {
-            alert('Click OK to keep going.');
-            document.getElementById("span3").innerHTML =
-            "outer span left <span id='span4'>I have just changed span3 to something else.</span> outer span right";
-    }
+            let y1 = "no";
+            y1 = prompt('type yes to change span3');
+            if (y1 == "yes") {
+                document.getElementById("span3").innerHTML =
+                    "outer span left <span id='span4'>I have just changed span3 to something else.</span> outer span right";
+            }
+        }
     </script>
 
     <span id="promptuser" onclick="myFunction()">click here to change span2</span>
