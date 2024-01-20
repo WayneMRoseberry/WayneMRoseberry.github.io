@@ -14,10 +14,17 @@
                     "Hello " + person + "! How are you today?";
             }
         }
+
+        function myFunction2() {
+        document.getElementById("span3").innerHTML =
+        "outer span left <span id='span4'>I have just changed span3 to something else.</span> outer span right";
+    }
     </script>
 
     <span id="promptuser" onclick="myFunction()">click here to change span2</span>
     <span id="span2">default text for span2</span><br />
+    <span id="spanchanger" onclick="myFunction2()" >click here to change span3</span><br />
+    <span id="span3">default text for span3</span><br />
     <span onclick="alert('You clicked the MSN button.')">MSN</span>
     <br />
 
