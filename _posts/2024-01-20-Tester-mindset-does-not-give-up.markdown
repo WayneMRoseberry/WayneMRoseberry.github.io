@@ -16,6 +16,32 @@ Try again. Change things up. It helps if the tester has some record
 of what they were doing to help them remember, check against the
 possibility of mistake.
 
+Testing and time... all that time
+------------------------------------------
+This whole investigation started off with a
+a single test case. I spent less than a minute imagining
+it. I already had a website ready, so there was not
+much preparation time. The test case itself was
+about 10 minutes of execution. It only took this long
+because launching a run adds about 2 minutes of wait time
+for results. I was also narrating for a video as I went,
+which probably doubled my execution time.
+
+Investigating the problem I saw during the test took
+probably two hours. Perhaps more. During that time, I was
+constantly changing the nature and type of testing. I started
+off trying to imitate hypothetical user actions, but then I
+move into hypothesis checking, exploration, and straying from
+regular user actions in order to narrow the case.
+
+This is something that testers who do a lot of
+exploratory work understand well. Even if
+you decide to be driven by something whose steps
+you thought of ahead of time, most of the time that
+is a very small amount of the actual testing work. In my case,
+I think the ratio was a 30 to 1 ratio of investigation time
+versus pre-planned step execution.
+
 Testing testing tools...
 ==========================================
 ![the ContextQA logo](/assets/contextqalogo.png)
@@ -261,9 +287,10 @@ to the "don't do that bucket." In this particular case, I avoided
 all of that by doing the following:
 
 1. Keep note of what I found and put it on a "do next" list if I am busy with something else
-2. Keep good notes of what I observed, often records of page content, logs, screenshots - and in this case, video
-3. Commit to the certainty that you saw something, and what you are trying to do now is understand what it was
-4. Form a hypothesis and see if you can either refute or confirm it with evidence
-5. Use the refuted hypothesis as the basis to form new hypotheses and modify your test as appropriate
+2. Be ready to deviate from your test cases and start a bunch of impromptu exploration
+3. Keep good notes of what I observed, often records of page content, logs, screenshots - and in this case, video
+4. Commit to the certainty that you saw something, and what you are trying to do now is understand what it was
+5. Form a hypothesis and see if you can either refute or confirm it with evidence
+6. Use the refuted hypothesis as the basis to form new hypotheses and modify your test as appropriate
 
 This is how we find the tricky problems. The monsters await.
