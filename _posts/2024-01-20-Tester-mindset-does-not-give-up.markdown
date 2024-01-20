@@ -122,14 +122,34 @@ During playback of the test case, I confirmed my suspicions. In the video
 of the sequence, the page was not updated as I expected. The TAB key
 press was not getting captured.
 
-> __This is quite alarming.__
-> Not capturing the same sequences of steps that a user executed
-> means that when run again, the test case is going to do something
-> different. This is even more concerning if the test case does not
-> fail, because unless the behavior of the run is inspected closely
-> people may be led to believe a scenario is executing and passing
-> that has not been run at all. It leads to false negatives, something
-> most people consider the most alarming of test automation problems.
+ __This is quite alarming.__
+_Not capturing the same sequences of steps that a user executed
+means that when run again, the test case is going to do something
+different. This is even more concerning if the test case does not
+fail, because unless the behavior of the run is inspected closely
+people may be led to believe a scenario is executing and passing
+that has not been run at all. It leads to false negatives, something
+most people consider the most alarming of test automation problems._
+
+> __Bug or not is subjective on this kind of thing.__
+> 
+> Record and playback is a feature that is never going to achieve
+> full fidelity between what was originally recorded and what is played back.
+> Recording everything creates extra noise that makes scripts unwieldy
+> and brittle. Some actions are outside view of the recorder.
+>
+> For decades, people working with record and playback are used to editing recordings to
+> make them more robust, add capability the recorder cannot capture.
+>
+> I could have added a step to press the TAB key. As you will see later,
+> order of operations affected whether the problem reproduced or not. The
+> user in this case has workarounds, so the bug moves to a question of whether
+> or not the mismatch is reasonably obvious, or if the workarounds are indeed
+> valid for what the user is trying to automate.
+>
+> As a tester, I see my obligation to provide as complete and accurate a
+> description of product behavior as I can so the product team can investigate
+> whether it is something they can, or should address.
 
 Maybe I'm just doing it wrong...
 --------------------------------------------
