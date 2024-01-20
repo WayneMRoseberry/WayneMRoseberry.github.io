@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script>
+        function processSubmit()
+        {
+            document.getElementById("confirmorder").style.display="block";
+        }
+
+        function processConfirm()
+        {
+            document.getElementById("confirmorder").style.display="none";
+        }
+
+        function processAdd(itemName)
+        {
+            let orderSpan = document.getElementById("orderlist");
+            orderSpan.innerHTML = orderSpan.innerHTML + "," + itemName;
+
+        }
+    </script>
+
+    <button id="addguava" onclick="processAdd('guava')">add guava</button> 
+        &nbsp;<button id="addapple" onclick="processAdd('apple')">add apple</button>
+        &nbsp;Enter custom item here:<input id="customitem" onchange="processAdd(document.getElementById('customitem').value)" />
+    <span id="orderlist"></span><br />
+    <button id="submitorder" onclick="processSubmit()">submit order</button><br />
+    <button id="confirmorder" onclick="processConfirm()" style='display:none'>confirm order</button>
+
+</body>
+</html>
