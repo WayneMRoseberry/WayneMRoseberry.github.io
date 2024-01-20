@@ -16,15 +16,14 @@
         }
 
         function myFunction2() {
-            let y1 = "no";
-            y1 = prompt('type yes to change selection list');
-            if (y1 == "yes") {
-              let sel = document.getElementById("selectid1");
-              let opt = document.createElement('option');
-              opt.value = "newoption";
-              opt.innerHTML = "A new option";
-              opt.id = "newoptionid1";
-              sel.appendChild(opt);
+            if (confirm("and a new option to the selection list?")) {
+                let sel = document.getElementById("selectid1");
+                let listlen = sel.options.length;
+                let opt = document.createElement('option');
+                opt.value = "newoption" +listlen;
+                opt.innerHTML = "A new option "+listlen;
+                opt.id = "newoptionid"+listlen;
+                sel.appendChild(opt);
            }
         }
     </script>
