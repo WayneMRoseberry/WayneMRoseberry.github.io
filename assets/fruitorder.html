@@ -9,12 +9,13 @@
     <script>
         function processSubmit()
         {
-            document.getElementById("confirmorder").style.display="block";
+            document.getElementById("confirmationspan").style.display="block";
+            document.getElementById("ordersummary").innerHTML = "order:<br />" + document.getElementById("orderlist").innerHTML + "<br /> delivery option:" + document.getElementById("deliveryoptions").value;
         }
 
         function processConfirm()
         {
-            document.getElementById("confirmorder").style.display="none";
+            document.getElementById("confirmationspan").style.display="none";
         }
 
         function processAdd(itemName)
@@ -27,10 +28,17 @@
 
     <button id="addguava" onclick="processAdd('guava')">add guava</button> 
         &nbsp;<button id="addapple" onclick="processAdd('apple')">add apple</button>
-        &nbsp;Enter custom item here:<input id="customitem" onchange="processAdd(document.getElementById('customitem').value)" />
+        &nbsp;Enter custom item here:<input id="customitem" onchange="processAdd(document.getElementById('customitem').value)" /><br />
     <span id="orderlist"></span><br />
+    <select id="deliveryoptions">
+        <option id="onehourship" value="onehour">One Hour</option>
+        <option id="overnightship" value="overnight">Overnight</option>
+    </select><br />
     <button id="submitorder" onclick="processSubmit()">submit order</button><br />
-    <button id="confirmorder" onclick="processConfirm()" style='display:none'>confirm order</button>
+    <span id="confirmationspan" style='display:none'>
+        <span id="ordersummary"></span><br /><br />
+        <button id="confirmorder" onclick="processConfirm()">confirm order</button>
+    </span>
 
 </body>
 </html>
