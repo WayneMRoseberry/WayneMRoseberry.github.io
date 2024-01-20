@@ -6,6 +6,18 @@
     <title>A page of everything</title>
 </head>
 <body>
+    <script>
+        function myFunction() {
+            let person = prompt("Please enter your name", "Harry Potter");
+            if (person != null) {
+                document.getElementById("span2").innerHTML =
+                    "Hello " + person + "! How are you today?";
+            }
+        }
+    </script>
+
+    <span id="promptuser" onclick="myFunction()">click here to change span2</span>
+    <span id="span2">default text for span2</span><br />
     <span onclick="alert('You clicked the MSN button.')">MSN</span>
     <br />
 
@@ -24,7 +36,7 @@
     <br />
     <blockquote id="blockquoteid1">this is some blockquote</blockquote>
     <br />
-    <button id="buttonid1">this is some button</button>
+    <button id="buttonid1" onclick="alert('You clicked the button.')">this is some button</button>
     <br />
     <cite id="citeid1" title="name of reference">this is some citation</cite>
     <br />
