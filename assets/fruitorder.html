@@ -10,7 +10,10 @@
         function processSubmit()
         {
             document.getElementById("confirmationspan").style.display="block";
-            document.getElementById("ordersummary").innerHTML = "order:<br />" + document.getElementById("orderlist").innerHTML + "<br /> delivery option:" + document.getElementById("deliveryoptions").value;
+            document.getElementById("ordersummary").innerHTML = "order:<br />" 
+            + document.getElementById("orderlist").innerHTML 
+            + "<br /> delivery option:" + document.getElementById("deliveryoptions").value
+            + "<br /> insurance options:" + document.getElementById("insuranceoptions").value;
         }
 
         function processConfirm()
@@ -34,6 +37,11 @@
         <option id="onehourship" value="onehour">One Hour</option>
         <option id="overnightship" value="overnight">Overnight</option>
     </select><br />
+    <select id="insuranceoptions">
+        <option id="uninsured" value="uninsured">uninsured</option>
+        <option id="insured" value="insured">insured</option>
+    </select><br />
+
     <button id="submitorder" onclick="processSubmit()">submit order</button><br />
     <span id="confirmationspan" style='display:none'>
         <span id="ordersummary"></span><br /><br />
