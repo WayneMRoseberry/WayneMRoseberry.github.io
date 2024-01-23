@@ -85,9 +85,9 @@ __Fact Batch Size and Batch Size Increase Hypothesis__
 
 | Builds | Target Run Time | Actual Run Time| Batch Size | Fact Batch Size | Break Prob. | Break Detect Miss Prob. | Regress Prob. | Regress Detect Miss Prob. |
 |---|---|---|---|---|---|---|---|---|
-| 10 | measured  | measured | 1  | 1  | .5 | .5 | .5 | .5 |
-| 10 | 4x prior  | -        | 2  | 2  | .5 | .5 | .5 | .5 |
-| 10 | 16x prior  | -        | 4  | 4  | .5 | .5 | .5 | .5 |
-| 10 | 64x prior  | -        | 8  | 8  | .5 | .5 | .5 | .5 |
-| 10 | 2x prior  | -        | 16 | 16 | .5 | .5 | .5 | .5 |
-| 10 | 2x prior  | -        | 32 | 32 | .5 | .5 | .5 | .5 |
+| 10 | measured     | measured | 1  | 1  | .5 | .5 | .5 | .5 |
+| 10 | 4x prior     | -        | 2  | 2  | .5 | .5 | .5 | .5 |
+| 10 | 16x prior    | -        | 4  | 4  | .5 | .5 | .5 | .5 |
+| 10 | 64x prior    | -        | 8  | 8  | .5 | .5 | .5 | .5 |
+| 10 | 256x prior   | -        | 16 | 16 | .5 | .5 | .5 | .5 |
+| 10 | 1024x prior  | -        | 32 | 32 | .5 | .5 | .5 | .5 |
