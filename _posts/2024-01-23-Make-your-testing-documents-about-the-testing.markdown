@@ -1,3 +1,7 @@
+Make the testing specification about the testing
+================================================
+![A sticky note that says not to copy the product spec when writing the test spec](/assets/donotcopytheproductspec.jpg)
+
 I prefer testing documentation be about testing and only about testing.
 The purposes of testing documentation are as follows:
 - Help us think about testing we might do
@@ -60,7 +64,7 @@ Sometimes a tester will repeat content that is already described in
 product documentation, designs, specifications or source code.
 Small bits of such content are useful when the re-write
 is about testing implications, but when no such testing
-information is included it is a waste of tester time and
+information is included it is a waste of time and
 energy. It also gives the impression to teammates that testing
 is a vacuous act, that there is nothing to it other
 than what everybody else already created.
@@ -83,7 +87,7 @@ and say something about the testing. For example:
 > The user personalization cache checks for personalization refresh
 > based on a timer schedule, _and therefore_ testing will focus on
 > actions that fetch from the cache along with actions that affect
-> personalizations around triggering of that time job.
+> personalizations around triggering of that timer job.
 
 __Replace product behavior descriptions with "_What happens when...?_"__
 
@@ -145,7 +149,7 @@ feature specifically.
 
 Imagine the following section from a test specifcation template (taken from
 an IEE 829 test specification template on <a href="https://www.stickyminds.com/sites/default/files/article/file/2013/Software%20Test%20Case%20Specification%20Template.pdf">
-StickyMinds.com</a>:
+StickyMinds.com</a>):
 
 > Environmental needs
 > 
