@@ -30,6 +30,21 @@ variables we believe will have a certain affect on the system. Those variables u
 come from the workload, although they may also any of the product or environment related
 configurations.
 
+Example Product: A build simulator
+===================================================
+I wasted most of my morning today writing a Monte Carlo style
+tool to simulate the way batch size affects the probability of
+bug accumulation in the build. I was checking what kinds of
+results my simulator gave me, and I found performance degraded
+quickly as simulations got larger and larger.
+
+I didn't, and probably still don't, intend on doing any performance tests
+or fixes against this tool, but it is small and simple enough to
+provide an example of analyzing a workload, even for something
+as humble as a single user desktop tool.
+
+Build Simulator: Behavioral Summary
+----------------------------------------------------
 ```
 BuildSimulator:
 
