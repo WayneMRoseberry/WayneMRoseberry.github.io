@@ -45,6 +45,18 @@ as humble as a single user desktop tool.
 
 Build Simulator: Behavioral Summary
 ----------------------------------------------------
+> I always want test specifications to be entirely
+> about the test analysis and only the test analysis. Any
+> word or sentence that doesn't say something about why, how
+> or what of testing I ask for removal.
+> 
+> _Ordinarily I tell a tester to remove information in a test
+> specification that are word for word repeats of material already
+> in design docs, product specs, user documentation, or source code.
+> I tell them to point in a link to the document instead. I include it
+> here because that documentation doesn't exist, and the article
+> wouldn't make much sense without it here to reference.
+
 ```
 BuildSimulator:
  Simulates a series of builds, each take a new set of changes on top of a prior
