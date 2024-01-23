@@ -102,6 +102,14 @@ in order to check the 0 effect hypothesis.
 
 Build Simulator Performance Test Hypotheses
 ================================================
+In the case of each of the hypotheses, one or more variables are changing
+while all others remain static. The measured variable is Run Time, which
+is compared against a target, which will be measured prior to the
+runs and used as a baseline. From there, each success target measurement is
+compared to the prior row and adjusted as shown in the tables. The
+baseline measurement is expected to be less than 100 milliseconds - more
+than that will be considered a bug. Actual run time growth should be within
+a 5% error margin of target run time.
 
 __Build Increase Hypothesis__
 > _Run time will grow linearly with the number of builds so long as all other variables remain static.
@@ -151,3 +159,35 @@ __Fact Batch Size and Batch Size Increase Hypothesis__
 | 10 | 64x prior    | -        | 8  | 8  | .5 | .5 | .5 | .5 |
 | 10 | 256x prior   | -        | 16 | 16 | .5 | .5 | .5 | .5 |
 | 10 | 1024x prior  | -        | 32 | 32 | .5 | .5 | .5 | .5 |
+
+... and, that's enough hypotheses for now. I think you get the point...
+
+It's about defining the variables
+========================================================
+There is a lot more to the craft of performance testing, especially
+in the tools, impact of the environment, behavior of different technologies
+(boy oh boy, HTML page load ordering, that is a fun one), and
+very specific performance testing methodologies. It is so specialized
+that some people have made their entire career out of performance
+engineering and testing.
+
+If you enjoy that kind of thing, there is a lot of fun to be had there.
+
+But all that aside, my favorite part of performance testing is what
+I described here. Taking the prolem apart conceptually by selecting
+the variables that I believe impact performance, and coming up with
+a way to explore what happens as those variables change. The workload
+is a highly re-usable part of the performance analysis. You will likely
+find that once you have defined different flavors of workload for your
+product or system that you go back to it to solve a lot of problems.
+
+Learning more
+=========================================================
+The tables I used for laying out anticipated results that check
+performance hypotheses follow a technique I describe in my book
+<a href="https://www.amazon.com/Writing-Test-Plans-Made-Easy/dp/1478333693">"_Writing Test Plans Made Easy_", available on Amazon</a>.
+
+<a href="https://www.amazon.com/Writing-Test-Plans-Made-Easy/dp/1478333693"><img src="/assets/writingtestplanscover.jpg" width="400" /></a>
+
+I cover several other ways of taking apart testing problems
+and representing them in compact, easy to understand form.
