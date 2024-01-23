@@ -42,3 +42,15 @@ Inputs:
  regressionProbability: probability that a given fact will cause a regression with a fact from a prior build
  regressionMissDetectionProbability: probability that the given regression will be missed (and not fixed as part of build)
 ```
+
+__Build Increase Hypothesis__
+> _Run time will grow linearly with the number of builds so long as all other variables remain static.
+
+| Builds | Target Run Time | Actual Run Time| Batch Size | Fact Batch Size | Break Prob. | Break Detect Miss Prob. | Regress Prob. | Regress Detect Miss Prob. |
+|---|---|---|---|---|---|---|---|---|
+| 10 | measured  | measured | 1 | 1 | .5 | .5 | .5 | .5 |
+| 20 | 2x prior  | -        | 1 | 1 | .5 | .5 | .5 | .5 |
+| 40 | 2x prior  | -        | 1 | 1 | .5 | .5 | .5 | .5 |
+| 80 | 2x prior  | -        | 1 | 1 | .5 | .5 | .5 | .5 |
+| 160 | 2x prior | -        | 1 | 1 | .5 | .5 | .5 | .5 |
+| 320 | 2x prior | -        | 1 | 1 | .5 | .5 | .5 | .5 |
