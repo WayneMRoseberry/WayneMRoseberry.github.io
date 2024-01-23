@@ -1,3 +1,10 @@
+UNDER CONTRUCTION...
+
+I am commiting this early like a crazed maniac every few minutes
+because github lost an hour of work on me earlier today. So if you see this
+article, yeah, it is unfinished....
+
+
 Multiple kinds of performance test require definition of a workload in order
 to execute the test. The different performance tests where this might apply
 would be any of the following (did I miss some?):
