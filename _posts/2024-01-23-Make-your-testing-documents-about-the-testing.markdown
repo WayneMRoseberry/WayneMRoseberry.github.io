@@ -221,4 +221,37 @@ application:
 > tools and modes:
 >  - appointment creation/management view
 
+You know, you don't HAVE to write a document...
+===============================================
+A lot of testers get a lot of ground from material other than
+prose documents. Jumping right to another format than document
+files can force the issue of not re-hashing something already said
+elsewhere, or that says very little.
 
+I have seen lots of the following:
+- __Mindmaps__: I do not use them myself, but a lot of people do very well with them
+- __Checklists__: Airline pilots, surgeons, and astronauts use them, and they work well for testing. A whole bunch of test specifications are really descriptions of how to combine one checklist with another.
+- __Spreadsheets__: Everything from checklists, to matrices, to input values, to pre-canned report formats, I have known a lot of people who get just about every testing idea they have from a spreadsheet
+- __Drawings__: A bunch of circles, squares, lines, and arrows can describe an entire spread sheet. Failure mode analysis and threat modelling use diagrams as part of finding problems in a system.
+- __Algorithms and pseudocode__: One for loop might suggest thousands - millions... pick your uppper limit - of possible test conditions, all in less than 1" of vertical viewing space
+
+The key to all these other alternate formats is that there be
+testing content in it. Consider the following algorithmic
+expression of a testing intent:
+
+```
+// customersampledocumentlibary located at http://testlab/archive/samples/customerdocs
+// possibleuserroles defined in UserRolesAndPrilegesSpec.docx
+// documentCRUDusecases located in the DocLib project in Jira, tag is #UseCases_CRUD
+
+foreach(document in customersampledocumentlibrary)
+  foreach(userrole in possibleuserroles)
+    foreach(scenario in documentCRUDusecases)
+       execute scenario as userrole using document
+```
+
+It is simple and easy to understand. Explanation of where to
+find details are provided in the sample. Notice that the other
+collateral serve their own purposes for driving design, setting
+business priorities, or serving as input to other testing
+purposes. We use that information without having to repeat it.
