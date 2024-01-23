@@ -65,6 +65,27 @@ Inputs:
  regressionMissDetectionProbability: probability that the given regression will be missed (and not fixed as part of build)
 ```
 
+Workload Analysis
+--------------------------------------------
+
+__Builds__
+Number of builds will vary to measure if increasing number of builds
+while all other variables remaining static violates a linear increase
+in runtime. Number of builds will generally remain static when testing
+other variables.
+
+__Batch Size & Fact Batch Size__:
+Batch Size and Fact Batch Size are believed independently increase
+run time non-linearly, possibly exponentially, although the possibility
+of a mathematical means of avoiding that has not been investigated. Ideally
+runtime would increase linearly as each is changed (can we dream of an order 0
+mathematical shortcut?). These two variables will be tested (static|variable),
+(variable|static), (variable|variable) - where the latter is expected to increase
+runtime exponentially.
+
+__All other variables__:
+
+
 __Build Increase Hypothesis__
 > _Run time will grow linearly with the number of builds so long as all other variables remain static.
 
