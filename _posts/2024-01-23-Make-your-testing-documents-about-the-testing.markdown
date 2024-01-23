@@ -46,6 +46,14 @@ better what might work for us. Keep on reading, and imagine how whatever
 material you prepare for yourself might be affected by the techniques
 below.
 
+General guidelines about test documentation content
+=========================================================
+- replace general concepts with your product/system specifics
+- try to describe only testing activities, need, input, expectation, or assumption
+- remove/delete any guiding material and replace it with your specific material
+- only write it down if you are going to use the information
+- don't worry about elegant writing style - if people understand, it is good enough
+
 What to do instead of rewriting the product spec
 =========================================================
 Sometimes a tester will repeat content that is already described in
