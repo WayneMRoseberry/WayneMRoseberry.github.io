@@ -125,6 +125,59 @@ specific testing details.
 
 Keeping the boilerplate
 =========================================================
+Lots of testers start a plan or specification with a template, which comes
+with a lot of boilerplate text. Some of the boilerplate is structural, helping
+organize the documentation. A lot of the boilerplate is placeholder text, a
+"replace this with your content" device. Many templates offer documentation and help
+inside the boilerplate by offering instruction or examples.
+
+I almost always tell the tester to delete the boilerplate. The boilerplate
+text is always a generic statement that says nothing about testing your
+feature specifically.
+
+Imagine the following section from a test specifcation template (taken from
+an IEE 829 test specification template on <a href="https://www.stickyminds.com/sites/default/files/article/file/2013/Software%20Test%20Case%20Specification%20Template.pdf">
+StickyMinds.com</a>:
+
+> Environmental needs
+> 
+> - Hardware
+>   - Configurations
+>   - Limitations
+> - Software
+>   - System
+>     - Operating systems
+>     - Compilers
+>     - Tools
+> - Other Application
+>   - Mix of applications
+> - Other
+>   - Facilities
+>   - Training
+
+I offer the following guidelines:
+- Immediately delete the boilerplate. Keep a separate copy of the template if you need a reference.
+- Only fill in the parts of the boilerplate you are going to use. In the example above, if "Facilities" is not relevant, don't include it.
+- Amend the content with things the boilerplate does not mention if that works for you.
+- Only write something specifically about the testing when you replace the boilerplate. Consider the following possible testing material.
+
+> __Environmental needs__
+> We will address coverage across devices and platforms with
+> a combination of lab support and outsourced vendor for larger
+> scale coverage needs. Engineers will get basic iOS and Windows
+> platform coverage from their desktop.
+> 
+> - Device and OS, in-house lab for engineer checkout
+>   - lab for engineer checkout
+>     - iOS phone version current and N-1,2
+>     - iPad
+>     - Mac OS: versions prior to current
+>     - Android: Google Pixel Pro, Samsung Galaxy, OnePlus Nord,
+>   - engineer assigned machines
+>     - Windows Desktop
+>     - Mac OS: current version
+> - Other
+>   - Outsourced Device labs: Needed to support automation suite across devices, assessing vendors
 
 Making the apology for categories of quality
 =========================================================
