@@ -46,7 +46,7 @@ better what might work for us. Keep on reading, and imagine how whatever
 material you prepare for yourself might be affected by the techniques
 below.
 
-Rewriting the spec
+What to do instead of rewriting the product spec
 =========================================================
 Sometimes a tester will repeat content that is already described in
 product documentation, designs, specifications or source code.
@@ -123,7 +123,7 @@ investigation:
 Written in this fashion, the statement functions as a segue for more
 specific testing details.
 
-Keeping the boilerplate
+Do this instead of keeping the boilerplate
 =========================================================
 Lots of testers start a plan or specification with a template, which comes
 with a lot of boilerplate text. Some of the boilerplate is structural, helping
@@ -179,6 +179,46 @@ I offer the following guidelines:
 > - Other
 >   - Outsourced Device labs: Needed to support automation suite across devices, assessing vendors
 
-Making the apology for categories of quality
+Get to specifics, only say as much as you need, and make
+sure it is relevant. 
+
+Describe how and why a category applies to your product instead of making the apology for categories of quality
 =========================================================
+Testing almost always involves covering common testing categories
+that apply to aspects of quality requirements. One pattern I 
+have seen in a lot of testing specifications is to make the
+case for why the category is important, at all. Imagine coming
+across this in a test specification for a web-based calendar
+application:
+
+> Accessibility testing is important to ensure that digital products are usable by people with disabilities, promoting inclusivity and meeting legal requirements. It contributes to a positive user experience, leading to increased satisfaction and retention. By catering to a broader audience, businesses can expand their market reach and improve their brand reputation. Designing for accessibility from the start saves time and resources, preventing the need for costly retrofits. Additionally, accessible websites often enjoy SEO benefits, aligning with organizational values centered around diversity and inclusion.
+
+_I got the above from ChatGpt, and it is not much different than
+the same sort of material I used to read in test specifications._
+
+You do not need to defend a category of testing. Instead, you
+should describe how and why that category applies to your
+product. Consider the following for our same imagined calendar
+application:
+
+> _Calendar Web-App Accessibility Testing_
+>
+> The following features use conventional web controls and
+> elements without much change to similar controls on other
+> web applications. For each we will execute the pri I
+> user scenario suite against a set of usability tools and
+> modes to look for problems that arise:
+> - appointment view
+> - appointment invite
+> - appointment notification
+> - appointment reading/editing
+>
+> The following feature uses controls with a lot of custom
+> behavior, and high-interactivity, which suggests a higher
+> risk basis for accessibility modes. We will construct
+> feature specific investigations targeting the interactions and
+> gestures to see how well they work across accessibility
+> tools and modes:
+>  - appointment creation/management view
+
 
