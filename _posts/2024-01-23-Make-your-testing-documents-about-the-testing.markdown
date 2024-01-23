@@ -264,10 +264,33 @@ collateral serve their own purposes for driving design, setting
 business priorities, or serving as input to other testing
 purposes. We use that information without having to repeat it.
 
+In short, it is all to make the testing easier and more effective
+================================================
+When you remove unnecessary, unhelpful material
+from testing documentation and focus on the purpose of
+such documents, you wind up with a tool that helps you
+do better testing.
+
+Rember the guidelines:
+- product/system specifics in place of general concepts
+- test material only
+- replace help material with your content
+- only write it if you will use it
+- it doesn't need to be elegant
+
+Remember the purpose:
+- think about testing
+- aid testing critique
+- support reference for testing
+- communicate testing logistics
+
 Where to find more guidance on writing test plans and specifications
 ================================================
 A lot of the ideas in this article come from my
-book, Writing Test Plans Made Easy, available on Amazon.
+book, <a href="https://www.amazon.com/Writing-Test-Plans-Made-Easy/dp/1478333693">"_Writing Test Plans Made Easy_", available on Amazon</a>.
+
+<a href="https://www.amazon.com/Writing-Test-Plans-Made-Easy/dp/1478333693"><img src="/assets/writingtestplanscover.jpg" width="300" /></a>
+
 The book is short, inexpensive, and easy to understand.
 I found a lot of testers working for me had trouble
 writing test documentation, so I came up with an approach
