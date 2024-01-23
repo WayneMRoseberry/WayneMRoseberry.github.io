@@ -47,6 +47,13 @@ Build Simulator: Behavioral Summary
 ----------------------------------------------------
 ```
 BuildSimulator:
+ Simulates a series of builds, each take a new set of changes on top of a prior
+ build, and returning the total number of uncaught breaks and regressions in the
+ product, assuming a probability model of product behavior changes conflicting with
+ each other.
+
+Output: (non-exhaustive)
+# builds, #total submissions, #total changes, break rate, total breaks, total regressions
 
 Inputs:
  builds: number of builds to simulate, each with a prior build and a current build
