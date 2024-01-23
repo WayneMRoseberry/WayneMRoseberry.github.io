@@ -54,3 +54,40 @@ __Build Increase Hypothesis__
 | 80 | 2x prior  | -        | 1 | 1 | .5 | .5 | .5 | .5 |
 | 160 | 2x prior | -        | 1 | 1 | .5 | .5 | .5 | .5 |
 | 320 | 2x prior | -        | 1 | 1 | .5 | .5 | .5 | .5 |
+
+__Batch Size Increase Hypothesis__
+> _Run time will grow linearly with batch size so long as all other variables remain static.
+
+| Builds | Target Run Time | Actual Run Time| Batch Size | Fact Batch Size | Break Prob. | Break Detect Miss Prob. | Regress Prob. | Regress Detect Miss Prob. |
+|---|---|---|---|---|---|---|---|---|
+| 10 | measured  | measured | 1  | 1 | .5 | .5 | .5 | .5 |
+| 10 | 2x prior  | -        | 2  | 1 | .5 | .5 | .5 | .5 |
+| 10 | 2x prior  | -        | 4  | 1 | .5 | .5 | .5 | .5 |
+| 10 | 2x prior  | -        | 8  | 1 | .5 | .5 | .5 | .5 |
+| 10 | 2x prior  | -        | 16 | 1 | .5 | .5 | .5 | .5 |
+| 10 | 2x prior  | -        | 32 | 1 | .5 | .5 | .5 | .5 |
+
+__Fact Batch Size Increase Hypothesis__
+> _Run time will grow linearly with fact batch size so long as all other variables remain static.
+
+| Builds | Target Run Time | Actual Run Time| Batch Size | Fact Batch Size | Break Prob. | Break Detect Miss Prob. | Regress Prob. | Regress Detect Miss Prob. |
+|---|---|---|---|---|---|---|---|---|
+| 10 | measured  | measured | 1 | 1  | .5 | .5 | .5 | .5 |
+| 10 | 2x prior  | -        | 1 | 2  | .5 | .5 | .5 | .5 |
+| 10 | 2x prior  | -        | 1 | 4  | .5 | .5 | .5 | .5 |
+| 10 | 2x prior  | -        | 1 | 8  | .5 | .5 | .5 | .5 |
+| 10 | 2x prior  | -        | 1 | 16 | .5 | .5 | .5 | .5 |
+| 10 | 2x prior  | -        | 1 | 32 | .5 | .5 | .5 | .5 |
+
+
+__Fact Batch Size and Batch Size Increase Hypothesis__
+> _Run time will grow exponentially with fact batch size and batch size so long as all other variables remain static.
+
+| Builds | Target Run Time | Actual Run Time| Batch Size | Fact Batch Size | Break Prob. | Break Detect Miss Prob. | Regress Prob. | Regress Detect Miss Prob. |
+|---|---|---|---|---|---|---|---|---|
+| 10 | measured  | measured | 1  | 1  | .5 | .5 | .5 | .5 |
+| 10 | 4x prior  | -        | 2  | 2  | .5 | .5 | .5 | .5 |
+| 10 | 16x prior  | -        | 4  | 4  | .5 | .5 | .5 | .5 |
+| 10 | 64x prior  | -        | 8  | 8  | .5 | .5 | .5 | .5 |
+| 10 | 2x prior  | -        | 16 | 16 | .5 | .5 | .5 | .5 |
+| 10 | 2x prior  | -        | 32 | 32 | .5 | .5 | .5 | .5 |
