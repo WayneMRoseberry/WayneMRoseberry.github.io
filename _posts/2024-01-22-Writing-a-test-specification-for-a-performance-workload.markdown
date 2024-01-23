@@ -84,7 +84,12 @@ mathematical shortcut?). These two variables will be tested (static|variable),
 runtime exponentially.
 
 __All other variables__:
+All other variables are expected to have no effect on runtime length.
+There will be two tests per each, increasing their values by some factor
+in order to check the 0 effect hypothesis.
 
+Build Simulator Performance Test Hypotheses
+================================================
 
 __Build Increase Hypothesis__
 > _Run time will grow linearly with the number of builds so long as all other variables remain static.
