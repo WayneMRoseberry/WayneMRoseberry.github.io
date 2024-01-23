@@ -263,3 +263,14 @@ find details are provided in the sample. Notice that the other
 collateral serve their own purposes for driving design, setting
 business priorities, or serving as input to other testing
 purposes. We use that information without having to repeat it.
+
+Where to find more guidance on writing test plans and specifications
+================================================
+A lot of the ideas in this article come from my
+book, Writing Test Plans Made Easy, available on Amazon.
+The book is short, inexpensive, and easy to understand.
+I found a lot of testers working for me had trouble
+writing test documentation, so I came up with an approach
+that gets you to useful, helpful material as quickly and
+easily as possible.
+
