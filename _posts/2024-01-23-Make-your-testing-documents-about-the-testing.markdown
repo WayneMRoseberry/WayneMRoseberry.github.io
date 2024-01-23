@@ -29,6 +29,23 @@ one of the purposes above.
 >
 > So many problems to fix.
 
+I am not a tester but I do a lot of my own testing, should I keep reading?
+=========================================================
+I think maybe yes. Chances are whatever documentation you write is
+brief and short. You might share your ideas with others, or the
+burden of review might fall entirely on you, although I would advise
+sharing anyway to get the benefit of collaboration and feedback.
+
+Either way, the techniques I talk about here are about replacing bulk
+with lower volume, value-dense information. When the content is about
+the testing and only about the testing you save time writing and
+reviewing it. It serves its function more properly.
+
+I also believe "do this instead..." material helps us understand
+better what might work for us. Keep on reading, and imagine how whatever
+material you prepare for yourself might be affected by the techniques
+below.
+
 Rewriting the spec
 =========================================================
 Sometimes a tester will repeat content that is already described in
