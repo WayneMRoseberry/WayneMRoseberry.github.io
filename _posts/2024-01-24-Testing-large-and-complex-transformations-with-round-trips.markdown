@@ -38,6 +38,12 @@ executing `Y = AToB(X)` some extra value was added to Y that was
 lost on `Z = BToA(Y)` and thus a check of `X == Z` would return
 true, even though there was a bug reflected in Y.
 
+Those, and other, limitations aside, what it does do is
+offer an easy way of checking the transformation of a lot
+of highly complex data without having to build complex checking
+mechanisms. It is a simple heuristic (a term I picked
+up from a keynote speech by Harry Robinson at PNSQC one year).
+
 Product Example: Cucumber string conversions
 ============================================
 Imagine the following conversion methods for
@@ -59,6 +65,8 @@ public string ConvertBDDRuleSetToCucumberString(BDDRuleSet bDDRuleSet);
 public bool BDDTools.RuleSetsEquivalent(BDDRuleSet ruleSet1, BDDRuleSet ruleSet2);
 ```
 
+Checking the conversion with round-trips
+------------------------------------------
 We want to test the above across a large set of
 possible Cucumber and BDDRuleSet inputs. We write a test method that
 looks like this:
@@ -99,6 +107,8 @@ rely on trusting that both `ConvertBDDRuleSetToCucumberString()` and
 'ConvertCucumberStringToBDDRuleSet()' do a basically correct
 transformation. They especially rely on `RuleSetsEquivalent()` to work correctly.
 
+Checking the checking with round-trips
+-------------------------------------------
 One way to check `RuleSetsEquivalent()` would be to alter the same set
 of `BDDResultSet` and check if `RuleSetsEquivalent()` returns false. We
 can also use a round-trip pattern for this check.
@@ -126,3 +136,58 @@ public void RuleSetsEquivalent_lotsofrulesets()
   Assert.AreEqual(0, emptyRuleCounter, "Fail if we have any empty rules. We checked all the others, but there is some test data to correct. Empty count:{emptyRuleCounter}, Total rules: {ruleSets.Count}.");
 }
 ```
+
+Extending the technique
+---------------------------------------------
+Imagine we want to go beyond whatever samples we have collected ourselves.
+Imagine we build a Cucumber randomizer, something capable of emitting
+random, valid, Cucumber scripts. We could modify the test method as follows:
+
+```
+public void CheckCucumberRoundTrip_1millionrandom()
+{
+  // testDocLibrary initialized on test class startup
+  for(int i = 0; i < 1000000 ; i++)
+  {
+    var testDocCucumber = CucumberRandomizer.MakeRandomCucumberString();
+    BDDRuleSet ruleSet = BDDTools.ConvertCucumberStringToBDDRuleSet(testDocCucumber);
+    Log.Information($"In between BDDRuleSet: {ruleSet.ToString()}");
+    string roundTripCucumber = BDDTools.ConvertBDDRuleSetToCucumberString(ruleSet);
+    Assert.AreEqual(testDocCucumber, roundTripCucumber, $"fail if does not round trip to same input.");
+  }
+}
+```
+
+The above might give us some false positives if any of the random Cucumber
+strings convert back to a semantically equivalent, but maybe exact string different
+input. That kind of problem is difficult with string input. We could change it up with a fuzzer
+instead.
+```
+public void CheckCucumberRoundTrip_fuzzedcucumbersroundtriptooriginal()
+{
+  // testDocLibrary initialized on test class startup
+  var testDocs = testDocLibrary.FetchTestFiles(CUCUMBERRULESETFILES);
+  Assert.AreNotEqual(0, testDocs.Count, $"Fail if we have no test inputs. Filter:{CUCUMBERRULESETFILES}";
+  foreach(var testDoc in testDocs)
+  {
+    // make a fuzzed version of each of the inputs
+    for(int i = 0; i < 100; i++)
+    {
+      string testDocCucumber = testDoc.ReadAllText();
+      string fuzzyCucumber = TestTools.CucumberFuzzerToSimilarString(testDocCucumber);
+      Log.Information($"fuzzyCucumber:{fuzzyCucumber}");
+      BDDRuleSet ruleSet = BDDTools.ConvertCucumberStringToBDDRuleSet(testDocCucumber);
+      Log.Information($"In between BDDRuleSet: {ruleSet.ToString()}");
+      string roundTripCucumber = BDDTools.ConvertBDDRuleSetToCucumberString(ruleSet);
+      Assert.AreEqual(testDocCucumber, roundTripCucumber, $"fail if testDoc '{testDoc.Filename}' variation{i} does not round trip to original input.");
+    }
+  }
+}
+```
+
+This method works on the assumption that the prior check, `RuleSetsEquivalent_lotsofrulesets`
+passes if all the values in 'CUCUMBERRULESETFILES' round trip to the
+same input string. We also rely on `CucumberFuzzerToSimilarString()` to fuzz
+an output in a way that ought to create the same `BDDRuleSet` as its input string.
+We would have to build those libraries, but that is why test
+engineering is interesting.
