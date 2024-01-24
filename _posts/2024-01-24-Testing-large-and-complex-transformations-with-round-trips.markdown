@@ -1,3 +1,10 @@
+Testing transformation of complex data using round trips
+=========================================================
+![An illustration depicting a machine that turns squirrels into iguanas, done in an old-time western poster style.](/assets/transformposter.jpg)
+
+_The illustration above is my own. I found the images from Bing Image Creator unsatisfactory
+depictions of a machine that turns squirrels into iguanas, so I drew it myself._
+
 Sometimes products transform complex data. The challenge
 of testing complex data is in the difficulty of anticipating
 what a correct transformation looks like. We can determine
@@ -24,6 +31,8 @@ The technique assumes a high probability that if one
 correctly makes either conversion that a round trip comparison
 will yield equivalent values. In other words, `X == BToA(AToB(X))`.
 
+![illustration of a star trasnformed to triangle, which is transformed to a second star, first star and second star compared](/assets/roundtrip.png)
+
 The technique is not perfect.
 
 This approach only works if the conversion is reversible.
@@ -31,6 +40,8 @@ If there are multiple possible values for A that map to a single
 value for B, then the round trip is likely to come back to only
 a single value of A. This breaks cases where explicit comparison
 demands an exact equivalence, such as with string inputs.
+
+![illustration of stars of different colors all being transformed into green triangles, which all transform back into green stars, breaking comparison](/assets/roundtrip_nonreversible.png)
 
 It also does not detect incorrect between state
 conversions that are lost when converting back. For example, if when
