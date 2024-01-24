@@ -21,7 +21,7 @@ public bool BDDTools.RuleSetsEquivalent(BDDRuleSet ruleSet1, BDDRuleSet ruleSet2
 ```
 
 We want to test the above across a large set of
-possible Cucumber inputs. We write a test method that
+possible Cucumber and BDDRuleSet inputs. We write a test method that
 looks like this:
 
 ```
@@ -52,5 +52,38 @@ public void CheckBDDRuleSetRoundTrip()
     BDDRuleSet roundTripRuleSet = BDDTools.ConvertCucumberStringToBDDRuleSet(inBetweenCucumber);
     Assert.IsTrue(BDDTools.RuleSetsEquivalent(ruleSet, roundTripRuleSet), $"fail if ruleSet '{ruleSet.ToString()}' does not round trip to same input.");
   }
+}
+```
+
+The above test methods do not work well on their own. They
+rely on trusting that both `ConvertBDDRuleSetToCucumberString()` and 
+'ConvertCucumberStringToBDDRuleSet()' do a basically correct
+transformation. They especially rely on `RuleSetsEquivalent()` to work correctly.
+
+One way to check `RuleSetsEquivalent()` would be to alter the same set
+of `BDDResultSet` and check if RuleSetsEquivalent() returns false. We
+can also use a round-trip pattern for this check.
+```
+public void RuleSetsEquivalent_lotsofrulesets()
+{
+  // testDocLibrary initialized on test class startup
+  var ruleSets = ruleSetRepository.FetchRuleSets(BDDRULESETSAMPLES);
+  Assert.AreNotEqual(0, ruleSets.Count, $"Fail if we have no test inputs. Filter:{BDDRULESETSAMPLES}";
+  int emptyRuleCounter = 0;
+  foreach(var ruleSet in ruleSets)
+  {
+    string inBetweenCucumber = BDDTools.ConvertBDDRuleSetToCucumberString(ruleSet);
+    if(string.IsNullOrEmpty(inBetweenCucumber) { emptyRuleCounter++};
+    Log.Information($"In between Cucumber: {inBetweenCucumber}");
+    BDDRuleSet roundTripRuleSet = BDDTools.ConvertCucumberStringToBDDRuleSet(inBetweenCucumber);
+    Assert.IsTrue(BDDTools.RuleSetsEquivalent(ruleSet, roundTripRuleSet), $"fail if ruleSet '{ruleSet.ToString()}' does not round trip to same input.");
+
+    ruleSet.Rules[0].WhenClause = ruleSet.Rules[0].WhenClause + "_alteration";
+    inBetweenCucumber = BDDTools.ConvertBDDRuleSetToCucumberString(ruleSet);
+    Log.Information($"Altered in between Cucumber: {inBetweenCucumber}");
+    BDDRuleSet alteredRoundTripRuleSet = BDDTools.ConvertCucumberStringToBDDRuleSet(inBetweenCucumber);
+    Assert.IsFalse(BDDTools.RuleSetsEquivalent(roundTripRuleSet, alteredRoundTripRuleSet), $"fail if altered ruleSet '{ruleSet.ToString()}' round trip is same as unaltered roundtrip.");
+  }
+  Assert.AreEqual(0, emptyRuleCounter, "Fail if we have any empty rules. We checked all the others, but there is some test data to correct. Empty count:{emptyRuleCounter}, Total rules: {ruleSets.Count}.");
 }
 ```
