@@ -12,7 +12,31 @@ to anticipate the exact correct state for all of them.
 
 One technique that works well is round-tripping.
 
+Round Tripping Data Transformations
+===========================================
+Round tripping works in the case where the product transforms
+inputs in both directions, when the transformation can be
+reversed for at least some set of the input conditions. This
+is a common functionality, where most conversion libraries
+have something like "AToB" paired with "BToA".
 
+The technique assumes a high probability that if one
+correctly makes either conversion that a round trip comparison
+will yield equivalent values. In other words, `X == BToA(AToB(X))`.
+
+The technique is not perfect.
+
+This approach only works if the conversion is reversible.
+If there are multiple possible values for A that map to a single
+value for B, then the round trip is likely to come back to only
+a single value of A. This breaks cases where explicit comparison
+demands an exact equivalence, such as with string inputs.
+
+It also does not detect incorrect between state
+conversions that are lost when converting back. For example, if when
+executing `Y = AToB(X)` some extra value was added to Y that was
+lost on `Z = BToA(Y)` and thus a check of `X == Z` would return
+true, even though there was a bug reflected in Y.
 
 Product Example: Cucumber string conversions
 ============================================
