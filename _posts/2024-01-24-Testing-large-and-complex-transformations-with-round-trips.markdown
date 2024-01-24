@@ -1,3 +1,18 @@
+Sometimes products transform complex data. The challenge
+of testing complex data is in the difficulty of anticipating
+what a correct transformation looks like. We can determine
+what we believe it would be on a case by case basis, which works
+well when we have a identified some specifically interesting
+conditions to check, but it does not work well when we are
+looking at a very large set of possible transformations and
+we use something like data generation tools to create the inputs
+for us. We need faster, generalized testing approaches that can
+help find problems over large sets of inputs without having
+to anticipate the exact correct state for all of them.
+
+One technique that works well is round-tripping.
+
+
 
 Product Example: Cucumber string conversions
 ============================================
@@ -61,7 +76,7 @@ rely on trusting that both `ConvertBDDRuleSetToCucumberString()` and
 transformation. They especially rely on `RuleSetsEquivalent()` to work correctly.
 
 One way to check `RuleSetsEquivalent()` would be to alter the same set
-of `BDDResultSet` and check if RuleSetsEquivalent() returns false. We
+of `BDDResultSet` and check if `RuleSetsEquivalent()` returns false. We
 can also use a round-trip pattern for this check.
 ```
 public void RuleSetsEquivalent_lotsofrulesets()
