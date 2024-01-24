@@ -52,7 +52,7 @@ true, even though there was a bug reflected in Y.
 Those, and other, limitations aside, what it does do is
 offer an easy way of checking the transformation of a lot
 of highly complex data without having to build complex checking
-mechanisms. It is a simple heuristic (a term I picked
+mechanisms. It is a simple oracle (a term I picked
 up from a keynote speech by Harry Robinson at PNSQC one year).
 
 Product Example: Cucumber string conversions
@@ -80,7 +80,9 @@ Checking the conversion with round-trips
 ------------------------------------------
 We want to test the above across a large set of
 possible Cucumber and BDDRuleSet inputs. We write a test method that
-looks like this:
+for each type does a round trip and checks the final output
+against the original input. We add a few checks along the
+way to catch problems that might invalidate the whole test:
 
 ```
 public void CheckCucumberRoundTrip()
@@ -100,7 +102,7 @@ public void CheckCucumberRoundTrip()
 
 public void CheckBDDRuleSetRoundTrip()
 {
-  // testDocLibrary initialized on test class startup
+  // ruleSetRepository initialized on test class startup
   var ruleSets = ruleSetRepository.FetchRuleSets(BDDRULESETSAMPLES);
   Assert.AreNotEqual(0, ruleSets.Count, $"Fail if we have no test inputs. Filter:{BDDRULESETSAMPLES}";
   foreach(var ruleSet in ruleSets)
@@ -201,4 +203,16 @@ passes if all the values in 'CUCUMBERRULESETFILES' round trip to the
 same input string. We also rely on `CucumberFuzzerToSimilarString()` to fuzz
 an output in a way that ought to create the same `BDDRuleSet` as its input string.
 We would have to build those libraries, but that is why test
-engineering is interesting.
+engineering is interesting. When we use these kinds of patterns we rapidly expand what
+we can cover.
+
+The return trip
+========================================
+Round-tripping data transformation is an example of a simple oracle.
+Simple oracles tend to be patterns of checking results that might
+not be perfect, but they tend to be automatic in nature, allowing us
+to check very difficult conditions rapidly and over a lot at once.
+Whenever I am confronted with a difficult test problem, especially one
+where automation might make generating the test condition easier, but
+checking the test condition more difficult, I search for simple oracles.
+Round tripping is one I use quite a lot.
