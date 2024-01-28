@@ -1,4 +1,35 @@
 Asking help questions and why sometimes I feel like AI doesn't really change the problem that much
+=====================================================
+![A cartoon of a woman at a chalboard full of equations and she is think that asking AI doesn't change the problem that much](/assets/sometimesAIdoesntreallychangetheproblemthatmuch.jpg)
+_The prompt to Bing Image Creator for this image was "Asking help questions and why sometimes I feel like AI doesn't really change the problem that much."
+My first attempt at the prompt resulted in four images of someone sitting next to C-3PO on a couch, a rather concerning
+violation of copyright of a property owned by Disney, and I was in no mood
+to setup myself up for battle with the notoriously vicious lawyers
+in service of The Mouse._
+
+This article is an account of an amusing buggy experience
+using an AI assisted Q&A feature with Microsoft. This is not
+so much LLM/AI bashing as it is just a bug, and to some degree
+the eventual bug that made a reference to an article break is
+the same sort of problem we might see with non-AI software.
+
+This started me wondering about how to approach testing a
+system like this.
+
+It all started with me trying to write a Node.js application in Visual Studio 2022
+======================================================
+I am re-writing one of my tools in Node.js as a way of improving
+my JavaScript skills. One thing I have never tried before is
+unit testing with JavaScript. I really like the Visual Studio
+IDE, and really want to run the tests in the Test Explorer
+window. I had a difficult time finding current articles
+that said what to do, and the only ones I did find gave me
+instructions that failed when I tried them.
+
+I went to Microsoft's Q&A site, and posed a question there. During
+edit of the question, there are some options to use AI to
+help find similar questions, re-write the answer, or even
+answer the question.
 
 I posed this question to Microsoft's Q&A forum:
 
@@ -11,7 +42,7 @@ I posed this question to Microsoft's Q&A forum:
 > Install-Package : Project 'Default' is not found.
 > ```
 >
-> Looking in Package Manager console, the "Default project:" dropdown is empty, which as I understand is intentional with Node.js solution projects.How is a person supposed to setup unit testing in Visual Studio when working with Node.js? Do they have leave the IDE entirely? Is there a way to make it work?NOTE: I tried the AI generated "Answer my question", and it gave me two links to irrelevant articles (neither about Node.js, but instead about TypeScript and ASP.NET Core - and the second link said it was about Node.JS, but it pointed back to the first article). It also told me to install NuGet packages, which as you can see from my description above isn't working because the Node.js package does not support it.
+> Looking in Package Manager console, the "Default project:" dropdown is empty, which as I understand is intentional with Node.js solution projects.How is a person supposed to setup unit testing in Visual Studio when working with Node.js? Do they have leave the IDE entirely? Is there a way to make it work?
 
 Below the form, and before the "Post your question" button is the text "__Ask with Q&A Assist__ AI can help you find a solution and write your question. Get started by selecting an option below." are the options "Find similar questions" and "Answer my question". 
 
@@ -81,3 +112,71 @@ containing `div` with the `view=vs-2022` argument on the query string.
 The section the AI is referring to is for Visual Studio 2019, and the
 URL that the AI constructed is for version 2022. I change the URL to the following
 `https://learn.microsoft.com/en-us/visualstudio/javascript/unit-testing-javascript-with-visual-studio?view=vs-2019#write-unit-tests-in-a-nodejs-project-njsproj` and voila, the text for setting up Node.js unit tests displays.
+
+Is this mismatched article version behavior even an AI problem?
+============================================
+There is no way to know without understanding how the feature was written.
+
+There are numerous ways that an AI can generate a help response like the
+above, and some amount of the sophistication of taking my written description of
+a problem and trying to create a relevant response is likely using generative
+AI and fuzzy matching (I suspect vector database and word embeddings are involved
+here as well). The part where it seemed to ignore my problems with Nuget package
+installs feels very AI to me.
+
+But the version mismatch on the article, even if we got here down a
+fuzzy generative-AI path, the problem I come up with - an article link that
+isn't working for my "edge condition" - that problem itself is feels
+very much same as what we have always dealt with. Whether it is an explicitly coded
+algorithm that gets it wrong, or it is a generative AI unable to realize that
+two things do not go together, the end user result is they were given a link that
+does not have the content they expected. We get that kind of thing without AI.
+
+If we think of the bug, I believe the condition is something like this:
+1. content has multiple version material in it (current, current-1, current-2, etc.), but filtered based on version, which defaults to current
+2. customer asks question about version N such that ONE answer to the question is for N-1 but not N
+3. system responds with pointer to content
+EXPECTATION: the response does not include a pointer to the N-1 material
+
+This test idea seems obvious in hindsight, now that I hit the bug. It might
+be difficult to imagine as either the developer or a tester working on it,
+but it doesn't seem unreasonable to imagine someone creating this test idea either.
+Whether the system answering questions is AI or not doesn't really change the
+nature of the use case. We might take a different approach to measuring our expectations
+of appropriate correct behavior (AI "correctness" is always size of error over sample population),
+but it is still something we could craft a test for.
+
+Testing it in production?
+------------------------------------------------------
+The answer has a thumbs up, thumbs down indicator. That could be a
+measure of how well it is working, although you lose a lot on people
+who do not bother to rate the answer.
+
+I am wondering about this anchor/bookmark, version of article mismatch.
+Is that even detectable? To detect, you have to anticipate the mismatch is
+even something that happens, but even then, it suggests you have something
+which can easily know that a given bookmark is inside a section for a version
+that does not match the filter on the page query string. You COULD build that...
+and if you thought that really important, you might.
+
+Otherwise, this feels hard to catch, even from production. Production signals
+are enormously and high volume and spread very wide. Problems like this tend
+to get very granular. If we try to track this kind of thing, it starts
+to feel like tracking every mosquito around the equator. Just one can give you
+malaria, so the consequences of prolbem may be high, but an individual mosquito
+tracking strategy is not going to work.
+
+The musing continues
+=================================================
+Sometimes the interesting part of a bug, or class of bugs, is pondering
+how to deal with them. How do you find them? How do you prevent them? Are
+they worth finding?
+
+For me, this one added to my growing cynicism about the quality of
+Visual Studio, especially around scenarios outside the Microsoft
+ASP.NET and TypeScript wheelhouse. I am a pretty have Visual Studio
+fan, but things like this nudge me closer and closer to using a different
+editor and set of tools when working on JavaScript and various web
+technologies.
+
+Where does that show on a dashboard? Hmm?
