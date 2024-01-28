@@ -88,7 +88,7 @@ TypeScript, which doesn't work for my problem because the part of the
 article referring to JavaScript is for ASP.NET projects, which are entirely
 different from how Visual Studio creates Node.js projects.
 
-The second like is supposedly explicitly about Node.js projects. When I click it,
+The second link is supposedly explicitly about Node.js projects. When I click it,
 I wind up on the same page as the first link. At first, I thought the
 AI was hallunicating and making up links. But when I copied the link to write
 this article, I found something interesting:
@@ -126,7 +126,7 @@ installs feels very AI to me.
 
 But the version mismatch on the article, even if we got here down a
 fuzzy generative-AI path, the problem I come up with - an article link that
-isn't working for my "edge condition" - that problem itself is feels
+isn't working for my "edge condition" - that problem feels
 very much same as what we have always dealt with. Whether it is an explicitly coded
 algorithm that gets it wrong, or it is a generative AI unable to realize that
 two things do not go together, the end user result is they were given a link that
@@ -160,10 +160,10 @@ that does not match the filter on the page query string. You COULD build that...
 and if you thought that really important, you might.
 
 Otherwise, this feels hard to catch, even from production. Production signals
-are enormously and high volume and spread very wide. Problems like this tend
+are enormous, high volume, and spread very thin and wide. Problems like this tend
 to get very granular. If we try to track this kind of thing, it starts
 to feel like tracking every mosquito around the equator. Just one can give you
-malaria, so the consequences of prolbem may be high, but an individual mosquito
+malaria, so the consequences of problem may be high, but an individual mosquito
 tracking strategy is not going to work.
 
 The musing continues
@@ -174,7 +174,7 @@ they worth finding?
 
 For me, this one added to my growing cynicism about the quality of
 Visual Studio, especially around scenarios outside the Microsoft
-ASP.NET and TypeScript wheelhouse. I am a pretty have Visual Studio
+ASP.NET and TypeScript wheelhouse. I am a bug Visual Studio
 fan, but things like this nudge me closer and closer to using a different
 editor and set of tools when working on JavaScript and various web
 technologies.
