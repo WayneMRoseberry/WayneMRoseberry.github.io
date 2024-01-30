@@ -87,9 +87,9 @@ those that terminate, and those that do not. I am also imagining different depth
 relationships for referential structures. I have begun writing those out below.
 > __Terminating levels__
 > 
->(one level relationships) = [Static|Choice|Sequence|Optional|RangeAlpha|RangeNumeric] -> string value
+>(one level relationships) = [Static or Choice or Sequence or Optional or RangeAlpha or RangeNumeric] -> string value
 > 
->(two level relationships) = [Choice|Sequence|Optional|Reference] -> (one level relationships)
+>(two level relationships) = [Choice or Sequence or Optional or Reference] -> (one level relationships)
 >
 > (three level relationships) = (two level relationships) -> (one level relationships)
 >
