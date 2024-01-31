@@ -177,7 +177,7 @@ of product design decisions where product flake is inevitable, the only
 way around it being to change the design, but in doing that we have to accept
 something else we might be giving up.
 
-As wrote more, I realized the more interesting point to make was in the exercise
+As I wrote more, I took more interest in the prospective exercise
 of testing prior to completion of product design decisions. I had some working code,
 but not code sufficient to exercise the conditions described in this article.
 I knew the data structures, but these were data structure decisions I created
@@ -187,10 +187,11 @@ infinite loops in the schema could be expressed in the acceptance tests.
 
 But a simple statement like "`DataMaker.genRandomExample` will return an error
 if a `schemaDef` object contains an infinite loop." is insufficient, because
-we need to express that requirement as tests for the acceptance suite, and to
+we need to express that requirement as testing data for the acceptance suite, and to
 do that we have to ask what infinite loops look like. That is when we do the
 propspective testing, and during that testing, we realize the question is more
-challenging than the requirement put it.
+challenging than the requirement put it, and we probably wind up considering design
+changes.
 
 If you are curious, the code is available on my github repository
 ====================================================
