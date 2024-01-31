@@ -1,21 +1,24 @@
 Discovering flake via test analysis without any running code
 =================================================
 ![A cartoon of a person drawing data structures during test analysis and imagining infinite loop problems](/assets/prospectivetesting.png)
+
 _More of my own cartoons instead of using Bing Image Creator.
 I am going to try doing this as much as I can partly
 to keep my own brand on it, partly because I enjoy
 drawing, and partly because I am starting to feel
-guilty about the energy costs of image generation.__
+guilty about the energy costs of image generation._
 
 Testing a product before code exists, in contemplation
 of the design implications, is something James Bach calls
 "propspective testing." I found myself doing that today,
 unexpectedly, as I contemplated a testing problem the
-my code had not been designed to handle yet.
+code had not been designed to handle yet.
 
 I was <a href="https://waynemroseberry.github.io/2024/01/30/Generating-testing-ideas-from-datastructures.html">
 doing data analysis as part of the test specification</a> for
-a coding project I am working on. One of the problems I started
+a coding project I am working on. That analysis involves drawing
+a lot of pictures to help me understand the implications of
+the data structure. One of the problems I started
 thinking about was loops in the data structure, especially
 infinite loops.
 
@@ -67,9 +70,9 @@ or choice of objects there is an escape that can stop the loop.
 The problem is when a branch exists from which there is no
 escape.
 
-We want to build protection into the app... but which choices introduce flake?
+I want to build protection into the app... but we find ourselves trading flake for performance.
 =====================================================
-We want the tool to detect and avoid infinite loop conditions.
+I want the tool to detect and avoid infinite loop conditions.
 There are options:
 
 1. Detect infinite loop as the schema is defined
@@ -77,8 +80,8 @@ There are options:
    This requires that when one creates a reference node in a schema
    definition they also have access to all the previously defined schema
    objects to allow for inspection of looping conditions at authoring
-   time. This creates a tight coupling to whatever component stores
-   the schema defitions, as well as a performance cost at schema authoring
+   time. This increases integration complexity at schema creation time,
+   as well as a performance cost at schema authoring
    time that grows as schema definitions graphs get larger. This cost
    may be deferred to persisting the schema. Another drawback of this
    approach is it entirely relies on the authoring and persistence
@@ -103,6 +106,10 @@ There are options:
    solution is it now introduces a flaky behavior where sometimes a call to
    the same getRandomExample method will detect an infinite loop and sometimes it will
    not, even when given the same schema definition.
+
+This is where my test analysis helped out, because understanding the different
+ways an infinite loop might form in the schema helps us understand the
+dilemma of choices we face in the design.
 
 The flaky data case - an optional reference to an existing infinite loop pair
 ---------------------------------------------------------
@@ -134,7 +141,7 @@ the optional path came up YES. Assuming an even coin flip decision on the option
 schema in our example is going to fail with an infinite loop error 50% of the time.
 Imagine, though, that instead of being one choice below the schema root
 the reference was four deep. Assuming an even coin toss on every decision, the
-probability of hitting the infinite loop is no 0.5 * 0.5 * 0.5 * 0.5, or or 0.06, a
+probability of hitting the infinite loop is now 0.5 * 0.5 * 0.5 * 0.5, or or 0.06, a
 failure rate of 6% without changing the application inputs at all.
 
 ![Diagram of a schema with a reference four choices below the schema root before pointing to an external infinite loop](/assets/fourdeepoption.png)
@@ -151,6 +158,12 @@ to when the data is being generated forces us to accept that inconsistent behavi
 per a dice roll) is by design for end users. The end user will sometimes see a failure, and sometimes
 not, and so long as we commit to this design, there is nothing which will change that.
 
+The reason we are stuck with this behavior is because by design the product
+is a random data generator. Making new, random examples of data from a schema
+definition is what it does. Random success cases are expected and acceptable.
+What the user probably does not want is failure to happen randomly. If
+a given schema might cause a failure, the user should be notified every time.
+
 If we decide we cannot accept an unpredictable failure event for end users, a
 flaky product experience, we are going to have to change the design. Either
 we evaluate schema for loops prior to generating data (e.g. at schema definition time), or
@@ -159,3 +172,30 @@ to make failure happen every time.
 
 Key takeaways about product flake and test analysis impact on design
 =========================================================
+I started this article thinking I was going to focus on providing examples
+of product design decisions where product flake is inevitable, the only
+way around it being to change the design, but in doing that we have to accept
+something else we might be giving up.
+
+As wrote more, I realized the more interesting point to make was in the exercise
+of testing prior to completion of product design decisions. I had some working code,
+but not code sufficient to exercise the conditions described in this article.
+I knew the data structures, but these were data structure decisions I created
+before I started coding, so this test analysis likewise could have happened before
+coding. If this were a formal project some notion of how the product would handle
+infinite loops in the schema could be expressed in the acceptance tests.
+
+But a simple statement like "`DataMaker.genRandomExample` will return an error
+if a `schemaDef` object contains an infinite loop." is insufficient, because
+we need to express that requirement as tests for the acceptance suite, and to
+do that we have to ask what infinite loops look like. That is when we do the
+propspective testing, and during that testing, we realize the question is more
+challenging than the requirement put it.
+
+If you are curious, the code is available on my github repository
+====================================================
+The code for this project is here: <a href="https://github.com/WayneMRoseberry/datatools">https://github.com/WayneMRoseberry/datatools</a>.
+I wrote it once already using ASP.NET in C#. I decided to try a version in Node.js
+because it seemed simpler, smaller, and I wanted to learn how Node.js. That is located
+in the <a href="https://github.com/WayneMRoseberry/datatools/tree/main/datatools.datamakerjs">https://github.com/WayneMRoseberry/datatools/tree/main/datatools.datamakerjs</a>
+sub directory.
