@@ -1,5 +1,18 @@
-Discovering flake via test analysis without any running the code
+Discovering flake via test analysis without any running code
 =================================================
+![A cartoon of a person drawing data structures during test analysis and imagining infinite loop problems](/assets/prospectivetesting.png)
+_More of my own cartoons instead of using Bing Image Creator.
+I am going to try doing this as much as I can partly
+to keep my own brand on it, partly because I enjoy
+drawing, and partly because I am starting to feel
+guilty about the energy costs of image generation.__
+
+Testing a product before code exists, in contemplation
+of the design implications, is something James Bach calls
+"propspective testing." I found myself doing that today,
+unexpectedly, as I contemplated a testing problem the
+my code had not been designed to handle yet.
+
 I was <a href="https://waynemroseberry.github.io/2024/01/30/Generating-testing-ideas-from-datastructures.html">
 doing data analysis as part of the test specification</a> for
 a coding project I am working on. One of the problems I started
@@ -132,7 +145,7 @@ prior article</a> where I describe how I achieve inversion of control via depend
 injection of the code that makes decisions). We would write the test such that
 the mock forces evaluation down the path where the loop begins. 
 
-The problem is that even if the test can invoke this failure condition on deterministically, 
+The problem is that even if the test can invoke this failure condition deterministically, 
 a design decision to defer flake detection
 to when the data is being generated forces us to accept that inconsistent behavior (as
 per a dice roll) is by design for end users. The end user will sometimes see a failure, and sometimes
@@ -144,3 +157,5 @@ we evaluate schema for loops prior to generating data (e.g. at schema definition
 we take the performance hit at data generation time to front load the evaluation
 to make failure happen every time.
 
+Key takeaways about product flake and test analysis impact on design
+=========================================================
