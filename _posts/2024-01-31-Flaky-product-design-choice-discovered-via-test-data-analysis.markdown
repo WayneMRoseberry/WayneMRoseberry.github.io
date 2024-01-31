@@ -1,3 +1,36 @@
+Discovering flake via test analysis without any running the code
+=================================================
+I was <a href="https://waynemroseberry.github.io/2024/01/30/Generating-testing-ideas-from-datastructures.html">
+doing data analysis as part of the test specification</a> for
+a coding project I am working on. One of the problems I started
+thinking about was loops in the data structure, especially
+infinite loops.
+
+From that I started thinking about how I wanted to test the
+infinite looping problem. Do I want to treat it more like an
+end-to-end black box problem, where I feed larger, complex
+schema structures to the application and see what it does, or
+do I want to test at the unit level where I can control the
+test conditions?
+
+I want to move this problem down to the unit level. This kind of
+problem end-to-end gets confusing very quickly.
+
+This led to another question about test design. Where does the
+business logic go for infinite loop detection? At the unit test
+level, one of the principles of Test Driven Development is that
+you express how the code should be used in the test, so
+contemplating this question often forces a re-evaluation of design
+decisions.
+
+It was during this contemplation that I realized there were performance
+tradeoffs in the design choices, and the ones which made for the fastest
+data generation performance also introduced unavoidable flaky conditions.
+My testing analysis was promoting challenging design choices without
+obvious answers.
+
+The problem is that the data generation tool supports loops...
+=====================================================
 In my test data generation tool, there are notions of optional
 objects and choice objects, both of which rely on a random decision,
 essentially a coin toss, to determine whether or which object
@@ -26,21 +59,29 @@ We want to build protection into the app... but which choices introduce flake?
 We want the tool to detect and avoid infinite loop conditions.
 There are options:
 
-1. Detect infinite loop as the schema is built
+1. Detect infinite loop as the schema is defined
 
    This requires that when one creates a reference node in a schema
    definition they also have access to all the previously defined schema
    objects to allow for inspection of looping conditions at authoring
    time. This creates a tight coupling to whatever component stores
    the schema defitions, as well as a performance cost at schema authoring
-   time that grows as schema definitions graphs get larger.
-2. Detect infinite loop on call to data generation, but before beginning to generate
+   time that grows as schema definitions graphs get larger. This cost
+   may be deferred to persisting the schema. Another drawback of this
+   approach is it entirely relies on the authoring and persistence
+   mechanism to create "valid" data. The data generation winds up
+   being unable to guard itself in a reliable way without incurring
+   a performance penalty (keep reading, you will
+   see what I mean).
+3. Detect infinite loop on call to data generation, but before beginning to generate
 
    Data generation already requires access to a schema defnition
    store to resolve schema references, so there is no increased integration
    complexity. The problem will come in an up front cost to evaluate every
    branch of the schema prior to generating data rather than only having to look
-   at the branches chosen during generation.
+   at the branches chosen during generation. An advantage of this approach is
+   that infinite loop detection can be tested as an independent problem
+   of data generation.
 5. Detect infinite loop during data generation
 
    This option is possibly lower performance, as the need to detect infinite
@@ -85,12 +126,21 @@ failure rate of 6% without changing the application inputs at all.
 
 ![Diagram of a schema with a reference four choices below the schema root before pointing to an external infinite loop](/assets/fourdeepoption.png)
 
-With proper design, this product flake rate could be made 100% deterministic under
+With proper design, error detection rate could be made 100% deterministic under
 test (see <a href="https://waynemroseberry.github.io/2024/01/29/Caught-myself-in-a-fragile-unit-test-bad-habit.html">
 prior article</a> where I describe how I achieve inversion of control via dependency
-injection of the code that makes decisions). But a dilemma arises because even if the test
-can invoke this failure condition on demand, a design decision to defer flake detection
+injection of the code that makes decisions). We would write the test such that
+the mock forces evaluation down the path where the loop begins. 
+
+The problem is that even if the test can invoke this failure condition on deterministically, 
+a design decision to defer flake detection
 to when the data is being generated forces us to accept that inconsistent behavior (as
-per a dice roll) is by design. The end user will sometimes see a failure, and sometimes
+per a dice roll) is by design for end users. The end user will sometimes see a failure, and sometimes
 not, and so long as we commit to this design, there is nothing which will change that.
+
+If we decide we cannot accept an unpredictable failure event for end users, a
+flaky product experience, we are going to have to change the design. Either
+we evaluate schema for loops prior to generating data (e.g. at schema definition time), or
+we take the performance hit at data generation time to front load the evaluation
+to make failure happen every time.
 
