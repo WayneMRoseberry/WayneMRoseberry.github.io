@@ -1,3 +1,4 @@
+
 I have a long history as a tester, and one of the things
 I take very seriously is coming up with testing ideas, methods,
 and strategies. I see testing as largely a game of probabilities
@@ -132,3 +133,59 @@ those mechanisms is they were not unique. For example, many of the Office UI
 controls have a sub menu called "More Options...", and without a unique
 AutomationId, the AI controlled agents had no way of knowing which one
 they were asking for later.
+
+When you have to ask someone to do something...
+--------------------------------------------------------------
+As a tester, the best I would have been able to do was politely ask
+the team that owned these controls (on the Shared Code team in Office, all
+the UI controls came through them) to put AutomationId on all of the controls
+didn't have them. I would have had a good case for it beyond just my AI-based
+testing work, as it would improve the Accessibility scenario.
+
+And the response would have been "sounds like a good idea, but our schedule
+is booked solid for the next three quarters..."
+
+I know that is the response I would have got, because that is the response
+I initially got when I wanted to see if I could get them to do the work.
+
+When you can do it yourself
+--------------------------------------------------------------
+For some reason, the string change from "Software Development Engineer in Test"
+to "Software Engineer" is all that it took to ask "How about if I changed
+it myself" and have the answer be "Okay, so long as you work with
+the lead on that, because the code stack is really complicated. As
+you work with them, it is fine."
+
+And that is what I did. I talked to the person who owned all of the UI
+control code in Office, had him explain to me how that code worked (_this is the
+story of over 30 years of source code drifting across multiple OS UI paradigms
+and platforms, constantly writing new wrappers around old code to keep it working
+and new stuff around new code to take advantae of new behaviors. It is a
+crazy complex pile multiple layers of indirect C++ and XML and build-time manifest generating code._).
+It was harder than I wanted it to be, but I managed to get a lot
+of the controls emitting an AutomationId, and was able to track
+an improvement in our AI agent coverage rates as a result.
+
+In some ways I prefer the change
+==============================================================
+I miss a lot of things about being a dedicated test engineer.
+
+But I also find that a lot of the time when developers and testers
+were separate disciplines that I wanted a lot of things to change to
+make the product easier to test, make it more stable, make it easier
+to investigate and monitor and control. I found that even when we made
+our case for those things, they mostly didn't happen.
+
+My observation is that pushing a substantial testing burden on the
+developers forces some of the testing to be better. This is not about
+tester talent, or intelligence. This is about what the person responsible
+for testing is able to control. When testing is a key concern and responsibility
+of the developer, they start to look at the product as a testing problem
+to solve, and the look for ways to make that testing easier.
+
+The effect this should have is that if there are people who focus
+mostly on testing, they can focus on more meaningful work. Rather than
+being forced to take a slow slog through tedious problems that
+should have been done in much more efficient, effective ways, they will
+move on to problems that are much trickier, more deserving of focused
+long hours investigating hard problems.
