@@ -1,3 +1,9 @@
+When you are the developer, you can change the testing problem
+=======================================================
+![A cartoon of a developer contemplating a single giant sea lion, representing a big test problem, versus a bunch of penguins, representing little test problems](/assets/testproblems_sealion_penguins.png)
+
+_I know the metaphor is weird, but I couldn't think of anything else, and
+I kind of like drawing penguins._
 
 I have a long history as a tester, and one of the things
 I take very seriously is coming up with testing ideas, methods,
@@ -22,7 +28,7 @@ subject to whatever designs the team had agreed upon, which I could
 offer feedback into, but I had no control over them. Whatever come out,
 I had to take that in what form it was and test wherever it was possible
 to do so. Often this meant doing large and complex permutations on data
-and sequences of actions at the most abstract layer - end-to-end in the
+and sequences of actions at the most abstract layer, end-to-end in the
 UI on a fully integrated system. I found a lot of bugs this way, but
 coverage of the space I was trying to test was slow and difficult
 and investigation complicated.
@@ -30,18 +36,21 @@ and investigation complicated.
 As the person who writes and fixes the code, I can change the code
 to change the way I test it. Even better, if I come into writing the
 code anticipating the tests, I can design the code to make it possible
-to test the problem at the lowest level - in the unit.
+to test the problem at the lowest level; in the unit.
 
 An example: a web-ui based data schema builder/generator application
 ========================================================
 Let's imagine we have a web-UI based drag and drop data schema
 editor and content generator. We build data schemas graphically,
-and then ask the tool to generate examples of that data.
+and then ask the tool to generate examples of that data. (_This
+image is pretend - complete vaporware. I know it seems similar
+to a project I write about in other articles, but so
+far none of that has any UI ambitions_).
 
 ![A mockup of a possible Web-UI for a data schema building, data generating tool](/assets/datamaker_hypothetical.png)
 
-During test analysis, I come up with lists of hundreds of test ideas,
-in particular different configurations of types of objects in the data
+During test analysis, I come up with lists of hundreds of test ideas.
+These include different configurations of types of objects in the data
 schema, ways of dealing with the randomness of the example generation,
 gestures in the UI for building and modifying the schema, saving to
 storage, retrieving from storage, combining schema together with references,
@@ -52,7 +61,7 @@ As the tester, I give the feedback I have to give, and take what I am offered
 ----------------------------------------------------------
 Let's pretend that as a team we are building out the acceptance suite,
 and I offer an analysis of the different kinds of object relationships
-can exist in a data schema. I present a test strategy with samples of all
+that can exist in a data schema. I present a test strategy with samples of all
 the different types of schema I want to use in the testing.
 
 I raise an issue:
@@ -70,7 +79,7 @@ testability hooks.
 This means that to test this suite of different data shapes I am going to have
 to pump it through the UI. Either I do that unaided by tools, clicking and dragging
 and typing away one object at a time, or I write a UI targeting automation suite, and
-spend the rest of the schedule trying to tame into stable behavior. By the time I start
+spend the rest of the schedule trying to tame it into stable behavior. By the time I start
 reporting bugs from testing this behemoth, the product code is all a tangle because
 nobody has looked at this level of data complexity until long after the code was written.
 The developer is having a dreadful time understanding how to fix each bug without
@@ -87,16 +96,13 @@ UI automation I would.
 I really do not want all the parts and pieces of the system contributing
 to the complexity of the problem when I am debugging.
 
-I would really like to know that handling different kind of shapes is addressed
-in the code that does it well before any other piece of code relies on
-it.
-
 I would really like to know, as I am writing the code, if all of these different
-shapes in the data are handled as we want them to be.
+shapes in the data are handled as we want them to be. I want to know
+that concern of this problem is handled before integration with other code.
 
-I would really to be able to add a new case to this set of possible data
+I really want to be able to add a new case to this set of possible data
 shapes easily, see what the product does quickly, and then fix whatever
-problems arise while also easily and quickly see if that broken anything else.
+problems arise while also easily and quickly seeing if that broken anything else.
 
 I cannot do that if I have to test at the UI. I cannot even do that if I have
 to test using a public product API, such as a REST API. I want to do that in the unit
@@ -107,14 +113,14 @@ This has a lot of impact in the code, and most of it superior product design
 that I might have naively tossed in a rush to meet a schedule. I talk about
 some of these issues in other articles, such as <a href="https://waynemroseberry.github.io/2023/11/27/Automation-refactoring-as-the-app-changes.html">refactoring</a> that changes as we
 change product designs, <a href="https://waynemroseberry.github.io/2023/12/18/When-the-product-needs-to-change-to-remove-flake.html">removing flake</a>
-by refactoring the app, how we can <a hrer="https://waynemroseberry.github.io/2023/12/30/Flake-is-about-control.html"> establish
+by refactoring the app, how we can <a href="https://waynemroseberry.github.io/2023/12/30/Flake-is-about-control.html"> establish
 test control</a> through refactoring, how <a href="https://waynemroseberry.github.io/2024/01/13/Diary-of-a-developer-fixing-their-own-lazy-mistake.html">skipping
 your unit tests</a> can lead to problems later, and even how <a href="https://waynemroseberry.github.io/2024/01/29/Caught-myself-in-a-fragile-unit-test-bad-habit.html">
 you need to think of both big and small picture problems</a> for your unit tests.
 
 Another example, making the end to end testing easier
 ===============================================================
-When I was in Office, one of the things I worked on was AI-driven automation.
+When I was in Office, one of the things I worked on was <a href="https://waynemroseberry.github.io/2023/09/10/lessons-learned-using-an-ai-army-to-test-office.html">AI-driven automation</a>.
 Rather than writing the automated scripts ourselves, an AI agent would
 learn how to use the Office client by randomly manipulating its controls
 and observing how that changed UI state.
@@ -154,7 +160,8 @@ For some reason, the string change from "Software Development Engineer in Test"
 to "Software Engineer" is all that it took to ask "How about if I changed
 it myself" and have the answer be "Okay, so long as you work with
 the lead on that, because the code stack is really complicated. As
-you work with them, it is fine."
+you work with them, it is fine." People who say job titles are meaningless
+aren't really paying attention to the social power of labels.
 
 And that is what I did. I talked to the person who owned all of the UI
 control code in Office, had him explain to me how that code worked (_this is the
@@ -181,7 +188,7 @@ developers forces some of the testing to be better. This is not about
 tester talent, or intelligence. This is about what the person responsible
 for testing is able to control. When testing is a key concern and responsibility
 of the developer, they start to look at the product as a testing problem
-to solve, and the look for ways to make that testing easier.
+to solve, and then look for ways to make that testing easier.
 
 The effect this should have is that if there are people who focus
 mostly on testing, they can focus on more meaningful work. Rather than
