@@ -1,3 +1,12 @@
+
+Whether two things are really part of the same equivalence class can really matter
+===========================================================
+![cartoon of a princess thinking "'If you want to get a prince you have to kiss a lot of frogs' does not seem good advice" while considering different categories of frog, among them a frogman and a poison dart tree frog](/assets/equivalentfrogs.png)
+
+_I wrestled with how much to hold to the stick figure motif when
+I drew the princess, and decided to commit to the same level as public
+restroom signs._
+
 Sometimes we believe certain kinds of constructs in our
 data are equivalent, so we simplify the test data. Sometimes
 we limit our test analysis to only the kinds of logic that
@@ -9,13 +18,14 @@ I like to look for ways of describing a test problem that
 forces us out of that kind of blindness by assumption. I am
 in the middle of a problem right now where the code for
 something I am working on is broken and every time I fix something
-I break one of the other test cases.
+I break one of the other test cases. It is the test data
+that is keeping me honest.
 
 Boundaries and equivalence in the problem versus in the code
 ============================================================
 Equivalence classes are sets of conditions which have an
-identical impact on a given situation, the situation does
-not change. Boundaries are the edges of equivalence classes,
+identical impact on a given situation. The situation does
+not change even when the conditions do. Boundaries are the edges of equivalence classes,
 the points in the condition where moving across the boundary
 will cause a change.
 
@@ -35,23 +45,24 @@ what if the rightmost byte was a bit flag, where each bit indicated some
 special categorization of the ID? With a range of combinations from 00 to
 FF, the ID space has been partitioned into at least 256 new buckets.
 
-In such a case, the problem itself defines the equivalence classes.
+The problem itself defines the equivalence classes, not the data type. The
+problem we refer to has eight indepent attributes that apply, and the buckets
+are derived from a combination of those attributes.
 
-But let's imagine that the developer wrote the code such that rather than looking at
+Imagine  the developer wrote the code such that rather than looking at
 every combination of possible bits it examined only single flags, hence just eight categories.
 
-How many equivalence classes are there? Which is correct? The code, or the
+How many equivalence classes are there; 8 or 256? Which is correct? The code, or the
 problem?
 
-Making this more challenging is that it is possible that the developer
-has discovered an elegant shortcut such that the final only breaks down into
-8 categories of ID and not the 256 categories that a full pairwise treatment
+Making this more challenging is that it is possible  the developer
+ discovered an elegant shortcut and solving the problem only
+8 categories of ID and not the 256 categories that a full combination treatment
 requires.
 
 But it is also possible that some of the pairwise combinations matter. Let's
 say the algorithm is mostly correct, except that the flags 0x00010000 and 0x00000010
-combined together as 0x00010010 create a different condition that only
-happens when the two are combined and which must be handled in a special way.
+combined together as 0x00010010 create a different unique condition which must be handled in a special way.
 Now, instead of only 8 category partitions, there are 9.
 
 We will not discover that new equivalence class if we let the algorithm as expressed
@@ -101,12 +112,15 @@ certain equivalence boundaries that would treat them as such. Here are some equi
 temptations:
 
 > _All schema references are the same as any other schema reference._
+
 Counter: a self-reference and a reference to another schema seem like they introduce different problems.
 
 > _All non-self schema references are the same as any other non-self schema references._
+
 Counter: it seems the nature of the object referenced introduces problems in the second order of evaluation, so the content of the thing referenced seems to further split the equivalence class.
 
 > _Depth 1 non-self schema reference is equivalent to depth N of non-self reference._
+
 Counter: it seems possible that generalizing past one jump to a non-self reference might be harder than handling the first jump. Should at least include two levels of non-self reference.
 
 Another way to think of these temptations and counters are some guidelines on
@@ -119,3 +133,14 @@ coming up with permutations:
 There are other guidelines. The point is to use these kinds of
 guiding principles to keep us from letting blinders on our imagination
 limit the test cases.
+
+Force yourself to break apart the equivalence classes based on the problem and testing guidelines
+===========================================================
+My key takeaway is that testing rules of thumb which push
+me to go beyond the thoughts I might have had writing the
+code seem to always work very well exposing mistaken
+assumptions I had on original coding design. In this example
+the problem was exposed by more fine grained equivalence
+classes, and those were driven a generic set of principles
+I use when considering most test ideas. I make it a point
+to use them even when I might find them unnecessary.
