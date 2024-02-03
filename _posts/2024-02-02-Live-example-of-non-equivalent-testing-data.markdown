@@ -86,7 +86,7 @@ schema by name, thus creating the possibility of loops.
 The method under test is called `schemaHasInfiniteLoop()`.
 
 During test analysis, I came up with several different kinds of
-looping shapes in the schema, six of which are diagrammed below,
+looping shapes in the schema, seven of which are diagrammed below,
 and described after. There are other shapes, but these six are
 the ones where my code breaks.
 
@@ -99,6 +99,13 @@ The shapes are:
 - __Third order self reference__: a schema object points to another schema object that points to yet another schema object that points back to the first one
 - __Reference to 2nd order self referencing schema__: a schema object points to another schema object that points to yet another schema object that references itself.
 - __Second order reference to non-loop__: a schema object references another schema object that references another schema object that terminates without a reference
+- __Reference to non-loop__: a schema object references another schema object that terminates without a reference
+
+_In my original version of this article, there were only six shapes, with just "Second order reference to non-loop"
+as the only non-looping object. I added one where a first order reference terminates instead of looping,
+and found it did not break, something that surprised me. I thought that just a reference being there before
+the terminating object would behave the same was as a second order reference, but I was wrong. More evidence
+for my point about assumptions that shortcut our equivalence partitions being incorrect._
 
 From a coding perspective, this is starting to feel like
 a typical leetcode problem, and I am annoyed I haven't solved
