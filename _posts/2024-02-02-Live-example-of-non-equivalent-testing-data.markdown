@@ -107,6 +107,13 @@ and found it did not break, something that surprised me. I thought that just a r
 the terminating object would behave the same was as a second order reference, but I was wrong. More evidence
 for my point about assumptions that shortcut our equivalence partitions being incorrect._
 
+_A day or so later, and I finally figured out how to make the code work with all seven cases shown above. I committed
+that to the repo. Then I integrated the loop detection functionality with another method, `getRandomExample()`, and ran
+its unit tests. One of the data structures which does not have an infinite loop failed. I replicated that data structure
+in the tests for my infinite loop detection method, and it the bug reproduced there. I had spent so much time
+thinking about loop shapes from `ReferenceSchemaObjects` I didn't bother to check loops coming in as children all of the other object types.
+The mistake here was a matter of being not being thorough. Really, I was being sloppy and forgetful._
+
 From a coding perspective, this is starting to feel like
 a typical leetcode problem, and I am annoyed I haven't solved
 it yet. My motivation is not very high, so I do other things all
