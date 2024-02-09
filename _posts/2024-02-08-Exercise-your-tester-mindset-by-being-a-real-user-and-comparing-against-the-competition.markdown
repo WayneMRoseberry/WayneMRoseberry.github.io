@@ -68,12 +68,30 @@ the main functionality. I chose to create a new test suite. From that
 I selected to do so from importing a Postman collection, using the one
 I created earlier.
 
-> _Postman also allows creation of test suites by describing the REST API
-> under test. I had done this earlier, but I wanted to investigate their
-> import story.
+> __Sometimes testing with data intentionally designed to exacerbate failure
+> is more effective and efficient. Sometimes testing with real data that
+> comes from a real purpose is more effective and efficient. Scenario based
+> testing tends toward the latter.__
+
+ _Postman also allows creation of test suites by describing the REST API
+ under test. I had done this earlier, but I wanted to investigate their
+ import story._
 
 I was presented with a screen saying I would receive an email when the import
 processing was complete.
 
-_Time to deviate from being a normal, well-behaved, nervouse user..._
+_Time to deviate from being a normal, well-behaved, nervous user..._
+
+As a user of product, when something tells me to wait until a process is
+complete, I do that. I have had enough things break, data disappear, systems
+get stuck, hours or effort lost, and other wasting of time that comes
+of catching a system off-guard and out of its normal state that when I
+am trying to get something real done, I prefer to tread carefully and
+follow instructions.
+
+As a tester, that goes out the door. I am going exploring. Not maliciously,
+because I also know that lots of real users are not as cautious as I
+am, and will impatiently poke around.
+
+> __When the system says "wait for this thing..." try not waiting.__
 
