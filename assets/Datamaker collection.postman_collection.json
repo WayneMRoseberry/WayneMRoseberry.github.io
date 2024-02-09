@@ -1,0 +1,119 @@
+{
+	"info": {
+		"_postman_id": "e026886b-347b-4a65-bd1c-5d8f55988e13",
+		"name": "Datamaker collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28545038"
+	},
+	"item": [
+		{
+			"name": "GET namespaces",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "GET SchemaDefs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://datamakerjs-f3b6b7d13de0.herokuapp.com/api/schemadefs?namespace=baseobjecttypes",
+					"protocol": "http",
+					"host": [
+						"datamakerjs-f3b6b7d13de0",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"schemadefs"
+					],
+					"query": [
+						{
+							"key": "namespace",
+							"value": "baseobjecttypes"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET SchemaDef",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "GET getRandomExample",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://datamakerjs-f3b6b7d13de0.herokuapp.com/api/schemadef/getrandomexample?namespace=baseobjecttypes&schemaname=initialalpha1to8charstring&count=1",
+					"protocol": "http",
+					"host": [
+						"datamakerjs-f3b6b7d13de0",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"schemadef",
+						"getrandomexample"
+					],
+					"query": [
+						{
+							"key": "namespace",
+							"value": "baseobjecttypes"
+						},
+						{
+							"key": "schemaname",
+							"value": "initialalpha1to8charstring"
+						},
+						{
+							"key": "count",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST SchemaDef",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"SchemaName\": \"testingsequenceschemaobject\",\r\n    \"RootSchemaObject\": {\r\n        \"ObjectTypeName\": \"SequenceSchemaObject\",\r\n        \"SequenceArray\": [\r\n            {\r\n                \"ObjectTypeName\": \"ReferenceSchemaObject\",\r\n                \"Namespace\": \"baseobjecttypes\",\r\n                \"SchemaName\": \"alphalower\"\r\n            },\r\n            {\r\n                \"ObjectTypeName\": \"OptionalSchemaObject\",\r\n                \"OptionalValue\": {\r\n                    \"ObjectTypeName\": \"ReferenceSchemaObject\",\r\n                    \"Namespace\": \"baseobjecttypes\",\r\n                    \"SchemaName\": \"alphanumericchar\"\r\n                }\r\n            },\r\n            {\r\n                \"ObjectTypeName\": \"ReferenceSchemaObject\",\r\n                \"Namespace\": \"baseobjecttypes\",\r\n                \"SchemaName\": \"alphalower\"\r\n            },\r\n            {\r\n                \"ObjectTypeName\": \"OptionalSchemaObject\",\r\n                \"OptionalValue\": {\r\n                    \"ObjectTypeName\": \"ReferenceSchemaObject\",\r\n                    \"Namespace\": \"baseobjecttypes\",\r\n                    \"SchemaName\": \"alphanumericchar\"\r\n                }\r\n            },\r\n            {\r\n                \"ObjectTypeName\": \"ReferenceSchemaObject\",\r\n                \"Namespace\": \"baseobjecttypes\",\r\n                \"SchemaName\": \"alphalower\"\r\n            },\r\n            {\r\n                \"ObjectTypeName\": \"OptionalSchemaObject\",\r\n                \"OptionalValue\": {\r\n                    \"ObjectTypeName\": \"ReferenceSchemaObject\",\r\n                    \"Namespace\": \"baseobjecttypes\",\r\n                    \"SchemaName\": \"alphanumericchar\"\r\n                }\r\n            },\r\n            {\r\n                \"ObjectTypeName\": \"ReferenceSchemaObject\",\r\n                \"Namespace\": \"baseobjecttypes\",\r\n                \"SchemaName\": \"alphalower\"\r\n            },\r\n            {\r\n                \"ObjectTypeName\": \"OptionalSchemaObject\",\r\n                \"OptionalValue\": {\r\n                    \"ObjectTypeName\": \"ReferenceSchemaObject\",\r\n                    \"Namespace\": \"baseobjecttypes\",\r\n                    \"SchemaName\": \"alphanumericchar\"\r\n                }\r\n            },\r\n            {\r\n                \"ObjectTypeName\": \"ReferenceSchemaObject\",\r\n                \"Namespace\": \"baseobjecttypes\",\r\n                \"SchemaName\": \"alphalower\"\r\n            },\r\n            {\r\n                \"ObjectTypeName\": \"OptionalSchemaObject\",\r\n                \"OptionalValue\": {\r\n                    \"ObjectTypeName\": \"ReferenceSchemaObject\",\r\n                    \"Namespace\": \"baseobjecttypes\",\r\n                    \"SchemaName\": \"alphanumericchar\"\r\n                }\r\n            },\r\n            {\r\n                \"ObjectTypeName\": \"ReferenceSchemaObject\",\r\n                \"Namespace\": \"baseobjecttypes\",\r\n                \"SchemaName\": \"alphalower\"\r\n            },\r\n            {\r\n                \"ObjectTypeName\": \"OptionalSchemaObject\",\r\n                \"OptionalValue\": {\r\n                    \"ObjectTypeName\": \"ReferenceSchemaObject\",\r\n                    \"Namespace\": \"baseobjecttypes\",\r\n                    \"SchemaName\": \"alphanumericchar\"\r\n                }\r\n            },\r\n            {\r\n                \"ObjectTypeName\": \"ReferenceSchemaObject\",\r\n                \"Namespace\": \"baseobjecttypes\",\r\n                \"SchemaName\": \"alphalower\"\r\n            },\r\n            {\r\n                \"ObjectTypeName\": \"OptionalSchemaObject\",\r\n                \"OptionalValue\": {\r\n                    \"ObjectTypeName\": \"ReferenceSchemaObject\",\r\n                    \"Namespace\": \"baseobjecttypes\",\r\n                    \"SchemaName\": \"alphanumericchar\"\r\n                }\r\n            },\r\n            {\r\n                \"ObjectTypeName\": \"ReferenceSchemaObject\",\r\n                \"Namespace\": \"baseobjecttypes\",\r\n                \"SchemaName\": \"alphalower\"\r\n            },\r\n            {\r\n                \"ObjectTypeName\": \"OptionalSchemaObject\",\r\n                \"OptionalValue\": {\r\n                    \"ObjectTypeName\": \"ReferenceSchemaObject\",\r\n                    \"Namespace\": \"baseobjecttypes\",\r\n                    \"SchemaName\": \"alphanumericchar\"\r\n                }\r\n            }\r\n        ]\r\n    },\r\n    \"Namespace\": \"testingnamespace\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://datamakerjs-f3b6b7d13de0.herokuapp.com/api/schemadef",
+					"protocol": "http",
+					"host": [
+						"datamakerjs-f3b6b7d13de0",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"schemadef"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
