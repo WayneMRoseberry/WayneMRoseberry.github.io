@@ -70,3 +70,106 @@ When testing we want to describe the symptoms and necessary conditions to get to
 symptoms as completely as possible. Diagnosing exact behavior, tracing to root cause
 is a different activity. It is not a bad activity to do at test time, but one does need to have the code available
 to them to do it.
+
+Is it a bug?
+=====================================================
+My rule of thumb when I find something is to report it regardless. If you are
+uncertain if something is a bug, ask how the team feels about it. Explain why
+you are asking, why you believe it might be a bug.
+
+The behavior I found in this case may seem like an obvious
+bug to some people, and might sound like expected behavior to others.
+
+The case for it being a bug
+------------------------------------------------------
+The case for it being a bug is that one might expect that if a tool
+is told to select an item that is not available, it should fail the
+operation with an error. Taking the action without reporting leads to the impression the
+operation succeeded the item was not available leads to a false sense of
+what state the application is in.
+
+This case is further supported by some of the claims on the
+DoesQA website:
+
+> Code has bugs. Don't add more!
+>
+> Rapidly expand test coverage with reliable codeless test automation.
+
+and...
+
+>Create complex tests in minutes - not days - and run them in seconds with 100% reliability!
+
+It seems rational to consider false negatives, passing results when the
+tool did not actually do what is was asked to do and the application is not
+in the expected state, less than "100% reliability" and it certain feels as if with
+a false negative bug in the test we did just "add more" bugs.
+
+The case for it not being a bug
+------------------------------------------------------
+DoesQA is competes against lower level coding languages and libaries for
+creating automated tests. It is very likely that somebody writing the automation
+using the same steps I used would hit a similar problem. The script, as I wrote
+it, does not allow for checking if the `schemalist` element has updated
+yet before attempting a selection. It does not check at the end if the page
+updates with the expected value for the json definition of the selected schema definition.
+
+I implemented an alternate version of the workflow which adds this check at the
+end, and the flow returns a fail, as it should, when different values are
+found in the schema definition json.
+
+Compared to other lower level language solutions, the burden has always been
+placed on the author of the automation to recognize that driving UI based automation
+always requires more explicitly checking, dealing with timing delays, and relying
+less on implicit behavior assumptions to navigate the UI in a controlled fashion. Proper
+use of the toolset demands a body of domain knowledge, keen awareness of the tool
+behavior, and being a skilled programmer.
+
+The behavior in DoesQA might be indicating no more than what we might
+expect out of any other end to end UI automation coding langauge.
+
+How do you rationalize the whether it is a bug or not?
+--------------------------------------------------------
+The only thing you can do is make a decision, and from the testing perspective,
+we provide information so the people responsible for that information can make an
+informed choice. There are some points to consider:
+
+- Does the product intend for the behavior to be different than reported? Does what you reported violate an intended requirement?
+- Does the behavior reported match or violate claims made about the product? Some of these claims might be specific, some of them might be subtle and nuanced.
+- Do we know how end users are likely to use the product and what they would expect in this situation?
+- Does the behavior present a problem, for example the ways the end user might workaround it, that the business would want to avoid?
+
+Violating a requirement, an intended behavior, is usually a good indication what you found will
+be determined a bug. That is usually easy, and unusual the team will decide otherwise, but they might.
+
+Let's pretend (I don't know right now, although I do have a communication going back and forth
+with Sam Smith, co-founder of DoesQA) that there is an explicit requirement that
+the "Select <value" action is meant to encapsulate timing and race condition logic on behalf of
+the automation author so they do not need to mitigate such situations with waits or between
+step checks. If such a requirement exists, this behavior seems an obvious violation of it, and I
+suspect some developer would be on it quickly to figure out how this condition got past the code.
+
+Violating subtle claims about a product behavior are a more difficult decision. DoesQA
+presents an interesting subtlety in its claims.
+
+There is an implied claim about the product that using DoesQA is so much
+easier because the programming skills are less (zero, if you take the
+hyperbolic "no code" term literally) than in any other language. The literature
+boasts speed, easy of use, increased reliability.
+
+What this behavior demonstrates rather effectively is that the burden of understanding
+the subtle mechanisms of web-based UI automation is no different and challenging on
+DoesQA than any other language. You still have intricate timing and state problems
+to manage. You still have to make a choice between trusting your actions and checking every
+step along the way. You still have race conditions, delayed updates, tricky data and
+content to compare accurately to oracles.
+
+But counter to that, it is perhaps unfair to expect a problem be solved that
+competition hasn't solved either. DoesQA makes automation easier in ways the
+lower level languages do not (FWIW: despite me bluntly reporting the bugs I find, I
+find the drag and drop editing style of DoesQA enjoyable and easy to do). Perhaps
+there is a "come back to reality" moment the customer needs to have after they put
+down the brochures and marketing slicks, but it is a familiar journey a lot of
+other automation programmers have been through, so it winds up being no worse than
+most of the competition. The "workaround" in this case is, in another tool or language,
+just consider "better coding."
+
