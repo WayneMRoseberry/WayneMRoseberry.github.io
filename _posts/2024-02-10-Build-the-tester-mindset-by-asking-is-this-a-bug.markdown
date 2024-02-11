@@ -260,7 +260,7 @@ foster a communication.
 - Passive action based on implicit assumpts rather than confirmed, checked state, is an automation anti-pattern (the use case in my article is an instance of the anti-pattern), and DoesQA has some features (existing and planned) to coax, encourage, and train the users away from this anti-pattern.
 - DoesQA both wants the controls to robustly do what they say the are going to do, and also expects its users to apply similar principles of robust automation engineering as they would in any langage. It is not DoesQA's goal to magically make that requirement disappear. As per the point above, they want to make it easier for the end user to know how to do the right thing.
 
-I put this section in as an addendum rather tha re-write any of the rest of the
+I put this section in as an addendum rather than re-write any of the rest of the
 article because I wanted to capture a semi-real-time account of my statement
 of mind both before and after talking with Sam. If you read the bullet points
 above, and then read my musing on possibilities from earlier, you will see my
