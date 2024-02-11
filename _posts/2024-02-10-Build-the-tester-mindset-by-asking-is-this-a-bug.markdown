@@ -1,3 +1,34 @@
+Is it a bug or not?
+=================================================================
+![Cartoon of a stick figure testing contemplating whether a behavior they see is a bug or not](/assets/bugornot.png)
+
+It is common when testing an application we observe a problem that
+we are not sure whether it is a bug. Sometimes we are uncertain
+whether the product code was meant to handle a certain condition.
+Sometimes we are uncertain if an existing product requirement addresses
+a given case. Sometimes our requires are more subtle, or inferred, or
+nuanced. Sometimes we need to understand customers, competing products,
+or the implications of the behavior more for the team to make a decision.
+
+When testing, we want to help make these kinds of decisions by doing the
+following:
+- use as much discipline and rigor and detail as possible when invetigating and reporting the behavior
+- always report, even if you are unsure whether something is a problem or not
+- investigate as many supporting sources of information as you can to help with the decision.
+
+In this article, I tested <a href="https://does.qa/try">DoesQa</a> an
+test automation platform that presents a drag-and drop widget style
+automation editing surface for building tests against web-based
+interfaces. I directed the testing against a website I had built.
+
+
+![screenshot of the app I used DoesQA to test, DataMaker, showing two select lists and a table with text below it](/assets/datamaker_namespaceschemalists.png)
+
+Example: Using a no-code automation solution to test a web application
+==================================================================
+I have a tool called <a href="https://datamakerjs-f3b6b7d13de0.herokuapp.com/>DataMaker</a>, 
+which at the time of this article writing had a rough and primitive UI. I
+used DoesQA to build automation workflows against this page.
 
 The page under test has two select elements and two spans of text.
 The first select element has a list of schema namespaces. The
@@ -7,6 +38,8 @@ is changed. The two spans of text below are populated with data
 whenever a schema definition from the second select element is selected.
 The name of the selected schema definition should appear as part of
 the text in the first text span.
+
+![screenshot of DoesQA workflow described in paragraph below](/assets/doesqa_splitandcross.png)
 
 The flow in Does QA does the following:
 1. Opens the page https://datamakerjs-f3b6b7d13de0.herokuapp.com/
@@ -138,6 +171,8 @@ I implemented an alternate version of the workflow which adds this check at the
 end, and the flow returns a fail, as it should, when different values are
 found in the schema definition json.
 
+![a screenshot of the alternate workflow I implemented in DoesQA which puts a check the end](/assets/doesqa_raceconditionchecked.png)
+
 Compared to other lower level language solutions, the burden has always been
 placed on the author of the automation to recognize that driving UI based automation
 always requires more explicitly checking, dealing with timing delays, and relying
@@ -206,3 +241,16 @@ other automation programmers have been through, so it winds up being no worse th
 most of the competition. The "workaround" in this case is, in another tool or language,
 just considered "better coding."
 
+Are we done or not with whether it is a bug or not?
+===================================================
+Just like with whether something you find in a product is a bug or not, we have to
+make a decision. Part of that decision was yours, and whether you read this far or 
+not demonstrates you at least decided you were not done until reading this far. For myself, I want
+to at least summarize my points.
+
+Whether something is a bug or not is a decision. That decision requires information. Testers
+supply that information based on our observations about the product. We do not hold that
+information back, afraid that the decision might be "not a bug," but instead, we report the information
+anyway. We apply rigor to our testing, our analysis, and our reporting so the decision is
+made with as accurate a set of information as we can manage. If we do that much, we have
+done the best we can, and will probably anticipate more accurately and more often how the customer perceives it.
