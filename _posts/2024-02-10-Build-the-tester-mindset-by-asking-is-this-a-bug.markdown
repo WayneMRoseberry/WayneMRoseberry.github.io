@@ -21,14 +21,13 @@ test automation platform that presents a drag-and drop widget style
 automation editing surface for building tests against web-based
 interfaces. I directed the testing against a website I had built.
 
-
-![screenshot of the app I used DoesQA to test, DataMaker, showing two select lists and a table with text below it](/assets/datamaker_namespaceschemalists.png)
-
 Example: Using a no-code automation solution to test a web application
 ==================================================================
-I have a tool called <a href="https://datamakerjs-f3b6b7d13de0.herokuapp.com/>DataMaker</a>, 
+I have a tool called <a href="https://datamakerjs-f3b6b7d13de0.herokuapp.com/">DataMaker</a>, 
 which at the time of this article writing had a rough and primitive UI. I
 used DoesQA to build automation workflows against this page.
+
+![screenshot of the app I used DoesQA to test, DataMaker, showing two select lists and a table with text below it](/assets/datamaker_namespaceschemalists.png)
 
 The page under test has two select elements and two spans of text.
 The first select element has a list of schema namespaces. The
@@ -39,6 +38,8 @@ whenever a schema definition from the second select element is selected.
 The name of the selected schema definition should appear as part of
 the text in the first text span.
 
+The worklow in DoesQA: trying different combinations of select list options
+=================================================================
 ![screenshot of DoesQA workflow described in paragraph below](/assets/doesqa_splitandcross.png)
 
 The flow in Does QA does the following:
@@ -71,6 +72,8 @@ and two invalid. The expectation is that the branches/permutations of the flow
 would fail on step 5 when attempting to select the __selected_schemadef__ value
 from the `schemalist` select element.
 
+![screenshot showing results of the four run combinations above, with the first combination passing when it should have failed](/assets/datamaker_shouldhavefailed.png)
+
 The expectations are met in three of the cases, (networktypes, url), (basojecttypes,url),
 and (baseobjecttypes, 8charalphanumeric), which result in pass, fail, pass, as we
 would expect. The case (networktypes, 8charalphanumeric) which should fail
@@ -80,6 +83,8 @@ run, we see that the value "querystring" has been selected in the `itemlist`
 element instead of "8charalphanumeric." This is likewise refected in the
 text span below it in the leftmost table column, where the json of the schema
 definition of "querystring" is displayed and not "8charalphanumeric."
+
+![screenshot of the datamaker session app captured during the workflow run, indicating the wrong value selected for schemalist and in the schema definition json](/assets/datamaker_wrongvalues.png)
 
 Why does the combination (networktypes, 8charalphanumeric) present a false
 negative, a passing result, while its invalid option counterpart, (basojecttypes,url),
@@ -108,7 +113,9 @@ This suggests a possible race condition where DoesQA attempts to select a value 
 `schemalist` before the element `schemalist` is populated based on the `onChange()` event
 of the `namespace()` element. But it also suggests a possible stale state behavior in
 DoesQA where it is not updating its view/understanding of the page state before taking 
-action. There are other possibilities.
+action. There are other possibilities. Our description of the problem observation does not
+need to get into this speculation. That is a follow-up, separate analysis. What is
+important is that the test result is accurate and not tainted by speculation.
 
 When testing we want to describe the symptoms and necessary conditions to get to the
 symptoms as completely as possible. Diagnosing exact behavior, tracing to root cause
@@ -193,24 +200,24 @@ The only thing you can do is make a decision, and from the testing perspective,
 we provide information so the people responsible for that information can make an
 informed choice. There are some points to consider:
 
-> Collect some of the following information and present it in the testing report
-> - __product requirements__: refer or repeat the relative requirement, and explain how or if the behavior is a direct violation
-> - __marketing literature, demo material, documentation__: if the product is released, there will likely be something, if it has not, this might be a chance to change up the literature before release if the behavior is something you intend to ship
-> - __try same thing in a competing product__: is the experience similar, better, worse, completely different in the competition? Sometimes this information makes a very compelling case for the decision
-> - __find examples of end user behavior__: support forums, user groups, articles, customers you have existing relationships with, sales and market representatives, support staff.. any of these may have more perspective, information that could help frame the report better
-
 - Does the product intend for the behavior to be different than reported? Does what you reported violate an intended requirement?
 - Does the behavior reported match or violate claims made about the product? Some of these claims might be specific, some of them might be subtle and nuanced.
 - Do we know how end users are likely to use the product and what they would expect in this situation?
 - Does the behavior present a problem, for example the ways the end user might workaround it, that the business would want to avoid?
 - Is there a similar behavior in a competing product, and what does it look like?
 
+For all of that, whomever is testing has some work to do.
+> Collect some of the following information and present it in the testing report
+> - __product requirements__: refer or repeat the relative requirement, and explain how or if the behavior is a direct violation
+> - __marketing literature, demo material, documentation__: if the product is released, there will likely be something, if it has not, this might be a chance to change up the literature before release if the behavior is something you intend to ship
+> - __try same thing in a competing product__: is the experience similar, better, worse, completely different in the competition? Sometimes this information makes a very compelling case for the decision
+> - __find examples of end user behavior__: support forums, user groups, articles, customers you have existing relationships with, sales and market representatives, support staff.. any of these may have more perspective, information that could help frame the report better
 
 Violating a requirement, an intended behavior, is usually a good indication what you found will
 be determined a bug. That is usually easy, and unusual the team will decide otherwise, but they might.
 
-Let's pretend (I don't know right now, although I do have a communication going back and forth
-with Sam Smith, co-founder of DoesQA) that there is an explicit requirement that
+Let's pretend (_I don't know right now, although I do have a communication going back and forth
+with Sam Smith, co-founder of DoesQA_) that there is an explicit requirement that
 the "Select <value" action is meant to encapsulate timing and race condition logic on behalf of
 the automation author so they do not need to mitigate such situations with waits or between
 step checks. If such a requirement exists, this behavior seems an obvious violation of it, and I
