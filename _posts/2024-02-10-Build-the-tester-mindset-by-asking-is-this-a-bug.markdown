@@ -27,6 +27,12 @@ selected_namespace = baseobjecttypes, selected_schemadef = url // this is an inv
 selected_namespace = baseobjecttypes, selected_schemadef = 8charalphanumeric
 ```
 
+> The basis of understanding a reported problem that may or may not
+> be a bug is usually a detailed understanding of the product behavior.
+> When possible, and when it makes sense, try to describe the behavior in
+> precise terms so that the important and salient variables are understood
+> later when making a decision.
+
 With these combinations there are two valid settings for the select lists,
 and two invalid. The expectation is that the branches/permutations of the flow
 would fail on step 5 when attempting to select the __selected_schemadef__ value
@@ -60,6 +66,11 @@ we have:
 1. DoesQA is told to select a value and it selects something else, but does not report that to us
 2. The value it is told to select had to be available prior to WHEN it makes the selection in order to get the false negative outcome
 
+> Reporting behavior, the result of testing, and finding root cause are
+> two different activities. There may be multiple possible reasons why whatever
+> you observed happens. Keep the behavioral description as distinct from speculation about
+> root cause as much as possible.
+
 This suggests a possible race condition where DoesQA attempts to select a value from
 `schemalist` before the element `schemalist` is populated based on the `onChange()` event
 of the `namespace()` element. But it also suggests a possible stale state behavior in
@@ -77,6 +88,9 @@ My rule of thumb when I find something is to report it regardless. If you are
 uncertain if something is a bug, ask how the team feels about it. Explain why
 you are asking, why you believe it might be a bug.
 
+> Always report your findings, especially if you are not sure something is a bug,
+> is a problem or not. 
+
 The behavior I found in this case may seem like an obvious
 bug to some people, and might sound like expected behavior to others.
 
@@ -91,22 +105,29 @@ what state the application is in.
 This case is further supported by some of the claims on the
 DoesQA website:
 
-> Code has bugs. Don't add more!
+> _Code has bugs. Don't add more!_
 >
-> Rapidly expand test coverage with reliable codeless test automation.
+> _Rapidly expand test coverage with reliable codeless test automation._
 
 and...
 
->Create complex tests in minutes - not days - and run them in seconds with 100% reliability!
+>_Create complex tests in minutes - not days - and run them in seconds with 100% reliability!_
 
 It seems rational to consider false negatives, passing results when the
 tool did not actually do what is was asked to do and the application is not
 in the expected state, less than "100% reliability" and it certain feels as if with
 a false negative bug in the test we did just "add more" bugs.
 
+> Consider the claims about the product behavior in both direct and
+> subtle ways. This is challenging because being overly legalistic on
+> the wording of a claim can be just as misleading as being too broad
+> on its reading. We can fool ourselves into being too generous or
+> conservative when deciding whether something is a bug.
+
+
 The case for it not being a bug
 ------------------------------------------------------
-DoesQA is competes against lower level coding languages and libaries for
+DoesQA competes against lower level coding languages and libaries for
 creating automated tests. It is very likely that somebody writing the automation
 using the same steps I used would hit a similar problem. The script, as I wrote
 it, does not allow for checking if the `schemalist` element has updated
@@ -127,16 +148,28 @@ behavior, and being a skilled programmer.
 The behavior in DoesQA might be indicating no more than what we might
 expect out of any other end to end UI automation coding langauge.
 
+> When whether a behavior is a bug or not is uncertain, it is good
+> to understand the reason why it might not be a bug. Try to represent
+> that argument as best you can, as fairly as possible.
+
 How do you rationalize the whether it is a bug or not?
 --------------------------------------------------------
 The only thing you can do is make a decision, and from the testing perspective,
 we provide information so the people responsible for that information can make an
 informed choice. There are some points to consider:
 
+> Collect some of the following information and present it in the testing report
+> - __product requirements__: refer or repeat the relative requirement, and explain how or if the behavior is a direct violation
+> - __marketing literature, demo material, documentation__: if the product is released, there will likely be something, if it has not, this might be a chance to change up the literature before release if the behavior is something you intend to ship
+> - __try same thing in a competing product__: is the experience similar, better, worse, completely different in the competition? Sometimes this information makes a very compelling case for the decision
+> - __find examples of end user behavior__: support forums, user groups, articles, customers you have existing relationships with, sales and market representatives, support staff.. any of these may have more perspective, information that could help frame the report better
+
 - Does the product intend for the behavior to be different than reported? Does what you reported violate an intended requirement?
 - Does the behavior reported match or violate claims made about the product? Some of these claims might be specific, some of them might be subtle and nuanced.
 - Do we know how end users are likely to use the product and what they would expect in this situation?
 - Does the behavior present a problem, for example the ways the end user might workaround it, that the business would want to avoid?
+- Is there a similar behavior in a competing product, and what does it look like?
+
 
 Violating a requirement, an intended behavior, is usually a good indication what you found will
 be determined a bug. That is usually easy, and unusual the team will decide otherwise, but they might.
@@ -165,11 +198,11 @@ content to compare accurately to oracles.
 
 But counter to that, it is perhaps unfair to expect a problem be solved that
 competition hasn't solved either. DoesQA makes automation easier in ways the
-lower level languages do not (FWIW: despite me bluntly reporting the bugs I find, I
-find the drag and drop editing style of DoesQA enjoyable and easy to do). Perhaps
+lower level languages do not (_FWIW: despite me bluntly reporting the bugs I find, I
+find the drag and drop editing style of DoesQA enjoyable and easy to do_). Perhaps
 there is a "come back to reality" moment the customer needs to have after they put
 down the brochures and marketing slicks, but it is a familiar journey a lot of
 other automation programmers have been through, so it winds up being no worse than
 most of the competition. The "workaround" in this case is, in another tool or language,
-just consider "better coding."
+just considered "better coding."
 
