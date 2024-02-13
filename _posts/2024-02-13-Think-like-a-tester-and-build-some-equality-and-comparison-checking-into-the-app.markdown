@@ -1,3 +1,7 @@
+This is the kind of testing approach where the person coming up with
+the test procedure has a big advantage if they are also able to change
+the product code. The key part is realizing the advantage even exists.
+
 It is common during testing that we work with complex data types.
 Maybe it is a user entry in an identity database. Maybe it is
 a transaction in a purchase/ordering system. Maybe it is a location
@@ -122,3 +126,16 @@ Some piece of test code might have any number of uses for such a list.
 
 Be sure to check the checkers and helpers
 ====================================================
+This whole approach falls apart if the helper methods on the object
+remain unchecked. What if `Equal()` has a bug? What if `ToString()` is
+dropping properties? The bug will ripple through the remaining test suite and
+may obscure other failures.
+
+ The checking patterns on `Equals()` are usually pretty simple:
+ 1. create two objects using same properties, fail if `Equals()` returns false
+ 2. create an object, fetch a copy (and check that `Equals()==true`), and then for each property on the object alter the copy and fail if `Equals()` returns true
+
+It can sometimes be more complex than that, depending on the purpose and
+requirements for a given class. Other overridden methods, like `ToString()` can
+be more complicated to check, again, depending on the nature of the class.
+
