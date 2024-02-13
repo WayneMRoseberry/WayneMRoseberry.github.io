@@ -1,7 +1,18 @@
+Implementing testability via data type method overrides
+=======================================================
+![A cartoon image of a stick figure tester imagining checking two bunnies for equality and wondering if the bunnies could check themselves](/assets/bunnycomparison.png)
+
+_I have settled on this stick figure character motif since opting to draw my own illustrations
+rather than use AI. I produce the image almost as quickly as it takes me to choose from
+what AI produces. I get more control this way. The AI images look better, but I wind up with something
+uniquely mine._
+
 This is the kind of testing approach where the person coming up with
 the test procedure has a big advantage if they are also able to change
 the product code. The key part is realizing the advantage even exists.
 
+The deal with data types...
+=======================================================
 It is common during testing that we work with complex data types.
 Maybe it is a user entry in an identity database. Maybe it is
 a transaction in a purchase/ordering system. Maybe it is a location
@@ -139,3 +150,10 @@ It can sometimes be more complex than that, depending on the purpose and
 requirements for a given class. Other overridden methods, like `ToString()` can
 be more complicated to check, again, depending on the nature of the class.
 
+Now that we have gone over the override...
+====================================================
+This article has really been about testability, which is a good bridging
+topic between the world and activity of testing and that of development.
+Everything made should be tested, and it is better if we make them
+easier to test. Sometimes simple changes, even down at the lowest
+level design decisions, can produce a large advantage later.
