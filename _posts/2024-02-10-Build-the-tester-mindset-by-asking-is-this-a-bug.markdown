@@ -248,6 +248,31 @@ other automation programmers have been through, so it winds up being no worse th
 most of the competition. The "workaround" in this case is, in another tool or language,
 just considered "better coding."
 
+UPDATE: Responses from Sam Smith at DoesQA
+==================================================
+Sam responded to the testing report, and his team did quite a bit of investigation
+of the reported issue. I am going to summarize his response rather than put it verbatim,
+as my goal is to share the testing experience and convey how these kinds of issues
+foster a communication.
+
+- There was a bug involved in the false negative case that has to do with how select action behaves, and the team already made one fix live, others planned.
+- There are other ways that the select action presents options for setting/checking values which lead the user toward less stable design ideas, and the team is making changes around that as well.
+- Passive action based on implicit assumpts rather than confirmed, checked state, is an automation anti-pattern (the use case in my article is an instance of the anti-pattern), and DoesQA has some features (existing and planned) to coax, encourage, and train the users away from this anti-pattern.
+- DoesQA both wants the controls to robustly do what they say the are going to do, and also expects its users to apply similar principles of robust automation engineering as they would in any langage. It is not DoesQA's goal to magically make that requirement disappear. As per the point above, they want to make it easier for the end user to know how to do the right thing.
+
+I put this section in as an addendum rather than re-write any of the rest of the
+article because I wanted to capture a semi-real-time account of my statement
+of mind both before and after talking with Sam. If you read the bullet points
+above, and then read my musing on possibilities from earlier, you will see my
+speculations are partially correct and also partially wrong. But the information
+about what I observed during testing was valuable to the team.
+
+> Among other things, testing is a conversation. It also drives a change in
+> understanding for everyone involved. The creators of the code learn things
+> about code behavior they did not. The person testing learns something based
+> on the response to test reporting. Optimize for this conversation, optimize
+> for learning, and you will optimize for better outcomes.
+
 Are we done or not with whether it is a bug or not?
 ===================================================
 Just like with whether something you find in a product is a bug or not, we have to
