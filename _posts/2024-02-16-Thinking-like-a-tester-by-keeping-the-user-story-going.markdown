@@ -43,3 +43,43 @@ This is another extension of exploring the value claims of the product. One
 of the features of this tool is automatic self-healing, built-in intelligence
 that intends to make scripts more robust. That is pretty easy when the web
 application is well architected for testability, but when it is not, what happens?
+
+How do you grow the story?
+========================================================
+Let's break down an approach. Truth is I don't really do this by breaking
+it down into steps. I intuit the final outcome. But internally, it is essentially
+something like the following:
+
+1. Start with a basic user story
+
+These can come from anywhere. You might have user stories as part of your project. They might
+be in a Jira ticket. They might be in a list somewhere.
+If your team does not explicitly track user stories somewhere, look at other sources of
+information. Marketing materials and end user documentation/help content is one source. Recent
+product demos are good. Is there a body of training and how-to videos online from
+the company or even end-user consultants and enthusiasts?
+
+You just need one story.
+For example: In the test session I used for this article, I took the story as implied by the ContextQA website product promotional claims.
+
+3. Think beyond the moment of the story, build a context
+
+The stories you will find are almost always very isolated and sanitized. This is
+because the stories are easier to use and fit their purpose better (to sell, to educate,
+to illustrate) if they are simpler. The optimum, simple case works better for
+these stories the way everybody else uses them.
+
+The truth is our the user's situation is rich and complex. Pointing
+our intent to simple versions of that situation may be an effective
+way to achieve clarity and focus, but our success relies on complementing that
+focus with discovery of the exceptions and conditions that complicate the story.
+When you test, you want to capture some of that context in its
+more complicated, rich, unpredictable way.
+
+For example: In this testing session, I pointed ContextQA at a website I have
+been building indepenent of this testing initiative. It's problems and bugs
+are real because it is still rough, still under development, and I actually
+have a real purpose for the site.
+
+5. Search for the "Yes, and..." opportunities
+
