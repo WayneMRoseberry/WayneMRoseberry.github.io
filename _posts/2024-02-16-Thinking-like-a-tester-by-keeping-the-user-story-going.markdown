@@ -26,7 +26,7 @@ self-healing support. A report from this session is <a href="/assets/Test_Sessio
 I also recorded the <a href="https://www.youtube.com/watch?v=pYnLrLDfRvQ">test session live</a>, available for viewing on my
 <a href="https://www.youtube.com/@SoftwareTesting-bv6di">YouTube channel</a>.
 
-I started small. For example (I never formally described the story... ):
+I started small:
 
 > _An engineer needs to create an automated check for modifications to
 > the web application their team is building...._
@@ -43,9 +43,11 @@ the above story, and then extended it...
 
 I bumped the story up. The first bump would likely be found in some
 form in the list of requirements, and while it violates some rules of
-not including the solution in the story, it is critical to capture the idea
+not including the solution in the story, it captures the idea
 that the end user in this case is trying to avoid writing the scripts themselves.
-This is part of the value proposition of the product in quesiton.
+This is part of the value proposition of the product in quesiton. I don't
+need to adhere to design principles here, I just need a story to
+inspire some imagination and testing activity.
 
 The next bump is something derived from the product marketing, claims and
 promises of robust and reliable scripts. I want to imagine different ways we
