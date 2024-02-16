@@ -165,3 +165,14 @@ is how altering a simple story with just a few changes in terms of
 data state and "what happens" next is as a way to explore
 and discover issues in a product.
 
+The moral of the story is...
+============================================================
+In this case, the moral of the story is you get a more useful
+and interesting result if you make the story bigger. Start small,
+look for the larger context, and ask then look for the next step to take.
+
+What we find when we grow the story are problems and issues
+and new pieces of information people didn't anticipate, didn't
+know were there. These are the things that fall in between the
+smaller, shorter, cleaner stories. These are the things that make
+the story worth telling.
