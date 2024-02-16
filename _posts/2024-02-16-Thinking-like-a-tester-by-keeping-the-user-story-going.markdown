@@ -1,3 +1,7 @@
+Keep the story growing...
+========================================================
+![A cartoon of some stick figure characters around a campfire while one relay a user story that keeps going and another thinks to themselves "spooky!"](/assets/growuserstories.png)
+
 One of my favorite test techniques is scenario testing. Find a problem
 the end user is trying to solve, use the product to solve that
 problem, and report any issues or bugs you discover along the
