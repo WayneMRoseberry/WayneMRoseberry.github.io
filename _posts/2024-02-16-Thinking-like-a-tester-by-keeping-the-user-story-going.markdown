@@ -50,7 +50,7 @@ Let's break down an approach. Truth is I don't really do this by breaking
 it down into steps. I intuit the final outcome. But internally, it is essentially
 something like the following:
 
-1. Start with a basic user story
+> __Start with a basic user story__
 
 These can come from anywhere. You might have user stories as part of your project. They might
 be in a Jira ticket. They might be in a list somewhere.
@@ -60,9 +60,9 @@ product demos are good. Is there a body of training and how-to videos online fro
 the company or even end-user consultants and enthusiasts?
 
 You just need one story.
-For example: In the test session I used for this article, I took the story as implied by the ContextQA website product promotional claims.
+__For example__: In the test session I used for this article, I took the story as implied by the ContextQA website product promotional claims.
 
-3. Think beyond the moment of the story, build a context
+> __Think beyond the moment of the story, build a context__
 
 The stories you will find are almost always very isolated and sanitized. This is
 because the stories are easier to use and fit their purpose better (to sell, to educate,
@@ -86,12 +86,12 @@ don't need to imagine a complete and thorough description of the context.
 You just need enough interesting variations - sometimes only one or two - to
 make the testing reveal something unanticipated and new.
 
-For example: In this testing session, I pointed ContextQA at a website I have
+__For example__: In this testing session, I pointed ContextQA at a website I have
 been building indepenent of this testing initiative. It's problems and bugs
 are real because it is still rough, still under development, and I actually
 have a real purpose for the site.
 
-5. Search for the "Yes, and..." opportunities
+> __Search for the "Yes, and..." opportunities__
 
 Just like the situation in the user story tends to be sanitized and simple,
 so to are the actions the user takes. The "what next" is almost always a linear
@@ -104,3 +104,19 @@ collect information elsewhere or check state. They want a slightly different
 behavior than the simple script implies. They want or need to complete the
 task as part of a larger set of tasks that came before, after, and even concurrent
 with the task they are executing.
+
+Some ways to come up with what happens before and after the sequence:
+- Look to the user role, identity - what things do those people do? What larger task do they regular engage in for which this might be a step?
+- Look to product claims, statements of value and ask if this user story is part of one of those claims, and how they might look in a real customer usage.
+- Look at other features in the product that supply either the input or the output to the features used in this scenario, and "stitch" them on as a next step.
+- Grab user stories you already have and sequence them together, carrying all the data and state from one to the next.
+- If the user story says the user made a choice in terms of data, or actions, pick something different than the story says and proceed from there either same as story, or changing every few steps
+
+There are a lot of ways to make the story different or longer. It almost always pays off in
+something the team never anticipated. Most of the team energy has been focused on
+the stories they wrote down already because those are what they are being
+evaluated on, what they are checking as they ship.
+
+__For example__: In my testing session, I extrapolated from building a script
+to continuing to run that script as the application under development
+evolves.
