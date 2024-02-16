@@ -14,7 +14,7 @@ self-healing support. A report from this session is <a href="/assets/Test_Sessio
 I also recorded the <a href="https://www.youtube.com/watch?v=pYnLrLDfRvQ">test session live</a>, available for viewing on my
 <a href="https://www.youtube.com/@SoftwareTesting-bv6di">YouTube channel</a>.
 
-For example:
+I started small. For example (I never formally described the story... ):
 
 > _An engineer needs to create an automated check for modifications to
 > the web application their team is building...._
@@ -125,3 +125,29 @@ evaluated on, what they are checking as they ship.
 __For example__: In my testing session, I extrapolated from building a script
 to continuing to run that script as the application under development
 evolves.
+
+How did the testing go?
+===========================================================
+One of the things I almost always find with scenario testing,
+or testing of any type, is I find more bugs that are tangential
+to the specific problem than what the test was targeting. I experienced
+the same thing here:
+
+- usability issues, such as not being able to choose where recorded test cases are stored, not being able to save captured elements, not being able to edit some properties of recorded elements
+- screen and display issues, text layout problems with large objects, resizable UI components where contents don't follow with the resize, occlusion of objects sitting on top of other objects, layout issues
+- data loss, edits in actions which are lost without prompt when clicking around any control that invokes some kind of explicit or implicit navigation in the UI
+
+What about the target problem? That the website it was recording is
+a bad target for automation, and how modifying that website
+affects the ContextQA experience? I was expecting to only confront
+the intrinsic nature of the problem - not necessarily encounter bugs
+in ContextQA itself. But I did find two issues that suggest either unexpected
+selection where the script would later select an entirely different
+entity than recorded, and another where ContextQA was exposing errors
+that were really faults and exceptions thrown by the underlying libraries.
+
+You can read the report for the specifics. The interesting part
+is how altering a simple story with just a few changes in terms of
+data state and "what happens" next is as a way to explore
+and discover issues in a product.
+
