@@ -76,6 +76,16 @@ focus with discovery of the exceptions and conditions that complicate the story.
 When you test, you want to capture some of that context in its
 more complicated, rich, unpredictable way.
 
+Ask questions, such as:
+- what data does the user have available to them?
+- what process, work or other activity preceded this story?
+- what does their overall workplace, or system look like? What state is it in?
+
+You don't need to imagine every possible change to the situation. You
+don't need to imagine a complete and thorough description of the context.
+You just need enough interesting variations - sometimes only one or two - to
+make the testing reveal something unanticipated and new.
+
 For example: In this testing session, I pointed ContextQA at a website I have
 been building indepenent of this testing initiative. It's problems and bugs
 are real because it is still rough, still under development, and I actually
@@ -83,3 +93,14 @@ have a real purpose for the site.
 
 5. Search for the "Yes, and..." opportunities
 
+Just like the situation in the user story tends to be sanitized and simple,
+so to are the actions the user takes. The "what next" is almost always a linear
+path to a singular point of anticipated success. There are no deviations, distractions,
+interruptions, and somehow at the end of the story, the user is left whole,
+satisfied and fulfilled. Everything done, story over.
+
+Real usage is frequently very different. Users abort the sequence to
+collect information elsewhere or check state. They want a slightly different
+behavior than the simple script implies. They want or need to complete the
+task as part of a larger set of tasks that came before, after, and even concurrent
+with the task they are executing.
