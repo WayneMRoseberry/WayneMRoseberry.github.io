@@ -6,6 +6,14 @@ which tend to align requirements around use cases, user scenarios,
 user stories, and a variety of other labels that tie requirements
 to something the user wants or needs.
 
+A note on the testing activity
+========================================================
+I am not an employee of ContextQA. I was not paid or compensated
+by anybody at ContextQA for performing this testing. I shared
+the testing report I describe below with Deep Barot, founder
+of ContextQA. He has also read this article prior to me
+sharing it online.
+
 These ideas tend to be captured in small little nuggets. For testing, we often want bigger.
 ========================================================
 I performed a scenario testing session against <a href="https://contextqa.com/">ContextQA</a>,
@@ -133,9 +141,9 @@ or testing of any type, is I find more bugs that are tangential
 to the specific problem than what the test was targeting. I experienced
 the same thing here:
 
-- usability issues, such as not being able to choose where recorded test cases are stored, not being able to save captured elements, not being able to edit some properties of recorded elements
-- screen and display issues, text layout problems with large objects, resizable UI components where contents don't follow with the resize, occlusion of objects sitting on top of other objects, layout issues
-- data loss, edits in actions which are lost without prompt when clicking around any control that invokes some kind of explicit or implicit navigation in the UI
+- __usability issues__, such as not being able to choose where recorded test cases are stored, not being able to save captured elements, not being able to edit some properties of recorded elements
+- __layout and display issues__, text layout problems with large objects, resizable UI components where contents don't follow with the resize, occlusion of objects sitting on top of other objects, layout issues
+- __data loss__, edits in actions which are lost without prompt when clicking around any control that invokes some kind of explicit or implicit navigation in the UI
 
 What about the target problem? That the website it was recording is
 a bad target for automation, and how modifying that website
