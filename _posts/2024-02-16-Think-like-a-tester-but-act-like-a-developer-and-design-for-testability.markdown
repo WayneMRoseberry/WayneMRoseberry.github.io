@@ -79,11 +79,26 @@ was imposing logic that was different than the underlying data structures.
 
 Random text output
 -----------------------------------------------
-ipsum bloah blah
+The first problem was with the random data examples list
+that updates when the user selects which type of data to show from
+the schema definition selection list.
+
+![screenshot of DataMaker page showing that the random examples list items were missing id on their span elements](/assets/datamaker_randommissingid.png)
+
+The items are displayed inside a `<div>` tag, each enclosed in `<span>` tags.
+They have no id on them. In order to find them, one must either try to
+locate them based on their text value which will change every time the
+user ask for a new set of random values, or based on a pathing strategy
+from the parent `<div>`. This works initially, but if the layout is changed
+then the path relationship changes as well. For example, I changed the page
+at one point to use a table inside the div with every value inside the second
+column of a row. The flat list path strategy constructed by the recorder in
+ContextQA could no longer find the element.
 
 Visual schema diagram
 -----------------------------------------------
 super duper wanna be a trooper
 
+![screenshot of DataMaker page showing that the nodes and edges in the schema diagram are a flat list with generic ids "node#" and "edge#"](/assets/datamaker_schemadiagrammissingid.png)
 
 
