@@ -47,4 +47,27 @@ script needs to be able to manipulate and control the system under test. It also
 needs to see what it is doing, record information about it which can be check,
 analyzed, or used as the basis for decisions and actions within the script. We
 have problems when the script is unable to control the application, or is
-unable to use what it can observe for analysis or decision making.
+unable to use what it can observe for analysis or decision making. In the
+case of UI our problem is usually being unable to accurately find the
+objects we want to control and observe because the information available
+in the UI is not related to the model of the application the automated
+script is working from.
+
+You want to make the infomration in the UI markup match the model of the application state.
+--------------------------------------------
+This is sometimes difficult because the language used to design the UI is
+about layout, visual aesthetics, and channeling behavior between controls
+and elements in response to input devices like the mouse or the keyboard. There
+is a gap between the data model used to describe the UI and a model which
+describes the data and business logic underlying the system coded into
+the automated script.
+
+What we want to do is bridge that gap by carrying information about the
+model the tester needs (and by extension the automated script) into the
+UI markup. There are three main considerations to think about this:
+- what is the underlying data or state model?
+- what is the purpose of the test?
+- what does the UI toolset offer us to present that information?
+
+
+
