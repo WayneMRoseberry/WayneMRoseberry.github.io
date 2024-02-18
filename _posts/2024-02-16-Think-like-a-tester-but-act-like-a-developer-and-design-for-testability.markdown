@@ -21,7 +21,7 @@ It meant that these objects could in any relationship at all as far as the visua
 
 I will flesh this out later.
 
-How is the application hard to test
+Why is the application hard to test?
 ==========================================
 I wrote <a href="https://waynemroseberry.github.io/2024/02/16/Think-like-a-tester-but-act-like-a-developer-and-design-for-testability.html">
 an article recently</a> about a testing session I ran with
@@ -67,7 +67,23 @@ model the tester needs (and by extension the automated script) into the
 UI markup. There are three main considerations to think about this:
 - what is the underlying data or state model?
 - what is the purpose of the test?
-- what does the UI toolset offer us to present that information?
+- what does the UI offer us to present that information?
+
+In the case of my website there were two main problems.
+==============================================
+Both of the problems on my website where instances of elements
+on the page the automated script needed to observe and control, but
+which were not easy to locate reliably. They were in data that changed
+as the user selected different options in the UI, and where the layout
+was imposing logic that was different than the underlying data structures.
+
+Random text output
+-----------------------------------------------
+ipsum bloah blah
+
+Visual schema diagram
+-----------------------------------------------
+super duper wanna be a trooper
 
 
 
