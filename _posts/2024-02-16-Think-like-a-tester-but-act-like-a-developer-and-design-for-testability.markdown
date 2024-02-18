@@ -20,3 +20,31 @@ This made the identity of the nodes based on the actual data structure, somethin
 It meant that these objects could in any relationship at all as far as the visual layout language is concerned and still retain the MEANING of that object in relation to the schema data.
 
 I will flesh this out later.
+
+How is the application hard to test
+==========================================
+I wrote <a href="https://waynemroseberry.github.io/2024/02/16/Think-like-a-tester-but-act-like-a-developer-and-design-for-testability.html">
+an article recently</a> about a testing session I ran with
+<a href="https://contextqa.com/">ContextQA</a>. One of the key points
+in the article was that the website I used to do the testing was
+difficult to automate against. It had testability issues.
+
+In this article I describe a redesign of that application and the impact
+that had on the automation.
+
+You have to apply some design thinking to make an application more testable.
+===========================================
+It is not as if an application is automatically easy to test, and it
+is not as if one can change the way the code behaves with no thought
+and instantly have something useful for testing. Testability
+is similar to other application requirements in that it takes planning
+and understanding of the user and the problem they are trying to solve.
+
+Can you control it? Can you see it?
+--------------------------------------------
+There are two important needs for automation, control and observation. The
+script needs to be able to manipulate and control the system under test. It also
+needs to see what it is doing, record information about it which can be check,
+analyzed, or used as the basis for decisions and actions within the script. We
+have problems when the script is unable to control the application, or is
+unable to use what it can observe for analysis or decision making.
