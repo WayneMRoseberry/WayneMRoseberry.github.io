@@ -1,8 +1,18 @@
-I recently tried testing a new user scenario for a feature on TestRigor, 
+Testing like a new user
+========================================================
+![cartoon of a stick figure contemplating instructions from a build it yourself furniture box](/assets/newuser.png)
+
+Sometimes it is useful to test something as if we are a new user,
+trying to deal with only what we can gather from the documentation
+in front of us.
+
+I recently tried testing a new user scenario for a feature on <a href="https://testrigor.com/">TestRigor</a>, 
 an AI-driven test case creation product. I came across a feature that
 builds test cases based on end user behavior in the product, and I decided
 to take that opportunity to record my experience as a new user as
-the basis for a testing exploration.
+the basis for a testing exploration. A testing report of the
+session <a href="/assets/TestRigor%20Behavior%20Driven%20Test%20Case%20Creation%20First%20Usage%20Test%20Report.pdf">is published here</a>.
+You can also watch a video of the testing session <a href="https://www.youtube.com/watch?v=Z29VmC7FiFc">here on my YouTube channel</a>.
 
 Writing the Test Plan
 ========================================================
@@ -50,11 +60,18 @@ itself, as I felt that was something a new user would likely do.
 > resource when testing for finding issues. Do not assume how features work or behave,
 > and instead look for some kind of guidance or information from the product documentation
 > materials.
+>
+> Consider the navigation and discovery experience part of your testing activity. How
+> easy is it to find. Try to browse and navigate, avoid searching for key words and
+> feature names unless you have been exposed to them somehow, as the user is not
+> going to know them unless they too were exposed.
+
+![a screenshot of the TestRigor behavior driven case creation settings page](/assets/testrigor_behaviorsettings.png)
 
 I put what I found in the documentation survey in my testing report.
 The settings page for the Behavior Drive Case Creation feature was simple
-to understand, but it was also the sole explanation of the feature. Trying to use
-it I had several questions:
+to understand, but it was also the sole explanation of the feature I was able to find.
+Trying to use it I had several questions:
 - what did all the different settings do?
 - what guidance should a user of the feature follow regarding security and privacy, particularly for collecting end user features and proper use of API keys
 - where do the recorded sessions go, how do I inspect them?
@@ -65,7 +82,7 @@ about settings on the page as separate questions.
 
 Instrumentation of the web application
 ========================================
-TestRigor provides a code excerpt to place in your web page for that
+TestRigor provides a code excerpt to place in your web page that
 will capture end user activity and upload it to the TestRigor recording
 services.
 
@@ -115,6 +132,8 @@ if I should immediately expect recordings to be available. Maybe the service
 handles them in batches. Maybe there is some processing time on configuration of a
 new application before recording is enabled. Maybe something else.
 
+![A screenshot of the TestRigor behavior driven case creation settings page displaying the No recorded data for application error](/assets/testrigor_norecordeddata.png)
+
 At this point, the documentation issues reported earlier started to feel more important.
 
 > When you hit an issue that seems to provide little information to understand more,
@@ -136,6 +155,16 @@ depended on the case creation step. I would indicate the blocking issue in my
 report along with excerpts from the fiddler logs and my observations from the
 developer console.
 
+```
+54	200	HTTPS	datamakerjs-f3b6b7d13de0.herokuapp.com	/api/schemadef/dot?namespace=schemaexamples&schemaname=referenceschemaexample	302		text/plain	msedge:20404			
+55	200	HTTPS	recorder.testrigor.com	/v1/events/gs8ztvqy1Bo5xP-gFQB9	0	no-cache, no-store, max-age=0, must-revalidate; Expires: 0		msedge:20404			
+56	200	HTTP	Tunnel to	recorder.testrigor.com:443	0			msedge:20404			
+57	200	HTTPS	recorder.testrigor.com	/v1/events/gs8ztvqy1Bo5xP-gFQB9	0	no-cache, no-store, max-age=0, must-revalidate; Expires: 0		msedge:20404			
+58	200	HTTPS	recorder.testrigor.com	/v1/events/gs8ztvqy1Bo5xP-gFQB9	0	no-cache, no-store, max-age=0, must-revalidate; Expires: 0		msedge:20404			
+59	200	HTTP	Tunnel to	www.linkedin.com:443	1,362			msedge:20404			
+60	200	HTTPS	recorder.testrigor.com	/v1/events/gs8ztvqy1Bo5xP-gFQB9	0	no-cache, no-store, max-age=0, must-revalidate; Expires: 0		msedge:20404
+```
+
 Wrapping up a first time user session
 ========================================
 It is very possible I missed a step or piece of important information while trying
@@ -146,6 +175,6 @@ and smooth.
 
 The important part of testing a first time user experience is to capture that unfamiliar
 experience and try to notice everywhere information might be missing or confusing. But
-then you have to comlement that with jumping out of new user mode and dig in with
+then you have to complement that with jumping out of new user mode and dig in with
 tools to investigate and collect information, for sake of reporting the issue, that
 the end user might not do. You have to do this without losing that "new user" perspective.
