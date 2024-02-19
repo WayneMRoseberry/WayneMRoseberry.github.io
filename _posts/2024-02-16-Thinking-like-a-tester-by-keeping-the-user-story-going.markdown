@@ -23,8 +23,6 @@ These ideas tend to be captured in small little nuggets. For testing, we often w
 I performed a scenario testing session against <a href="https://contextqa.com/">ContextQA</a>,
 a no-code test automation platform that provides record and playback and
 self-healing support. A report from this session is <a href="/assets/Test_Session_Using_ContextQA_to_test_website_with_problematic_identifiers.pdf">located here.</a>
-I also recorded the <a href="https://www.youtube.com/watch?v=pYnLrLDfRvQ">test session live</a>, available for viewing on my
-<a href="https://www.youtube.com/@SoftwareTesting-bv6di">YouTube channel</a>.
 
 I started small:
 
