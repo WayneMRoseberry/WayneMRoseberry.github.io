@@ -1,3 +1,7 @@
+You should consider testing for the impossible.
+===============================================
+![Cartoon image of a stick figure tester considering whether or not to test for black swans believing they don't exist while a black swan is standing behind them](/assets/blackswansdontexist.png)
+
 The other day, a friend of mine asked me a question about a discussion they
 were having at his place of work. It regarded some code where he had implemented
 some correction to invalid data, and had decided to put unit tests to check
@@ -59,7 +63,7 @@ Let's consider some of the possibilities.
 
 What is the test checking for?
 ============================================
-Unit tests check almost always perform confirmatory checks against some expected behavior.
+Unit tests almost always perform confirmatory checks against some expected behavior.
 We could require several behaviors from the unit under test in this case.
 
 1. Do nothing
@@ -99,6 +103,9 @@ public void processOperation_executecheck_checkentity_handlesnegativecase()
 ```
 The unit test above will help protect the contract, especially for downstream processes.
 
+> Use unit tests to detect violation of contracts that other code will
+> depend on. How the code handles invalid conditions is part of that contract.
+
 But it's impossible, so why bother?
 ============================================
 It might seem unnecessary to add unit tests for a state that is impossible
@@ -111,6 +118,11 @@ testers and developers. The developers say "That cannot happen, why bother?", an
 tester says "Oh yeah... let me show you..." and goes in search of a way to make it happen. Or
 the tester runs the test below the layer where the impossible state is guarded, and then
 the developer objects to the entire premise.
+
+We should avoid thinking of it in that way. It makes for melodrama that might amuse
+us sometimes, but pragmatically this is a matter of whether or not we are using
+engineering practices that help us know when something went wrong. The question is whether
+we are being pragmatic or not.
 
 Because the state is impossible. Right?
 
@@ -178,8 +190,8 @@ class OperationInstructions
 }
 ```
 In this case, the input data cannot be created in the invalid state because
-it throws in the constructor. We can move the tests which protect against this condition the
-data type and lift the burden on `processOperation()` for having to check at all.
+it throws in the constructor. We can move the tests which protect against this condition to check the
+data type constructor and lift the burden on `processOperation()` for having to check at all.
 
 We only have this option when the technology and platform we use permits it. For example,
 if implementing a REST API, the inputs are going to be in text format, and if the
