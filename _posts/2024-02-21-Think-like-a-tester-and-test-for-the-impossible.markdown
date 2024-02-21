@@ -44,12 +44,90 @@ ought to be a unit test that does the following:
 public void processOperation_executecheck_checkentity_handlesnegativecase()
 {
   var checkEntity = new CheckEntity( ...whatever we use to initialize this...);
-  var operation = { category: "execute_check", data: checkEnityt};
-   Assert.AreEqual( -whatever we expect-, Processor.processOperation(operation);
+  var operation = { category: "execute_check", data: checkEntity};
+   Assert.AreEqual( -whatever we expect-, Processor.processOperation(operation));
 }
 ```
 
+_I am using a static method because it makes for shorter examples. 
+Given the type of system I am imagining here, I would probably consider 
+a static method and how it suggests the presence of a singleton with a 
+big nasty chain of dependencies behind it a bad design choice._
 
+
+Let's consider some of the possibilities.
+
+What is the test checking for?
+============================================
+Unit tests check almost always perform confirmatory checks against some expected behavior.
+We could require several behaviors from the unit under test in this case.
+
+1. Do nothing
+2. Do nothing the caller would notice, but emit some event to the logs to track later if it does happen
+3. Throw an exception or abort further operation
+4. Return an error code
+5. Transform the data to mitigate confusion and errors in further processing
+
+For the first two, there is no expected behavior from the unit in response to that
+condition. One could write a unit test with the errant data condition as an input, and
+then assert that nothing happens than if it were not errant. In the case of writing to logs,
+one could assert the entry happened. The thing is, there is no contract that any
+consumer of the API is counting on, no behavior they rely on being protected or enforced, so
+in that regard the unit test offers nothing for them. A unit test in this case is not
+a bad thing, but other than demonstrating coverage, it isn't guarding much.
+
+In the case of the last three, all of those decisions create a behavior that both
+the caller and downstream consumers of the code will rely on. In the case of the throw or
+the error code, the caller will need to handle both of those, and downstream processes
+are relying on never seeing an operation with this errant state. In the case of transformation,
+the caller will not need to handle anything, and downstream consumers will need to know to
+handle whatever that transformation looks like, but likewise should not ever expect the
+errant data state.
+
+Let's look at what the unit test might look like if the code will throw (this varies
+depending on the testing framework you use and the language the code is written in):
+
+```
+[TestMethod]
+[Expect Exception(typeof InvalidOperationException)]
+public void processOperation_executecheck_checkentity_handlesnegativecase()
+{
+  var checkEntity = new CheckEntity( ...whatever we use to initialize this...);
+  var operation = { category: "execute_check", data: checkEntity};
+  Processor.processOperation(operation);
+}
+```
+The unit test above will help protect the contract, especially for downstream processes.
+
+But it's impossible, so why bother?
+============================================
+It might seem unnecessary to add unit tests for a state that is impossible
+for the system to get into. If the upstream processes of our `processOperation()`
+call never produce a combination of `execute_check` and `CheckEntity`, why bother
+with the test?
+
+Checking for the supposedly impossible or not feels like one of those cases which separate
+testers and developers. The developers say "That cannot happen, why bother?", and then the
+tester says "Oh yeah... let me show you..." and goes in search of a way to make it happen. Or
+the tester runs the test below the layer where the impossible state is guarded, and then
+the developer objects to the entire premise.
+
+Because the state is impossible. Right?
+
+Is it really though?
+--------------------------------------------
+We might believe something to be impossible, and it really might be, but that is usually
+only because of the current state of the system. Systems change. Maybe more importantly,
+what we believe about the system and the truth about the system may be very different.
+
+The unit may be the only opportunity to test the impossible
+--------------------------------------------
+
+
+
+
+Raw transtript between myself and John
+======================================
 
 You sent
 If there is a behavior you want to be sure the code does, you should put a unit test to check.
