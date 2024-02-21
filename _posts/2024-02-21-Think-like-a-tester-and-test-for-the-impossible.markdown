@@ -1,0 +1,109 @@
+ROUGHT: conversation from John below... will turn this into an article.
+
+Do you think unit tests should test current or correct behavior?
+John
+John Patterson
+I.E. there is a combination of inputs that in practice never happens. Ideally the code should assert that is the case, but it does not and we are adding new test coverage.
+
+Should there be a unit test asserting the behavior of the code in the incorrect case or should the behavior be left undefined by the test suite.
+You sent
+If there is a behavior you want to be sure the code does, you should put a unit test to check.
+John
+John Patterson
+That's the thing. We don't particularly care that the code does this. It is kind of a bug.
+You sent
+How bad is the state in question if the code keeps going?
+You sent
+Severity is a guide to formality
+You sent
+If the severity is bad, it is a good idea to formalize the expectation.
+You sent
+People have been killed by inputs believed to never happen
+You sent
+Very much depends on what is at stake
+Tue 9:24 AM
+John
+John Patterson
+Not too bad. No financial consequences. Just some confused customers if it broke.
+Tue 12:18 PM
+You sent
+I think the important part to put unit tests around are the behaviors we rely on, particularly those that are part of the contract.
+You sent
+Assume there is an input state that you need the unit to object to were the caller ever to invoke the interface with that state, then put a unit test up to check for it.
+
+This way you know what the code will do if the caller ever did that.
+You sent
+If you don't rely on the unit noticing it, then maybe you don't create a unit test for it?
+John
+John Patterson
+Now pivoting a little. Would you advocate removing that test if it were already written?
+You sent
+That is difficult to know.
+You sent
+What is the code doing in the case of these inputs that never happen?
+John
+John Patterson
+The context this: we are the frontend team for folks managing their money & onboarding for platforms using Adyen.
+
+Our partner team performs KYC (know your customer regulation) checks on documents, legal entities, etc. and records this data for us in one format.
+
+This code reads those KYC results, filters them down to the events we care about showing users, and aggregates some types of events together into one status. 
+
+There are two check types: entity checks and audit checks. A parent KYC record can have one or the other. There's also a brilliantly named category0 enum field which should have the operation performed (add, update, execute_check, etc). It should be impossible to have entity data and category0 of execute_check. Similarly we would never add something with check data.
+
+The structure is something like:
+{
+  "category0": "execute_check",
+  "data": CheckAudit {
+    ...
+  }
+}
+
+IF that happens, there is no other dimension differentiating an entity and a check, so if the version id, category0, and category1 all matched they would be collapsed to one row.
+
+This test asserts that happens.
+
+The consequence is that the KYC timeline shown to the ends users would be confusing. Depending on which "wins" the aggregation later in the code, it would appear like an entity disappeared or a check disappeared. There would be no consequence to the actual underlying KYC operation nor to the onboarding status of the account, but it could be difficult for the customer or their account rep to reason about the state of the account.
+John
+John Patterson
+In this case, none of this code was covered with a test, so I wrote about 80 tests covering all the branches I could find. The original author is taking umbrage with this test, saying we shouldn't test malformed or impossible situations. I disagreed pretty strongly and said I would add a comment explaining why the test should be impossible so no one is led astray. I am sanity checking my intuition here.
+You sent
+Is the interface json?
+You sent
+or, rather, the datatype... is it just a json string?
+You sent
+like through REST or other wire protocol?
+You sent
+The assertion "impossible situations" is determined somewhat by the technology.
+You sent
+If this were in Java or C# where the nature of the data structures and language itself can enforce the impossibility, then there may be a valid argument.
+
+But if this is a text based data format where you don't know what the caller is using to construct the package, then "impossible" is wishful thinking.
+John
+John Patterson
+I'm actually not sure in this case.
+John
+John Patterson
+I agreed with his larger point that we should probably throw on this case or something like that, but I refused to change the code behavior in the same PR.
+You sent
+"probably throw on this case"
+
+That depends on your system.
+
+It sounds like the current behavior is to do something with the data in this case that prevents some further later harm... and if that is the case, then it seems to me you should put in a unit test that ensures that transformation happens and does what you want, because if it really is happening, downstream code is at some point going to rely on it... past behavior tends to do that.
+
+If on the other hand you decide to throw in that case, then I would write a unit test that looks for the exception. Because now you are saying that in this case further processing should stop - and again, downstream code is going to rely on never getting something from further up the pipeline in this state. So you want to know the throw happens.
+You sent
+I have built a career on seeing "impossible" happen.
+You sent
+The decision fork you describe, both of them seem to change the state of something with regard to workflow processing. That seems something to write unit checks for. You have created a contract.
+You sent
+If, on the other hand, the response was to record an event to the logs that something seemed wrong but otherwise left it untouched, then the relative in-action as far as the rest of the system is concerned might warrant skipping the unit tests.
+
+Depends on how much you want to see that log entry.
+You sent
+Impossible == "will not ever happen in the current state of the system, as I believe it behaves, right now"
+
+That can be wrong in two ways. Your belief about current state of the system, and future changes to the system.
+You sent
+Likewise for severity - what might be minor confusion right now may be more important with later changes that take action based on data state. Maybe some new workflow initiates that have significance, and being in the bad data state might do damage.
