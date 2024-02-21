@@ -118,7 +118,120 @@ Is it really though?
 --------------------------------------------
 We might believe something to be impossible, and it really might be, but that is usually
 only because of the current state of the system. Systems change. Maybe more importantly,
-what we believe about the system and the truth about the system may be very different.
+what we believe about the system and the truth about the system may be very different. There
+are some things which make knowing what is impossible or not easier or more difficult.
+
+__Built in language and platform enforcement__
+
+Sometimes the language we use to write the code, or the technology we build it
+on, make certain kinds of states or situations impossible. For example, imagine the
+two following methods, written in two different languages:
+
+```
+// written in C#, with strongly typed inputs
+public int countMyFingers(int hands)
+
+// written in JavaScript, with loosely typed inputs
+function countMyFingers(hands)
+```
+
+In the first version of the method, passing in a non-integer value for `hands` is
+an uninteresting and meaningless test because the language and the compiler make
+doing so impossible. Likewise checking to be sure that the return value from the `countMyFingers`
+is an integer, and even happens at all (outside of a throw) is unnecessary because
+the compiler forces it.
+
+Not the case for JavaScript, where both the data types on input and output, as well
+as whether or not the method returns a value could vary. In JavaScript, checking these
+conditions is an interesting test.
+
+> Use unit tests to protect behavior in situations where the language or platform
+do not offer protection.
+
+__Fragile data types__
+
+Datatypes that can build enforcement into them can offer protection and lift a burden
+on code that processes those datatypes. Other datatypes have no such capability, pushing
+the burden on code that processes them.
+
+In the example I offered, the data type has no opportunity to provide such enforcement,
+as the data structure is built dynamically in the code before calling it. The relationship
+between `category` and `data` could be anything. It is very similar to arguments and inputs
+presented as strings, for example Json or XML, for that matter.
+
+```
+  var operation = { category: "execute_check", data: checkEntity};
+```
+
+Consider the following alternative:
+
+```
+class OperationInstructions
+{
+  public void OperationInstructions( CategoryEnum category, BaseCheckObject check)
+  {
+    if(category.Equals(CategoryEnum.ExecuteCheck && check.GetType().Equals(CheckEntity))
+    {
+      throw InvalidOperationException();
+    }
+  }
+}
+```
+In this case, the input data cannot be created in the invalid state because
+it throws in the constructor. We can move the tests which protect against this condition the
+data type and lift the burden on `processOperation()` for having to check at all.
+
+We only have this option when the technology and platform we use permits it. For example,
+if implementing a REST API, the inputs are going to be in text format, and if the
+language we are using does not allow us to let the platform handle the data binding to
+strongly typed objects (as in C# and ASP.NET, for example) then we cannot exploit
+such mechanisms so easily.
+
+> When the data type offers no way to self-protect against invalid states, then use
+> unit tests agains the code that processes the data to check for handling of invalid states.
+
+__Distant and far away protection__
+
+![diagram of a three tiered system with client, api, and backend where data correctness is checked in the client](/assets/client_api_backend_enforcedatacorrectness.svg)
+
+_The system shown above is a nightmare scenario where we rely on the client to enforce correct data.
+Used for illustration only, not at all advised or prescribed._
+
+Where is the guarantee of impossible state happening? Does the immediate caller of
+the method provide that guarantee? Is the caller of the method the only one that will
+use this method, or is the method available for other parts of the code inside and outside
+the component or even system, possibly going to call the method? Does that burden move
+likewise to all those callers?
+
+Does the guarantee of impossible state happen further away, in another component or
+system? Is this a layered and distributed system? Is this protection happening in
+the backend, in the database, in the front end API layer, in web UI, or possibly
+even across the cloud and in a client or external system?
+
+Which component is guaranteeing you never have the "impossible" state? The further
+away it is, the more possible other components there are, and the less control
+you have over that component, the greater risk you have that "impossible" isn't
+true.
+
+> When the guard against the errant condition is far away from the code
+> under test, and when multiple components may be doing the guarding, add
+> unit tests to the code to likewise check the negative data condition.
+
+__Things change, and you don't always understand the system.__
+When we say something is impossible, what we really mean is "The system
+as I understand it, in the state it is in right now, cannot produce that state."
+We can be wrong about the system, even if we built it. We also cannot
+know the future and how it may be different than the present, even if we
+are the ones that might change the future.
+
+The more complex the behavior of the system, the requirements, the number
+of possible states, the more difficult it is for us to understand it. The more
+we plan to change something, the more of a future a given thing has and the more
+its use is growing, the more likely that some future change will make the
+currently impossible suddenly very probable.
+
+> If the system is complex, and if you anticipate a lot of change in the system,
+> check handling of errant and negative inputs with a unit test.
 
 The unit may be the only opportunity to test the impossible
 --------------------------------------------
