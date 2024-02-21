@@ -1,11 +1,56 @@
-ROUGHT: conversation from John below... will turn this into an article.
+The other day, a friend of mine asked me a question about a discussion they
+were having at his place of work. It regarded some code where he had implemented
+some correction to invalid data, and had decided to put unit tests to check
+that the correction happened. He had received feedback to remove the unit
+tests, on the grounds that the condition was impossible.
 
-Do you think unit tests should test current or correct behavior?
-John
-John Patterson
-I.E. there is a combination of inputs that in practice never happens. Ideally the code should assert that is the case, but it does not and we are adding new test coverage.
+> Do you think unit tests should test current or correct behavior?
+>
+> John
+>
+> I.E. there is a combination of inputs that in practice never happens. Ideally the code should assert that is the case, but it does not and we are adding new test coverage.
+> Should there be a unit test asserting the behavior of the code in the incorrect case or should the behavior be left undefined by the test suite.
 
-Should there be a unit test asserting the behavior of the code in the incorrect case or should the behavior be left undefined by the test suite.
+This is not an easy question to answer. I am going to use a situation similar to what my
+friend described to consider different ways of looking at this. Here are the main
+points regarding the unit in question and the conditions under which it operates
+
+1. The unit receives as input instructions to process items
+2. There are two types of items the code processes, CheckEntity and CheckAudit
+3. There are different categories of operation, `add, update, execute_check`
+4. The system is built such that `type==CheckEntity AND category==execute_check` is expected to never happen
+5. If there were an instance that `type==CheckEntity AND category==execute_check` did occur, it creates an ambiguous data state that confuses further processing
+
+An example input might look like this:
+
+```
+{
+  "category": "execute_check",
+  "data": CheckAudit {
+    ...
+  }
+}
+```
+
+Lets pretend the unit under test is a static method called `Processor.processOperation()`. The question is whether there
+ought to be a unit test that does the following:
+
+```
+// the pattern in this test is vague and wouldn't run because we
+// haven't discussed the actual implementation and expected behavior
+// in the article yet, but the main point is the test is checking a
+// negative condition that is believed to never happen prior to the
+// call
+public void processOperation_executecheck_checkentity_handlesnegativecase()
+{
+  var checkEntity = new CheckEntity( ...whatever we use to initialize this...);
+  var operation = { category: "execute_check", data: checkEnityt};
+   Assert.AreEqual( -whatever we expect-, Processor.processOperation(operation);
+}
+```
+
+
+
 You sent
 If there is a behavior you want to be sure the code does, you should put a unit test to check.
 John
