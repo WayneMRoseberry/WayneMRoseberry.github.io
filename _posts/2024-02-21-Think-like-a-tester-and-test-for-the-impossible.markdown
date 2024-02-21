@@ -190,6 +190,12 @@ such mechanisms so easily.
 > When the data type offers no way to self-protect against invalid states, then use
 > unit tests agains the code that processes the data to check for handling of invalid states.
 
+and...
+
+> Consider changing the implementation to allow for data types that can either inherently
+> offer checking and protection, or that change the problem in such a way that the
+> opportunity for invalid data doesn't exist.
+
 __Distant and far away protection__
 
 ![diagram of a three tiered system with client, api, and backend where data correctness is checked in the client](/assets/client_api_backend_enforcedatacorrectness.svg)
@@ -235,111 +241,45 @@ currently impossible suddenly very probable.
 
 The unit may be the only opportunity to test the impossible
 --------------------------------------------
+Very often code handles enforcement of valid inputs in stacks. A unit
+of code deep in the stack may check for maximum and minimum range on values,
+or throw if given an invalid combination of inputs. The user interface, for
+sake of a better user experience, may check those inputs and inform the user of 
+valid ranges, or might somehow disallow creation of those conditions.
 
+![diagram of a system with guards against invalid data in client and in backend, and showing how testing is blocked if only from client](/assets/clientcheckingblocked.svg)
 
+We may still want to check that the unit of code guards against those conditions.
+If the layers above the unit provide similar guards, then the only way to test
+that behavior will be at the unit test level. You might have separate tests, one at the
+unit and one in the UI, but the purpose of the tests are different. The unit test
+is to detect if the business logic is allowing invalid states. The UI test is to
+detect if the UI logic is protecting the user experience.
 
+This is one of those situations where the developer role, or at least someone
+taking on the developer responsibility of checking at the unit level, is the
+only role that can do a given test. When enforcement is low level in this way, the
+checking should happen that low as well. If it is not checked that low where the
+behavior happens, the responsibility to check ripples up the stack where the testing
+is far more difficult, slower, and as illustrated above, might be impossible.
 
-Raw transtript between myself and John
-======================================
+> When separate layers guard against invalid or errant conditions, the only
+> way to check unit layer guards against invalid conditions is with negative
+> tests at the unit level.
 
-You sent
-If there is a behavior you want to be sure the code does, you should put a unit test to check.
-John
-John Patterson
-That's the thing. We don't particularly care that the code does this. It is kind of a bug.
-You sent
-How bad is the state in question if the code keeps going?
-You sent
-Severity is a guide to formality
-You sent
-If the severity is bad, it is a good idea to formalize the expectation.
-You sent
-People have been killed by inputs believed to never happen
-You sent
-Very much depends on what is at stake
-Tue 9:24 AM
-John
-John Patterson
-Not too bad. No financial consequences. Just some confused customers if it broke.
-Tue 12:18 PM
-You sent
-I think the important part to put unit tests around are the behaviors we rely on, particularly those that are part of the contract.
-You sent
-Assume there is an input state that you need the unit to object to were the caller ever to invoke the interface with that state, then put a unit test up to check for it.
+Possibly wrapping up now
+==============================================
+When and how and what we ought to test for is not always an easy question to
+answer. It is even more difficult when we consider negative tests against
+conditions that we believe the system will never encounter. Whether or not
+such conditions are impossible is difficult to know, so you should take
+several factors into consideration when deciding how to handle such
+conditions and whether to write the unit test.
 
-This way you know what the code will do if the caller ever did that.
-You sent
-If you don't rely on the unit noticing it, then maybe you don't create a unit test for it?
-John
-John Patterson
-Now pivoting a little. Would you advocate removing that test if it were already written?
-You sent
-That is difficult to know.
-You sent
-What is the code doing in the case of these inputs that never happen?
-John
-John Patterson
-The context this: we are the frontend team for folks managing their money & onboarding for platforms using Adyen.
-
-Our partner team performs KYC (know your customer regulation) checks on documents, legal entities, etc. and records this data for us in one format.
-
-This code reads those KYC results, filters them down to the events we care about showing users, and aggregates some types of events together into one status. 
-
-There are two check types: entity checks and audit checks. A parent KYC record can have one or the other. There's also a brilliantly named category0 enum field which should have the operation performed (add, update, execute_check, etc). It should be impossible to have entity data and category0 of execute_check. Similarly we would never add something with check data.
-
-The structure is something like:
-{
-  "category0": "execute_check",
-  "data": CheckAudit {
-    ...
-  }
-}
-
-IF that happens, there is no other dimension differentiating an entity and a check, so if the version id, category0, and category1 all matched they would be collapsed to one row.
-
-This test asserts that happens.
-
-The consequence is that the KYC timeline shown to the ends users would be confusing. Depending on which "wins" the aggregation later in the code, it would appear like an entity disappeared or a check disappeared. There would be no consequence to the actual underlying KYC operation nor to the onboarding status of the account, but it could be difficult for the customer or their account rep to reason about the state of the account.
-John
-John Patterson
-In this case, none of this code was covered with a test, so I wrote about 80 tests covering all the branches I could find. The original author is taking umbrage with this test, saying we shouldn't test malformed or impossible situations. I disagreed pretty strongly and said I would add a comment explaining why the test should be impossible so no one is led astray. I am sanity checking my intuition here.
-You sent
-Is the interface json?
-You sent
-or, rather, the datatype... is it just a json string?
-You sent
-like through REST or other wire protocol?
-You sent
-The assertion "impossible situations" is determined somewhat by the technology.
-You sent
-If this were in Java or C# where the nature of the data structures and language itself can enforce the impossibility, then there may be a valid argument.
-
-But if this is a text based data format where you don't know what the caller is using to construct the package, then "impossible" is wishful thinking.
-John
-John Patterson
-I'm actually not sure in this case.
-John
-John Patterson
-I agreed with his larger point that we should probably throw on this case or something like that, but I refused to change the code behavior in the same PR.
-You sent
-"probably throw on this case"
-
-That depends on your system.
-
-It sounds like the current behavior is to do something with the data in this case that prevents some further later harm... and if that is the case, then it seems to me you should put in a unit test that ensures that transformation happens and does what you want, because if it really is happening, downstream code is at some point going to rely on it... past behavior tends to do that.
-
-If on the other hand you decide to throw in that case, then I would write a unit test that looks for the exception. Because now you are saying that in this case further processing should stop - and again, downstream code is going to rely on never getting something from further up the pipeline in this state. So you want to know the throw happens.
-You sent
-I have built a career on seeing "impossible" happen.
-You sent
-The decision fork you describe, both of them seem to change the state of something with regard to workflow processing. That seems something to write unit checks for. You have created a contract.
-You sent
-If, on the other hand, the response was to record an event to the logs that something seemed wrong but otherwise left it untouched, then the relative in-action as far as the rest of the system is concerned might warrant skipping the unit tests.
-
-Depends on how much you want to see that log entry.
-You sent
-Impossible == "will not ever happen in the current state of the system, as I believe it behaves, right now"
-
-That can be wrong in two ways. Your belief about current state of the system, and future changes to the system.
-You sent
-Likewise for severity - what might be minor confusion right now may be more important with later changes that take action based on data state. Maybe some new workflow initiates that have significance, and being in the bad data state might do damage.
+The factors that motivate considering a unit test are based on the
+risk of the "impossible" suddenly becoming possible, and the likelihood
+that other code will rely on the behavior of the code in the invalid
+data state. Through careful consideration we can build a set of checks
+that help us detect regressions before we submit the code, and through
+consideration of the testing we might even make design decisions that
+make the problem not even a consideration.
