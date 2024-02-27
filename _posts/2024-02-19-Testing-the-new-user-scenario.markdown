@@ -14,6 +14,83 @@ the basis for a testing exploration. A testing report of the
 session <a href="/assets/TestRigor%20Behavior%20Driven%20Test%20Case%20Creation%20First%20Usage%20Test%20Report.pdf">is published here</a>.
 You can also watch a video of the testing session <a href="https://www.youtube.com/watch?v=Z29VmC7FiFc">here on my YouTube channel</a>.
 
+A note about TestRigor
+=======================================================
+I am not an employee of TestRigor. I was not paid by them, or asked by them to
+do any of this testing. I performed the testing on my own, wrote a report, and sent it
+to Artem Golubev. He contacted me and offered to speak with me. He was cooperative and helpful.
+He has read this article, particularly since the modifications I made to the updates
+you will find below.
+
+Article Update
+=======================================================
+I waited a while before sharing this article, because I wanted to share it with Artem Golubev,
+founder of Test Rigor. Especially because the testing was blocked before I could
+complete my intended plan, I wanted clarification if I was perhaps doing something wrong.
+
+What I learned from talking to Artem was that behavior based case creation
+relies on getting a large number of user sessions, and based on that looks for
+patterns of similarity in those sessions to build cases from. In my testing, I had
+only done 3 sessions, not enough for Test Rigor to build cases from.
+
+Artem also shared with me that behavior driven testing was an early feature
+and some of their new features around natrual language driven automated case
+creation were finding more interest with customers, so they had invested more
+there. Customers do use the behavior driven features, but as you will see below
+it does require instrumentation of the application, which is heavier commitment
+from a customer and sometimes the people doing testing are not in a position
+to drive that change.
+
+> When we test and hit problems, especially when those problems seem to
+> block testing, a conversation is vital. Even if we are members of the team,
+> small details can confuse us and keep us from understanding.
+>
+> The conversation too will highlight other problems in context of the
+> new understanding.
+
+I kept the rest of the article as an account of my activity, because I
+believe the account of investigation techniques are worth sharing.
+
+That does not mean the testing was in waste. In particulare there are a few points
+to come of this:
+
+The documentation said nothing about a minimum sample requirement
+--------------------------------------------------------
+As you will see below, I found no documentation about the feature at
+all. I found mentions of it in some of the marketing material, but
+otherwise nothing. The feature is easily findable on the navigation menu
+when viewing cases, so it was easy to stumble into. The settings page
+is easy to follow, the instrumentation was easy to implement. I may have
+had improper understanding of the application, but the educational material
+(i.e. the text on the settings page) led me to that misunderstanding. I conveyed
+that to Artem.
+
+There is no status indicator on how much behavior has been collected
+---------------------------------------------------------
+Maybe I missed something, but I saw no indication in the settings page, or
+elsewhere in the product that could show me how much behavior data had been
+collected. Given the behavior driven case creation feature relies on a certain
+volume of sessions, and needs to see a certain quantity of patterns emerge from
+the data, it seems some kind of indication that something had been received, and
+how much would be important. What if the customer had done the instrumentation
+wrong? What if the settings were wrong? What if the configuration of the website
+was impeding the collection. As observed below, the collections requests were being
+blocked when I ran from localhost, which makes sense - but other settings like VPNs,
+network configurations, firewalls and such could cause problems. The feature should
+have some indication of volume/status so the user can anticipate whether collection
+is going well, and to have some prediction of when they could use the feature.
+
+There were other issues I mention below. The two I mention above came
+to mind after learning more about the feature behaviors.
+
+
+__Everything that follows from this point forward was written before
+I had my conversation with Artem. I was still operating under a misunderstanding
+of how the feature worked, but my intent in this article was to capture
+the new user experience, and confusion is part of that experience. From a
+testing perspective, I felt it worth preserving this moment for others
+interested in testing to reflect on.__
+
 Writing the Test Plan
 ========================================================
 
