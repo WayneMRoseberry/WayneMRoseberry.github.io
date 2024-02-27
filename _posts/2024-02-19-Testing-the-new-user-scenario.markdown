@@ -6,7 +6,7 @@ Sometimes it is useful to test something as if we are a new user,
 trying to deal with only what we can gather from the documentation
 in front of us.
 
-I recently tried testing a new user scenario for a feature on <a href="https://testrigor.com/">TestRigor</a>, 
+I recently tried testing a new user scenario for a feature on <a href="https://testrigor.com/">testRigor</a>, 
 an AI-driven test case creation product. I came across a feature that
 builds test cases based on end user behavior in the product, and I decided
 to take that opportunity to record my experience as a new user as
@@ -14,9 +14,9 @@ the basis for a testing exploration. A testing report of the
 session <a href="/assets/TestRigor%20Behavior%20Driven%20Test%20Case%20Creation%20First%20Usage%20Test%20Report.pdf">is published here</a>.
 You can also watch a video of the testing session <a href="https://www.youtube.com/watch?v=Z29VmC7FiFc">here on my YouTube channel</a>.
 
-A note about TestRigor
+A note about testRigor
 =======================================================
-I am not an employee of TestRigor. I was not paid by them, or asked by them to
+I am not an employee of testRigor. I was not paid by them, or asked by them to
 do any of this testing. I performed the testing on my own, wrote a report, and sent it
 to Artem Golubev. He contacted me and offered to speak with me. He was cooperative and helpful.
 He has read this article, particularly since the modifications I made to the updates
@@ -25,13 +25,13 @@ you will find below.
 Article Update
 =======================================================
 I waited a while before sharing this article, because I wanted to share it with Artem Golubev,
-founder of Test Rigor. Especially because the testing was blocked before I could
+founder of testRigor. Especially because the testing was blocked before I could
 complete my intended plan, I wanted clarification if I was perhaps doing something wrong.
 
 What I learned from talking to Artem was that behavior based case creation
 relies on getting a large number of user sessions, and based on that looks for
 patterns of similarity in those sessions to build cases from. In my testing, I had
-only done 3 sessions, not enough for Test Rigor to build cases from.
+only done 3 sessions, not enough for testRigor to build cases from.
 
 Artem also shared with me that behavior driven testing was an early feature
 and some of their new features around natrual language driven automated case
@@ -106,12 +106,12 @@ deviate from the plan as I test.
 
 > Introduction
 > =====================================
->TestRigor has a feature to derive test cases from end user behaviors. The page author instruments the page with a script block provided by TestRigor, and then from there Test Rigor will build test cases based on what end users do against the page. This plan describes a test approach to test that feature.
+>testRigor has a feature to derive test cases from end user behaviors. The page author instruments the page with a script block provided by testRigor, and then from there testRigor will build test cases based on what end users do against the page. This plan describes a test approach to test that feature.
 >
 >  Methodology
 > =====================================
-> 1.	Create a new suite in a new folder… suite name that makes sense for this investigation and keeping the results distinct from other suites I have already reported to TestRigor team
-> 2.	As per the TestRigor Behavior Driven Test Case Creation page, instrument the page
+> 1.	Create a new suite in a new folder… suite name that makes sense for this investigation and keeping the results distinct from other suites I have already reported to testRigor team
+> 2.	As per the testRigor Behavior Driven Test Case Creation page, instrument the page
 > 3.	Turn on both “Recording of user behavior enabled” and “Allow recording to capture input values”
 > 4.	Visit the page (DataMaker (datamakerjs-f3b6b7d13de0.herokuapp.com)) and perform several navigations through the select boxes – in general,
 >   a.	Fresh visit from new tab
@@ -122,7 +122,7 @@ deviate from the plan as I test.
 >   f.	Change the shema definition
 >   i.	Try to cover some with very random content, like “url”
 >   g.	Repeat the above various navigation around the page
-> 5.	Go back to TestRigor and click “Trigger new test cases lookup”
+> 5.	Go back to testRigor and click “Trigger new test cases lookup”
 > 6.	Inspect the cases created, execute cases created
 >   a.	See what was recorded, what not
 >   b.	See how robust the scripts are – are they flummoxed by the data-driven and random nature of the page?
@@ -130,7 +130,7 @@ deviate from the plan as I test.
 Documentation review as a new user
 ========================================
 Not mentioned in the plan, I waited until I started testing before I read the product
-documentation. I made finding and reading the documentation part of the test
+<a href="https://testrigor.com/docs/language">documentation</a>. I made finding and reading the documentation part of the test
 itself, as I felt that was something a new user would likely do.
 
 > Product documentation is an important part of the user experience, and a valuable
@@ -143,7 +143,7 @@ itself, as I felt that was something a new user would likely do.
 > feature names unless you have been exposed to them somehow, as the user is not
 > going to know them unless they too were exposed.
 
-![a screenshot of the TestRigor behavior driven case creation settings page](/assets/testrigor_behaviorsettings.png)
+![a screenshot of the testRigor behavior driven case creation settings page](/assets/testrigor_behaviorsettings.png)
 
 I put what I found in the documentation survey in my testing report.
 The settings page for the Behavior Drive Case Creation feature was simple
@@ -159,8 +159,8 @@ about settings on the page as separate questions.
 
 Instrumentation of the web application
 ========================================
-TestRigor provides a code excerpt to place in your web page that
-will capture end user activity and upload it to the TestRigor recording
+testRigor provides a code excerpt to place in your web page that
+will capture end user activity and upload it to the testRigor recording
 services.
 
 > Especially with code samples insertions and guided changes to product
@@ -175,7 +175,7 @@ This portion of the test was simple and easy and mostly ran with no issues.
 I did notice that there were 403 errors in the developer console when I tested
 my instrumented page locally, but that might be expected behavior. The settings
 for enabling instrumentation have you indicate the URL of your application. It is
-very likely TestRigor is checking that the address matches, which it would not have
+very likely testRigor is checking that the address matches, which it would not have
 done with me running on `localhost`. I still reported the issue more as a question,
 in case the errors were of interest.
 
@@ -187,11 +187,11 @@ After local check of the page functionality, I pushed changes to
 my website on <a href="https://datamakerjs-f3b6b7d13de0.herokuapp.com/">https://datamakerjs-f3b6b7d13de0.herokuapp.com/</a>.
 I then navigated the page several times, manipulating
 the controls and elements as per the plan. I did not know the limitations of
-what TestRigor would be able to capture, and some of the page elements are
+what testRigor would be able to capture, and some of the page elements are
 nothing more than content. I changed up the plan a little bit, copying content to
 the clipboard (does that trigger anything? I have no idea...), varying the
 scope and span of what I was selecting. A short bit of time doing that and I
-decided to see what TestRigor would do.
+decided to see what testRigor would do.
 
 > Sometimes we don't know the actual product expectations or requirements.
 > We can  use testing as a way of discovering its behaviors, indicate what we
@@ -203,13 +203,13 @@ decided to see what TestRigor would do.
 
 Case Creation, hitting test blockage, and the ensuing investigation
 ========================================
-In TestRigor, I clicked the "Trigger new test cases lookup" button and got an error,
+In testRigor, I clicked the "Trigger new test cases lookup" button and got an error,
 "No recorded data for application." I did not expect this, but I also did not know
 if I should immediately expect recordings to be available. Maybe the service
 handles them in batches. Maybe there is some processing time on configuration of a
 new application before recording is enabled. Maybe something else.
 
-![A screenshot of the TestRigor behavior driven case creation settings page displaying the No recorded data for application error](/assets/testrigor_norecordeddata.png)
+![A screenshot of the testRigor behavior driven case creation settings page displaying the No recorded data for application error](/assets/testrigor_norecordeddata.png)
 
 At this point, the documentation issues reported earlier started to feel more important.
 
@@ -219,7 +219,7 @@ At this point, the documentation issues reported earlier started to feel more im
 I wondered if the failures I saw local were also happening on the server. I repeated
 some of my actions on the page with the developer console open. The console was clean,
 no errors. To be sure, I started a Fiddler session and captured the traffic between
-my client and the TestRigor server. All the requests were coming back with an
+my client and the testRigor server. All the requests were coming back with an
 HTTP 200 response, so it appeared the recordings were making it to the server.
 
 > Test blockage is useful information. Product team members need to know that somebody
