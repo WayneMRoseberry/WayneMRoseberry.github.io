@@ -255,3 +255,31 @@ experience and try to notice everywhere information might be missing or confusin
 then you have to complement that with jumping out of new user mode and dig in with
 tools to investigate and collect information, for sake of reporting the issue, that
 the end user might not do. You have to do this without losing that "new user" perspective.
+
+Final Notes...
+========================================
+I am adding this closing after having had the conversation with Artem, because
+I also want to include the post conversation perspective.
+
+Some states of mind are difficult to capture. One that is especially hard is that
+moment where you are unfamiliar with a product and trying to learn how to use it. In my
+case, the confusion was clarified by a conversation with the founder. We don't all get to
+talk to the founder of the company that made the tools we were using, but perhaps
+we have a co-worker, or members of the community of users to help us out, or maybe
+we talk to the developer and learn the behavior.
+
+Once we have that conversation, the "new user" perspective is gone. We can try to simulate
+it later (e.g. blindly following instructions), but the tendency to fill in gaps is so strong
+we easily overlook things. When you find your self in that state, recognize it for the
+unique and rare thing that it is and exploit the state of mind.
+
+> Some states of mind and perspectives are brief and short-lived, but may be important.
+> Recognize them and record what you observe, experience, believed, and how you got
+> there. Report it.
+
+It is tempting to categorize the new user behaviors - the confusion, doing the wrong thing - as
+not important, but that is not our job when we are testing. Our job is to capture that
+kind of experience and describe it as accurately as we can. I was led to my mistake, my
+confusion, by a product that offered no information about how to use it correctly. Part
+of the value that moment of confusion brings is telling someone how it came about so that
+it can be addressed.
