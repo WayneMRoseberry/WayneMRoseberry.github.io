@@ -16,6 +16,12 @@ I like to use. To do this I am targeting the following goals:
 3. Write a coded check for every decision that the unit owns
 4. Use the mocks as a way to define the expected contracts and force test failure when the contract is violated
 
+There is a live version of this article on my <a href="https://www.youtube.com/@SoftwareTesting-bv6di">YouTube channel, Software Testing</a>. I recorded myself
+making the changes, running the tests, fixing my bugs, and generally
+confusing myself, all for your edification.
+
+<a href="https://www.youtube.com/watch?v=BB4ZVPfS4b8&t=6s">Wayne is testing: unit tests to isolate business logic from IO</a>
+
 The example - an issue reporting method
 ===============================================
 The method in this example allows for retrieval of issue reports
@@ -199,3 +205,19 @@ if (tenantId == null || projectId == null || reportId || null) {
     throw Error(CommonSchema.NULLARGUMENT);
 ```
 
+Summing up...
+=================================================
+The ideas I present here are not too unusual or new. These are pretty common
+design patterns that work well to keep code testable, architecture
+extensible, and tests more reliable. I like using real examples based on
+whatever I was doing in the last day or so because it show show ideas
+that may seem distant and conceptual when talked about abstractly can look when
+it is something you mean to keep and use for real.
+
+The principles that I demonstrated in this example were:
+- isolating IO from business logic
+- keeping IO providers thin
+- owning conditional logic, errors, exception handling inside the unit
+- using mocks to define and enforce contracts
+
+It is a pattern I use quite a lot, and it has worked well for me.
