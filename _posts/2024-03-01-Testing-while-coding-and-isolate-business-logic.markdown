@@ -44,3 +44,24 @@ The Repository is tested separately with a mock of the issue provider.
 
 Testing EmbeddingIssueProvider.getIssueReport()
 ==================================================
+The first test I created called getIssueReport with simple, valid inputs
+and expected to get back a valid IssueReport object.
+
+```
+describe("getIssueReport tests", function () {
+    it("existing report", function () {
+        var issueDatabase = MockIssueDatabase.getDatabase();
+        issueDatabase.getIssueReport = function (t, p, i) {
+            return [new CommonSchema.IssueReport("test message", mindate, "100")];
+        };
+
+        var embeddingprovider = MockEmbeddingProvider.getEmbeddingProvider();
+        var issueProvider = EmbeddingsMaker.getIssueProvider(embeddingprovider, issueDatabase);
+
+        var result = issueProvider.getIssueReport("tenant1", "project1", "report1");
+        expect(result.ReportId).toEqual("100");
+    });
+```
+
+There are several important points in the above code.
+
