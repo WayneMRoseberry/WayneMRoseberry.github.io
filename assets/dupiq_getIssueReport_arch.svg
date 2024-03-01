@@ -25,7 +25,7 @@
 <g id="clust5" class="cluster">
 <title>cluster_1</title>
 <polygon fill="none" stroke="#0000ff" points="101,-8 101,-84.8 381,-84.8 381,-8 101,-8"/>
-<text text-anchor="middle" x="241" y="-68.2" font-family="Times,serif" font-size="14.00" fill="#000000">IssueProvider (business logic)</text>
+<text text-anchor="middle" x="241" y="-68.2" font-family="Times,serif" font-size="14.00" fill="#000000">EmbeddingIssueProvider (business logic)</text>
 </g>
 <!-- a0 -->
 <g id="node1" class="node">
