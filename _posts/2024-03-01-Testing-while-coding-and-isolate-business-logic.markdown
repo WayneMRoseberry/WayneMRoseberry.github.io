@@ -1,10 +1,14 @@
+Stack your layers with IO at the bottom
+=======================================================
+![A cartoon of a stick figure person looking at a stack of turtles](/assets/stackingturtles.png)
+
 One of the patterns I like to use while coding is to isolate the
 business logic into testable units of code independent from any
 IO or interaction from external objects. I want to be able
 to test the decisions inside the business logic, as well as enforce
 and protect the contract between my components with tests
 that run fast and check very specific conditions. This reduces
-risk at the system level but establishing expected behaviors as
+risk at the system level while establishing expected behaviors as
 precisely as possible in the smallest pieces of code as
 possible.
 
@@ -33,24 +37,24 @@ follows:
 The top level object is called a Repository, and it has several methods
 which need to access an IssueProvider, which offers issue based services
 and functions. The IssueProvider has a method called getIssueReport which
-will return an issueReport from where it is stored, but also has business
+will return an issueReport from where it is stored, and owns
 the business logic for input validation and error handling. Issue providers
 can vary in their implementation based on the type of technology and method
 they use to carry out their business logic.
 
-This particular issue provider is uses semantic searching to do some of its
+This particular issue provider uses semantic search to do some of its
 work, and bases that on word embeddings and a vector database. It also persists
 some data in a regular datbase. Because of that, the constructor
 to this IssueProvider takes two objects, an IssueDatabase and an
 EmbeddingsProvider. For the getIssueReport method, it only uses the
 IssueDatbase, which also implements getIssueReport.
 
-The unit test described in this article covers the EmbeddingIssueProvider.getIssueReport method.
+The unit test described in this article covers the `EmbeddingIssueProvider.getIssueReport` method.
 The Repository is tested separately with a mock of the issue provider.
 
 Testing EmbeddingIssueProvider.getIssueReport() simple case
 ==================================================
-The first test I created called getIssueReport with simple, valid inputs
+The first test I created called `getIssueReport` with simple, valid inputs
 and expected to get back a valid IssueReport object.
 
 ```
@@ -69,7 +73,7 @@ describe("getIssueReport tests", function () {
     });
 ```
 
-There are several important aspects the above code.
+There are several important aspects to the above code.
 
 The mocks define the contract
 -----------------------------------------------------
@@ -80,9 +84,9 @@ and one for the issue database (_this is hidden behind getIssueProvider_).
 The next definition is that the issue database object is expected to implement a
 method called `getIssueReport()` that takes three arguments, an id for a tenant, a project,
 and the issue report. The test above is perhaps being too permissive in its checks, as
-it only checks that the return result is correct. I ought to fix it to also
+it only checks that the return result is correct. (_I ought to fix it to also
 check that the expected values of `"tenant1", "project1"`, and `"report1"` are passed
-through as well.
+through as well._)
 
 Another important part is the test code only mocks the methods it believes ought
 to be called in this particular case. This gets more interesting when we talk
@@ -96,7 +100,7 @@ class MockIssueDatabase {
     }
 ```
 
-MockIssueDatabase throws an error saying it is not implemented if anything
+`MockIssueDatabase` throws an error saying it is not implemented if anything
 calls it without the test code overriding the mock behavior. The point of
 this is to check any errors in the product not handling conditional
 logic properly and falling through to use its dependencies at times
@@ -131,7 +135,7 @@ match the search condition, we normally get an empty list instead of an
 error. There is therefore going to be an expectation of the issue database
 provider object, expressed in the contract to return an empty result
 set in the case where the item is not found. Meanwhile, the expectation
-is still that in this case the EmbeddingIssueProvider will throw an 
+is still that in this case the `EmbeddingIssueProvider` will throw an 
 error saying the issue report does not exist.
 
 ```
@@ -150,7 +154,7 @@ it("no existing report", function () {
 Testing for invalid inputs and checking proper abort
 ==================================================
 One of the things I want to check is that if the inputs are invalid
-the EmbeddingsIssueProvider stops processing at the
+the `EmbeddingsIssueProvider` stops processing at the
 appropriate time. The test code which implements this
 check is as follows:
 
