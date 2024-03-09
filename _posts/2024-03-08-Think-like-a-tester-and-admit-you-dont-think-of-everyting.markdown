@@ -1,6 +1,6 @@
 You need to test like you didn't think of everything
 =============================================================
-
+![stick figure cartoon of a camper holding a unopened can thinking they should have brought a can opener](/assets/canopener.png)
 
 One of the key principles of CI/CD testing, and unit testing is that you
 do not add integration and end-to-end tests into the CI/CD pipeline or into the
@@ -14,20 +14,23 @@ controllable, and easy fashion.
 It works very well. Until you make an oops. An oops is when you didn't think of something
 in the contract requirements. You miss a problem, and a bug manages to go unnoticed by
 all of your unit tests inside your code and doesn't show itself until much later. Much later
-might just be production. That is bad. It is better if much later is before anybody sees it
-still under engineering observation and control so you can fix it. A lot of the time we
+might just be production. That is bad. It is better if much later is before anybody sees it,
+still under engineering observation and control, so you can fix it. A lot of the time we
 can automate this testing, sometimes not, but that doesn't mean we should not do it.
 
 I found an oops. I found it by writing automated integration tests. They are less convenient
-than my unit tests, because they come with a mess of database management and cleanup, and
+than my unit tests because they come with a mess of database management and cleanup, and
 I cannot run them easily as part of any pipeline actions. But they still found my oops. And the
 tricky part about this oops is it is not the kind that is so easily anticipated by
 mocking out contracts. In hindsight, it is easy, but ahead of time, you tend not to
-know until you it it.
+know until you hit it.
+
+> We need something other than unit tests to catch something we did not
+> think of.
 
 Integrating with a vector database
 =============================================================
-The project I am working processes issue reports and if they
+The project I am working on processes issue reports and if they
 are a new issue stores word embeddings for that issue in
 a Pinecone vector database. There are three layers, a repository
 that houses the primary business logic and top level API, an
@@ -41,7 +44,7 @@ reasons) and Pineconce as the vector database query and storage service.
 
 Each of these layers were tested independently. The Repository and IssueProvider
 were tested with unit tests. The EmbeddingProvider and IssueDatabase provider
-were tested with integration tests (as the run against a live version of the
+were tested with integration tests (they run against a live version of the
 service). The following code is an example test for the IssueProvider's
 `addIssueProfile` method:
 
@@ -75,7 +78,7 @@ The creation of the `IssueProfile` input data object is important. The first fie
     profile = IssueProfile("profile1", "test message", Date.min)
 ```
 The test code for the Pinecone provider behaved similarly, the third argument to `addEmbeddings()`
-corresponding to the `IssueProfileId` property:
+corresponding to the `IssueProfileId` property, and is a string:
 ```
     ...
     c.addEmbeddings("t1","p1","i1",embeddings1)
@@ -97,7 +100,7 @@ def reportIssue(self, tenantId, projectId, issueReport):
     self.addIssueReport(tenantId, projectId, issueReport)
     return topIssue
 ```
-Python programmers might notice an difference between the creation of the `IssueProfile` object
+Python programmers might notice a difference between the creation of the `IssueProfile` object
 above and the way the `addIssueProfile()` method using test input data was created. In the
 product code, the `IssueProfileId` field is created in the follwing line using `uuid.uuid4()` instead of
 a string :
@@ -113,6 +116,9 @@ went unnoticed because the units are tested independently of each other. If ther
 inconsistent behaviors in the two components and the unit tests are not written
 to protect against that specific inconsistency, the problem cannot be
 detected by the unit test.
+
+> Unit tests isolate test behavior by design. This isolation means they will not
+> tell you when differences in assumed component behavior are a problem.
 
 A unit test cannot detect a problem you didn't program it to detect. But does
 it matter? Hmmm???
@@ -148,6 +154,9 @@ type `str` you cannot anticipate that this error is going to happen. The error i
 because two layers up, the `reportIssue()` method on the `Repository` class set the `IssueProfileId` to
 a `UUID`, and the code above uses that value as part of the `id` field for the `Upsert` operation.
 
+> Integration and end-to-end tests can force out the behavioral inconsistencies between
+> components that unit tests cannot.
+
 Testing that catches oops is like rolling loaded dice
 =============================================================
 In this case, it was integration testing that caught my oops. I had no idea the attempted
@@ -158,7 +167,7 @@ able to catch my mistake, even though I didn't anticipate it?
 
 Because I was allowing myself to lose some control over my test conditions. I
 was tying the whole system together, and letting it just "do its thing." I
-had components there were behaving out of sync with each other, operating
+had components behaving out of sync with each other, operating
 on different assumptions about what had been checked, what expected behaviors
 were, and I didn't know it. Combining all the pieces together so those out
 of sync behaviors could start conflicting with each other made the bug manifest.
@@ -185,6 +194,14 @@ been slower, taken longer, and been a collosal waste of effort over something
 that could have been done easier like I did it here. It really is a simple instance
 of this "going beyond what you anticipate" situation.
 
+> Complement the controlled, anticipated, simple testing from unit tests with
+> more complicated testing approaches that increase the likelihood of
+> observing unanticipated behavior and problems.
+>
+> These two types of testing are critical and important complementary styles. Used
+> exclusive of each other increases risk and cost. Used together are powerful, effective
+> and efficient.
+
 I like these "first, simplest example of..." cases, because they demonstrate how
 stark the contrast is as we add complexity and increase our uncertainty. It is a
 powerful and effective way to make up for our limited perspective earlier on. There
@@ -192,3 +209,14 @@ are many other, far more complex problems awaiting, and almost all of them are g
 to have to require creating more complex conditions, testing into more unknowns, and
 finding rich, deep and surprising gaps in prior analysis.
 
+Tying the whole story together
+====================================================
+One of the benefits about writing about testing is I get to use my
+mistakes, even my stupid ones, as source material for content.
+
+In this case, it was a simple demonstration about how to match your precise and controlled
+unit tests with larger, more complex integration tests. The one checks the things you
+know about ahead of time to see if you made a mistake, the second increases the odds
+that mistakes you did not anticipate, or assumptions you were incorrect about, will
+be discovered while you are still working on the product, rather than having costs run
+up on a production system.
