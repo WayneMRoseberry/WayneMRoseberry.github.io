@@ -110,3 +110,87 @@ turn, yank, cold.
  
 ![Illustration of a blanket covering a set of colored circles, and some of them are uncovered such that covering them as well would uncover other circles](/assets/maximumcoverage.png)
 
+In this diagram, there are 16 circles, 12 of which are covered (mostly) by the blanket.
+That means the blanket is giving us 75% coverage of the total population. That seems pretty
+good. When welook at the population by color, we get the following breakdown:
+
+Color | Count | Covered | Percentage
+------|-------|---------|-----------
+Orange|4|4|100%
+Blue|6|5|83%
+Yellow|3|1|33%
+Pink|2|2|100%
+Green|1|0|0%
+
+Two of the sub populations, Yellow and Green
+fall far below 75% at 33% and 0% each. Meanwhile, both
+the Orange and Pink populations are enjoying
+100% coverage, and the largest group, Blue, is doing
+better than the average at 83%.
+
+Our percentage problem is no longer simple. Pretend this represents
+a critical outcome where something non-covered represents lethality
+, injury, or financial harm. For a sub population, perhaps people of certain ethnic groups,
+economic populations, occupations, geographical distribution, religious
+affiliation, the 75% percentage coverage of the entire population is meaningless
+if their population is at 33%, particularly if in a prior solution they were higher
+(perhaps 50%?).
+
+![Illustration of the same set of colored circles as earlier, but the blanket is moved to cover different circles](/assets/maximumcoverage_yanked.png)
+
+What happens if we try to fix the low coverage numbers
+for Yellow and Green? We can shift the blanket over to get both
+of them to 100% coverage. When we do that, Orange drops
+to 50%, the majority population Blue gets 100%, and
+Pink drops to 0% coverage.
+
+Color | Count | Covered | Percentage
+------|-------|---------|-----------
+Orange|4|2|50%
+Blue|6|6|83%
+Yellow|3|3|100%
+Pink|2|0|0%
+Green|1|1|100%
+
+The problem with trying to adjust a model that is already at its limits is that
+no amount of feeding it more data is going to get it to improve its error
+function. All that is going to happen is the error function is going to keep the
+same optimized value, and shift which parts of the sample function it covers. This is
+a problem when the sub populations in the sample data are of different sizes and proportions,
+because the percentage of improvement at the overall level can become far worse at the
+sub population just by shifting the error around.
+
+What do we do?
+===============================================
+I run the risk of overusing my metaphor, but let's treat this like we
+were talking about beds and blankets. The answers in that case are not that difficult:
+- __Ricky and Lucy Ricardo solution__:  Two beds. Even though the show was called "_I Love Lucy_" the two of them slept in separate beds (making the introduction of Little Ricky a few seasons later somewhat improbable).
+- __You're Gonna Need a Bigger Boat__: ...or blanket. The Jaws reference is just funnier.
+- __Why do we only have one blanket?__: Domestically, this is my personal preference. A mountain of blankets, sufficient for each person to roll around and tangle up as much as they will and never disturb the other person.
+
+Any of those solutions is comparable to changing the model, the method, the algorithm.
+There are a lot of ways that ML and AI models are changed. 
+
+One of the most common changes
+is to change the feature data. Some features can be combined, new features can be added, relationships
+between features can be created. It is very common that the real problem is there is some ASPECT of
+the data that is missing, and maybe that aspect makes what was previously mysterious errors clear
+and obvious.
+
+Another common change is to use different different kinds of models, or models in combination with each other.
+Maybe the models are combined with traditional, explicit programming that make the decision as part of
+an ensemble.
+
+My point is not to point to any specific set of guidelines for picking the right solution to
+a problem. My point is to illustrate the dynamics of situations where quite possibly the model you have chosen
+is never going to satisfy your needs sufficiently. Sometimes the model is failing to cover enough cases because
+it never can.
+
+As makers and testes of AI systems, what does this tell us?
+===============================================
+I believe this tells us that for any of us working with AI systems, we need to
+understand the implications of mathematics and statistics on the behavior of those
+systems, and that they do reach limits on their capabilities that are bound by the math.
+We need to understand how those limits affect the overall system and the users of
+that system, because if we don't understand it well we might find ourselves shipping a solution
+that is not only broken, but maybe cannot be fixed without an entirely different system.
