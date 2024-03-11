@@ -1,3 +1,6 @@
+Adding data to ML and AI training sets is like yanking on a blanket
+======================================================
+
 ![stick figure cartoon of two people in bed, one under blanket one not, with the person thinking "How do we achieve blanket detente?", and a caption underneath that says "Sometimes pulling the blanket more does not fix the problem."](/assets/blanketdetente.png)
 
 One of the problems we have with AI is a problem handling what people
@@ -5,7 +8,7 @@ like to call "edge conditions." For sake of this discussion let's
 just say "edge condition" means "something the appolication didn't
 handle." The most common answer to something the AI doesn't handle is
 to add more data, or add better data. That frequently works well, but
-it also doesn't always fix the problem. Sometimes, the problem isn't
+it doesn't always fix the problem. Sometimes, the problem isn't
 really fixable without entirely changing the AI model.
 
 I like to think of it like blankets.
@@ -14,13 +17,13 @@ Who stole the blanket?
 ===============================================
 I suspect the blanket gag is as old as humans using blankets.
 It is a simple premise. Two (or more) people are covered up, sleeping,
-trying to use the same blanket. One of them turns, stretcges, rolls over,
+trying to use the same blanket. One of them turns, stretches, rolls over,
 adjusts the bedding, gets up and returns... and in the act of all their
-moving around has uncovered the other person. The visual gag is usually
+moving around has uncovered the other person. The visual gag is usually:
 turn, yank, cold.
 
  There is another version of the gag where the blanket is just not big
- enough to cover everybody at once. Somebody get shorted on coverage, and is either
+ enough to cover everybody at once. Somebody gets shorted on coverage, and is either
  half-covered, half-not all night long, or is lying as still as possible right
  on the edge of being uncovered, the slightest move leaving them out in the cold.
 
@@ -35,12 +38,13 @@ turn, yank, cold.
 
  ![Illustration of two blankets, one laid out flat for maximum coverage, another folded with limited coverage](/assets/blanketdatafolding.png)
 
- In this analogy, the data is the pulling and moving and re-arranging of
+ In this analogy, ML and AI training data is the pulling and moving and re-arranging of
  the blanket to try to fit it to the usage. Every tug and twist and yank
  and smoothing and pulling represents new data changing the arrangement
  of the blanket. The blanket is the underlying mathematics consuming the
  data. It is the same set of mathematical formulas producing a different
- arrangement of outcomes based on the data it is given. 
+ arrangement of outcomes based on the data it is given. The formula is capable
+ of producing many shapes, but there is a boundary on those shapes that has a limit.
 
 ![Illustration of a blanket covering a set of colored circles, and some of them are uncovered such that covering them as well would uncover other circles](/assets/maximumcoverage.png)
  
@@ -65,9 +69,10 @@ turn, yank, cold.
  feature, its lot size another, number of bedrooms a third, whether it
  is on waterfront, number of bathrooms, proximity to transit, and on
  and on. For text, words and tokens are their own features, as well
- as frequency and distance relationships to each other. This set of features
+ as frequency and distance relationships to each other, resulting in
+ a matrix of billions of features in the larger LLM models. This set of features
  are like the fabric of the blanket, and the relationship they have to
- each other that the mathematical formula derives the possible shapes of
+ each other fed into the mathematical formula derives the possible shapes of
  the blanket, and most importantly, the limits of the space it can cover.
 
  How well it covers the space is described by a single number, the error
@@ -112,7 +117,7 @@ turn, yank, cold.
 
 In this diagram, there are 16 circles, 12 of which are covered (mostly) by the blanket.
 That means the blanket is giving us 75% coverage of the total population. That seems pretty
-good. When welook at the population by color, we get the following breakdown:
+good. When we look at the population by color, we get the following breakdown:
 
 Color | Count | Covered | Percentage
 ------|-------|---------|-----------
@@ -181,10 +186,10 @@ Another common change is to use different different kinds of models, or models i
 Maybe the models are combined with traditional, explicit programming that make the decision as part of
 an ensemble.
 
-My point is not to point to any specific set of guidelines for picking the right solution to
+My point is not to recommend any specific set of guidelines for picking the right solution to
 a problem. My point is to illustrate the dynamics of situations where quite possibly the model you have chosen
 is never going to satisfy your needs sufficiently. Sometimes the model is failing to cover enough cases because
-it never can.
+it never can. Sometimes you have to change the solution itself.
 
 As makers and testes of AI systems, what does this tell us?
 ===============================================
