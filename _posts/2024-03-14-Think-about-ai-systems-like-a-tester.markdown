@@ -1,3 +1,6 @@
+Testing AI Systems Based on a Generic Model
+===================================================
+![A stick figure cartoon of a person contemplating a drawing of a generic AI model](/assets/genericaimodel.png)
 
 No matter what a system is, I like to diagram my understanding of it, breaking it into
 the parts and pieces and how they relate to each other. I always find that doing this
@@ -19,8 +22,8 @@ Short version, the system is comprised of four parts:
 3. any background processing which may be affecting (non-AI) system state
 4. post processing of the AI response, and system state to produce an outcome
 
-In this model, the "outcome" is we were usually decide if there is a bug
-or not. If the outcome cause a problem in some way, we have a bug. The data
+In this model, the "outcome" is usually decide where bugs live.
+If the outcome cause a problem in some way, we have a bug. The data
 flowing through the system are the input to the AI, the system state outside the AI,
 and the response from the AI based on the inputs.
 
@@ -88,7 +91,7 @@ processed by AI in the middle, and then things happen at the end. While opportun
 exist for things to go wrong at every stage, it is critical to understand how
 much is pushed onto the "beginning" and "ending" parts of the system.
 
-We will use an example of an email chat bot that scans in inbox for messages,
+We will use an example of an email chat bot that scans an inbox for messages,
 identifies help requests, generates responses to those requests via AI, sends a
 message and marks the issue as resolved when done.
 
@@ -102,7 +105,8 @@ which may have affect on later processing
 
 For our email chatbot example, pre-processing monitors an inbox, breaks messages into
 pieces that are sized properly for the AI subsystem, and also creates entries in a ticketing
-system to track which messages have been processed.
+system to track which messages have been processed. For sake of a shorter article, let's
+pretend this part of the system works perfectly (_unlikey, I know, but humor me_).
 
 AI Subsystem (component 2)
 ------------------------------------------------------
@@ -146,7 +150,7 @@ the final post-processing tries to respond to a ticket state that is "CLOSED" an
 Post-Processing (component 4)
 ------------------------------------------------------
 The response from an AI/ML system is generally processed and
-drives some action. When the AI response is generate data, processing (step 4.1) often has to deal with the unpredictable
+drives some action. When the AI response is generative data, processing (step 4.1) often has to deal with the unpredictable
 nature of the AI subsystem output. Sometimes the content needed for further processing
 varies in format, or is surrounded by extra, undesired text. Sometimes the content isn't
 there, replaced a spurious hallucination from the AI subsystem. The processing step should anticipate
@@ -173,3 +177,88 @@ it gets stuck, aborts, abandons processing that request. Those that are processe
 are formatted to look good in email - where some content might cause errors in the
 formatting code. After formatting, the message is sent to an email server, and
 the ticket state is changed to resolved.
+
+Summarizing the problem
+========================================================
+A short way to describe all of the above:
+
+1. Everything else around the AI models break when they are not resilient to the AI output
+2. The AI models will emit output inconsistent with desired outcome, and is only broken based on how often it does so
+
+This is both a daunting, but powerful realization. It means we have to accept that the AI
+model is going to be wrong sometimes, and that the system around it is going to have to deal with
+those conditions. This means that rather than struggling to make the AI models perfect and the
+system likewise perfect all together, we can instead focus on the primary assumption that the AI
+models are going to emit the wrong answer.
+
+Isolate the non-AI components to test AI response failure
+-------------------------------------------------------
+We can sometimes exploit a surprising simplification. We can simplify the system by replacing the AI model
+with a system that purposefully emits the "wrong" outcome. Let's consider a few of the problems in
+our email example:
+
+- __help classification__: mock a "Not Applicable" or "Help Request" response to a variety of known messages that would have probabily have been classified opposite, and let them flow through the rest of the system. Instead of exercising the classification model itself, look how the other parts of the AI subsystem supporting code, as well as the ongoing process, handle that combination of message/ticket attributes with an unexpected classification.
+- __response processing__: mock out responses and feed them to the post-processing engine. Create responses without the included json, or with the json fields mislabelled. Surround the json with text prior and text after to mimic LLM "apology" or "helpful material" text.
+- __formatting__: example formatting format of whatever email message system utilized. Are there sequences and characters that would interrupt formatting constructs, control symbols, special characters, and make the message look bad? Mock out the response and put that kind of content inside to see if it will break the email formatting. Look at other information which comes from the response which might affect other email behaviors (to and cc list recipients? tags? email metadata?) and force them to values which might not make sense or match expectations in your context... what if the LLM hallucinated names of people to include on the email, for example, or CC-ed the CEO of a competing company?
+- __ticketing state change__: mock out the AI components, as well as the ongoing process, to force the system to deal with the "CLOSED"->"RESOLVED" transition state. Does it cause other problems if that were to occur?
+
+If we embrace the assumption that the AI will create unexpected responses, we need then focus on the
+range of those responses which are problematic for the post-processing system to consume. Rather than
+imagine how to make the AI produce that response, we just assume it did, and think instead what those
+responses might be. This is driven more by an analysis of the post-processing system's behaviors than
+what the possible outputs of the AI might be. If we are forunate, the former is smaller than the latter.
+
+Drive the AI models, and their prompts to highest performance possible separate from entire system
+--------------------------------------------------------
+If the AI model is producing undesirable outputs too often, then we probably want to retrain those
+models. Frequently this is a matter of insufficient data, but frequently this is also a matter of the
+features in the data, the properties used to weight and train the model, cannot generate a model
+taht is more accurate. This doesn't indicate a need for more data, but rather a need for different KINDS
+of data.
+
+For generative AI, there is subtle nuance on where the boundary is for the AI model. Technical boundary
+stops at its inputs, but the prompt itself becomes a part of the application tier, especially in these
+sorts of systems where the prompt is usually a template and user data is inserted INTO the template
+before handoff to the AI model.
+
+![Diagram of an app comprised of an LLM and a prompt template, accepting user input to inject in the template](/assets/llm_prompt_app.png)
+
+This creates an entirely new app, a kind of meta-model, which is "This prompt template, using this model" and then the
+testing for performance, correctness rate, is based on how often it produces the desirable result based on
+different user inputs that are combined with the template.
+
+Testing the content correctness of such a system starts to get challenging, mostly because of the scale
+of doing so. Assuming an incoming passage of text was asking about company policy regarding parental
+leave, how do you detect, at scale, if a given response was instead about company bereavement policy? There are
+a large body of approaches for subjective measures of this sort (human assessment, in-production ratings) and your
+own system might have meta data on the original data which you might be able to exploit for correctness clues (user provided tagging
+of content on the inputs, etc.), but I am not going to go into them here. The main point I am raising is that
+this is the part of the system where the most difficult "is this what we wanted" measurements happen, and are
+very similar, sometimes identical to, how the models are trained.
+
+In addition to highly subjective expectations of "correct" we should consider how our system, particularly
+the post-processing, imposes concrete set of expectations we can use as test oracles. In our email example, consider the following
+hypothetical requirements:
+
+1. final response must always be in json
+2. json must always be findable via a specific algorithm (e.g. returns against a specific regex match)
+3. json elements must conform to a specific schema
+4. json values should never contain any of the following characters
+5. ... etc. ...
+
+Our own system gives us a useful set of rules to evaluate the AI model response. We can at least apply a large
+sample of possible inputs to the model, and see how often the response violates the above, and adjust the
+training (if we own the model) or the prompt template until rate of error goes as low as possible.
+
+Not promising perfection, but at least simplification
+=====================================================
+Like any testing problem, there is no guarantee any approach is going to solve every aspect of a problem,
+or suddenly make it easier. But a good testing approach frequently makes a problem easier to understand.
+I believe that is the case with the approach I describe in this article. The presence of an AI component
+in a system sometimes throws us off guard, I believe mostly because its black box nature and
+statistical behavior confuse us. We don't like trying to test a black box whose behaviors we do not
+know how to deterministically predict.
+
+The key, I believe, is to decompose the system and identify the parts which still function inside a deterministic
+way, and then ask how we test such a system knowing that some part of it is designed and assumed to behave
+in unpredictable ways.
