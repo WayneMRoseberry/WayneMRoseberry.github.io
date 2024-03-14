@@ -124,8 +124,24 @@ In our email chatbot, the text passages undergo text processing to make them sui
 for the first AI model, a binary classifier trained to detect whether the passage is
 a request for help, or just not applicable. If the passage is classified as a help request,
 the the original passage is further processed and combined with a prompt that directs
-an LLM to produce an appropriate response/answer to the question. If the passage is not a help
+an LLM to produce an appropriate response/answer to the question in a json format for easy extraction. If the passage is not a help
 request, that information is made available for other background processes.
+
+On-going processes (component 3)
+------------------------------------------------------
+On-going processes can change system state, and may do so in a way that is in conflict
+with response from the AI system. For example, if the AI system is a binary classifier choosing
+between class 1 and class 2, and if the ongoing process is setting some variable X as True or False, and
+if the combination "Class=2, X=False" is considered invalid, then the system might have a bug
+if the ongoing process and the AI classifier were to somehow produce that state.
+
+In our chatbot example, the primary job of the ongoing process is to take the
+case where the classifier returns "Not Applicable" on the current process, and mark
+it as "CLOSED." Imagine some bug in the system where the ongoing process marks the wrong
+message as "CLOSED," or where even though the classification model returned "Not Applicable",
+the message was still sent through for a response. This would result in a case where
+the final post-processing tries to respond to a ticket state that is "CLOSED" and set it to
+"RESOLVED", which may not be a valid state transition.
 
 Post-Processing (component 4)
 ------------------------------------------------------
@@ -141,3 +157,19 @@ problems. An action indicated by the content of the response may result in an ou
 permutations of the data from the AI system might combine poorly or in violation with system state, or data
 from the AI subsystem response may fall outside anticipated ranges cause an error or failure
 in the code taking action.
+
+The highest risk potentional tends to be at the post processing state, because
+this is where all the inputs and state changes in the system come together to affect
+the final outcome. Errors introduced earlier will tend to propagate and ripple
+to this final stage. Not always. Sometimes something very bad could happen
+earlier, creating an early undesirable outcome, but the system has to get
+at least as far as processing inside the AI/ML model for us to think of
+this as an AI-derived problem.
+
+In our email chatbot example, the response message is read, the json portion
+extracted and processed. The possibility exists that malformed responses (json missing, hard to
+extract, or in different schema) might cause failure in the processing engine - maybe
+it gets stuck, aborts, abandons processing that request. Those that are processed
+are formatted to look good in email - where some content might cause errors in the
+formatting code. After formatting, the message is sent to an email server, and
+the ticket state is changed to resolved.
