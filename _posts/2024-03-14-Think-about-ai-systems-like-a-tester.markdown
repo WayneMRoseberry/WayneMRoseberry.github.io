@@ -12,7 +12,7 @@ the individual parts, including the AI models, start to show relationships that 
 at how we want to focus on the testing.
 
 I believe that most AI and ML based systems are modifications to a common pattern.
-I describe that pattern in this article, and offer an example of it. The drawing below
+I describe the pattern in this article, and offer an example of it. The drawing below
 illustrates both. I will describe it in more detail in the text that follows.
 ![A diagram that models a system using AI to solve a problem, with a generic model at top and an email chatbot below](/assets/AIsystemmodel_emailchatbotexample.png)
 
@@ -97,16 +97,16 @@ message and marks the issue as resolved when done.
 
 Pre-processing (componet 1)
 ------------------------------------------------------
-Pre-processing covers anythning that might happen prior to sending any
+Pre-processing covers anything that might happen prior to sending any
 information to the AI model subsystem. The key role of the pro-processing
 system is to generate the inputs to the AI system (step 1.2 in the model), but
-prior processing my create other system state that the AI model might not use, but
-which may have affect on later processing
+prior processing may create other system state that the AI model might not use, but
+which may have an affect on later processing
 
 For our email chatbot example, pre-processing monitors an inbox, breaks messages into
 pieces that are sized properly for the AI subsystem, and also creates entries in a ticketing
 system to track which messages have been processed. For sake of a shorter article, let's
-pretend this part of the system works perfectly (_unlikey, I know, but humor me_).
+pretend this part of the system works perfectly (_unlikley, I know, but humor me_).
 
 AI Subsystem (component 2)
 ------------------------------------------------------
