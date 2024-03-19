@@ -12,7 +12,7 @@ the individual parts, including the AI models, start to show relationships that 
 at how we want to focus on the testing.
 
 I believe that most AI and ML based systems are modifications to a common pattern.
-I describe that pattern in this article, and offer an example of it. The drawing below
+I describe the pattern in this article, and offer an example of it. The drawing below
 illustrates both. I will describe it in more detail in the text that follows.
 ![A diagram that models a system using AI to solve a problem, with a generic model at top and an email chatbot below](/assets/AIsystemmodel_emailchatbotexample.png)
 
