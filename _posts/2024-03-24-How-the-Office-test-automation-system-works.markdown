@@ -116,23 +116,96 @@ Id and URL they can monitor to check on the status of their job.
 
 Resource and job scheduling
 -------------------------------------------------------
+Once a job is submitted it waits in a queue until a one of a bank of scheduling
+machines claims it and starts assigning machines to execute the job. The scheduler
+monitors is bank of available machines, and decides how many machines to allocate to the
+job, based on overall system load. If the system has lots of free capacity, the scheduler
+will assign as many machines as possible, allowing tests to run in parallel on different
+machines. If the system is low on capacity the scheduler will assign multiple scenarios per
+machine. Scenario order on the machines are scheduled independently of each other, as if randomly
+designated. People writing automation scripts and launching them have almost no
+control over the machine allocation strategy.
 
+Sometimes configurations are tied to specific classes of machines. The scheduler also assigns
+only one configuration per machine to each run - there is no mid-job switching of
+configuration.
+
+Some job intentions are given higher priority than others. Daily build validation is given highest
+priority, developers submitting changes for validation are given higher priority than ad hoc
+jobs launched with no specified intent.
 
 
 Test machine pool(s)
 -------------------------------------------------------
+There are multiple pools of machines used for test execution. Some pools reside in Azure, some
+in labs managed by Office. Some of the machine pools are all virtual machines, while some
+are physical machines which for various reasons can not be handled as part of a virtual pool.
+Most of the machines are commodity class Windows based servers, but there is also a large
+pool of Apple machines, Apple and Android devices. Each of the machine pools have a service for
+requesting and returning a machine to the pool for use.
 
 Machine monitoring and control
 -------------------------------------------------------
+Each of the machines run software that responds to requests about whether they
+are still executing assigned tasks or are free.
 
-Result collection
+Test execution infrastructure
 -------------------------------------------------------
+On every box is a tool that responds to requests from the Office Automation System
+for test execution status, and which can load and launch test scenarios. This piece of
+software is responsible for loading the test runner, which may be one of MSTest, or Office's
+own runners for PC, Android and Apple platforms. There is also a middle ware runner that allows
+single C++ test binaries to send commands to platform specific device controllers that have hooks
+into the Office applications - allowing both on device and remote control of Apple, Android, and tablet devices
+with the same test code.
+
+For PC based testing, Office has its own runner that loads and understands the scenario XML format
+and uses that to load binaries AND retrieve whatever supporting collateral is needed
+for test execution. The collateral is fetched via a stack of services and APIs that manage the
+complex task of determining if the proper version of the file is coming from the developer
+machine, the local machine, off the specified drop point, or from an official snapshot of the version of that resource.
+
+The Office runner behaves a lot like the xUnit family of runners, having nearly identical
+attribute style markup as NUnit. The Office runner predates the xUnit family by several years. It supports
+a lot of very sophisticated capabilities, such as multiple binary support, dynamic database and service supplied
+data-driven tests, coordination of test actions across multiple machines, machine re-boot and commence from a specified
+point, extensions allowing multiple logging providers and listeners.
+
+__Regarding Unit Tests__
+Many of the unit tests in Office are implemented in MSTest or other small scale test runners, and
+have a single scenario entry in the Office Automation System case manager for the entire
+test binary. The almost always run under configurations with the phrase "unit-test" in the name.
+ typical test binary might have hundreds of unit test methods in it that are separate
+and individual tests, but to the Office Automation System appear as one single test. This throws off
+the "10 million tests a day" number substantiall, as the unit tests are undercounted by two to three
+orders of magnitude.
+
+An interesting side note on the unit tests, I one time compared the unit test configurations
+for reliability (flake) against the non-unit tests. Across the tests where we had the measurements,
+the suites overall would see flaky results in about 35% of the scenarios, where the typical
+"flake" rate of any of those scenarios would be close to 0.1% - failures happening 1 out of 1000 runs.
+The reliability rate of the unit-test configurations was 1000x higher than the non-unit tests, they
+were 1000 time LESS likely  to exhibit flake than the end to end tests.
+
+Result collection and failure bucketing
+-------------------------------------------------------
+Results were collected on box at the end of every test and submitted to a central
+reporting service where they were stored in a database.
+
+One of the most powerful features in the Office Test Automation System was the
+ability to identify whether a failure was new, or had been seen before. Failure messages
+tend to have small differences between runs, which obligated engineers to investigate
+every single failure as if it were new. Employing clustering technology, Office
+was able to let an engineer know if the problem was new - which meant very likely
+something they introduced, or if it was old, meaning something their change problem
+did not create. The list of identified failures and their history of when specific
+scenarios hit them was likewise kept in a database. Office engineers investigate
+failure buckets first instead of specific failures in jobs - the history of the failure
+is as important to them as the specific times the failure happened.
 
 Job reporting storage and workflow
 -------------------------------------------------------
 
-Test execution infrastructure
--------------------------------------------------------
 
 Test sources
 -------------------------------------------------------
