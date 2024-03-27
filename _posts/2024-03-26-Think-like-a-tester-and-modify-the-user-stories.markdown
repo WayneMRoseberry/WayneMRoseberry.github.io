@@ -1,14 +1,22 @@
+Sometimes you need a better story
+==========================================
+![Stick figure cartoon depicting someone at a typewriter thinking they need a better story than "It was a dark and stormy night."](/assets/darkandstormynight.png)
+
+_There is a reference to Peanuts on the wall in this cartoon, as there was a running
+gag of Snoopy writing on a typewriter while sitting atop his dog house, and so very
+often his story would start "It was a dark and stormy night..."_
+
 User stories are convenient and effective tools for testers, but so often the stories
 which drive product design and coding are simplified and short. They do very well
 in a demo, are good for guiding a developer or designer for how the product ought
-to look and behavior, but are almost always too simple and too easy to work
+to look and behave, but are almost always too simple and too easy to work
 well as ways to find problems in a product.
 
-When I am testing, I like to put choose and modify user stories based on test
+When I am testing, I like to choose and modify user stories based on test
 questions. I look for things that might take the product into areas that do not
 work as well, don't fit the user needs the way we would want.
 
-I employed user stories to test TestRigor, an AI-driven test case generator that
+I employed user stories to test <a href="https://testrigor.com/">TestRigor</a>, an AI-driven test case generator that
 uses natural language description of test goals to create the steps for a test
 case. I have tried prior testing with TestRigor before, but I hadn't written
 anything where I targeted the natural language test case generation. I decided
@@ -16,6 +24,12 @@ to try that today.
 
 A video of the testing session is also available <a href="https://www.youtube.com/watch?v=rJV0Dck9G6s">here</a>
 on my <a href="https://www.youtube.com/@SoftwareTesting-bv6di">YouTube channel, "Software Testing"</a>.
+
+A note about TestRigor
+=========================================
+I am not an employee of TestRigor. I was not asked by them to write this article.
+I chose it because it has a rich and interesting feature set, and because
+AI generated test cases are an interesting problem to test.
 
 The story behind the approach
 =========================================
@@ -66,10 +80,10 @@ Under each I also indicated a set of expections.
 - The script will check that user name is requested
 - The script will close the window when done
 
-_This check for closing the window is there because I have found from other testingsessions in TestRigor that after the test completes browser window sessions can sometimes
+_This check for closing the window is there because I have found from other testing sessions in TestRigor that after the test completes browser window sessions can sometimes
 stay open with a live connection and active session for a long time. I want to make sure there isn't a chat window left hanging._
 
-I also added a third story that check how TestRigor would do constructing checks
+I also added a third story that checks how TestRigor would do constructing checks
 for behaviors that are going to fail, perhaps where the user was mistaken about
 a behavior. I modified the Chat story to check for a condition that is not true:
 
@@ -100,7 +114,7 @@ There are two issues that come from this run:
 2. The check for the first full paragraph of text on the "San Francisco" page was unnecessary, and probably brittle, because it would fail if any of that content were to change - it should have just checked for "San Francisco" instead
 
 Whether or not these are issues the product team would want to address are a matter for discussion.
-One of the limitations I have seen with AI generated content is that tends to perform poorly
+One of the limitations I have seen with AI generated content is that it tends to perform poorly
 when generation requires any kind of repeated set of steps. While it did the first step for the first
 location pretty well, it never tried to repeat the process.
 
@@ -123,16 +137,17 @@ TestRigor behaved as per expectations and failed the test case.
 > Add user stories as you think of them, especially if they make the test more interesting. You are
 > exploring the possible user situation and usage as much as you are exploring the application.
 
-> _There is another issue with the generated scripts that I did not recognize when recording the
+>__ISSUE:__ _There is another issue with the generated scripts that I did not recognize when recording the
 > video, and only just realized now writing this article. The end user intent was to solve a general problem of
 > checking that location links were valid, but TestRigor created a script for specific links. This means
-> that were any of the links, for example "San Diego", to be removed at some point, the script would be yield
+> that were any of the links, for example "San Diego", to be removed at some point, the script would yield
 > a false positive - it would declare failure over something not meant to be a failure._
 
 The second and third user stories, opening a chat help session, yielded more issues.
 TestRigor's starting behavior was impressive, because it found and clicked the Chat link under the
 Contact Us page without being told that is where the link was. It had to navigate to the Contact Us
-page first, on its own. After that, there were several issues:
+page first, on its own. After that, there were several issues, and violations of expecations I
+had not anticpated:
 
 - It tried to close the window before checking the assistant content was correct
 - It used the entire paragraph from the assistant to check if what was there was expected instead of just looking to see if it asked for user name
@@ -140,6 +155,10 @@ page first, on its own. After that, there were several issues:
 - It added steps, such as typing questions, inventing names for itself and sent it when the chat assistant asked for it, invented a problem "Hello, I need help with my account", injected checks for content with current time in them (e.g. "Check if page contains '11:44 am'"), asked for help with the membership id instead of checking if the assistant asked for it (e.g. it sent "I for my membership id and I need help with my account.").
 - Behaved in a way such that the chat assistant was beginning to direct the test client to a live chat agent
 - Never did check whether the assistant asked for membership id, and consequently declared the test a pass
+
+> Most of the failures you observe during user story testing are likely to be something you did
+> not anticipate. Pay attention to as much as possible, do not lock yourself in to a rigid set
+> of requirements or become numb to odd behavior.
 
 It is fair to say that TestRigor went completely rogue on the last user story. The behavior that is most
 concerning is the way a simple check to see if a chat assistance session was functioning correctly
@@ -158,7 +177,7 @@ The moral of the story
 I started off by saying how I like using user stories to guide testing, so that is clear.
 In this article, I conveyed some approaches to doing so that I find work very well.
 
-1. User your tester's understanding of the application and what might be raise problems to create a criteria for what kind of user story you want to use. Select and modify the stories to fit this criteria.
+1. User your tester's understanding of the application and what might raise problems to create a criteria for the kinds of user story you want to use. Select and modify the stories to fit this criteria.
 2. Keep a sense of freedom around the story. You will think of new stories, you will change the story you are testing. Follow that instinct.
 3. Even if the stories do not demonstrate bugs or failures, it is useful for you and the product team to know what happened when you did try the story.
 4. Stick with the user personna. Try to pretend you are them, and try not to step out of their personna when looking for workarounds or how they would deal with a problem.
