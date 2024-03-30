@@ -85,5 +85,150 @@ Exploratory questions:
 - _What happens if failured occured here/now?_ Bugs and new requirements tend to become more apparent if we ask what happens when a given step, action, or requirement fails. Dependent actions, steps and requirements often fail even worse, and we usually find we need some kind of new recovery requirement, or perhaps a different way to meet that requirement which avoids failing in that way.
 - _What is the user supposed to do when this happens?_ This question is very effective with failure modes, because very often the user has to take some kind of action, or at least needs to know something. Maybe there is nothing the user can do, and we need them to know that. Maybe somebody else, such as an operator or support person, is the only one who can address the problem. Even for non-errors, sometimes the end result of an action needs to guide the user in a good direction.
 
+> Come up with a set of easy to remember questions you will ask as you go
+> through the requirements. You do not need to be rigid, you can and should
+> ask other questions. The tool serves as a memory device.
 
+Structure helps
+------------------------------------------------
+In my example, the requires are expressed both as a visual model and as
+Gherkin formated examples. Both of those create a structure that makes it
+easier to look at parts of the requirements one at a time, like steps.
 
+Sometimes requirements are not written in step-wise format. Sometimes
+they are lists, sometimes as short user stories. Sometimes they are
+less structured. The "ask a simple question" technique still works
+in any format, although you might find yourself having to work
+harder to see the relationship between parts and pieces the more
+unstructured the format.
+
+> If you are having trouble reviewing the requirements, feel free
+> to create a structure of your own. Choose any structure or format
+> that helps you think. Share with others on the team, they often
+> find that kind of thing helpful.
+
+Raising Issues
+==================================================
+In my exercise, I came up with the following bugs after the questions
+above for the requirements on "Report Issue."
+
+- Need clarification on how issue similar is established
+- Where are embeddings stored?
+- Where are the issue report and issue profile stored?
+
+This drove an update on the model. Issue similar is established by
+retrieving embeddings for the reported issue, and then performing 
+a search against a vector database to get consine distance
+from prior issues to establish similarity. In the case of creating
+a new issue, the embeddings for the reported issue would be stored
+to the vector database, and then the issue report and issue profile
+would be stored to the issue database. Two whole components of the
+system were missing in the prior requirement. Review of the new
+requirements yielded the following new questions:
+
+- What if retrieval of the embeddings fails?
+- What if writing the embeddings fails?
+- What if writing the issue report and/or the issue profile fails?
+- It seems that if embeddings write succeeds and issue profile write fails, there is an orphaned embedding in the vector database, does that suggest a new requirement to clean up orphans?
+- What is the end user supposed to do for each of the failures on embedding fetch, embeddings write, issue report and profile write, and likewise on orphan failure?
+- Is there a missing feature for operations notification of any of these failure states?
+
+That set of questions prompted a redesign of the requirements to account
+for each of the failure states and how to respond to them.
+
+![A model of the modified requirements to account for the questions raised above](/assets/dupiq_reportissueerrorhandling.png)
+
+An expansion of the test cases, and export to Gherkin describes the new four times
+expansion in number of cases (at the bottom of the article).
+
+> Testing by requirements is iterative in nature. Questions asked motivate
+> changes to the requirements that usually raise new questions. Requirements
+> will tend to grow substantially in one or two iterations.
+
+The required ending
+===================================================
+My intent of this article was to demonstrate an effective and easy way
+of testing an application from requirements. This example was small. Most
+projects will have a much larger, richer set of requirements. That does not
+change the effectiveness of the technique. You can get a lot out of
+asking for clarification, finding a simple question such as "what happens if 
+this step fails?", or "what is the user supposed to do next?", and then
+applying enough structure to the requirements that it makes asking
+the question easier.
+
+Appendix: That big pile of Gherkin
+===================================================
+The Gherkin below was unwieldy and cumbersome, so I moved it from where I discussed
+it above to the end of the article.
+>```
+>  Scenario: Report Issue Error Handling - TC1
+>    Given: an issue has been reported
+>    When: Embedding fetch succeeds (YES)
+>    And: Call to vector database succeeds (YES)
+>    And: top issue similarity > threshold (YES)
+>    And: write to issue database succeeds (YES)
+>    Then: Link new issue to prior issue
+>    And: Write Issue Report to Database
+>
+>  Scenario: Report Issue Error Handling - TC2
+>    Given: an issue has been reported
+>    When: Embedding fetch succeeds (YES)
+>    And: Call to vector database succeeds (YES)
+>    And: top issue similarity > threshold (YES)
+>    And: write to issue database succeeds (NO)
+>    Then: Report database write error
+>
+>  Scenario: Report Issue Error Handling - TC3
+>    Given: an issue has been reported
+>    When: Embedding fetch succeeds (YES)
+>    And: Call to vector database succeeds (YES)
+>    And: top issue similarity > threshold (NO)
+>    And: Write to vector database succeeds (YES)
+>    And: Write to issue database succeeds (YES)
+>    Then: Write new issue embeddings
+>    And: Write new issue profile
+>    And: Write Issue Report to Database
+>
+> Scenario: Report Issue Error Handling - TC4
+>    Given: an issue has been reported
+>    When: Embedding fetch succeeds (YES)
+>    And: Call to vector database succeeds (YES)
+>    And: top issue similarity > threshold (NO)
+>    And: Write to vector database succeeds (YES)
+>    And: Write to issue database succeeds (NO)
+>    And: delete from vector database succeeds (YES)
+>    Then: database back to pre report state
+>
+>  Scenario: Report Issue Error Handling - TC5
+>    Given: an issue has been reported
+>    When: Embedding fetch succeeds (YES)
+>    And: Call to vector database succeeds (YES)
+>    And: top issue similarity > threshold (NO)
+>    And: Write to vector database succeeds (YES)
+>    And: Write to issue database succeeds (NO)
+>    And: delete from vector database succeeds (NO)
+>    Then: Report orphaned vector
+>    And: record error in operations log
+>
+>  Scenario: Report Issue Error Handling - TC6
+>    Given: an issue has been reported
+>    When: Embedding fetch succeeds (YES)
+>    And: Call to vector database succeeds (YES)
+>    And: top issue similarity > threshold (NO)
+>    And: Write to vector database succeeds (NO)
+>    Then: vector storage failure
+>    And: record error in operations log
+>
+>  Scenario: Report Issue Error Handling - TC7
+>    Given: an issue has been reported
+>    When: Embedding fetch succeeds (YES)
+>    And: Call to vector database succeeds (NO)
+>    Then: Report vector database connection error
+>    And: record error in operations log
+>
+>  Scenario: Report Issue Error Handling - TC8
+>    Given: an issue has been reported
+>    When: Embedding fetch succeeds (NO)
+>    Then: Report embeddings fetch error
+>    And: record error in operations log
+>```
