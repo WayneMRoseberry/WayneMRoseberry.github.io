@@ -82,6 +82,8 @@ Clarifying questions:
 
 Exploratory questions:
 ------------------------------------------------
-- _What happens if failured occured here/now?_
-- _What is the user supposed to do when this happens?_
+- _What happens if failured occured here/now?_ Bugs and new requirements tend to become more apparent if we ask what happens when a given step, action, or requirement fails. Dependent actions, steps and requirements often fail even worse, and we usually find we need some kind of new recovery requirement, or perhaps a different way to meet that requirement which avoids failing in that way.
+- _What is the user supposed to do when this happens?_ This question is very effective with failure modes, because very often the user has to take some kind of action, or at least needs to know something. Maybe there is nothing the user can do, and we need them to know that. Maybe somebody else, such as an operator or support person, is the only one who can address the problem. Even for non-errors, sometimes the end result of an action needs to guide the user in a good direction.
+
+
 
