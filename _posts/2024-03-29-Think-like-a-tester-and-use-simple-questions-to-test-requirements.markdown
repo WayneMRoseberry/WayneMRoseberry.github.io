@@ -30,7 +30,7 @@ above the similarity threshold, a new issue is created, the embeddings
 are stored in the vector database, and the new issue and report
 are stored in the issue database.
 
-Simple Requirements form a Model and BDD:
+Simple Requirements from a Model and BDD:
 ================================================
 I created a model using TestCompass to describe requirements for
 the "Report Issue" feature.
@@ -55,4 +55,33 @@ the requirements:
 >    And: Link report to new issue
 >    And: Write new issue profile
 >    And: Write Issue Report to Database```
+
+From this, I was able to start my testing.
+> Requirements can come in almost any form. They may be diagrams, lists, formal expressions like Gherkin
+> entries in a ticketing system like Jira, or large specification documents. You can work with almost
+> any format.
+
+Asking Simple questions to review the requirements
+================================================
+A large set of requirements can be daunting. They are usually long (unlike the short example
+in this document, but I will get to that). There are usually complex but
+maybe unstated relationships between features and behaviors. There is also
+something about reading "_The application will flip the pancake in the air..._"
+that numbs the mind into blind acceptance, suppressing questions like "_What if
+the pancake wasn't there? What if the pancake wasn't solidly cooked yet? What if
+there wasn't enough clearance to do the flipping?_"
+
+One way to simplify it is to ask simple questions. There are
+many questions one could ask. For this exercise, I used a
+short list:
+
+Clarifying questions:
+-----------------------------------------------
+- _How does this happen?_ This is useful when an action seems to happen as if by magic. The requirements specify something that is supposed to happen, but do not indicate the steps that made it possible. This is a bug in the requirements themselves, and the clarification will prove useful in further analysis.
+- _Where does this go?_ Many bugs in a system fall out of storage or sending data somewhere. Steps after and between storage points are often fragile, and usually drive requirements changes to fix bugs in the design.
+
+Exploratory questions:
+------------------------------------------------
+- _What happens if failured occured here/now?_
+- _What is the user supposed to do when this happens?_
 
