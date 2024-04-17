@@ -1,4 +1,6 @@
 Sometimes You Have to Change the Plan
+=====================================
+
 ![A stick figure cartoon of a someone contemplating a collapsed rope bridge thinking about changing their plan](/assets/perhapschangetheplan.png)
 
 Sometimes we use tools that make test cases for us. Often they help us work out complicated
