@@ -1,11 +1,14 @@
+Sometimes You Have to Change the Plan
+![A stick figure cartoon of a someone contemplating a collapsed rope bridge thinking about changing their plan](/assets/perhapschangetheplan.png)
+
 Sometimes we use tools that make test cases for us. Often they help us work out complicated
-or tedious or lengthy concepts in a simpler way, and from that helps us build a set
+or tedious or lengthy concepts in a simpler way, and from that help us build a set
 of tests to execute. Sometimes they even help make the test case steps for us.
 
 This forces us into considering our paths carefully. On the one hand, the tools did
 help us come up with combinations of ideas, inputs, actions, and sequences that we
 might not have thought of before, might not have stumbled on during our exploration.
-On the other hand, followin steps in rote fashion can narrow our exploration, or
+On the other hand, following steps in rote fashion can narrow our exploration, or
 push us toward repitition that leads to no new discoveries. If we are cavalier about
 dismissing the step creation the tool affords us we might skip something important.
 If we rigidly follow the steps, we might miss something or waste time with
@@ -13,13 +16,13 @@ our myopic focus.
 
 > Even if you are using a formal, scripted test case step method, you should be prepared
 > to tactically and strategically make adjustments to your testing and steps. It is common
-> that either testing will be impeded, blocked, expose new ideas, or demand you look
+> that testing may be impeded, blocked, expose new ideas, or demand you look
 > beyond the simple rote requirements to notice and discover more.
 
 In this article, I describe a testing session with Test Case Studio, a test step
 recording tool. It is a handy way to capture test cases live, and to provide an accounting
 of what you did during testing. I decided to test the test tool by building a suite
-of tests targeting my own sampel web app, and using Test Compass to construct
+of tests targeting my own sample web app, and using <a href="https://www.compass-testservices.com/">Test Compass</a> to construct
 a suite of test cases built by an all edges traversal of my sample web application.
 
 Test Suite Creation from a Model
@@ -63,7 +66,7 @@ recording in Test Case Studio.
 
 Testing Methodology
 ==============================================
-The methodology was to repeat the following for each of the test in the suite. The example steps
+The methodology was to repeat the following for each of the test cases in the suite. The example steps
 in the table below are taken from the first test case in the suite, steps varied per case on either
 the exact step action or the "YES" and "NO" modifiers.
 1.	Start Test Case Studio
@@ -246,7 +249,7 @@ slow to make sure I was not doing actual double-clicks, but Test Case Studio sti
 it as a double click.
 
 > Testing steps are sometimes ambiguous. You could formally lock them down in the step
-> instructions, although it is sometimes more useful and more efficiently to express the
+> instructions, although it is sometimes more useful and more efficient to execute the
 > steps with variation. Use the ambiguity to your testing advantage. Doing exactly the same
 > thing every time you test is sometimes a symptom of growing numb and blinding yourself
 > to what is happening.
