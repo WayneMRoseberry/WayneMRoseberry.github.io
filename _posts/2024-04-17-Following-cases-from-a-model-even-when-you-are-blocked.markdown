@@ -95,6 +95,8 @@ A full list of all the test cases is located in the following spreadsheet: <a hr
 
 Testing - what really happened and results
 ==============================================
+A Word Docx format of the report can be <a href="/assets/Test%20Case%20Studio%20simple%20web%20page%20coverage%20report.docx">found here.</a>
+
 I mostly executed the suite rote as described in the methodology section above. There were only 8 cases. Execution took less
 than an hour. But I was unable to follow the cases exactly as recorded because a bug in Test Case Studio prevented me from
 doing so. I was forced into modifying my steps to try to avoid a crash.
