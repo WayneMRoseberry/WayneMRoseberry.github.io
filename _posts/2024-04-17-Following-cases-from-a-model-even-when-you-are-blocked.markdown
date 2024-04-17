@@ -115,6 +115,11 @@ to get past it for the additional coverage. My attempts at mitigation were ineff
 decided not to spend any more time on it, so I marked as blocked all test cases where
 a "BACK" step was followed by change to either of the SELECT elements.
 
+> Failures can sometimes be bad enough that further testing is blocked. It is worth looking
+> for a workaround, but at some point it may not be worth the effort, or the nature of the
+> workaround alters the test state too much. It is a careful judgement call whether to keep
+> trying, or to report the issue and move on.
+
 Used the content of SELECT element and NUMERIC spinner elements as the name of the element
 ----------------------------------------------
 When Test Case Studio recorded an action on either a SELECT or NUMERIC input control, it
@@ -129,6 +134,11 @@ If I were following steps blindly, I would have had this behavior handed to me "
 steps says...<thing>" and I probably wouldn't record this bug at all. I am intentionally being
 non-rigid about expectations because I want to force myself out of test case rote
 execution myopia. I want things to look weird to me even if they might have been intentional.
+
+> Give yourself lots of room for noticing something that does not look correct. If you have
+> documented expectations, use them, but intentionally force yourself to look at
+> other behavior and ask yourself questions such as "How would the affect the user?" Some
+> written requirements feel very different when you see them in action.
 
 "Back" button was not consistently recorded
 ----------------------------------------------
@@ -170,6 +180,10 @@ being that whatever Test Case Studio records could be followed by someone later 
 get the same result. Perhaps this could be expressed as a formal expectation, but
 I am also treating this as more of an exploratory expression on the rote execution.
 
+> Implicit expectations, or expectations that cut across all usage of a feature can
+> be a powerful tool in your set of oracles and heuristics. Some of these are very general, and
+> you have to use your imagination to realize how they apply in that specific situation.
+
 The names of the select items kept growing
 ----------------------------------------------
 It took me a while to notice this, because I didn't find the resize column control in Test Case Studio
@@ -187,6 +201,10 @@ delete the steps and then I would start over with another case.
 This one is odd, because it is very possible that the test cases are affecting each other. Would this happen were
 the exact same test cases run on entirely different machines, perhaps automated, or each case given to
 a different tester? It is quite possible that none of these cases on their own would find this bug.
+
+> Tests can sometimes affect each other, and sometimes that is a useful side effect for noticing problems
+> you would not notice where the tests cleanly isolated. Believe it or not, there is sometimes
+> a benefit to a sloppy workbench.
 
 Ambiguous name "Click on 'Edit'" assigned to click on multiple items
 ----------------------------------------------
@@ -209,6 +227,10 @@ still, the name of that step was strange. It didn't seem a good choice for click
 surrounding that button. This is a matter of opinion - I am not sure what Test Case Studio ought to
 call the step, but I don't like the ambiguity on the step name.
 
+> Do not be afraid to deviate from your steps. There is proably more value in trying something
+> different than there is in strict adherence to the steps. You tend to see something nobody
+> would have noticed when you change the steps up a bit.
+
 Sometimes the number control value change was capture as a double click
 ----------------------------------------------
 I chose to elaborate on the steps as described and change up the ways I was changing the
@@ -222,4 +244,10 @@ was happening when I would cross over the original value while incrementing or d
 the control value, but I also saw it for setting other numbers. I tried to keep my click speeds
 slow to make sure I was not doing actual double-clicks, but Test Case Studio still captured
 it as a double click.
+
+> Testing steps are sometimes ambiguous. You could formally lock them down in the step
+> instructions, although it is sometimes more useful and more efficiently to express the
+> steps with variation. Use the ambiguity to your testing advantage. Doing exactly the same
+> thing every time you test is sometimes a symptom of growing numb and blinding yourself
+> to what is happening.
 
