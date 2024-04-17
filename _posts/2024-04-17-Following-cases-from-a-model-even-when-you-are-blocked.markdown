@@ -251,3 +251,12 @@ it as a double click.
 > thing every time you test is sometimes a symptom of growing numb and blinding yourself
 > to what is happening.
 
+Wrapping up this story
+=============================================
+I did not plan for this article to be about adapting rote test case execution
+and changing the steps as you go, and now that I think about it I realize
+I am doing the same thing here. Especially in testing, where some of the most important
+insights we can offer the team are about something we nearly missed, being able to
+adapt and change in response to conditions and our instincts is often the crucial
+factor that makes the difference between spotting a really bad problem everyone
+else missed, or letting something dreadful cruise by unnoticed.
