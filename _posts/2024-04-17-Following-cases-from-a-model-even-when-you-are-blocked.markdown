@@ -21,11 +21,23 @@ our myopic focus.
 > that testing may be impeded, blocked, expose new ideas, or demand you look
 > beyond the simple rote requirements to notice and discover more.
 
+The Application Under Test
+=============================================
 In this article, I describe a testing session with Test Case Studio, a test step
-recording tool. It is a handy way to capture test cases live, and to provide an accounting
+recording tool. I used the Edge extension version of it. It is a handy way to capture test cases live, and to provide an accounting
 of what you did during testing. I decided to test the test tool by building a suite
 of tests targeting my own sample web app, and using <a href="https://www.compass-testservices.com/">Test Compass</a> to construct
 a suite of test cases built by an all edges traversal of my sample web application.
+
+I am not an employee of the Test Case Studio team. I was not asked by them
+to write this article. As of the time of this writing I have sent them a copy 
+of my test report describing the activities below, but otherwise have
+had no other interactions.
+
+In general I found Test Case Studio functionality useful. As you see below there
+were issues that came up during my testing, but the general value of being able
+to record a series of steps, capture CSS selector and XPath information as you
+go can be very helpful.
 
 Test Suite Creation from a Model
 ==============================================
