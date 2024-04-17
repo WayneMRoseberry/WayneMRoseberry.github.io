@@ -1,0 +1,15 @@
+,OS: Windows 10 | Browser: Microsoft Edge 123 | Resolution: 1920x1040 | Time: 17 Apr 2024 / 7:43:13  PDT
+#,Step,Data,Exp Result,XPath,cssSelector
+1,Open website,https://datamakerjs-f3b6b7d13de0.herokuapp.com/,,,
+2,Click on "schemaexamplesbaseobjecttypesnetworktypes",,,//select[@id='namespacelist'],#namespacelist
+3,select "baseobjecttypes" from "schemaexamplesbaseobjecttypesnetworktypes",baseobjecttypes,,//select[@id='namespacelist'],#namespacelist
+4,Click on "htmlElement",,,//html,html
+5,Click on "htmlElement",,,//html,html
+6,Click on "Edit",,,//button[@id='editschemadef'],#editschemadef
+7,Click on "schemadefjson",,,//textarea[@id='schemadefjson'],#schemadefjson
+8,Click on "schemadefjson",,,//textarea[@id='schemadefjson'],#schemadefjson
+9,Enter "{ "SchemaName": "alphalowwer", "RootSchemaObject": { "ObjectTypeName": "RangeAlphaSchemaObject", "MinAlpha": "a", "MaxAlpha": "z" }, "Namespace": "baseobjecttypes" }" into "schemadefjson",{ "SchemaName": "alphalowwer", "RootSchemaObject": { "ObjectTypeName": "RangeAlphaSchemaObject", "MinAlpha": "a", "MaxAlpha": "z" }, "Namespace": "baseobjecttypes" },,//textarea[@id='schemadefjson'],#schemadefjson
+10,Click on "Save",,,//button[normalize-space()='Save'],button[type='button']
+11,Click on "htmlElement",,,//html,html
+12,Click on "schemaexamplesbaseobjecttypesnetworktypes",,,//select[@id='namespacelist'],#namespacelist
+13,select "networktypes" from "schemaexamplesbaseobjecttypesnetworktypes",networktypes,,//select[@id='namespacelist'],#namespacelist
