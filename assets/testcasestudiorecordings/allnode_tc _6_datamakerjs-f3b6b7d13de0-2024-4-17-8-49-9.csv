@@ -1,0 +1,13 @@
+,OS: Windows 10 | Browser: Microsoft Edge 123 | Resolution: 1920x1040 | Time: 17 Apr 2024 / 8:49:9  PDT
+#,Step,Data,Exp Result,XPath,cssSelector
+1,Open website,https://datamakerjs-f3b6b7d13de0.herokuapp.com/,,,
+2,Click on "defaultschemadefaultchoiceschemaexamplereferenceschemaexamplesequenceschemaexamplerangealphaschemaex",,,//select[@id='schemalist'],#schemalist
+3,select "referenceschemaexample" from "defaultschemadefaultchoiceschemaexamplereferenceschemaexamplesequenceschemaexamplerangealphaschemaex",referenceschemaexample,,//select[@id='schemalist'],#schemalist
+4,Enter "8" into "5",8,,//input[@id='numberofexamples'],#numberofexamples
+5,Click on "defaultschemadefaultchoiceschemaexamplereferenceschemaexamplesequenceschemaexamplerangealphaschemaex",,,//select[@id='schemalist'],#schemalist
+6,select "defaultchoiceschemaexample" from "defaultschemadefaultchoiceschemaexamplereferenceschemaexamplesequenceschemaexamplerangealphaschemaex",defaultchoiceschemaexample,,//select[@id='schemalist'],#schemalist
+7,Enter "11" into "5",11,,//input[@id='numberofexamples'],#numberofexamples
+8,Click on "Edit",,,//button[@id='editschemadef'],#editschemadef
+9,Click on "schemadefjson",,,//textarea[@id='schemadefjson'],#schemadefjson
+10,Enter "{ "SchemaName": "ddefaultchoiceschemaexample", "RootSchemaObject": { "ObjectTypeName": "ChoiceSchemaObject", "ChoiceArray": [ "choice1", { "ObjectTypeName": "StaticSchemaObject", "StaticValue": "val1" } ] }, "Namespace": "schemaexamples" }" into "schemadefjson",{ "SchemaName": "ddefaultchoiceschemaexample", "RootSchemaObject": { "ObjectTypeName": "ChoiceSchemaObject", "ChoiceArray": [ "choice1", { "ObjectTypeName": "StaticSchemaObject", "StaticValue": "val1" } ] }, "Namespace": "schemaexamples" },,//textarea[@id='schemadefjson'],#schemadefjson
+11,Click on "Save",,,//button[normalize-space()='Save'],button[type='button']
