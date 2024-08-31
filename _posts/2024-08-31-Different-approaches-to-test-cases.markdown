@@ -1,5 +1,18 @@
-
 # Different ways of representing test cases
+=================================
+![A cartoon figure contemplating two different ways of thinking about test cases](/assets/describingtestcases.png)
+
+At some point testers need to write down what testing they intend to do, or account for what testing
+they have done. The common convention to describe a specific performance of a test in terms of the conditions,
+the steps taken, the checks performed, is with the term "test case." There is a lot of historical
+baggage around that term, especially with regard to formally scripted testing narratives, which
+I believe gets in the way of understanding what a test case really is and what we mean when we use the term.
+I cover my own definition of test case in another article, https://waynemroseberry.github.io/2022/04/11/what-happens-in-the-case-when-you-are-testing.html.
+
+In this article, I describe different forms for describing test cases. I especially focus on how those
+forms affect cost and efficiency, but also describe when they may or may not each be useful.
+
+# The ways vary largely on detail and cost to maintain
 The following list of different ways of representing test cases go from high detail/high cost to low detail/low cost.
 - Fully-described test cases in list form
 - Titles only test cases with shared steps
@@ -224,3 +237,14 @@ Reporting for test case ideas and themes is similar as to grouped cases, althoug
 even more clustering and abstract summarizing. The reporting tends to be simpler to read, shorter. There are fewer
 numbers and more "temperature map" type results, showing which areas of exploration are done, which in progress, which
 not done at all, and where the problems came up. It tends to be easier to describe big picture with test case ideas and themes.
+
+# Conclusion, I guess...
+The key takeaway I want for anybody is to recognize that when we describe test cases we are
+trying to solve a problem. We are not trying to adhere to a ritualized set of rules or
+standards for how to record our activities. We should take cost, effort, value, usefulness of
+what we do and how we do it into account. All of the ways of approaching test case description in this
+article are useful in some way, but they also all have times when they will not fit the situation well.
+The most common tradeoff involves time, cost, and expertise required in the approach.
+
+And I guess I cannot say that much without saying the above is not a religious canon. If you find or invent a way of describing
+your testing, cases or whatever, and if it works for your situation then use it.
