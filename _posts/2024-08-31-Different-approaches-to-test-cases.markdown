@@ -1,6 +1,6 @@
 # Different ways of representing test cases
 =================================
-![A cartoon figure contemplating two different ways of thinking about test cases](/assets/describingtestcases.png)
+![A cartoon figure contemplating two different ways of thinking about test cases](/assets/waystodescribetestcases.png)
 
 At some point testers need to write down what testing they intend to do, or account for what testing
 they have done. The common convention to describe a specific performance of a test in terms of the conditions,
