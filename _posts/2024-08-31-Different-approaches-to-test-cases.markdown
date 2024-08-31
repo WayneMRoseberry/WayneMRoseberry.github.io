@@ -7,7 +7,7 @@ they have done. The common convention to describe a specific performance of a te
 the steps taken, the checks performed, is with the term "test case." There is a lot of historical
 baggage around that term, especially with regard to formally scripted testing narratives, which
 I believe gets in the way of understanding what a test case really is and what we mean when we use the term.
-I cover my own definition of test case in another article, https://waynemroseberry.github.io/2022/04/11/what-happens-in-the-case-when-you-are-testing.html.
+I cover my own definition of test case in another article, <a href="https://waynemroseberry.github.io/2022/04/11/what-happens-in-the-case-when-you-are-testing.html">What happens in the case when you are testing</a>.
 
 In this article, I describe different forms for describing test cases. I especially focus on how those
 forms affect cost and efficiency, but also describe when they may or may not each be useful.
