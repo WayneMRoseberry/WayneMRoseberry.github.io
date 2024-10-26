@@ -1,4 +1,4 @@
-# Sometimes you test without ever executing a single test
+# Sometimes you test without executing a single test
 
 ![A stick figure cartoon of a person contemplating log data with the word "skip" repeating and the person thing "things seem a little too skippy"](/assets/diggingthroughdataastesting.jpg)
 
