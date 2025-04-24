@@ -68,4 +68,3 @@ Some time ago I started posting a series of cartoons with commentary on LinkedIn
 <a href="https://www.linkedin.com/posts/wayneroseberry_i-see-a-lot-of-people-recommending-not-to-activity-7243639788178710528-AgsH?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">What is the Problem with Pull Requests?</a><br>
 <a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-softwaredevelopment-activity-7230647613782421506-26AF?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">Change Requirements to Create More Test Ideas</a><br>
 <a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-softwaredevelopment-activity-7229601704072110082-0igm?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">Different Ways for Testers and Developers to Work Together</a><br>
-<a href="
