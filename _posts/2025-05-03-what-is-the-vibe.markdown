@@ -1,3 +1,7 @@
+![Someone juggling on a unicycle with a sign that says vibe coding, and another person saying to an onlooker we might be drifting in our defintions.](/assets/vibecodingtermdrift.jpg)
+
+*There is a point where how we use words is so ambiguous terms become useless.*
+
 # Vibe Coding Is Still Finding Itself
 Vibe coding seems to float around a cluster of meanings all having to do with using
 generative AI tools to write code based on prompting. The wikipedia article about
