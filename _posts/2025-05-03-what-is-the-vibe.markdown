@@ -1,4 +1,4 @@
-# Vibe Coding as Still Finding Itself
+# Vibe Coding Is Still Finding Itself
 Vibe coding seems to float around a cluster of meanings all having to do with using
 generative AI tools to write code based on prompting. The wikipedia article about
 [vibe coding](https://en.wikipedia.org/wiki/Vibe_coding) has this to say about it:
