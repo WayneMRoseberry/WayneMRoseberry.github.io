@@ -1,5 +1,7 @@
 Getting the Vibe on Specification Review
 ========================================
+![Two people looking at a toilet built by a robot missing a handle and drainage connect because the requirements didn't mention them.](/assets/requirementsvibration.jpg)
+
 
 Some colleagues of mine and I engaged in an exercise which unexpedtedly resulted in
 realization of a testing methodology none of us had ever come across before. It involved
