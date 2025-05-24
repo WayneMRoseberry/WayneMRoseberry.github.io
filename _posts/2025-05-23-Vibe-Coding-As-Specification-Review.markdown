@@ -4,8 +4,8 @@ Getting the Vibe on Specification Review
 
 
 Some colleagues of mine and I engaged in an exercise which unexpedtedly resulted in
-realization of a testing methodology none of us had ever come across before. It involved
-AI, vibe coding tools, too many people trying to build something all at once, and
+realization of a testing methodology none of us had come across before. It involved
+AI, vibe coding tools, too many people trying to build something all at once, and a
 product requirements document that happened to be JUST THE RIGHT level of ambiguous.
 
 Twelve Testers Try to Build an App
