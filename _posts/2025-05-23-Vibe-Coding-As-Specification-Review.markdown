@@ -3,7 +3,7 @@ Getting the Vibe on Specification Review
 ![Two people looking at a toilet built by a robot missing a handle and drainage connect because the requirements didn't mention them.](/assets/requirementsvibration.jpg)
 
 
-Some colleagues of mine and I engaged in an exercise which unexpedtedly resulted in
+Some colleagues of mine and I engaged in an exercise which unexpectedly resulted in
 realization of a testing methodology none of us had come across before. It involved
 AI, vibe coding tools, too many people trying to build something all at once, and a
 product requirements document that happened to be JUST THE RIGHT level of ambiguous.
@@ -108,13 +108,13 @@ stress test feel to it. Here is the method, in a nutshell:
 2. Give the requirements to a AI driven coding tool - preferrably one that will build a fully functioning application - and direct it to build the app described
 3. Test the resulting application, looking for deviations from what you want the application to be - this could be missing features, extra unwanted behaviors, flow that is not correct. Make note of anything different.
 4. Review the requirements document and see if anything in the requirements might have suggested the problems discovered, or did not describe sufficiently to guide the AI in the desired direction
-5. Change the requirements document and repeat the process - so long as the number of issues is decreasing the document is likely converging a less ambiguous and more useful version of the requirements
+5. Change the requirements document and repeat the process - so long as the number of issues is decreasing the document is likely converging toward a less ambiguous and more useful version of the requirements
 
 So, we can vibe it all the way home, right?
 -----------------------------------------------
 The methodology described here is not meant to cover how to build the completed
 product. This author's personal preference is for vibe coding to stay in the
-domain of prototyping and tiny one-off tool writing, but that topic isn't the focus of
+domain of prototyping and tiny one-off tool writing. That topic isn't the focus of
 this article, and the methodology described here is completely independent from
 how a person or team intends to finish building what is described in their
 requirements document.
