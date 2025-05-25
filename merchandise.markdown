@@ -85,8 +85,30 @@ them for yourself and send a message, or get them for the whole team.
   </tr>
 </table>
   
-
-
-
+Artwork
+===============================
+In my free time, I enjoy drawing. Some of my works are available here in t-shirt form.<br>
+<table>
+  <tr>
+    <td>
+    Birth of Venus dragon t-shirt.<br>
+    Show your simultaneous appreciation of the artist Botticelli and dragon lore with this depiction of the Birth of Venus as a dragon goddess.<br><br>
+    <a href="https://www.zazzle.com/birth_of_venus_dragon_t_shirt-235895688044668516">Purchase on Zazzle.</a>
+    </td>
+    <td>
+    <a href="https://www.zazzle.com/birth_of_venus_dragon_t_shirt-235895688044668516"><img src="/assets/birthofvenusshirt.jpg" width="300"></a>
+    </td>
+  </tr>
+    <tr>
+    <td>
+    Whistler's Mother Dragon t-shirt.<br>
+    The real name of the original is "Arrangement in Grey and Black no. 1", but it's more fun to call it Whistler's Mother. It's even more fun when she is a dragon.<br><br>
+    <a href="https://www.zazzle.com/whistlers_mother_dragon_t_shirt-235553057883516798">Purchase on Zazzle.</a>
+    </td>
+    <td>
+    <a href="https://www.zazzle.com/birth_of_venus_dragon_t_shirt-235895688044668516"><img src="/assets/whistlersmotherdragonshirt.jpg" width="300"></a>
+    </td>
+  </tr>
+</table>
 
 
