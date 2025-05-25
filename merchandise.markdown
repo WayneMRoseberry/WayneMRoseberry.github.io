@@ -70,7 +70,19 @@ them for yourself and send a message, or get them for the whole team.
     <td>
       <a href="https://www.zazzle.com/i_know_it_works_on_your_machine_t_shirt-256537685183083306"><img src="/assets/merch_worksonyourmachine.png" width="300"></a>
     </td>
-  </tr>  
+  </tr> 
+  <tr>
+    <td>
+      <b><i>Be reasonable. Don't give the monkey the gun.</i></b><br><br>
+        There is a simple solution to AI run amok. Don't give it control over anything dangerous. We would
+        apply the same rule to monkeys and guns. It seems appropriate to use a similar approach with
+        AI. Doesn't it?<br><br>
+        <a href="https://www.zazzle.com/dont_give_the_monkey_the_gun_problem_solved_t_shirt-256947888040621647">Purchase on Zazzle</a>
+    </td>
+    <td>
+        <a href="https://www.zazzle.com/dont_give_the_monkey_the_gun_problem_solved_t_shirt-256947888040621647"><img src="/assets/dontgivethemonkeythegun.jpg" width="300"></a>
+    </td>
+  </tr>
 </table>
   
 
