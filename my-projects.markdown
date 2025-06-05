@@ -31,7 +31,7 @@ This is an application I made to play with concepts. It creates random
 examples of data based on a schema describing the data. It is not very good, has
 problems, very simple.
 
-I use it sometimes to explore testing tools. I toss the tool at this app to see
+I use it to explore testing tools. I toss the tool at this app to see
 how the tool does.
 
 <a href="https://datamakerjs-f3b6b7d13de0.herokuapp.com/">DataMaker</a>
