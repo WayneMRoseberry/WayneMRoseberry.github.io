@@ -24,3 +24,14 @@ It is a work in progress. I had a version running on Azure, but have trimmed it
 back (removed the WEB UI, user sign-in, security, etc.) to a SQL server backed
 storage which runs on premise rather than in-cloud. It is extensible, so other
 implementations on other platforms are possible.
+
+DataMaker
+====================
+This is an application I made to play with concepts. It creates random
+examples of data based on a schema describing the data. It is not very good, has
+problems, very simple.
+
+I use it sometimes to explore testing tools. I toss the tool at this app to see
+how the tool does.
+
+<a href="https://datamakerjs-f3b6b7d13de0.herokuapp.com/">DataMaker</a>
