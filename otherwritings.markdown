@@ -4,6 +4,10 @@ title: "My Other Writings"
 permalink: /OtherWritings
 ---
 
+# Documents
+<a href="/assets/Data%20Testing%20Analysis%20Heuristics.pdf">Data Testing Analysis Heuristics</a><br>
+<a href="/assets/Heuristics%20for%20Testing%20Software%20Dependencies.pdf">Heuristics for Testing Software Dependences</a><br>
+
 # My LinkedIn Posts
 
 Some time ago I started posting a series of cartoons with commentary on LinkedIn. They are hard to find up there, so I put a link to the list of them in here.
