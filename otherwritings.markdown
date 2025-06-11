@@ -8,6 +8,7 @@ permalink: /OtherWritings
 <a href="/assets/Data%20Testing%20Analysis%20Heuristics.pdf">Data Testing Analysis Heuristics</a>: A categorized set of heuristics focused on testing problems with data.<br>
 <a href="/assets/Heuristics%20for%20Testing%20Software%20Dependencies.pdf">Heuristics for Testing Software Dependences</a>: A categorized set of heuristics focused on testing ideas for dependencies between components in a system.<br>
 <a href="/assets/Heuristics%20for%20Flow%20and%20Scenario%20Testing.pdf">Heuristics for Flow and Scenario Testing</a>: A categorized set of heuristics focused on testing scenarios and sequences of actions.<br>
+<a href="/assets/Fast%20and%20Easy%20Failure%20Mode%20and%20Effects%20Analysis.pdf">Fast and Easy Failure Mode and Effects Analysis (FEFMEA)</a>: A shorter and easier version of FEFMEA I use for software testing.<br>
 
 # My LinkedIn Posts
 
