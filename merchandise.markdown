@@ -17,7 +17,8 @@ Books
       Many of the testers working for me had trouble writing test plans. Most of them were either suffering from writers
 block, or were struggling with how to represent their testing ideas. I found a simple, fast, outline based
 format helped my testers get ideas on paper quickly that were easy to understand and review. I share that approach in this book.<br><br>
-      Buy a copy for you, a friend, or  your whole team <a href="https://www.amazon.com/Writing-Test-Plans-Made-Easy/dp/1478333693">on Amazon</a>.
+      Buy a copy for you, a friend, or  your whole team <a href="https://www.amazon.com/Writing-Test-Plans-Made-Easy/dp/1478333693">on Amazon</a>.<br>
+      Also available <a href="https://roseberry80.gumroad.com/l/lqfclj">as a PDF on Gumroad</a>
     </td>
   </tr>
 </table>
