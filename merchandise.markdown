@@ -18,7 +18,7 @@ Books
 block, or were struggling with how to represent their testing ideas. I found a simple, fast, outline based
 format helped my testers get ideas on paper quickly that were easy to understand and review. I share that approach in this book.<br><br>
       Buy a paperback or Kindle copy for you, a friend, or  your whole team <a href="https://www.amazon.com/Writing-Test-Plans-Made-Easy/dp/1478333693">on Amazon</a>.<br>
-      Also available <a href="https://roseberry80.gumroad.com/l/lqfclj">as a PDF on Gumroad</a>.
+      Also available <a href="https://roseberry80.gumroad.com/l/tiizym">as a PDF on Gumroad</a>.
     </td>
   </tr>
 </table>
