@@ -20,6 +20,8 @@ Some time ago I started posting a series of cartoons with commentary on LinkedIn
 <a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-softwaredevelopment-yesthisisallaboutaitoolswhatdidyouthinkitwasabout-activity-7303805712353120256-x_Qt?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">Sometimes the Effort is the Goal</a><br>
 <a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-softwaredevelopment-activity-7293638754374758400-YfYO?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">"Fixing the Model" for AI is Like Moving a Blanket</a><br>
 <a href="https://www.linkedin.com/posts/wayneroseberry_when-people-discuss-safety-and-ai-a-lot-activity-7247301680298442753-s-xL?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">Don't Give the Monkey the Gun!</a><br>
+<a href="https://www.linkedin.com/posts/wayneroseberry_dontgivethemonekythegun-softwaretesting-softwaredevelopment-activity-7341659312773021698-kgvH?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">How to Confront the Question "What is Our AI Strategy?"</a><br>
+
 
 ## Testing and The Software Development Lifecycle
 
@@ -48,6 +50,10 @@ Some time ago I started posting a series of cartoons with commentary on LinkedIn
 <a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-softwaredevelopment-testautomation-activity-7286846273553408000-veaO?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">Automation Frameworks and Their Various Pieces</a><br>
 <a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-softwaredevelopment-activity-7284272839938002944-dYsG?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">Testing v.s. Making Mindset: Infinity to Finite in Opposite Directions</a><br>
 <a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-softwaredevelopment-losethedogma-activity-7248411308000194560-M3i3?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">Do You Need a Dedicated Tester?</a><br>
+<a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-softwaredevelopment-activity-7354934355762335744-bdMY?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">Precision Versus Recall Testing</a><br>
+<a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-softwaredevelopment-activity-7365096237731102720-Oh51?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">Why Business Don't Invest in Testing</a><br>
+<a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-softwaredevelopment-activity-7366301118735290371-z__J?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">Automation is not Magic</a><br>
+<a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-softwaredevelopment-testautomation-activity-7366521372245688320-zCbI?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">First Time Testing is a Lot of Work - Why We Cover Regression Using Automated Checks</a><br>
 
 ## Testing Analysis
 
@@ -80,6 +86,10 @@ Some time ago I started posting a series of cartoons with commentary on LinkedIn
 <a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-softwaredevelopment-forsomereasonthesethingsarealwaysreceivedwellascartoons-activity-7271247696399626240-LOFp?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">Invaluable Testers</a><br>
 <a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-softwaredevelopment-activity-7260791496977625088-um4t?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">Deployments Frequency Compared to Train Departure Times</a><br>
 <a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-softwaredevelopment-activity-7230647613782421506-26AF?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">Change Requirements to Create More Test Ideas</a><br>
+<a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-softwaredevelopment-activity-7363333426734628864-JYDO?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">If the Schema Allows It, Do It</a><br>
+<a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-softwaredevelopment-activity-7365084122861539329-hBkv?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">Testing Just the User Stories is Weak Coverage</a><br>
+<a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-softwaredevelopment-activity-7365409685077680128-NKYY?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">User Stories and Pairwise Testing</a><br>
+
 
 ## Inconsistent Results, Intermittent Failures, and Flake
 
@@ -88,3 +98,6 @@ Some time ago I started posting a series of cartoons with commentary on LinkedIn
 <a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-softwaredevelopment-embracetheflake-activity-7313187722733461504-kQF6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">Is Your Response to Flake Flaky?</a><br>
 <a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-softwaredevelopment-embracetheflake-activity-7291974022597132289-v1-b?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">Variation is the Rule, not the Exception</a><br>
 <a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-softwaredevelopment-embracetheflake-activity-7291620239253876736-smi4?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">Is This Bug From This Change? Use Repetition to Move "First Hit" Pain to a Better Time</a><br>
+<a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-softwaredevelopment-activity-7333136895264133120-TNAx?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">Self-healing Automation Hides the Flake, and That Isn't Good</a><br>
+<a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-embracetheflake-activity-7339430234024222721-b0qO?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">Doing the Same Thing Over and Over Again is not the Definition of Insanity</a><br>
+
