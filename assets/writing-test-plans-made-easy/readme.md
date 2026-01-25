@@ -1,3 +1,7 @@
+## Writing Test Plans Made Easy Training Resources
+The files in this directory are a collection of presenations and classroom training material derived from my book, "Writing Test Plans Made Easy."
+
+
 ## File List
 **DataMaker Requirements Doc.docx** - A requirements document describing an imaginary application. Used in workshop exercises.
 
