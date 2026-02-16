@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Security Taxonomy Hierarchy (CAPEC-1000)</title>
+  <p>The text below were taken from the CAPEC list of security attack patterns from MITRE.ORG. The definitions below are current as of February 12th, 2026.</p>
 <style>
   body { font-family: system-ui, -apple-system, sans-serif; margin: 2rem; color: #1a1a1a; line-height: 1.6; }
   h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; }
@@ -385,7 +386,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Gain Privileges&quot;, &quot;Modify Data&quot;, &quot;Read Data&quot;]" data-taxonomies="{&quot;WASC&quot;: [&quot;Cross-Site Request Forgery&quot;], &quot;OWASP Attacks&quot;: [&quot;Cross Site Request Forgery (CSRF)&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/62.html" target="_blank" rel="noopener">CAPEC-62</a>: Cross Site Request Forgery
 <span class="tags">
@@ -408,7 +409,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/467.html" target="_blank" rel="noopener">CAPEC-467</a>: Cross Site Identification
 </div>
@@ -442,7 +443,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;]" data-impacts="[&quot;Gain Privileges&quot;]" data-taxonomies="{&quot;WASC&quot;: [&quot;Credential/Session Prediction&quot;], &quot;OWASP Attacks&quot;: [&quot;Session Prediction&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/59.html" target="_blank" rel="noopener">CAPEC-59</a>: Session Credential Falsification through Prediction
 <span class="tags">
@@ -495,7 +496,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;]" data-impacts="[&quot;Gain Privileges&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Access Token Manipulation:Token Impersonation/Theft&quot;, &quot;Use Alternate Authentication Material:Web Session Cookie&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/60.html" target="_blank" rel="noopener">CAPEC-60</a>: Reusing Session IDs (aka Session Replay)
 <span class="tags">
@@ -586,7 +587,7 @@
 </div>
 <p class="pattern-desc">An attack of this type exploits vulnerabilities in client/server communication channel authentication and data integrity. It leverages the implicit trust a server places in the client, or more importantly, that which the server believes is the client. An attacker executes this type of attack by communicating directly with the server where the server believes it is communicating only with a valid client. There are numerous variations of this type of attack.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Gain Privileges&quot;, &quot;Modify Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/39.html" target="_blank" rel="noopener">CAPEC-39</a>: Manipulating Opaque Client-based Data Tokens
 <span class="tags">
@@ -600,7 +601,7 @@
 </div>
 <p class="pattern-desc">In circumstances where an application holds important data client-side in tokens (cookies, URLs, data files, and so forth) that data can be manipulated. If client or server-side application components reinterpret that data as authentication tokens or data (such as store item pricing or wallet information) then even opaquely manipulating that data may bear fruit for an Attacker. In this pattern an attacker undermines the assumption that client side tokens have been adequately protected from tampering through use of encryption or obfuscation.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Gain Privileges&quot;, &quot;Modify Data&quot;, &quot;Read Data&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Steal Web Session Cookie&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/31.html" target="_blank" rel="noopener">CAPEC-31</a>: Accessing/Intercepting/Modifying HTTP Cookies
 <span class="tags">
@@ -638,7 +639,7 @@
 </div>
 <p class="pattern-desc">This attack targets user controlled variables (DEBUG=1, PHP Globals, and So Forth). An adversary can override variables leveraging user-supplied, untrusted query variables directly used on the application server without any data sanitization. In extreme cases, the adversary can change variables controlling the business logic of the application. For instance, in languages like PHP, a number of poorly set default configurations may allow the user to override variables.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Accountability&quot;, &quot;Authorization&quot;, &quot;Availability&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Bypass Protection Mechanism&quot;, &quot;Execute Unauthorized Commands&quot;, &quot;Hide Activities&quot;, &quot;Read Data&quot;, &quot;Unreliable Execution&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Hijack Execution Flow:Dynamic Linker Hijacking&quot;, &quot;Hijack Execution Flow:Path Interception by PATH Environment Variable&quot;, &quot;Impair Defenses:Impair Command History Logging&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/13.html" target="_blank" rel="noopener">CAPEC-13</a>: Subverting Environment Variable Values
 <span class="tags">
@@ -695,7 +696,7 @@
 </div>
 <p class="pattern-desc">An adversary removes or disables functionality on the client that the server assumes to be present and trustworthy.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/200.html" target="_blank" rel="noopener">CAPEC-200</a>: Removal of filters: Input filters, output filters, data masking
 </div>
@@ -737,7 +738,7 @@
 </div>
 <p class="pattern-desc">The adversary targets a race condition occurring when multiple processes access and manipulate the same resource concurrently, and the outcome of the execution depends on the particular order in which the access takes place. The adversary can leverage a race condition by &quot;running the race&quot;, modifying the resource and modifying the normal execution flow. For instance, a race condition can occur while accessing a file: the adversary can trick the system by replacing the original file with their version and cause the system to read the malicious file.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Availability&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Alter Execution Logic&quot;, &quot;Gain Privileges&quot;, &quot;Modify Data&quot;, &quot;Read Data&quot;, &quot;Resource Consumption&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/29.html" target="_blank" rel="noopener">CAPEC-29</a>: Leveraging Time-of-Check and Time-of-Use (TOCTOU) Race Conditions
 <span class="tags">
@@ -755,7 +756,7 @@
 </div>
 <p class="pattern-desc">This attack targets a race condition occurring between the time of check (state) for a resource and the time of use of a resource. A typical example is file access. The adversary can leverage a file access race condition by &quot;running the race&quot;, meaning that they would modify the resource between the first time the target program accesses the file and the time the target program uses the file. During that period of time, the adversary could replace or modify the file, causing the application to behave unexpectedly.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Availability&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Gain Privileges&quot;, &quot;Modify Data&quot;, &quot;Resource Consumption&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/27.html" target="_blank" rel="noopener">CAPEC-27</a>: Leveraging Race Conditions via Symbolic Links
 <span class="tags">
@@ -806,7 +807,7 @@
 </span>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/140.html" target="_blank" rel="noopener">CAPEC-140</a>: Bypassing of Intermediate Forms in Multiple-Form Sets
 </div>
@@ -825,7 +826,7 @@
 </div>
 <p class="pattern-desc">An adversary exploits a hardware design flaw in a CPU implementation of transient instruction execution to expose sensitive data and bypass/subvert access control over restricted resources. Typically, the adversary conducts a covert channel attack to target non-discarded microarchitectural changes caused by transient executions such as speculative execution, branch prediction, instruction pipelining, and/or out-of-order execution. The transient execution results in a series of instructions (gadgets) which construct covert channel and access/transfer the secret data.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;]" data-impacts="[&quot;Bypass Protection Mechanism&quot;, &quot;Execute Unauthorized Commands&quot;, &quot;Read Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/696.html" target="_blank" rel="noopener">CAPEC-696</a>: Load Value Injection
 <span class="tags">
@@ -864,7 +865,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Accountability&quot;, &quot;Authentication&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;, &quot;Non-Repudiation&quot;]" data-impacts="[&quot;Bypass Protection Mechanism&quot;, &quot;Gain Privileges&quot;, &quot;Modify Data&quot;, &quot;Read Data&quot;]" data-taxonomies="{&quot;WASC&quot;: [&quot;Routing Detour&quot;, &quot;XML Entity Expansion&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/219.html" target="_blank" rel="noopener">CAPEC-219</a>: XML Routing Detour Attacks
 <span class="tags">
@@ -894,7 +895,7 @@
 </div>
 <p class="pattern-desc">An attacker manipulates either egress or ingress data from a client within an application framework in order to change the content of messages. Performing this attack can allow the attacker to gain unauthorized privileges within the application, or conduct attacks such as phishing, deceptive strategies to spread malware, or traditional web-application attacks. The techniques require use of specialized software that allow the attacker to perform adversary-in-the-middle (CAPEC-94) communications between the web browser and the remote system. Despite the use of AiTH software, the attack is actually directed at the server, as the client is one node in a series of content brokers that pass information along to the application framework. Additionally, it is not true &quot;Adversary-in-the-Middle&quot; attack at the network layer, but an application-layer attack the root cause of which is the master applications trust in the integrity of code supplied by the client.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/385.html" target="_blank" rel="noopener">CAPEC-385</a>: Transaction or Event Tampering via Application API Manipulation
 </div>
@@ -912,7 +913,7 @@
 </div>
 <p class="pattern-desc">An attacker manipulates either egress or ingress data from a client within an application framework in order to change the destination and/or content of links/buttons displayed to a user within API messages. Performing this attack allows the attacker to manipulate content in such a way as to produce messages or content that looks authentic but contains links/buttons that point to an attacker controlled destination. Some applications make navigation remapping more difficult to detect because the actual HREF values of images, profile elements, and links/buttons are masked. One example would be to place an image in a user&#x27;s photo gallery that when clicked upon redirected the user to an off-site location. Also, traditional web vulnerabilities (such as CSRF) can be constructed with remapped buttons or links. In some cases navigation remapping can be used for Phishing attacks or even means to artificially boost the page view, user site reputation, or click-fraud.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/387.html" target="_blank" rel="noopener">CAPEC-387</a>: Navigation Remapping To Propagate Malicious Content
 </div>
@@ -997,7 +998,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Confidentiality&quot;]" data-impacts="[&quot;Read Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/20.html" target="_blank" rel="noopener">CAPEC-20</a>: Encryption Brute Forcing
 <span class="tags">
@@ -1026,7 +1027,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authentication&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Gain Privileges&quot;, &quot;Modify Data&quot;, &quot;Read Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/16.html" target="_blank" rel="noopener">CAPEC-16</a>: Dictionary-based Password Attack
 <span class="tags">
@@ -1100,7 +1101,7 @@
 </div>
 <p class="pattern-desc">An adversary manipulates the use or processing of an interface (e.g. Application Programming Interface (API) or System-on-Chip (SoC)) resulting in an adverse impact upon the security of the system implementing the interface. This can allow the adversary to bypass access control and/or execute functionality not intended by the interface implementation, possibly compromising the system which integrates the interface. Interface manipulation can take on a number of forms including forcing the unexpected use of an interface or the use of an interface in an unintended way.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;]" data-impacts="[&quot;Gain Privileges&quot;, &quot;Read Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/36.html" target="_blank" rel="noopener">CAPEC-36</a>: Using Unpublished Interfaces or Functionality
 <span class="tags">
@@ -1130,7 +1131,7 @@
 </span>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Execute Unauthorized Commands&quot;, &quot;Gain Privileges&quot;, &quot;Read Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/661.html" target="_blank" rel="noopener">CAPEC-661</a>: Root/Jailbreak Detection Evasion via Debugging
 <span class="tags">
@@ -1179,7 +1180,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;]" data-impacts="[&quot;Bypass Protection Mechanism&quot;, &quot;Read Data&quot;]" data-taxonomies="{&quot;WASC&quot;: [&quot;Predictable Resource Location&quot;], &quot;OWASP Attacks&quot;: [&quot;Forced browsing&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/87.html" target="_blank" rel="noopener">CAPEC-87</a>: Forceful Browsing
 <span class="tags">
@@ -1225,7 +1226,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Accountability&quot;, &quot;Authentication&quot;, &quot;Authorization&quot;, &quot;Non-Repudiation&quot;]" data-impacts="[&quot;Bypass Protection Mechanism&quot;, &quot;Execute Unauthorized Commands&quot;, &quot;Gain Privileges&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/237.html" target="_blank" rel="noopener">CAPEC-237</a>: Escaping a Sandbox by Calling Code in Another Language
 <span class="tags">
@@ -1285,7 +1286,7 @@
 </div>
 <p class="pattern-desc">An adversary actively probes the target in a manner that is designed to solicit information that could be leveraged for malicious purposes.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Confidentiality&quot;]" data-impacts="[&quot;Read Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/54.html" target="_blank" rel="noopener">CAPEC-54</a>: Query System for Information
 <span class="tags">
@@ -1295,7 +1296,7 @@
 </div>
 <p class="pattern-desc">An adversary, aware of an application&#x27;s location (and possibly authorized to use the application), probes an application&#x27;s structure and evaluates its robustness by submitting requests and examining responses. Often, this is accomplished by sending variants of expected queries in the hope that these modified queries might return information beyond what the expected set of queries would provide.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Confidentiality&quot;]" data-impacts="[&quot;Read Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/95.html" target="_blank" rel="noopener">CAPEC-95</a>: WSDL Scanning
 <span class="tags">
@@ -1359,7 +1360,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/143.html" target="_blank" rel="noopener">CAPEC-143</a>: Detect Unpublicized Web Pages
 </div>
@@ -1442,7 +1443,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/498.html" target="_blank" rel="noopener">CAPEC-498</a>: Probe iOS Screenshots
 </div>
@@ -1487,7 +1488,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Input Capture:Keylogging&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/568.html" target="_blank" rel="noopener">CAPEC-568</a>: Capture Credentials via Keylogger
 </div>
@@ -1524,7 +1525,7 @@
 </div>
 <p class="pattern-desc">An adversary monitors data streams to or from the target for information gathering purposes. This attack may be undertaken to solely gather sensitive information or to support a further attack against the target. This attack pattern can involve sniffing network traffic as well as other types of data streams (e.g. radio). The adversary can attempt to initiate the establishment of a data stream or passively observe the communications as they unfold. In all variants of this attack, the adversary is not the intended recipient of the data stream. In contrast to other means of gathering information (e.g., targeting data leaks), the adversary must actively position themself so as to observe explicit data channels (e.g. network traffic) and read the content. However, this attack differs from a Adversary-In-the-Middle (CAPEC-94) attack, as the adversary does not alter the content of the communications nor forward data to the intended recipient.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Confidentiality&quot;]" data-impacts="[&quot;Read Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/157.html" target="_blank" rel="noopener">CAPEC-157</a>: Sniffing Attacks
 <span class="tags">
@@ -1534,7 +1535,7 @@
 </div>
 <p class="pattern-desc">In this attack pattern, the adversary intercepts information transmitted between two third parties. The adversary must be able to observe, read, and/or hear the communication traffic, but not necessarily block the communication or change its content. Any transmission medium can theoretically be sniffed if the adversary can examine the contents between the sender and recipient. Sniffing Attacks are similar to Adversary-In-The-Middle attacks (CAPEC-94), but are entirely passive. AiTM attacks are predominantly active and often alter the content of the communications themselves.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;]" data-impacts="[&quot;Gain Privileges&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Network Sniffing&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/57.html" target="_blank" rel="noopener">CAPEC-57</a>: Utilizing REST&#x27;s Trust in the System Resource to Obtain Sensitive Data
 <span class="tags">
@@ -1612,7 +1613,7 @@
 </div>
 <p class="pattern-desc">An adversary, through a previously installed malicious application, intercepts messages from a trusted Android-based application in an attempt to achieve a variety of different objectives including denial of service, information disclosure, and data injection. An implicit intent sent from a trusted application can be received by any application that has declared an appropriate intent filter. If the intent is not protected by a permission that the malicious application lacks, then the attacker can gain access to the data contained within the intent. Further, the intent can be either blocked from reaching the intended destination, or modified and potentially forwarded along.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Confidentiality&quot;]" data-impacts="[&quot;Read Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/501.html" target="_blank" rel="noopener">CAPEC-501</a>: Android Activity Hijack
 <span class="tags">
@@ -1638,7 +1639,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Confidentiality&quot;]" data-impacts="[&quot;Read Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/508.html" target="_blank" rel="noopener">CAPEC-508</a>: Shoulder Surfing
 <span class="tags">
@@ -1697,7 +1698,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;]" data-impacts="[&quot;Gain Privileges&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Hijack Execution Flow: ServicesFile Permissions Weakness&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/1.html" target="_blank" rel="noopener">CAPEC-1</a>: Accessing Functionality Not Properly Constrained by ACLs
 <span class="tags">
@@ -1714,7 +1715,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Gain Privileges&quot;, &quot;Modify Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/58.html" target="_blank" rel="noopener">CAPEC-58</a>: Restful Privilege Elevation
 <span class="tags">
@@ -1790,7 +1791,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Masquerading&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/177.html" target="_blank" rel="noopener">CAPEC-177</a>: Create files with the same name as files protected with a higher classification
 </div>
@@ -1881,7 +1882,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Gain Privileges&quot;, &quot;Modify Data&quot;, &quot;Read Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/702.html" target="_blank" rel="noopener">CAPEC-702</a>: Exploiting Incorrect Chaining or Granularity of Hardware Debug Components
 <span class="tags">
@@ -1926,7 +1927,7 @@
 </div>
 <p class="pattern-desc">An adversary manipulates an application&#x27;s interaction with a buffer in an attempt to read or modify data they shouldn&#x27;t have access to. Buffer attacks are distinguished in that it is the buffer space itself that is the target of the attack rather than any code responsible for interpreting the content of the buffer. In virtually all buffer attacks the content that is placed in the buffer is immaterial. Instead, most buffer attacks involve retrieving or providing more input than can be stored in the allocated buffer, resulting in the reading or overwriting of other unintended program memory.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Availability&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Execute Unauthorized Commands&quot;, &quot;Gain Privileges&quot;, &quot;Unreliable Execution&quot;]" data-taxonomies="{&quot;WASC&quot;: [&quot;Buffer Overflow&quot;], &quot;OWASP Attacks&quot;: [&quot;Buffer overflow attack&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/100.html" target="_blank" rel="noopener">CAPEC-100</a>: Overflow Buffers
 <span class="tags">
@@ -1950,7 +1951,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Availability&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Execute Unauthorized Commands&quot;, &quot;Modify Data&quot;, &quot;Read Data&quot;, &quot;Unreliable Execution&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/8.html" target="_blank" rel="noopener">CAPEC-8</a>: Buffer Overflow in an API Call
 <span class="tags">
@@ -2180,7 +2181,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Endpoint Denial of Service: OS Exhaustion Flood&quot;, &quot;Endpoint Denial of Service: Service Exhaustion Flood&quot;, &quot;Network Denial of Service: Direct Network Flood&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/482.html" target="_blank" rel="noopener">CAPEC-482</a>: TCP Flood
 </div>
@@ -2248,7 +2249,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Availability&quot;]" data-impacts="[&quot;Resource Consumption&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/147.html" target="_blank" rel="noopener">CAPEC-147</a>: XML Ping of the Death
 <span class="tags">
@@ -2300,7 +2301,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Availability&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Execute Unauthorized Commands&quot;, &quot;Gain Privileges&quot;, &quot;Read Data&quot;, &quot;Resource Consumption&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/230.html" target="_blank" rel="noopener">CAPEC-230</a>: Serialized Data with Nested Payloads
 <span class="tags">
@@ -2317,7 +2318,7 @@
 </div>
 <p class="pattern-desc">Applications often need to transform data in and out of a data format (e.g., XML and YAML) by using a parser. It may be possible for an adversary to inject data that may have an adverse effect on the parser when it is being processed. Many data format languages allow the definition of macro-like structures that can be used to simplify the creation of complex structures. By nesting these structures, causing the data to be repeatedly substituted, an adversary can cause the parser to consume more resources while processing, causing excessive memory consumption and CPU utilization.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Availability&quot;]" data-impacts="[&quot;Resource Consumption&quot;, &quot;Unreliable Execution&quot;]" data-taxonomies="{&quot;WASC&quot;: [&quot;XML Entity Expansion&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/197.html" target="_blank" rel="noopener">CAPEC-197</a>: Exponential Data Expansion
 <span class="tags">
@@ -2361,7 +2362,7 @@
 </div>
 <p class="pattern-desc">An adversary injects oversized serialized data payloads into a parser during data processing to produce adverse effects upon the parser such as exhausting system resources and arbitrary code execution.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Availability&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Execute Unauthorized Commands&quot;, &quot;Resource Consumption&quot;]" data-taxonomies="{&quot;WASC&quot;: [&quot;XML External Entities&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/221.html" target="_blank" rel="noopener">CAPEC-221</a>: Data Serialization External Entities Blowup
 <span class="tags">
@@ -2450,7 +2451,7 @@
 </div>
 <p class="pattern-desc">An adversary manipulates the content of request parameters for the purpose of undermining the security of the target. Some parameter encodings use text characters as separators. For example, parameters in a HTTP GET message are encoded as name-value pairs separated by an ampersand (&amp;). If an attacker can supply text strings that are used to fill in these parameters, then they can inject special characters used in the encoding scheme to add or modify parameters. For example, if user input is fed directly into an HTTP GET request and the user provides the value &quot;myInput&amp;new_param=myValue&quot;, then the input parameter is set to myInput, but a new parameter (new_param) is also added with a value of myValue. This can significantly change the meaning of the query that is processed by the server. Any encoding scheme where parameters are identified and separated by text characters is potentially vulnerable to this attack - the HTTP GET encoding used above is just one example.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Gain Privileges&quot;, &quot;Modify Data&quot;, &quot;Read Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/6.html" target="_blank" rel="noopener">CAPEC-6</a>: Argument Injection
 <span class="tags">
@@ -2477,7 +2478,7 @@
 </div>
 <p class="pattern-desc">An attack of this type exploits a programs&#x27; vulnerabilities that allows an attacker&#x27;s commands to be concatenated onto a legitimate command with the intent of targeting other resources such as the file system or database. The system that uses a filter or denylist input validation, as opposed to allowlist validation is vulnerable to an attacker who predicts delimiters (or combinations of delimiters) not present in the filter or denylist. As with other injection attacks, the attacker uses the command delimiter payload as an entry point to tunnel through the application and activate additional attacks through SQL queries, shell commands, network scanning, and so on.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{&quot;OWASP Attacks&quot;: [&quot;Web Parameter Tampering&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/460.html" target="_blank" rel="noopener">CAPEC-460</a>: HTTP Parameter Pollution (HPP)
 </div>
@@ -2545,7 +2546,7 @@
 </div>
 <p class="pattern-desc">An attacker tricks a victim to execute malicious flash content that executes commands or makes flash calls specified by the attacker. One example of this attack is cross-site flashing, an attacker controlled parameter to a reference call loads from content specified by the attacker.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Authorization&quot;, &quot;Confidentiality&quot;]" data-impacts="[&quot;Execute Unauthorized Commands&quot;, &quot;Other&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/174.html" target="_blank" rel="noopener">CAPEC-174</a>: Flash Parameter Injection
 <span class="tags">
@@ -2600,7 +2601,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/145.html" target="_blank" rel="noopener">CAPEC-145</a>: Checksum Spoofing
 </div>
@@ -2625,7 +2626,7 @@
 </div>
 <p class="pattern-desc">An adversary attempts to deceive a GPS receiver by broadcasting counterfeit GPS signals, structured to resemble a set of normal GPS signals. These spoofed signals may be structured in such a way as to cause the receiver to estimate its position to be somewhere other than where it actually is, or to be located where it is but at a different time, as determined by the adversary.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/628.html" target="_blank" rel="noopener">CAPEC-628</a>: Carry-Off GPS Attack
 </div>
@@ -2647,7 +2648,7 @@
 </div>
 <p class="pattern-desc">Identity Spoofing refers to the action of assuming (i.e., taking on) the identity of some other entity (human or non-human) and then using that identity to accomplish a goal. An adversary may craft messages that appear to come from a different principle or use stolen / spoofed authentication credentials.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Confidentiality&quot;]" data-impacts="[&quot;Read Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/89.html" target="_blank" rel="noopener">CAPEC-89</a>: Pharming
 <span class="tags">
@@ -2677,7 +2678,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Accountability&quot;, &quot;Authentication&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;, &quot;Non-Repudiation&quot;]" data-impacts="[&quot;Gain Privileges&quot;, &quot;Modify Data&quot;, &quot;Read Data&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Internal Spearfishing&quot;, &quot;Phishing for Information: Spearfishing Attachment&quot;, &quot;Phishing for Information: Spearfishing Link&quot;, &quot;Phishing for Information: Spearfishing Service&quot;, &quot;Phishing: Spearfishing Attachment&quot;, &quot;Phishing: Spearfishing Link&quot;, &quot;Phishing: Spearfishing via Service&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/163.html" target="_blank" rel="noopener">CAPEC-163</a>: Spear Phishing
 <span class="tags">
@@ -2751,7 +2752,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Accountability&quot;, &quot;Authentication&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;, &quot;Non-Repudiation&quot;]" data-impacts="[&quot;Bypass Protection Mechanism&quot;, &quot;Execute Unauthorized Commands&quot;, &quot;Gain Privileges&quot;, &quot;Modify Data&quot;, &quot;Read Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/275.html" target="_blank" rel="noopener">CAPEC-275</a>: DNS Rebinding
 <span class="tags">
@@ -2833,7 +2834,7 @@
 </div>
 <p class="pattern-desc">A Principal Spoof is a form of Identity Spoofing where an adversary pretends to be some other person in an interaction. This is often accomplished by crafting a message (either written, verbal, or visual) that appears to come from a person other than the adversary. Phishing and Pharming attacks often attempt to do this so that their attempts to gather sensitive information appear to come from a legitimate source. A Principal Spoof does not use stolen or spoofed authentication credentials, instead relying on the appearance and content of the message to reflect identity.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Availability&quot;]" data-impacts="[&quot;Other&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/599.html" target="_blank" rel="noopener">CAPEC-599</a>: Terrestrial Jamming
 <span class="tags">
@@ -2861,7 +2862,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authentication&quot;]" data-impacts="[&quot;Gain Privileges&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/459.html" target="_blank" rel="noopener">CAPEC-459</a>: Creating a Rogue Certification Authority Certificate
 <span class="tags">
@@ -2926,7 +2927,7 @@
 </div>
 <p class="pattern-desc">An attacker exploits a weakness in input validation by controlling the format, structure, and composition of data to an input-processing interface. By supplying input of a non-standard or unexpected form an attacker can adversely impact the security of the target.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Availability&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Execute Unauthorized Commands&quot;, &quot;Modify Data&quot;, &quot;Read Data&quot;, &quot;Unreliable Execution&quot;]" data-taxonomies="{&quot;WASC&quot;: [&quot;Path Traversal&quot;], &quot;OWASP Attacks&quot;: [&quot;Path Traversal&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/126.html" target="_blank" rel="noopener">CAPEC-126</a>: Path Traversal
 <span class="tags">
@@ -2949,7 +2950,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Gain Privileges&quot;, &quot;Modify Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/76.html" target="_blank" rel="noopener">CAPEC-76</a>: Manipulating Web Input to File System Calls
 <span class="tags">
@@ -3000,7 +3001,7 @@
 </div>
 <p class="pattern-desc">An attacker takes advantage of the structure of integer variables to cause these variables to assume values that are not expected by an application. For example, adding one to the largest positive integer in a signed integer variable results in a negative number. Negative numbers may be illegal in an application and the application may prevent an attacker from providing them directly, but the application may not consider that adding two positive numbers can create a negative number do to the structure of integer storage formats.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Availability&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Execute Unauthorized Commands&quot;, &quot;Gain Privileges&quot;, &quot;Modify Data&quot;, &quot;Read Data&quot;, &quot;Unreliable Execution&quot;]" data-taxonomies="{&quot;WASC&quot;: [&quot;Integer Overflows&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/92.html" target="_blank" rel="noopener">CAPEC-92</a>: Forced Integer Overflow
 <span class="tags">
@@ -3052,7 +3053,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Gain Privileges&quot;, &quot;Modify Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/3.html" target="_blank" rel="noopener">CAPEC-3</a>: Using Leading &#x27;Ghost&#x27; Character Sequences to Bypass Input Filters
 <span class="tags">
@@ -3247,7 +3248,7 @@
 </div>
 <p class="pattern-desc">An adversary deceives an application or user and convinces them to request a resource from an unintended location. By spoofing the location, the adversary can cause an alternate resource to be used, often one that the adversary controls and can be used to help them achieve their malicious goals.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;]" data-impacts="[&quot;Bypass Protection Mechanism&quot;, &quot;Execute Unauthorized Commands&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Hijack Execution Flow:Path Interception by Search Order Hijacking&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/159.html" target="_blank" rel="noopener">CAPEC-159</a>: Redirect Access to Libraries
 <span class="tags">
@@ -3264,7 +3265,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Availability&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Execute Unauthorized Commands&quot;, &quot;Gain Privileges&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Hijack Execution Flow: Path Interception by PATH Environment Variable&quot;, &quot;Hijack Execution Flow: Path Interception by Unquoted Path&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/38.html" target="_blank" rel="noopener">CAPEC-38</a>: Leveraging/Manipulating Configuration File Search Paths
 <span class="tags">
@@ -3356,7 +3357,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/505.html" target="_blank" rel="noopener">CAPEC-505</a>: Scheme Squatting
 </div>
@@ -3453,7 +3454,7 @@
 </div>
 <p class="pattern-desc">An attacker exploits characteristics of the infrastructure of a network entity in order to perpetrate attacks or information gathering on network objects or effect a change in the ordinary information flow between network objects. Most often, this involves manipulation of the routing of network messages so, instead of arriving at their proper destination, they are directed towards an entity of the attackers&#x27; choosing, usually a server controlled by the attacker. The victim is often unaware that their messages are not being processed correctly. For example, a targeted client may believe they are connecting to their own bank but, in fact, be connecting to a Pharming site controlled by the attacker which then collects the user&#x27;s login information in order to hijack the actual bank account.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Adversary-in-the-Middle: ARP Cache Poisoning&quot;], &quot;OWASP Attacks&quot;: [&quot;Cache Poisoning&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/141.html" target="_blank" rel="noopener">CAPEC-141</a>: Cache Poisoning
 </div>
@@ -3467,7 +3468,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Compromise Infrastructure: DNS Server&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/142.html" target="_blank" rel="noopener">CAPEC-142</a>: DNS Cache Poisoning
 </div>
@@ -3501,7 +3502,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Integrity&quot;]" data-impacts="[&quot;Modify Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/81.html" target="_blank" rel="noopener">CAPEC-81</a>: Web Server Logs Tampering
 <span class="tags">
@@ -3581,7 +3582,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Availability&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Alter Execution Logic&quot;, &quot;Execute Unauthorized Commands&quot;, &quot;Gain Privileges&quot;, &quot;Read Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/73.html" target="_blank" rel="noopener">CAPEC-73</a>: User-Controlled Filename
 <span class="tags">
@@ -3613,7 +3614,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Accountability&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Bypass Protection Mechanism&quot;, &quot;Hide Activities&quot;, &quot;Modify Data&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Obfuscated Files or Information:Binary padding&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/655.html" target="_blank" rel="noopener">CAPEC-655</a>: Avoid Security Tool Identification by Adding Data
 <span class="tags">
@@ -3642,7 +3643,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;]" data-impacts="[&quot;Gain Privileges&quot;, &quot;Read Data&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Masquerading: Space after Filename&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/11.html" target="_blank" rel="noopener">CAPEC-11</a>: Cause Web Server Misclassification
 <span class="tags">
@@ -3692,7 +3693,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Availability&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Execute Unauthorized Commands&quot;, &quot;Gain Privileges&quot;, &quot;Modify Data&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Hide Artifacts: Resource Forking&quot;, &quot;Obfuscated Files or Information: HTML Smuggling&quot;, &quot;Obfuscated Files or Information:\u00a0Embedded Payloads&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/35.html" target="_blank" rel="noopener">CAPEC-35</a>: Leverage Executable Code in Non-Executable Files
 <span class="tags">
@@ -3745,7 +3746,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;]" data-impacts="[&quot;Bypass Protection Mechanism&quot;, &quot;Hide Activities&quot;, &quot;Other&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Remote System Discovery&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/292.html" target="_blank" rel="noopener">CAPEC-292</a>: Host Discovery
 <span class="tags">
@@ -3764,7 +3765,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Confidentiality&quot;]" data-impacts="[&quot;Other&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/285.html" target="_blank" rel="noopener">CAPEC-285</a>: ICMP Echo Request Ping
 <span class="tags">
@@ -3892,7 +3893,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;]" data-impacts="[&quot;Bypass Protection Mechanism&quot;, &quot;Hide Activities&quot;, &quot;Other&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/287.html" target="_blank" rel="noopener">CAPEC-287</a>: TCP SYN Scan
 <span class="tags">
@@ -4026,7 +4027,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;]" data-impacts="[&quot;Bypass Protection Mechanism&quot;, &quot;Hide Activities&quot;, &quot;Other&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/290.html" target="_blank" rel="noopener">CAPEC-290</a>: Enumerate Mail Exchange (MX) Records
 <span class="tags">
@@ -4088,7 +4089,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/149.html" target="_blank" rel="noopener">CAPEC-149</a>: Explore for Predictable Temporary File Names
 </div>
@@ -4210,7 +4211,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Confidentiality&quot;]" data-impacts="[&quot;Read Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/85.html" target="_blank" rel="noopener">CAPEC-85</a>: AJAX Footprinting
 <span class="tags">
@@ -4268,7 +4269,7 @@
 </div>
 <p class="pattern-desc">An adversary is able to disguise one action for another and therefore trick a user into initiating one type of action when they intend to initiate a different action. For example, a user might be led to believe that clicking a button will submit a query, but in fact it downloads software. Adversaries may perform this attack through social means, such as by simply convincing a victim to perform the action or relying on a user&#x27;s natural inclination to do so, or through technical means, such as a clickjacking attack where a user sees one interface but is actually interacting with a second, invisible, interface.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Availability&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Gain Privileges&quot;, &quot;Modify Data&quot;, &quot;Read Data&quot;, &quot;Unreliable Execution&quot;]" data-taxonomies="{&quot;OWASP Attacks&quot;: [&quot;Clickjacking&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/103.html" target="_blank" rel="noopener">CAPEC-103</a>: Clickjacking
 <span class="tags">
@@ -4290,7 +4291,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/181.html" target="_blank" rel="noopener">CAPEC-181</a>: Flash File Overlay
 </div>
@@ -4346,7 +4347,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authentication&quot;]" data-impacts="[&quot;Gain Privileges&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Abuse Elevation Control Mechanism: Elevated Execution with Prompt&quot;, &quot;Input Capture&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/654.html" target="_blank" rel="noopener">CAPEC-654</a>: Credential Prompt Impersonation
 <span class="tags">
@@ -4377,7 +4378,7 @@
 </div>
 <p class="pattern-desc">An adversary exploits a weakness on the target to force arbitrary code to be retrieved locally or from a remote location and executed. This differs from code injection in that code injection involves the direct inclusion of code while code inclusion involves the addition or replacement of a reference to a code file, which is subsequently loaded by the target and used as part of the code of some application.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Execute Unauthorized Commands&quot;, &quot;Read Data&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Process Injection&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/251.html" target="_blank" rel="noopener">CAPEC-251</a>: Local Code Inclusion
 <span class="tags">
@@ -4394,7 +4395,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/252.html" target="_blank" rel="noopener">CAPEC-252</a>: PHP Local File Inclusion
 </div>
@@ -4450,7 +4451,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Availability&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Execute Unauthorized Commands&quot;, &quot;Read Data&quot;]" data-taxonomies="{&quot;WASC&quot;: [&quot;SSI Injection&quot;], &quot;OWASP Attacks&quot;: [&quot;Server-Side Includes (SSI) Injection&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/101.html" target="_blank" rel="noopener">CAPEC-101</a>: Server Side Include (SSI) Injection
 <span class="tags">
@@ -4509,7 +4510,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;]" data-impacts="[&quot;Gain Privileges&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/75.html" target="_blank" rel="noopener">CAPEC-75</a>: Manipulating Writeable Configuration Files
 <span class="tags">
@@ -4532,7 +4533,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Availability&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Execute Unauthorized Commands&quot;, &quot;Modify Data&quot;, &quot;Read Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/51.html" target="_blank" rel="noopener">CAPEC-51</a>: Poison Web Service Registry
 <span class="tags">
@@ -4593,7 +4594,7 @@
 </div>
 <p class="pattern-desc">An adversary corrupts or modifies the content of a schema for the purpose of undermining the security of the target. Schemas provide the structure and content definitions for resources used by an application. By replacing or modifying a schema, the adversary can affect how the application handles or interprets a resource, often leading to possible denial of service, entering into an unexpected state, or recording incomplete data.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Availability&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Modify Data&quot;, &quot;Read Data&quot;, &quot;Resource Consumption&quot;, &quot;Unreliable Execution&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/146.html" target="_blank" rel="noopener">CAPEC-146</a>: XML Schema Poisoning
 <span class="tags">
@@ -4642,7 +4643,7 @@
 </div>
 <p class="pattern-desc">An attacker initiates a series of events designed to cause a user, program, server, or device to perform actions which undermine the integrity of software code, device data structures, or device firmware, achieving the modification of the target&#x27;s integrity to achieve an insecure state.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/185.html" target="_blank" rel="noopener">CAPEC-185</a>: Malicious Software Download
 </div>
@@ -4664,7 +4665,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Availability&quot;, &quot;Confidentiality&quot;]" data-impacts="[&quot;Execute Unauthorized Commands&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Software Deployment Tools&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/187.html" target="_blank" rel="noopener">CAPEC-187</a>: Malicious Automated Software Update via Redirection
 <span class="tags">
@@ -4740,13 +4741,13 @@
 </div>
 <p class="pattern-desc">An adversary discovers the structure, function, and composition of an object, resource, or system by using a variety of analysis techniques to effectively determine how the analyzed entity was constructed or operates. The goal of reverse engineering is often to duplicate the function, or a part of the function, of an object in order to duplicate or &quot;back engineer&quot; some aspect of its functioning. Reverse engineering techniques can be applied to mechanical objects, electronic devices, or software, although the methodology and techniques involved in each type of analysis differ widely.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/167.html" target="_blank" rel="noopener">CAPEC-167</a>: White Box Reverse Engineering
 </div>
 <p class="pattern-desc">An attacker discovers the structure, function, and composition of a type of computer software through white box analysis techniques. White box techniques involve methods which can be applied to a piece of software when an executable or some other compiled object can be directly subjected to analysis, revealing at least a portion of its machine instructions that can be observed upon execution.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Gain Privileges&quot;, &quot;Modify Data&quot;, &quot;Read Data&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Data from Local System&quot;, &quot;Unsecured Credentials: Private Keys&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/37.html" target="_blank" rel="noopener">CAPEC-37</a>: Retrieve Embedded Sensitive Data
 <span class="tags">
@@ -4798,7 +4799,7 @@
 </div>
 <p class="pattern-desc">An adversary discovers the structure, function, and composition of a type of computer software through black box analysis techniques. &#x27;Black Box&#x27; methods involve interacting with the software indirectly, in the absence of direct access to the executable object. Such analysis typically involves interacting with the software at the boundaries of where the software interfaces with a larger execution environment, such as input-output vectors, libraries, or APIs. Black Box Reverse Engineering also refers to gathering physical side effects of a hardware device, such as electromagnetic radiation or sounds.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Confidentiality&quot;]" data-impacts="[&quot;Read Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/621.html" target="_blank" rel="noopener">CAPEC-621</a>: Analysis of Packet Timing and Sizes
 <span class="tags">
@@ -4841,7 +4842,7 @@
 </div>
 <p class="pattern-desc">An adversary engages in activities to decipher and/or decode protocol information for a network or application communication protocol used for transmitting information between interconnected nodes or systems on a packet-switched data network. While this type of analysis involves the analysis of a networking protocol inherently, it does not require the presence of an actual or physical network.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Confidentiality&quot;]" data-impacts="[&quot;Read Data&quot;]" data-taxonomies="{&quot;OWASP Attacks&quot;: [&quot;Cryptanalysis&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/97.html" target="_blank" rel="noopener">CAPEC-97</a>: Cryptanalysis
 <span class="tags">
@@ -4856,7 +4857,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/463.html" target="_blank" rel="noopener">CAPEC-463</a>: Padding Oracle Crypto Attack
 </div>
@@ -4887,7 +4888,7 @@
 </div>
 <p class="pattern-desc">An adversary leverages a legitimate capability of an application in such a way as to achieve a negative technical impact. The system functionality is not altered or modified but used in a way that was not intended. This is often accomplished through the overuse of a specific functionality or by leveraging functionality with design flaws that enables the adversary to gain access to unauthorized, sensitive data.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Availability&quot;]" data-impacts="[&quot;Resource Consumption&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Account Access Removal&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/2.html" target="_blank" rel="noopener">CAPEC-2</a>: Inducing Account Lockout
 <span class="tags">
@@ -4947,7 +4948,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Confidentiality&quot;]" data-impacts="[&quot;Other&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/606.html" target="_blank" rel="noopener">CAPEC-606</a>: Weakening of Cellular Encryption
 <span class="tags">
@@ -4987,7 +4988,7 @@
 </div>
 <p class="pattern-desc">An adversary manipulates a setting or parameter on communications channel in order to compromise its security. This can result in information exposure, insertion/removal of information from the communications stream, and/or potentially system compromise.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;]" data-impacts="[&quot;Gain Privileges&quot;, &quot;Read Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/12.html" target="_blank" rel="noopener">CAPEC-12</a>: Choosing Message Identifier
 <span class="tags">
@@ -5028,7 +5029,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;]" data-impacts="[&quot;Hide Activities&quot;, &quot;Read Data&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;System Information Discovery&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/312.html" target="_blank" rel="noopener">CAPEC-312</a>: Active OS Fingerprinting
 <span class="tags">
@@ -5046,7 +5047,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;]" data-impacts="[&quot;Bypass Protection Mechanism&quot;, &quot;Hide Activities&quot;, &quot;Read Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/317.html" target="_blank" rel="noopener">CAPEC-317</a>: IP ID Sequencing Probe
 <span class="tags">
@@ -5283,7 +5284,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Confidentiality&quot;]" data-impacts="[&quot;Other&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/170.html" target="_blank" rel="noopener">CAPEC-170</a>: Web Application Fingerprinting
 <span class="tags">
@@ -5328,7 +5329,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Endpoint Denial of Service: Service Exhaustion Flood&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/469.html" target="_blank" rel="noopener">CAPEC-469</a>: HTTP DoS
 </div>
@@ -5351,7 +5352,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Availability&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Execute Unauthorized Commands&quot;, &quot;Gain Privileges&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Process Injection: Thread Execution Hijacking&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/30.html" target="_blank" rel="noopener">CAPEC-30</a>: Hijacking a Privileged Thread of Execution
 <span class="tags">
@@ -5441,7 +5442,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Availability&quot;]" data-impacts="[&quot;Modify Data&quot;, &quot;Resource Consumption&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/610.html" target="_blank" rel="noopener">CAPEC-610</a>: Cellular Data Injection
 <span class="tags">
@@ -5470,7 +5471,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Availability&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Execute Unauthorized Commands&quot;, &quot;Gain Privileges&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Event Triggered Execution:.bash_profile and .bashrc&quot;, &quot;Event Triggered Execution:\u00a0Installer Packages&quot;, &quot;Obfuscated Files or Information:\u00a0Embedded Payloads&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/19.html" target="_blank" rel="noopener">CAPEC-19</a>: Embedding Scripts within Scripts
 <span class="tags">
@@ -5535,7 +5536,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Availability&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Execute Unauthorized Commands&quot;, &quot;Gain Privileges&quot;, &quot;Modify Data&quot;, &quot;Read Data&quot;]" data-taxonomies="{&quot;OWASP Attacks&quot;: [&quot;Reflected DOM Injection&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/588.html" target="_blank" rel="noopener">CAPEC-588</a>: DOM-Based XSS
 <span class="tags">
@@ -5573,7 +5574,7 @@
 </div>
 <p class="pattern-desc">This type of attack is a form of Cross-Site Scripting (XSS) where a malicious script is &quot;reflected&quot; off a vulnerable web application and then executed by a victim&#x27;s browser. The process starts with an adversary delivering a malicious script to a victim and convincing the victim to send the script to the vulnerable web application.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Availability&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Execute Unauthorized Commands&quot;, &quot;Read Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/18.html" target="_blank" rel="noopener">CAPEC-18</a>: XSS Targeting Non-Script Elements
 <span class="tags">
@@ -5689,7 +5690,7 @@
 </div>
 <p class="pattern-desc">An adversary utilizes a form of Cross-site Scripting (XSS) where a malicious script is persistently &quot;stored&quot; within the data storage of a vulnerable web application as valid input.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/209.html" target="_blank" rel="noopener">CAPEC-209</a>: XSS Using MIME Type Mismatch
 </div>
@@ -5722,7 +5723,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Availability&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Execute Unauthorized Commands&quot;, &quot;Gain Privileges&quot;, &quot;Read Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/40.html" target="_blank" rel="noopener">CAPEC-40</a>: Manipulating Writeable Terminal Devices
 <span class="tags">
@@ -5762,7 +5763,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Availability&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Execute Unauthorized Commands&quot;, &quot;Modify Data&quot;, &quot;Read Data&quot;]" data-taxonomies="{&quot;OWASP Attacks&quot;: [&quot;Blind SQL Injection&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/7.html" target="_blank" rel="noopener">CAPEC-7</a>: Blind SQL Injection
 <span class="tags">
@@ -5911,7 +5912,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;]" data-impacts="[&quot;Gain Privileges&quot;, &quot;Read Data&quot;]" data-taxonomies="{&quot;WASC&quot;: [&quot;XPath Injection&quot;], &quot;OWASP Attacks&quot;: [&quot;Blind XPath Injection&quot;, &quot;XPATH Injection&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/83.html" target="_blank" rel="noopener">CAPEC-83</a>: XPath Injection
 <span class="tags">
@@ -5983,7 +5984,7 @@
 </div>
 <p class="pattern-desc">An adversary subverts a communications protocol to perform an attack. This type of attack can allow an adversary to impersonate others, discover sensitive information, control the outcome of a session, or perform other attacks. This type of attack targets invalid assumptions that may be inherent in implementers of the protocol, incorrect implementations of the protocol, or vulnerabilities in the protocol itself.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;]" data-impacts="[&quot;Bypass Protection Mechanism&quot;, &quot;Gain Privileges&quot;, &quot;Read Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/90.html" target="_blank" rel="noopener">CAPEC-90</a>: Reflection Attack in Authentication Protocol
 <span class="tags">
@@ -6002,7 +6003,7 @@
 </div>
 <p class="pattern-desc">An adversary takes advantage of weaknesses in the protocol by which a client and server are communicating to perform unexpected actions. Communication protocols are necessary to transfer messages between client and server applications. Moreover, different protocols may be used for different types of interactions.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Availability&quot;, &quot;Confidentiality&quot;]" data-impacts="[&quot;Gain Privileges&quot;, &quot;Resource Consumption&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/5.html" target="_blank" rel="noopener">CAPEC-5</a>: Blue Boxing
 <span class="tags">
@@ -6104,7 +6105,7 @@
 </div>
 <p class="pattern-desc">Inter-component protocols are used to communicate between different software and hardware modules within a single computer. Common examples are: interrupt signals and data pipes. Subverting the protocol can allow an adversary to impersonate others, discover sensitive information, control the outcome of a session, or perform other attacks. This type of attack targets invalid assumptions that may be inherent in implementers of the protocol, incorrect implementations of the protocol, or vulnerabilities in the protocol itself.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Bypass Protection Mechanism&quot;, &quot;Execute Unauthorized Commands&quot;, &quot;Modify Data&quot;, &quot;Read Data&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Exploitation for Defensive Evasion&quot;, &quot;Modify Authentication Process&quot;, &quot;Pre-OS Boot: Component Firmware&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/665.html" target="_blank" rel="noopener">CAPEC-665</a>: Exploitation of Thunderbolt Protection Flaws
 <span class="tags">
@@ -6138,7 +6139,7 @@
 </div>
 <p class="pattern-desc">An adversary manipulates a web service related protocol to cause a web application or service to react differently than intended. This can either be performed through the manipulation of call parameters to include unexpected values, or by changing the called function to one that should normally be restricted or limited. By leveraging this pattern of attack, the adversary is able to gain access to data or resources normally restricted, or to cause the application or service to crash.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Availability&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Execute Unauthorized Commands&quot;, &quot;Read Data&quot;, &quot;Resource Consumption&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/279.html" target="_blank" rel="noopener">CAPEC-279</a>: SOAP Manipulation
 <span class="tags">
@@ -6161,13 +6162,13 @@
 </div>
 <p class="pattern-desc">Facilities often used layered models for physical security such as traditional locks, Electronic-based card entry systems, coupled with physical alarms. Hardware security mechanisms range from the use of computer case and cable locks as well as RFID tags for tracking computer assets. This layered approach makes it difficult for random physical security breaches to go unnoticed, but is less effective at stopping deliberate and carefully planned break-ins. Avoiding detection begins with evading building security and surveillance and methods for bypassing the electronic or physical locks which secure entry points.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/391.html" target="_blank" rel="noopener">CAPEC-391</a>: Bypassing Physical Locks
 </div>
 <p class="pattern-desc">An attacker uses techniques and methods to bypass physical security measures of a building or facility. Physical locks may range from traditional lock and key mechanisms, cable locks used to secure laptops or servers, locks on server cases, or other such devices. Techniques such as lock bumping, lock forcing via snap guns, or lock picking can be employed to bypass those locks and gain access to the facilities or devices they protect, although stealth, evidence of tampering, and the integrity of the lock following an attack, are considerations that may determine the method employed. Physical locks are limited by the complexity of the locking mechanism. While some locks may offer protections such as shock resistant foam to prevent bumping or lock forcing methods, many commonly employed locks offer no such countermeasures.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/392.html" target="_blank" rel="noopener">CAPEC-392</a>: Lock Bumping
 </div>
@@ -6190,7 +6191,7 @@
 </div>
 <p class="pattern-desc">An attacker exploits security assumptions to bypass electronic locks or other forms of access controls. Most attacks against electronic access controls follow similar methods but utilize different tools. Some electronic locks utilize magnetic strip cards, others employ RFID tags embedded within a card or badge, or may involve more sophisticated protections such as voice-print, thumb-print, or retinal biometrics. Magnetic Strip and RFID technologies are the most widespread because they are cost effective to deploy and more easily integrated with other electronic security measures. These technologies share common weaknesses that an attacker can exploit to gain access to a facility protected by the mechanisms via copying legitimate cards or badges, or generating new cards using reverse-engineered algorithms.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/397.html" target="_blank" rel="noopener">CAPEC-397</a>: Cloning Magnetic Strip Cards
 </div>
@@ -6240,7 +6241,7 @@
 </div>
 <p class="pattern-desc">An adversary exploits inherent human psychological predisposition to influence a targeted individual or group to solicit information or manipulate the target into performing an action that serves the adversary&#x27;s interests. Many interpersonal social engineering techniques do not involve outright deception, although they can; many are subtle ways of manipulating a target to remove barriers, make the target feel comfortable, and produce an exchange in which the target is either more likely to share information directly, or let key information slip out unintentionally. A skilled adversary uses these techniques when appropriate to produce the desired outcome. Manipulation techniques vary from the overt, such as pretending to be a supervisor to a help desk, to the subtle, such as making the target feel comfortable with the adversary&#x27;s speech and thought patterns.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Confidentiality&quot;]" data-impacts="[&quot;Other&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Gather Victim Identity Information&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/407.html" target="_blank" rel="noopener">CAPEC-407</a>: Pretexting
 <span class="tags">
@@ -6255,7 +6256,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Confidentiality&quot;]" data-impacts="[&quot;Read Data&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Input Capture: Credential API Hooking&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/383.html" target="_blank" rel="noopener">CAPEC-383</a>: Harvesting Information via API Event Monitoring
 <span class="tags">
@@ -6303,7 +6304,7 @@
 </div>
 <p class="pattern-desc">The adversary uses social engineering to exploit the target&#x27;s perception of the relationship between the adversary and themselves. This goal is to persuade the target to unknowingly perform an action or divulge information that is advantageous to the adversary.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Availability&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Other&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/418.html" target="_blank" rel="noopener">CAPEC-418</a>: Influence Perception of Reciprocation
 <span class="tags">
@@ -6403,7 +6404,7 @@
 </div>
 <p class="pattern-desc">The adversary shapes the target&#x27;s actions or behavior by focusing on the ways human interact and learn, leveraging such elements as cognitive and social psychology. In a variety of ways, a target can be influenced to behave or perform an action through capitalizing on what scholarship and research has learned about how and why humans react to specific scenarios and cues.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/428.html" target="_blank" rel="noopener">CAPEC-428</a>: Influence via Modes of Thinking
 </div>
@@ -6441,7 +6442,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Authorization&quot;, &quot;Availability&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Alter Execution Logic&quot;, &quot;Execute Unauthorized Commands&quot;, &quot;Unreliable Execution&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/444.html" target="_blank" rel="noopener">CAPEC-444</a>: Development Alteration
 <span class="tags">
@@ -6455,7 +6456,7 @@
 </div>
 <p class="pattern-desc">An adversary modifies a technology, product, or component during its development to acheive a negative impact once the system is deployed. The goal of the adversary is to modify the system in such a way that the negative impact can be leveraged when the system is later deployed. Development alteration attacks may include attacks that insert malicious logic into the system&#x27;s software, modify or replace hardware components, and other attacks which negatively impact the system during development. These attacks generally require insider access to modify source code or to tamper with hardware components. The product is then delivered to the user where the negative impact can be leveraged at a later time.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Subvert Trust Controls:Code Signing&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/206.html" target="_blank" rel="noopener">CAPEC-206</a>: Signing Malicious Code
 </div>
@@ -6663,7 +6664,7 @@
 </div>
 <p class="pattern-desc">An adversary modifies the design of a technology, product, or component to acheive a negative impact once the system is deployed. In this type of attack, the goal of the adversary is to modify the design of the system, prior to development starting, in such a way that the negative impact can be leveraged when the system is later deployed. Design alteration attacks differ from development alteration attacks in that design alteration attacks take place prior to development and which then may or may not be developed by the adverary. Design alteration attacks include modifying system designs to degrade system performance, cause unexpected states or errors, and general design changes that may lead to additional vulnerabilities. These attacks generally require insider access to modify design documents, but they may also be spoofed via web communications. The product is then developed and delivered to the user where the negative impact can be leveraged at a later time.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/517.html" target="_blank" rel="noopener">CAPEC-517</a>: Documentation Alteration to Circumvent Dial-down
 </div>
@@ -6725,7 +6726,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Supply Chain Compromise: Compromise Hardware Supply Chain&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/522.html" target="_blank" rel="noopener">CAPEC-522</a>: Malicious Hardware Component Replacement
 </div>
@@ -6768,13 +6769,13 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/401.html" target="_blank" rel="noopener">CAPEC-401</a>: Physically Hacking Hardware
 </div>
 <p class="pattern-desc">An adversary exploits a weakness in access control to gain access to currently installed hardware and precedes to implement changes or secretly replace a hardware component which undermines the system&#x27;s integrity for the purpose of carrying out an attack.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/402.html" target="_blank" rel="noopener">CAPEC-402</a>: Bypassing ATA Password Security
 </div>
@@ -6787,7 +6788,7 @@
 </div>
 <p class="pattern-desc">An adversary introduces malicious hardware during an update or replacement procedure, allowing for additional compromise or site disruption at the victim location. After deployment, it is not uncommon for upgrades and replacements to occur involving hardware and various replaceable parts. These upgrades and replacements are intended to correct defects, provide additional features, and to replace broken or worn-out parts. However, by forcing or tricking the replacement of a good component with a defective or corrupted component, an adversary can leverage known defects to obtain a desired malicious impact.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Supply Chain Compromise: Compromise Hardware Supply Chain&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/531.html" target="_blank" rel="noopener">CAPEC-531</a>: Hardware Component Substitution
 </div>
@@ -6798,7 +6799,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/530.html" target="_blank" rel="noopener">CAPEC-530</a>: Provide Counterfeit Component
 </div>
@@ -6837,7 +6838,7 @@
 </div>
 <p class="pattern-desc">An adversary installs or adds malicious logic (also known as malware) into a seemingly benign component of a fielded system. This logic is often hidden from the user of the system and works behind the scenes to achieve negative impacts. With the proliferation of mass digital storage and inexpensive multimedia devices, Bluetooth and 802.11 support, new attack vectors for spreading malware are emerging for things we once thought of as innocuous greeting cards, picture frames, or digital projectors. This pattern of attack focuses on systems already fielded and used in operation as opposed to systems and their components that are still under development and part of the supply chain.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Authorization&quot;]" data-impacts="[&quot;Execute Unauthorized Commands&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Supply Chain Compromise: Compromise Software Dependencies and Development Tools&quot;, &quot;Supply Chain Compromise: Compromise Software Supply Chain&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/442.html" target="_blank" rel="noopener">CAPEC-442</a>: Infected Software
 <span class="tags">
@@ -6853,7 +6854,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Authorization&quot;]" data-impacts="[&quot;Execute Unauthorized Commands&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Obfuscated Files or Information:\u00a0Embedded Payloads&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/448.html" target="_blank" rel="noopener">CAPEC-448</a>: Embed Virus into DLL
 <span class="tags">
@@ -6879,7 +6880,7 @@
 </div>
 <p class="pattern-desc">An adversary inserts malicious logic into hardware, typically in the form of a computer virus or rootkit. This logic is often hidden from the user of the hardware and works behind the scenes to achieve negative impacts. This pattern of attack focuses on hardware already fielded and used in operation as opposed to hardware that is still under development and part of the supply chain.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authentication&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;]" data-impacts="[&quot;Bypass Protection Mechanism&quot;, &quot;Execute Unauthorized Commands&quot;, &quot;Gain Privileges&quot;, &quot;Hide Activities&quot;, &quot;Modify Data&quot;, &quot;Read Data&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Pre-OS Boot:Component Firmware&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/638.html" target="_blank" rel="noopener">CAPEC-638</a>: Altered Component Firmware
 <span class="tags">
@@ -6913,7 +6914,7 @@
 </div>
 <p class="pattern-desc">An adversary inserts malicious logic into memory enabling them to achieve a negative impact. This logic is often hidden from the user of the system and works behind the scenes to achieve negative impacts. This pattern of attack focuses on systems already fielded and used in operation as opposed to systems that are still under development and part of the supply chain.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Communication Through Removable Media&quot;, &quot;Replication Through Removable Media&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/457.html" target="_blank" rel="noopener">CAPEC-457</a>: USB Memory Attacks
 </div>
@@ -6962,7 +6963,7 @@
 </div>
 <p class="pattern-desc">An adversary installs and executes malicious code on the target system in an effort to achieve a negative technical impact. Examples include rootkits, ransomware, spyware, adware, and others.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Develop Capabilities: Malware&quot;, &quot;Obfuscated Files or Information&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/542.html" target="_blank" rel="noopener">CAPEC-542</a>: Targeted Malware
 </div>
@@ -6974,7 +6975,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Create or Modify System Process&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/550.html" target="_blank" rel="noopener">CAPEC-550</a>: Install New Service
 </div>
@@ -7081,7 +7082,7 @@
 </div>
 <p class="pattern-desc">An adversary attacks a system by bypassing some or all functionality intended to protect it. Often, a system user will think that protection is in place, but the functionality behind those protections has been disabled by the adversary.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/179.html" target="_blank" rel="noopener">CAPEC-179</a>: Calling Micro-Services Directly
 </div>
@@ -7128,7 +7129,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Email Collection:Remote Email Collection&quot;, &quot;External Remote Services&quot;, &quot;Remote Services&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/555.html" target="_blank" rel="noopener">CAPEC-555</a>: Remote Services with Stolen Credentials
 </div>
@@ -7183,7 +7184,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Confidentiality&quot;]" data-impacts="[&quot;Gain Privileges&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Steal or Forge Kerberos Tickets:Kerberoasting&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/509.html" target="_blank" rel="noopener">CAPEC-509</a>: Kerberoasting
 <span class="tags">
@@ -7229,7 +7230,7 @@
 </div>
 <p class="pattern-desc">An adversary guesses or obtains (i.e. steals or purchases) legitimate operating system credentials (e.g. userID/password) to achieve authentication and to perform authorized actions on the system, under the guise of an authenticated user or service. This applies to any Operating System.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authentication&quot;, &quot;Authorization&quot;, &quot;Confidentiality&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Gain Privileges&quot;, &quot;Modify Data&quot;, &quot;Read Data&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Remote Services:SMB/Windows Admin Shares&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/561.html" target="_blank" rel="noopener">CAPEC-561</a>: Windows Admin Shares with Stolen Credentials
 <span class="tags">
@@ -7298,13 +7299,13 @@
 </div>
 <p class="pattern-desc">An adversary injects traffic into the target&#x27;s network connection. The adversary is therefore able to degrade or disrupt the connection, and potentially modify the content. This is not a flooding attack, as the adversary is not focusing on exhausting resources. Instead, the adversary is crafting a specific input to affect the system in a particular way.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/595.html" target="_blank" rel="noopener">CAPEC-595</a>: Connection Reset
 </div>
 <p class="pattern-desc">In this attack pattern, an adversary injects a connection reset packet to one or both ends of a target&#x27;s connection. The attacker is therefore able to have the target and/or the destination server sever the connection without having to directly filter the traffic between them.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/596.html" target="_blank" rel="noopener">CAPEC-596</a>: TCP RST Injection
 </div>
@@ -7323,7 +7324,7 @@
 </div>
 <p class="pattern-desc">An attacker obstructs the interactions between system components. By interrupting or disabling these interactions, an adversary can often force the system into a degraded state or cause the system to stop working as intended. This can cause the system components to be unavailable until the obstruction mitigated.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[]" data-impacts="[]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/547.html" target="_blank" rel="noopener">CAPEC-547</a>: Physical Destruction of Device or Component
 </div>
@@ -7338,7 +7339,7 @@
 </div>
 <p class="pattern-desc">An adversary disables the network route between two targets. The goal is to completely sever the communications channel between two entities. This is often the result of a major error or the use of an &quot;Internet kill switch&quot; by those in control of critical infrastructure. This attack pattern differs from most other obstruction patterns by targeting the route itself, as opposed to the data passed over the route.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Availability&quot;]" data-impacts="[&quot;Other&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/583.html" target="_blank" rel="noopener">CAPEC-583</a>: Disabling Network Hardware
 <span class="tags">
@@ -7377,7 +7378,7 @@
 </div>
 <p class="pattern-desc">An adversary uses radio noise or signals in an attempt to disrupt communications. By intentionally overwhelming system resources with illegitimate traffic, service is denied to the legitimate traffic of authorized users.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Availability&quot;]" data-impacts="[&quot;Other&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/559.html" target="_blank" rel="noopener">CAPEC-559</a>: Orbital Jamming
 <span class="tags">
@@ -7417,7 +7418,7 @@
 </div>
 <p class="pattern-desc">An adversary blocks the delivery of an important system resource causing the system to fail or stop working.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Authorization&quot;, &quot;Availability&quot;, &quot;Confidentiality&quot;]" data-impacts="[&quot;Alter Execution Logic&quot;, &quot;Bypass Protection Mechanism&quot;, &quot;Other&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/96.html" target="_blank" rel="noopener">CAPEC-96</a>: Block Access to Libraries
 <span class="tags">
@@ -7467,7 +7468,7 @@
 </div>
 <p class="pattern-desc">The adversary uses disruptive signals or events, or alters the physical environment a device operates in, to cause faulty behavior in electronic devices. This can include electromagnetic pulses, laser pulses, clock glitches, ambient temperature extremes, and more. When performed in a controlled manner on devices performing cryptographic operations, this faulty behavior can be exploited to derive secret key information.</p>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Confidentiality&quot;]" data-impacts="[&quot;Read Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/625.html" target="_blank" rel="noopener">CAPEC-625</a>: Mobile Device Fault Injection
 <span class="tags">
@@ -7493,7 +7494,7 @@
 </span>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Accountability&quot;, &quot;Authorization&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Alter Execution Logic&quot;, &quot;Execute Unauthorized Commands&quot;, &quot;Gain Privileges&quot;, &quot;Hide Activities&quot;, &quot;Modify Data&quot;]" data-taxonomies="{&quot;ATTACK&quot;: [&quot;Supply Chain Compromise: Compromise Software Dependencies and Development Tools&quot;, &quot;Supply Chain Compromise: Compromise Software Supply Chain&quot;]}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/691.html" target="_blank" rel="noopener">CAPEC-691</a>: Spoof Open-Source Software Metadata
 <span class="tags">
@@ -7515,7 +7516,7 @@
 </div>
 </div>
 <details>
-<summary class="children-label">Child Attack Patterns:</summary>
+<summary class="children-label">Sub-Patterns:</summary>
 <div class="pattern" data-scopes="[&quot;Access Control&quot;, &quot;Accountability&quot;, &quot;Authorization&quot;, &quot;Integrity&quot;]" data-impacts="[&quot;Alter Execution Logic&quot;, &quot;Execute Unauthorized Commands&quot;, &quot;Gain Privileges&quot;, &quot;Hide Activities&quot;, &quot;Modify Data&quot;]" data-taxonomies="{}">
 <div class="pattern-header"><a class="pattern-id" href="https://capec.mitre.org/data/definitions/692.html" target="_blank" rel="noopener">CAPEC-692</a>: Spoof Version Control System Commit Metadata
 <span class="tags">
@@ -7639,4 +7640,5 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 </body>
+
 </html>
