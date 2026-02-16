@@ -12,8 +12,8 @@ permalink: /OtherWritings
 <a href="/assets/AI%20Guidance%20Augmentation%20Tolerances%20and%20Enforcement%20analysis.pdf">AI Guidance, Augmentation, Tolerances and Enforcement Analysis (AIGATE)</a>. A method for analyzing and assessing safe design and usage of AI-based systems.<br>
 <a href="/assets/How%20to%20do%20Test%20Reporting.pptx">How to do test reporting</a>. A presentation on different ways of formatting and representing a test report. Download to view.<br>
 ## Security Testing
-Markdown file of the <a href="/assets/security-taxonomy-hierarchy.md">CAPEC list of security attack patterns</a>, arranged hierarchically.<br>
 HTML file of the <a href="/assets/security-taxonomy-hierarchy.html">CAPEC list of security attack patterns</a>, with filters to make for easier viewing.<br>
+HTML file of the <a href="/assets/weaknesses-taxonomy-hierarchy.html">CWE list of software security weakness patterns</a>, with filters to make for easier viewing.<br>
 
 
 # My LinkedIn Posts
