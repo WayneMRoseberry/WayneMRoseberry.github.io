@@ -1,4 +1,3 @@
-# Security Taxonomy Hierarchy (CAPEC-1000: Mechanisms of Attack)
 
 ## CAPEC-21: Exploitation of Trusted Identifiers
 
