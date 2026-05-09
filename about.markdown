@@ -29,6 +29,20 @@ Many of the testers working for me had trouble writing test plans. Most of them 
 block, or were struggling with how to represent their testing ideas. I found a simple, fast, outline based
 format helped my testers get ideas on paper quickly that were easy to understand and review. I share that approach in this book.
 
+<a href="https://www.amazon.com/Drawn-Testing-Wayne-Roseberry/dp/B0FN4Q6KG3"><img src="/assets/drawntotestingcoverarttitle.jpg" width="320" height="640"></a>
+
+Essays and cartoons about the craft and art of software testing. Everything from how to get test ideas, how to manage testing problems, how to deal with flaky bugs. Simple, amusing, and straightforward drawings and articles deliver insights about software testing rarely talked about in a similar way.
+
+<a href="https://www.amazon.com/Drawn-Testing-Again-Matthias-Roseberry/dp/B0GCZSYLZR"><img src="/assets/drawntotestingagain_coverart.jpg" width="320" height="640"></a>
+
+Drawn to Testing Again returns with more articles and cartoons about software testing. Complicated and sophisticated topics are described and explained in simple and easy to understand format with humorous pictures and diagrams. Learn how think like a tester, plan test strategies, manage testing problems, apply critical thinking, and how to think about testing AI-based systems
+
+Software Testing Video Channel
+==========
+<a href="https://www.youtube.com/@SoftwareTesting-bv6di">Software Testing</a> is my YouTube channel where I share testing ideas, approaches, and live testing examples.
+Below is a screen shot of one of my videos where I demonstrate testing on a game I am working on.
+<img src="/assets/wait2beseatedtesting.jpg">
+
 Conferences and Presentations
 ==========
 
