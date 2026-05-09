@@ -1,4 +1,4 @@
-## Writing Test Plans Made Easy Training Resources
+## Training Resources
 The files in this directory are a collection of presenations and classroom training material derived from my book, "Writing Test Plans Made Easy."
 
 
