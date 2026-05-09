@@ -21,11 +21,24 @@ I am a software engineer, tester, test leader. Most of my career has been at Mic
 engineer, helping customers with Microsoft Word. I worked on the original MSN 1.0 team as a tester, starting in 
 April, 1994. After two and a half releases of MSN, I worked on both Microsoft Commercial Internet Services, and Microsoft Site Server.
 
+## Microsoft
+
 Toward the end of the 1990s I was one of the original founding members of the Microsoft Sharepoint team, and stayed
 with that as a test lead, test manager, tester, software design engineer through multiple iterations until 2012. At that
 point I moved to the Office Engineering team, which builds the tools, services, and systems used to ship Microsoft Office.
 In 2014 became a software engineer as part of Microsoft's overall movement to align development and testing into a
 single job role.
+
+## Ford Motor Company
+
+In 2024 I began work as an SDET Manager at Ford Motor Company, in the Integrated Services division. There I worked with several product teams, guiding and advising them on quality
+engineering processes for both testing and development. Under my guidance, teams within
+that group moved from entirely manual deployment process that released builds into production once or twice a month to automated processes releasing builds on a near daily basis. Throughout all of this, I retained a full-commitment to serious, dedicated testing
+that goes beyond the simple checks needed of CI/CD pipelines to strategies that support
+deep, exploratory testing work that accomodates and supports rapid iteration cycles.
+
+Lifelong Dedication to Testing
+=================
 
 Across my career I have worked on GUI applications, client-server software, enterprise servers, proprietary online services, and
 large-scale cloud hosted software. I have spent years working with, design, and utilizing automation systems. I enjoy
