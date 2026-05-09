@@ -5,6 +5,7 @@ permalink: /OtherWritings
 ---
 
 # Documents
+==========
 <a href="/assets/Data%20Testing%20Analysis%20Heuristics.pdf">Data Testing Analysis Heuristics</a>: A categorized set of heuristics focused on testing problems with data.<br>
 <a href="/assets/Heuristics%20for%20Testing%20Software%20Dependencies.pdf">Heuristics for Testing Software Dependences</a>: A categorized set of heuristics focused on testing ideas for dependencies between components in a system.<br>
 <a href="/assets/Heuristics%20for%20Flow%20and%20Scenario%20Testing.pdf">Heuristics for Flow and Scenario Testing</a>: A categorized set of heuristics focused on testing scenarios and sequences of actions.<br>
@@ -12,8 +13,14 @@ permalink: /OtherWritings
 <a href="/assets/AI%20Guidance%20Augmentation%20Tolerances%20and%20Enforcement%20analysis.pdf">AI Guidance, Augmentation, Tolerances and Enforcement Analysis (AIGATE)</a>. A method for analyzing and assessing safe design and usage of AI-based systems.<br>
 <a href="/assets/How%20to%20do%20Test%20Reporting.pptx">How to do test reporting</a>. A presentation on different ways of formatting and representing a test report. Download to view.<br>
 
-# My LinkedIn Posts
+# Software Testing Video Channel
+==========
+<a href="https://www.youtube.com/@SoftwareTesting-bv6di">Software Testing</a> is my YouTube channel where I share testing ideas, approaches, and live testing examples.
+Below is a screen shot of one of my videos where I demonstrate testing on a game I am working on.
+<img src="/assets/wait2beseatedtesting.jpg">
 
+# My LinkedIn Posts
+==========
 Some time ago I started posting a series of cartoons with commentary on LinkedIn. They are hard to find up there, so I put a link to the list of them in here.
 
 ## AI and Testing
