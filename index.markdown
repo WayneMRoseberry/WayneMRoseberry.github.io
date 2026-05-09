@@ -5,8 +5,8 @@
 layout: home
 ---
 
-<div style="display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 24px; margin: 24px 0;">
-  <div style="flex: 1 1 420px; min-width: 280px; max-width: 620px;">
+<div style="display: grid; grid-template-columns: minmax(280px, 1.3fr) 320px; gap: 24px; align-items: start; margin: 24px 0;">
+  <div>
     <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: flex-start;">
       <div style="flex: 0 0 auto; max-width: 300px; text-align: center; width: 100%;">
         <img src="/assets/wayne_faceshot_2026_05_09.jpg" alt="Wayne Roseberry" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 12px 24px rgba(0,0,0,0.12);">
@@ -19,7 +19,7 @@ layout: home
       </div>
     </div>
   </div>
-  <div style="flex: 0 0 320px; min-width: 280px; max-width: 320px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 14px; padding: 18px; box-shadow: 0 10px 20px rgba(0,0,0,0.06);">
+  <div style="background: #f9f9f9; border: 1px solid #ddd; border-radius: 14px; padding: 18px; box-shadow: 0 10px 20px rgba(0,0,0,0.06);">
     <h2 style="margin-top: 0; margin-bottom: 16px; font-size: 1.2rem;">Get your copy of my books here!</h2>
     <div style="display: grid; gap: 18px;">
       <a href="https://www.amazon.com/Writing-Test-Plans-Made-Easy/dp/1478333693" style="display: flex; gap: 12px; text-decoration: none; color: inherit; align-items: center;">
