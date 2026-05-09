@@ -10,7 +10,7 @@ Books
 <table>
   <tr>
     <td>
-      <a href="https://www.amazon.com/Writing-Test-Plans-Made-Easy/dp/1478333693"><img src="/assets/writingtestplanscover.jpg" width="320" height="480"></a>
+      <a href="https://www.amazon.com/Writing-Test-Plans-Made-Easy/dp/1478333693"><img src="/assets/writingtestplanscover.jpg" width="400"></a>
     </td>
     <td>
       <b><i>Writing Test Plans Made Easy</i></b><br><br>
@@ -23,7 +23,7 @@ format helped my testers get ideas on paper quickly that were easy to understand
   </tr>
   <tr>
     <td>
-    <a href="https://www.amazon.com/Drawn-Testing-Wayne-Roseberry/dp/B0FN4Q6KG3"><img src="/assets/drawntotestingcoverarttitle.jpg" width="320" height="480" style="border: 5px solid #555;"></a>
+    <a href="https://www.amazon.com/Drawn-Testing-Wayne-Roseberry/dp/B0FN4Q6KG3"><img src="/assets/drawntotestingcoverarttitle.jpg" width="400" style="border: 5px solid #555;"></a>
     </td><td>
 <b><i>Drawn to Testing</i></b><br><br>
 Essays and cartoons about the craft and art of software testing. Everything from how to get test ideas, how to manage testing problems, how to deal with flaky bugs. Simple, amusing, and straightforward drawings and articles deliver insights about software testing rarely talked about in a similar way.
@@ -31,7 +31,7 @@ Essays and cartoons about the craft and art of software testing. Everything from
   </tr>
   <tr>
     <td>
-    <a href="https://www.amazon.com/Drawn-Testing-Again-Matthias-Roseberry/dp/B0GCZSYLZR"><img src="/assets/drawntotestingagain_coverart.jpg" width="320" height="480" style="border: 5px solid #555;"></a>
+    <a href="https://www.amazon.com/Drawn-Testing-Again-Matthias-Roseberry/dp/B0GCZSYLZR"><img src="/assets/drawntotestingagain_coverart.jpg" width="400" style="border: 5px solid #555;"></a>
     </td><td>
 <b><i>Drawn to Testing Again</i></b><br><br>
 Drawn to Testing Again returns with more articles and cartoons about software testing. Complicated and sophisticated topics are described and explained in simple and easy to understand format with humorous pictures and diagrams. Learn how think like a tester, plan test strategies, manage testing problems, apply critical thinking, and how to think about testing AI-based systems
