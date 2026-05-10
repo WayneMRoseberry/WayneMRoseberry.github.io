@@ -53,3 +53,19 @@ how the tool does.
 
 <a href="https://datamakerjs-f3b6b7d13de0.herokuapp.com/">DataMaker</a>
 
+## Statemaker
+
+Statemaker is a C#/.NET library that automatically generates finite state machines from an initial state and transformation rules. StateMaker systematically explores the state space, discovering all reachable states and transitions, making it ideal for test coverage generation, workflow modeling, and system analysis.<br><br>
+It is located on Github at <a href="https://github.com/WayneMRoseberry/statemaker">https://github.com/WayneMRoseberry/statemaker</a>.
+
+## Amiiboviewer
+
+I created Amiibowviewer as an exercise in testing APIs and data. The entire application client-based HTML which calls a REST API that resides at https://www.amiiboapi.com/api/. The REST API is not owned by me, so I guess I run the risk that someday the owner takes it down. The purpose of the application is to give people a chance to observe behavior and try to figure out how something works. Upon doing that, they point is to see how well they can come up with interesting testing ideas given what they observe. It is an application that appears very simple, but the underlying behaviors and their relationship to the data returned by the API make it useful training material.<br><br>
+
+It is located on Github at <a href="https://github.com/WayneMRoseberry/amiiboviewer">https://github.com/WayneMRoseberry/amiiboviewer</a>.
+
+## Forklift
+
+Forklift is a video game I started and never completed. It came from lunch conversations at work. One of my coworkers shared funny stories from his days at Walmart, driving a forklift. I have a fascination with video games based on mundane activities, so I decided a forklift simulator might be a fun game. The game is built on the Unity 3d engine. I built a working 3d forklift with the physics to move around, as well as lift and carry objects on pallets. I got bored when I had to figure out how to create the score display and all the in-between scenes.<br><br>
+
+It is located on Github at <a href="https://github.com/WayneMRoseberry/Forklift">https://github.com/WayneMRoseberry/Forklift</a>.
