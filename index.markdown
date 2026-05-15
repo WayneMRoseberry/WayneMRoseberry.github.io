@@ -2,7 +2,7 @@
 # Feel free to add content and custom Front Matter to this file.
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
-layout: home
+layout: page
 ---
 
 <div style="display: grid; grid-template-columns: minmax(280px, 1.3fr) 320px; gap: 24px; align-items: start; margin: 24px 0;">
