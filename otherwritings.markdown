@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "My Other Writings"
+title: "Articles and Blog Posts"
 permalink: /OtherWritings
 ---
 
@@ -113,4 +113,11 @@ Some time ago I started posting a series of cartoons with commentary on LinkedIn
 <a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-softwaredevelopment-embracetheflake-activity-7291620239253876736-smi4?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">Is This Bug From This Change? Use Repetition to Move "First Hit" Pain to a Better Time</a><br>
 <a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-softwaredevelopment-activity-7333136895264133120-TNAx?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">Self-healing Automation Hides the Flake, and That Isn't Good</a><br>
 <a href="https://www.linkedin.com/posts/wayneroseberry_softwaretesting-embracetheflake-activity-7339430234024222721-b0qO?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAh3ZkBmQDDIKsXxS7JDXb4_7-CCEd9B64">Doing the Same Thing Over and Over Again is not the Definition of Insanity</a><br>
+
+## Blog Posts
+
+{% for post in site.posts %}
+- [{{ post.title }}]({{ post.url | prepend: site.baseurl }}) — {{ post.date | date: "%B %-d, %Y" }}
+{% endfor %}
+
 
