@@ -1,48 +1,8 @@
 ---
 layout: page
-title: "Books"
-permalink: /Books
+title: "Merchandise"
+permalink: /Merchandise
 ---
-<table>
-  <tr>
-    <td>
-      <a href="https://www.amazon.com/Writing-Test-Plans-Made-Easy/dp/1478333693"><img src="/assets/writingtestplanscover.jpg" width="400"></a>
-    </td>
-    <td valign="top">
-      <a href="https://www.amazon.com/Writing-Test-Plans-Made-Easy/dp/1478333693"><b><i>Writing Test Plans Made Easy</i></b></a><br><br>
-      Many of the testers working for me had trouble writing test plans. Most of them were either suffering from writers
-block, or were struggling with how to represent their testing ideas. I found a simple, fast, outline based
-format helped my testers get ideas on paper quickly that were easy to understand and review. I share that approach in this book.<br><br>
-      Buy a paperback or Kindle copy for you, a friend, or  your whole team <a href="https://www.amazon.com/Writing-Test-Plans-Made-Easy/dp/1478333693">on Amazon</a>.<br>
-      Also available <a href="https://roseberry80.gumroad.com/l/tiizym">as a PDF on Gumroad</a>.
-    </td>
-  </tr>
-  <tr>
-    <td>
-    <a href="https://www.amazon.com/Drawn-Testing-Wayne-Roseberry/dp/B0FN4Q6KG3"><img src="/assets/drawntotestingcoverarttitle.jpg" width="800" style="border: 5px solid #555;"></a>
-    </td><td valign="top">
-<a href="https://www.amazon.com/Drawn-Testing-Wayne-Roseberry/dp/B0FN4Q6KG3"><b><i>Drawn to Testing</i></b></a><br><br>
-Essays and cartoons about the craft and art of software testing. Everything from how to get test ideas, how to manage testing problems, how to deal with flaky bugs. Simple, amusing, and straightforward drawings and articles deliver insights about software testing rarely talked about in a similar way.<br><br>
-      <a href="https://www.amazon.com/Drawn-Testing-Wayne-Roseberry/dp/B0FN4Q6KG3">Buy now on Amazon</a>.<br>
-    </td>
-  </tr>
-  <tr>
-    <td>
-    <a href="https://www.amazon.com/Drawn-Testing-Again-Matthias-Roseberry/dp/B0GCZSYLZR"><img src="/assets/drawntotestingagain_coverart.jpg" width="400" style="border: 5px solid #555;"></a>
-    </td><td valign="top">
-<a href="https://www.amazon.com/Drawn-Testing-Again-Matthias-Roseberry/dp/B0GCZSYLZR"><b><i>Drawn to Testing Again</i></b></a><br><br>
-Drawn to Testing Again returns with more articles and cartoons about software testing. Complicated and sophisticated topics are described and explained in simple and easy to understand format with humorous pictures and diagrams. Learn how think like a tester, plan test strategies, manage testing problems, apply critical thinking, and how to think about testing AI-based systems
-<br><br>
-      <a href="https://www.amazon.com/Drawn-Testing-Again-Matthias-Roseberry/dp/B0GCZSYLZR">Buy now on Amazon</a>.<br>
-    </td>
-  </tr>
-</table>
-
-
-
-
-
-
 Show your tester pride
 ================================================
 I have some fun and funny testing products for sale in <a href="https://www.zazzle.com/store/wayneroseberry">
@@ -126,5 +86,3 @@ In my free time, I enjoy drawing. Some of my works are available here in t-shirt
     </td>
   </tr>
 </table>
-
-
