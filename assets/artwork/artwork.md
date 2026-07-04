@@ -42,9 +42,10 @@ The first two images here are from a Chris Thile's Acousticampe 2025, an acousti
 <a href="./holdwhatchagot.jpg" target="_blank"><img src="./holdwhatchagot.jpg" width="200" alt="holdwhatchagot"></a>
 <a href="./masters.png" target="_blank"><img src="./masters.png" width="200" alt="masters"></a><br>
 
-These first of these two images is from the montly bluegrass jam session in Maltby, WA. The second image is a request to illustrate a photo of their jam circle from one of the Maltby jam attendees.<br>
+These first of these two images is from the montly bluegrass jam session in Maltby, WA. The second image is a request to illustrate a photo of their jam circle from one of the Maltby jam attendees. The third image is of the house band at the Copperworks Brewery jam session.<br>
 <a href="./maltby_performance_07_03_2025.jpg" target="_blank"><img src="./maltby_performance_07_03_2025.jpg" width="200" alt="maltby_performance_07_03_2025"></a>
 <a href="./michelle_ruis_jamcircle.jpg" target="_blank"><img src="./michelle_ruis_jamcircle.jpg" width="200" alt="michelle_ruis_jamcircle"></a>
+<a href="./copperworks_2026_06_28.jpg" target="_blank"><img src="./copperworks_2026_06_28.jpg" width="200" alt="copperworks_2026_06_08"></a>
 
 ## Curious Characters
 All of these are various characters that I imagined and drew at some point.<br>
